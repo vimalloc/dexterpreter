@@ -1,0 +1,3 @@
+This is what I did to make it work:
+
+java -cp bin hu.uw.pallergabor.dedexer.Dedexer -o -D -r -d sexps <path to src>
