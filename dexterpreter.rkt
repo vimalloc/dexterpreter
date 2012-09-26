@@ -39,7 +39,7 @@
 ; goto
 ; switch
 ; compare
-; conditions
+; conditions/branches
 ; array get
 ; array put
 ; instance get
