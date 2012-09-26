@@ -25,6 +25,27 @@
       [`(invoke-direct {,this} ,meth) stx])))
 
 
+(define-match-expander return
+  (lambda stx
+    (syntax-case stx ()
+      ; return-void
+      ; (return-void )
+      ; => Return without a return value
+      [`(return-void )        stx]
+      ; return
+      ; (return vx)
+      ; => Return with vx return value
+      [`(return ,vx)          stx]
+      ; return-wide
+      ; (return-wide vx)
+      ; => Return with double/long result in vx,vx+1.
+      [`(return-wide ,vx)     stx]
+      ; return-object
+      ; (return-object vx)
+      ; => Return with vx object reference value
+      [`(return-object ,vx)   stx])))
+
+
 ; Opcodes we care about (in order):
 ; http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html
 
