@@ -15,4 +15,9 @@
       ; (invoke-virtual {v3 v0 v1 v2} method v0-type [v1-type] v2-type
       ;  => invoke virtual method with params v0..2, v3 is 'this'
       [(invoke-virtual {,this . ,params} ,meth . ,types) stx]
-      [(invoke-super {})]))
+      ; invoke-super
+      ; (invoke-super {v1 v2} method v2-type
+      ;  => invoke the method from the super class with arguments v1 and v2
+      [(invoke-super {,args} ,meth . ,types) stx]
+      ; invoke-direct {v0} method
+      [(invoke-direct {,this} ,meth) stx])))
