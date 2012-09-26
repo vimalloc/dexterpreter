@@ -23,3 +23,7 @@
       [(invoke-super {,args} ,meth . ,types) stx]
       ; invoke-direct {v0} method
       [(invoke-direct {,this} ,meth) stx])))
+
+
+; vim: tabstop=2 shiftwidth=2 softtabstop=2
+
