@@ -1,0 +1,893 @@
+(class (attrs public ) android/support/v4/app/DialogFragment
+ (super android/support/v4/app/Fragment)
+ (source "DialogFragment.java")
+ (implements android/content/DialogInterface$OnCancelListener)
+ (implements android/content/DialogInterface$OnDismissListener)
+
+ (field (attrs private static final ) SAVED_BACK_STACK_ID [object java/lang/String] "android:backStackId" )
+ (field (attrs private static final ) SAVED_CANCELABLE [object java/lang/String] "android:cancelable" )
+ (field (attrs private static final ) SAVED_DIALOG_STATE_TAG [object java/lang/String] "android:savedDialogState" )
+ (field (attrs private static final ) SAVED_SHOWS_DIALOG [object java/lang/String] "android:showsDialog" )
+ (field (attrs private static final ) SAVED_STYLE [object java/lang/String] "android:style" )
+ (field (attrs private static final ) SAVED_THEME [object java/lang/String] "android:theme" )
+ (field (attrs public static final ) STYLE_NORMAL int 0); 0x0 )
+ (field (attrs public static final ) STYLE_NO_FRAME int 2); 0x2 )
+ (field (attrs public static final ) STYLE_NO_INPUT int 3); 0x3 )
+ (field (attrs public static final ) STYLE_NO_TITLE int 1); 0x1 )
+ (field (attrs ) mBackStackId int )
+ (field (attrs ) mCancelable boolean )
+ (field (attrs ) mDialog [object android/app/Dialog] )
+ (field (attrs ) mDismissed boolean )
+ (field (attrs ) mShownByMe boolean )
+ (field (attrs ) mShowsDialog boolean )
+ (field (attrs ) mStyle int )
+ (field (attrs ) mTheme int )
+ (field (attrs ) mViewDestroyed boolean )
+
+(method (attrs public ) <init>()void
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/app/DialogFragment])
+  (const/4 v1 1)
+; v1 : single-length
+  (const/4 v0 0)
+; v0 : single-length
+  (line 84)
+  (invoke-direct {v2} android/support/v4/app/Fragment/<init> )
+; v2 : Landroid/support/v4/app/DialogFragment;
+  (line 73)
+  (iput v0 v2 android/support/v4/app/DialogFragment.mStyle int)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 74)
+  (iput v0 v2 android/support/v4/app/DialogFragment.mTheme int)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 75)
+  (iput-boolean v1 v2 android/support/v4/app/DialogFragment.mCancelable boolean)
+; v1 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 76)
+  (iput-boolean v1 v2 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v1 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 77)
+  (const/4 v0 15)
+; v0 : single-length
+  (iput v0 v2 android/support/v4/app/DialogFragment.mBackStackId int)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 85)
+  (return-void )
+ )
+
+(method (attrs public ) dismiss()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 155)
+  (const/4 v0 0)
+; v0 : single-length
+  (invoke-virtual {v1 v0} android/support/v4/app/DialogFragment/dismissInternal boolean )
+; v1 : Landroid/support/v4/app/DialogFragment; , v0 : single-length
+  (line 156)
+  (return-void )
+)
+
+(method (attrs public ) dismissAllowingStateLoss()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 165)
+  (const/4 v0 1)
+; v0 : single-length
+  (invoke-virtual {v1 v0} android/support/v4/app/DialogFragment/dismissInternal boolean )
+; v1 : Landroid/support/v4/app/DialogFragment; , v0 : single-length
+  (line 166)
+  (return-void )
+)
+
+(method (attrs ) dismissInternal(boolean )void
+  (limit registers 6)
+  ; this: v4 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v5 (boolean)
+  (const/4 v3 1)
+; v3 : single-length
+  (line 169)
+  (iget-boolean v1 v4 android/support/v4/app/DialogFragment.mDismissed boolean)
+; v1 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v1 l13c04)
+; v1 : single-length
+  (label l13c02)
+  (line 192)
+  (return-void )
+  (label l13c04)
+  (line 172)
+  (iput-boolean v3 v4 android/support/v4/app/DialogFragment.mDismissed boolean)
+; v3 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (line 173)
+  (const/4 v1 0)
+; v1 : single-length
+  (iput-boolean v1 v4 android/support/v4/app/DialogFragment.mShownByMe boolean)
+; v1 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (line 174)
+  (iget-object v1 v4 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v1 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v1 l13c26)
+; v1 : Landroid/app/Dialog;
+  (line 175)
+  (iget-object v1 v4 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v1 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v1} android/app/Dialog/dismiss )
+; v1 : Landroid/app/Dialog;
+  (line 176)
+  (const/4 v1 0)
+; v1 : single-length
+  (iput-object v1 v4 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v1 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (label l13c26)
+  (line 178)
+  (iput-boolean v3 v4 android/support/v4/app/DialogFragment.mViewDestroyed boolean)
+; v3 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (line 179)
+  (iget v1 v4 android/support/v4/app/DialogFragment.mBackStackId int)
+; v1 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (if-ltz v1 l13c4c)
+; v1 : single-length
+  (line 180)
+  (invoke-virtual {v4} android/support/v4/app/DialogFragment/getFragmentManager )
+; v4 : Landroid/support/v4/app/DialogFragment;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/app/FragmentManager;
+  (iget v2 v4 android/support/v4/app/DialogFragment.mBackStackId int)
+; v2 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v1 v2 v3} android/support/v4/app/FragmentManager/popBackStack int int )
+; v1 : Landroid/support/v4/app/FragmentManager; , v2 : single-length , v3 : single-length
+  (line 182)
+  (const/4 v1 15)
+; v1 : single-length
+  (iput v1 v4 android/support/v4/app/DialogFragment.mBackStackId int)
+; v1 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (goto l13c02)
+  (label l13c4c)
+  (line 184)
+  (invoke-virtual {v4} android/support/v4/app/DialogFragment/getFragmentManager )
+; v4 : Landroid/support/v4/app/DialogFragment;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/app/FragmentManager;
+  (invoke-virtual {v1} android/support/v4/app/FragmentManager/beginTransaction )
+; v1 : Landroid/support/v4/app/FragmentManager;
+  (move-result-object v0)
+; v0 : Landroid/support/v4/app/FragmentTransaction;
+  (line 185)
+  (invoke-virtual {v0 v4} android/support/v4/app/FragmentTransaction/remove [object android/support/v4/app/Fragment] )
+; v0 : Landroid/support/v4/app/FragmentTransaction; , v4 : Landroid/support/v4/app/DialogFragment;
+  (line 186)
+  (if-eqz v5 l13c6e)
+; v5 : single-length
+  (line 187)
+  (invoke-virtual {v0} android/support/v4/app/FragmentTransaction/commitAllowingStateLoss )
+; v0 : Landroid/support/v4/app/FragmentTransaction;
+  (goto l13c02)
+  (label l13c6e)
+  (line 189)
+  (invoke-virtual {v0} android/support/v4/app/FragmentTransaction/commit )
+; v0 : Landroid/support/v4/app/FragmentTransaction;
+  (goto l13c02)
+)
+
+(method (attrs public ) getDialog()[object android/app/Dialog]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 195)
+  (iget-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/DialogFragment;
+  (return-object v0)
+; v0 : Landroid/app/Dialog;
+)
+
+(method (attrs public ) getLayoutInflater([object android/os/Bundle] )[object android/view/LayoutInflater]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v3 ([object android/os/Bundle])
+  (line 291)
+  (iget-boolean v0 v2 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (if-nez v0 l13cb2)
+; v0 : single-length
+  (line 292)
+  (invoke-super {v2 v3} android/support/v4/app/Fragment/getLayoutInflater [object android/os/Bundle] )
+; v2 : Landroid/support/v4/app/DialogFragment; , v3 : Landroid/os/Bundle;
+  (move-result-object v0)
+; v0 : Landroid/view/LayoutInflater;
+  (label l13cb0)
+  (line 310)
+  (return-object v0)
+; v0 : Landroid/view/LayoutInflater;
+  (label l13cb2)
+  (line 295)
+  (invoke-virtual {v2 v3} android/support/v4/app/DialogFragment/onCreateDialog [object android/os/Bundle] )
+; v2 : Landroid/support/v4/app/DialogFragment; , v3 : Landroid/os/Bundle;
+  (move-result-object v0)
+; v0 : Landroid/app/Dialog;
+  (iput-object v0 v2 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 296)
+  (iget v0 v2 android/support/v4/app/DialogFragment.mStyle int)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (packed-switch v0 1
+    ps13cc2_13d04 ; case 1
+    ps13cc2_13d04 ; case 2
+    ps13cc2_13cee ; case 3
+    ps13cc2_default) ; default
+; v0 : single-length
+  (label l13cc8)
+  (label ps13cc2_default)
+  (line 306)
+  (iget-object v0 v2 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v2 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v0 l13d12)
+; v0 : Landroid/app/Dialog;
+  (line 307)
+  (iget-object v0 v2 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v2 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v0} android/app/Dialog/getContext )
+; v0 : Landroid/app/Dialog;
+  (move-result-object v0)
+; v0 : Landroid/content/Context;
+  (const-string v1 "layout_inflater")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1} android/content/Context/getSystemService [object java/lang/String] )
+; v0 : Landroid/content/Context; , v1 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (check-cast v0 [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater;
+  (goto l13cb0)
+  (label ps13cc2_13cee)
+  (line 298)
+  (iget-object v0 v2 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v2 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v0} android/app/Dialog/getWindow )
+; v0 : Landroid/app/Dialog;
+  (move-result-object v0)
+; v0 : Landroid/view/Window;
+  (const/16 v1 24)
+; v1 : single-length
+  (invoke-virtual {v0 v1} android/view/Window/addFlags int )
+; v0 : Landroid/view/Window; , v1 : single-length
+  (label ps13cc2_13d04)
+  (line 304)
+  (iget-object v0 v2 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v2 : Landroid/support/v4/app/DialogFragment;
+  (const/4 v1 1)
+; v1 : single-length
+  (invoke-virtual {v0 v1} android/app/Dialog/requestWindowFeature int )
+; v0 : Landroid/app/Dialog; , v1 : single-length
+  (goto l13cc8)
+  (label l13d12)
+  (line 310)
+  (iget-object v0 v2 android/support/v4/app/DialogFragment.mActivity [object android/support/v4/app/FragmentActivity])
+; v0 : Landroid/support/v4/app/FragmentActivity; , v2 : Landroid/support/v4/app/DialogFragment;
+  (const-string v1 "layout_inflater")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1} android/support/v4/app/FragmentActivity/getSystemService [object java/lang/String] )
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (check-cast v0 [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater;
+  (goto l13cb0)
+  (line 296)
+)
+
+(method (attrs public ) getShowsDialog()boolean
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 248)
+  (iget-boolean v0 v1 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getTheme()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 199)
+  (iget v0 v1 android/support/v4/app/DialogFragment.mTheme int)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) isCancelable()boolean
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 220)
+  (iget-boolean v0 v1 android/support/v4/app/DialogFragment.mCancelable boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) onActivityCreated([object android/os/Bundle] )void
+  (limit registers 6)
+  ; this: v4 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v5 ([object android/os/Bundle])
+  (line 355)
+  (invoke-super {v4 v5} android/support/v4/app/Fragment/onActivityCreated [object android/os/Bundle] )
+; v4 : Landroid/support/v4/app/DialogFragment; , v5 : Landroid/os/Bundle;
+  (line 357)
+  (iget-boolean v2 v4 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v2 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (if-nez v2 l13da4)
+; v2 : single-length
+  (label l13da2)
+  (line 378)
+  (return-void )
+  (label l13da4)
+  (line 361)
+  (invoke-virtual {v4} android/support/v4/app/DialogFragment/getView )
+; v4 : Landroid/support/v4/app/DialogFragment;
+  (move-result-object v1)
+; v1 : Landroid/view/View;
+  (line 362)
+  (if-eqz v1 l13dd6)
+; v1 : Landroid/view/View;
+  (line 363)
+  (invoke-virtual {v1} android/view/View/getParent )
+; v1 : Landroid/view/View;
+  (move-result-object v2)
+; v2 : Landroid/view/ViewParent;
+  (if-eqz v2 l13dcc)
+; v2 : Landroid/view/ViewParent;
+  (line 364)
+  (new-instance v2 java/lang/IllegalStateException)
+; v2 : Ljava/lang/IllegalStateException;
+  (const-string v3 "DialogFragment can not be attached to a container view")
+; v3 : Ljava/lang/String;
+  (invoke-direct {v2 v3} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v2 : Ljava/lang/IllegalStateException; , v3 : Ljava/lang/String;
+  (throw v2)
+; v2 : Ljava/lang/IllegalStateException;
+  (label l13dcc)
+  (line 366)
+  (iget-object v2 v4 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v2 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v2 v1} android/app/Dialog/setContentView [object android/view/View] )
+; v2 : Landroid/app/Dialog; , v1 : Landroid/view/View;
+  (label l13dd6)
+  (line 368)
+  (iget-object v2 v4 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v2 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v4} android/support/v4/app/DialogFragment/getActivity )
+; v4 : Landroid/support/v4/app/DialogFragment;
+  (move-result-object v3)
+; v3 : Landroid/support/v4/app/FragmentActivity;
+  (invoke-virtual {v2 v3} android/app/Dialog/setOwnerActivity [object android/app/Activity] )
+; v2 : Landroid/app/Dialog; , v3 : Landroid/support/v4/app/FragmentActivity;
+  (line 369)
+  (iget-object v2 v4 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v2 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (iget-boolean v3 v4 android/support/v4/app/DialogFragment.mCancelable boolean)
+; v3 : single-length , v4 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v2 v3} android/app/Dialog/setCancelable boolean )
+; v2 : Landroid/app/Dialog; , v3 : single-length
+  (line 370)
+  (iget-object v2 v4 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v2 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v2 v4} android/app/Dialog/setOnCancelListener [object android/content/DialogInterface$OnCancelListener] )
+; v2 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (line 371)
+  (iget-object v2 v4 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v2 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v2 v4} android/app/Dialog/setOnDismissListener [object android/content/DialogInterface$OnDismissListener] )
+; v2 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (line 372)
+  (if-eqz v5 l13da2)
+; v5 : Landroid/os/Bundle;
+  (line 373)
+  (const-string v2 "android:savedDialogState")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v5 v2} android/os/Bundle/getBundle [object java/lang/String] )
+; v5 : Landroid/os/Bundle; , v2 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Landroid/os/Bundle;
+  (line 374)
+  (if-eqz v0 l13da2)
+; v0 : Landroid/os/Bundle;
+  (line 375)
+  (iget-object v2 v4 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v2 : Landroid/app/Dialog; , v4 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v2 v0} android/app/Dialog/onRestoreInstanceState [object android/os/Bundle] )
+; v2 : Landroid/app/Dialog; , v0 : Landroid/os/Bundle;
+  (goto l13da2)
+)
+
+(method (attrs public ) onAttach([object android/app/Activity] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v2 ([object android/app/Activity])
+  (line 253)
+  (invoke-super {v1 v2} android/support/v4/app/Fragment/onAttach [object android/app/Activity] )
+; v1 : Landroid/support/v4/app/DialogFragment; , v2 : Landroid/app/Activity;
+  (line 254)
+  (iget-boolean v0 v1 android/support/v4/app/DialogFragment.mShownByMe boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (if-nez v0 l13e50)
+; v0 : single-length
+  (line 257)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-boolean v0 v1 android/support/v4/app/DialogFragment.mDismissed boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (label l13e50)
+  (line 259)
+  (return-void )
+)
+
+(method (attrs public ) onCancel([object android/content/DialogInterface] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v1 ([object android/content/DialogInterface])
+  (line 341)
+  (return-void )
+)
+
+(method (attrs public ) onCreate([object android/os/Bundle] )void
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v4 ([object android/os/Bundle])
+  (const/4 v1 1)
+; v1 : single-length
+  (const/4 v2 0)
+; v2 : single-length
+  (line 274)
+  (invoke-super {v3 v4} android/support/v4/app/Fragment/onCreate [object android/os/Bundle] )
+; v3 : Landroid/support/v4/app/DialogFragment; , v4 : Landroid/os/Bundle;
+  (line 276)
+  (iget v0 v3 android/support/v4/app/DialogFragment.mContainerId int)
+; v0 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (if-nez v0 l13eec)
+; v0 : single-length
+  (move v0 v1)
+; v0 : single-length , v1 : single-length
+  (label l13e8c)
+  (iput-boolean v0 v3 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v0 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (line 278)
+  (if-eqz v4 l13eea)
+; v4 : Landroid/os/Bundle;
+  (line 279)
+  (const-string v0 "android:style")
+; v0 : Ljava/lang/String;
+  (invoke-virtual {v4 v0 v2} android/os/Bundle/getInt [object java/lang/String] int )
+; v4 : Landroid/os/Bundle; , v0 : Ljava/lang/String; , v2 : single-length
+  (move-result v0)
+; v0 : single-length
+  (iput v0 v3 android/support/v4/app/DialogFragment.mStyle int)
+; v0 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (line 280)
+  (const-string v0 "android:theme")
+; v0 : Ljava/lang/String;
+  (invoke-virtual {v4 v0 v2} android/os/Bundle/getInt [object java/lang/String] int )
+; v4 : Landroid/os/Bundle; , v0 : Ljava/lang/String; , v2 : single-length
+  (move-result v0)
+; v0 : single-length
+  (iput v0 v3 android/support/v4/app/DialogFragment.mTheme int)
+; v0 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (line 281)
+  (const-string v0 "android:cancelable")
+; v0 : Ljava/lang/String;
+  (invoke-virtual {v4 v0 v1} android/os/Bundle/getBoolean [object java/lang/String] boolean )
+; v4 : Landroid/os/Bundle; , v0 : Ljava/lang/String; , v1 : single-length
+  (move-result v0)
+; v0 : single-length
+  (iput-boolean v0 v3 android/support/v4/app/DialogFragment.mCancelable boolean)
+; v0 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (line 282)
+  (const-string v0 "android:showsDialog")
+; v0 : Ljava/lang/String;
+  (iget-boolean v1 v3 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v1 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v4 v0 v1} android/os/Bundle/getBoolean [object java/lang/String] boolean )
+; v4 : Landroid/os/Bundle; , v0 : Ljava/lang/String; , v1 : single-length
+  (move-result v0)
+; v0 : single-length
+  (iput-boolean v0 v3 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v0 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (line 283)
+  (const-string v0 "android:backStackId")
+; v0 : Ljava/lang/String;
+  (const/4 v1 15)
+; v1 : single-length
+  (invoke-virtual {v4 v0 v1} android/os/Bundle/getInt [object java/lang/String] int )
+; v4 : Landroid/os/Bundle; , v0 : Ljava/lang/String; , v1 : single-length
+  (move-result v0)
+; v0 : single-length
+  (iput v0 v3 android/support/v4/app/DialogFragment.mBackStackId int)
+; v0 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (label l13eea)
+  (line 286)
+  (return-void )
+  (label l13eec)
+  (move v0 v2)
+; v0 : single-length , v2 : single-length
+  (line 276)
+  (goto l13e8c)
+)
+
+(method (attrs public ) onCreateDialog([object android/os/Bundle] )[object android/app/Dialog]
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v4 ([object android/os/Bundle])
+  (line 337)
+  (new-instance v0 android/app/Dialog)
+; v0 : Landroid/app/Dialog;
+  (invoke-virtual {v3} android/support/v4/app/DialogFragment/getActivity )
+; v3 : Landroid/support/v4/app/DialogFragment;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/app/FragmentActivity;
+  (invoke-virtual {v3} android/support/v4/app/DialogFragment/getTheme )
+; v3 : Landroid/support/v4/app/DialogFragment;
+  (move-result v2)
+; v2 : single-length
+  (invoke-direct {v0 v1 v2} android/app/Dialog/<init> [object android/content/Context] int )
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/FragmentActivity; , v2 : single-length
+  (return-object v0)
+; v0 : Landroid/app/Dialog;
+)
+
+(method (attrs public ) onDestroyView()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 428)
+  (invoke-super {v1} android/support/v4/app/Fragment/onDestroyView )
+; v1 : Landroid/support/v4/app/DialogFragment;
+  (line 429)
+  (iget-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v0 l13f50)
+; v0 : Landroid/app/Dialog;
+  (line 433)
+  (const/4 v0 1)
+; v0 : single-length
+  (iput-boolean v0 v1 android/support/v4/app/DialogFragment.mViewDestroyed boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (line 434)
+  (iget-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v0} android/app/Dialog/dismiss )
+; v0 : Landroid/app/Dialog;
+  (line 435)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (label l13f50)
+  (line 437)
+  (return-void )
+)
+
+(method (attrs public ) onDetach()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 263)
+  (invoke-super {v1} android/support/v4/app/Fragment/onDetach )
+; v1 : Landroid/support/v4/app/DialogFragment;
+  (line 264)
+  (iget-boolean v0 v1 android/support/v4/app/DialogFragment.mShownByMe boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (if-nez v0 l13f80)
+; v0 : single-length
+  (iget-boolean v0 v1 android/support/v4/app/DialogFragment.mDismissed boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (if-nez v0 l13f80)
+; v0 : single-length
+  (line 268)
+  (const/4 v0 1)
+; v0 : single-length
+  (iput-boolean v0 v1 android/support/v4/app/DialogFragment.mDismissed boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (label l13f80)
+  (line 270)
+  (return-void )
+)
+
+(method (attrs public ) onDismiss([object android/content/DialogInterface] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v2 ([object android/content/DialogInterface])
+  (line 344)
+  (iget-boolean v0 v1 android/support/v4/app/DialogFragment.mViewDestroyed boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (if-nez v0 l13fa4)
+; v0 : single-length
+  (line 349)
+  (const/4 v0 1)
+; v0 : single-length
+  (invoke-virtual {v1 v0} android/support/v4/app/DialogFragment/dismissInternal boolean )
+; v1 : Landroid/support/v4/app/DialogFragment; , v0 : single-length
+  (label l13fa4)
+  (line 351)
+  (return-void )
+)
+
+(method (attrs public ) onSaveInstanceState([object android/os/Bundle] )void
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v4 ([object android/os/Bundle])
+.var 0 is dialogState [object android/os/Bundle] from l13fd2 to l13fe0
+  (line 391)
+  (invoke-super {v3 v4} android/support/v4/app/Fragment/onSaveInstanceState [object android/os/Bundle] )
+; v3 : Landroid/support/v4/app/DialogFragment; , v4 : Landroid/os/Bundle;
+  (line 392)
+  (iget-object v1 v3 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v1 : Landroid/app/Dialog; , v3 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v1 l13fe0)
+; v1 : Landroid/app/Dialog;
+  (line 393)
+  (iget-object v1 v3 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v1 : Landroid/app/Dialog; , v3 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v1} android/app/Dialog/onSaveInstanceState )
+; v1 : Landroid/app/Dialog;
+  (move-result-object v0)
+; v0 : Landroid/os/Bundle;
+  (label l13fd2)
+  (line 394)
+  (if-eqz v0 l13fe0)
+; v0 : Landroid/os/Bundle;
+  (line 395)
+  (const-string v1 "android:savedDialogState")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v4 v1 v0} android/os/Bundle/putBundle [object java/lang/String] [object android/os/Bundle] )
+; v4 : Landroid/os/Bundle; , v1 : Ljava/lang/String; , v0 : Landroid/os/Bundle;
+  (label l13fe0)
+  (line 398)
+  (iget v1 v3 android/support/v4/app/DialogFragment.mStyle int)
+; v1 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v1 l13ff6)
+; v1 : single-length
+  (line 399)
+  (const-string v1 "android:style")
+; v1 : Ljava/lang/String;
+  (iget v2 v3 android/support/v4/app/DialogFragment.mStyle int)
+; v2 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v4 v1 v2} android/os/Bundle/putInt [object java/lang/String] int )
+; v4 : Landroid/os/Bundle; , v1 : Ljava/lang/String; , v2 : single-length
+  (label l13ff6)
+  (line 401)
+  (iget v1 v3 android/support/v4/app/DialogFragment.mTheme int)
+; v1 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v1 l1400c)
+; v1 : single-length
+  (line 402)
+  (const-string v1 "android:theme")
+; v1 : Ljava/lang/String;
+  (iget v2 v3 android/support/v4/app/DialogFragment.mTheme int)
+; v2 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v4 v1 v2} android/os/Bundle/putInt [object java/lang/String] int )
+; v4 : Landroid/os/Bundle; , v1 : Ljava/lang/String; , v2 : single-length
+  (label l1400c)
+  (line 404)
+  (iget-boolean v1 v3 android/support/v4/app/DialogFragment.mCancelable boolean)
+; v1 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (if-nez v1 l14022)
+; v1 : single-length
+  (line 405)
+  (const-string v1 "android:cancelable")
+; v1 : Ljava/lang/String;
+  (iget-boolean v2 v3 android/support/v4/app/DialogFragment.mCancelable boolean)
+; v2 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v4 v1 v2} android/os/Bundle/putBoolean [object java/lang/String] boolean )
+; v4 : Landroid/os/Bundle; , v1 : Ljava/lang/String; , v2 : single-length
+  (label l14022)
+  (line 407)
+  (iget-boolean v1 v3 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v1 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (if-nez v1 l14038)
+; v1 : single-length
+  (line 408)
+  (const-string v1 "android:showsDialog")
+; v1 : Ljava/lang/String;
+  (iget-boolean v2 v3 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v2 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v4 v1 v2} android/os/Bundle/putBoolean [object java/lang/String] boolean )
+; v4 : Landroid/os/Bundle; , v1 : Ljava/lang/String; , v2 : single-length
+  (label l14038)
+  (line 410)
+  (iget v1 v3 android/support/v4/app/DialogFragment.mBackStackId int)
+; v1 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (const/4 v2 15)
+; v2 : single-length
+  (if-eq v1 v2 l14050)
+; v1 : single-length , v2 : single-length
+  (line 411)
+  (const-string v1 "android:backStackId")
+; v1 : Ljava/lang/String;
+  (iget v2 v3 android/support/v4/app/DialogFragment.mBackStackId int)
+; v2 : single-length , v3 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v4 v1 v2} android/os/Bundle/putInt [object java/lang/String] int )
+; v4 : Landroid/os/Bundle; , v1 : Ljava/lang/String; , v2 : single-length
+  (label l14050)
+  (line 413)
+  (return-void )
+)
+
+(method (attrs public ) onStart()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 382)
+  (invoke-super {v1} android/support/v4/app/Fragment/onStart )
+; v1 : Landroid/support/v4/app/DialogFragment;
+  (line 383)
+  (iget-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v0 l14082)
+; v0 : Landroid/app/Dialog;
+  (line 384)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-boolean v0 v1 android/support/v4/app/DialogFragment.mViewDestroyed boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (line 385)
+  (iget-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v0} android/app/Dialog/show )
+; v0 : Landroid/app/Dialog;
+  (label l14082)
+  (line 387)
+  (return-void )
+)
+
+(method (attrs public ) onStop()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  (line 417)
+  (invoke-super {v1} android/support/v4/app/Fragment/onStop )
+; v1 : Landroid/support/v4/app/DialogFragment;
+  (line 418)
+  (iget-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v0 l140ac)
+; v0 : Landroid/app/Dialog;
+  (line 419)
+  (iget-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v0} android/app/Dialog/hide )
+; v0 : Landroid/app/Dialog;
+  (label l140ac)
+  (line 421)
+  (return-void )
+)
+
+(method (attrs public ) setCancelable(boolean )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v2 (boolean)
+  (line 212)
+  (iput-boolean v2 v1 android/support/v4/app/DialogFragment.mCancelable boolean)
+; v2 : single-length , v1 : Landroid/support/v4/app/DialogFragment;
+  (line 213)
+  (iget-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/DialogFragment;
+  (if-eqz v0 l140d6)
+; v0 : Landroid/app/Dialog;
+  (iget-object v0 v1 android/support/v4/app/DialogFragment.mDialog [object android/app/Dialog])
+; v0 : Landroid/app/Dialog; , v1 : Landroid/support/v4/app/DialogFragment;
+  (invoke-virtual {v0 v2} android/app/Dialog/setCancelable boolean )
+; v0 : Landroid/app/Dialog; , v2 : single-length
+  (label l140d6)
+  (line 214)
+  (return-void )
+)
+
+(method (attrs public ) setShowsDialog(boolean )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v1 (boolean)
+  (line 241)
+  (iput-boolean v1 v0 android/support/v4/app/DialogFragment.mShowsDialog boolean)
+; v1 : single-length , v0 : Landroid/support/v4/app/DialogFragment;
+  (line 242)
+  (return-void )
+)
+
+(method (attrs public ) setStyle(int int )void
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v3 (int)
+  ; parameter[1] : v4 (int)
+  (line 102)
+  (iput v3 v2 android/support/v4/app/DialogFragment.mStyle int)
+; v3 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 103)
+  (iget v0 v2 android/support/v4/app/DialogFragment.mStyle int)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (const/4 v1 2)
+; v1 : single-length
+  (if-eq v0 v1 l14118)
+; v0 : single-length , v1 : single-length
+  (iget v0 v2 android/support/v4/app/DialogFragment.mStyle int)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (const/4 v1 3)
+; v1 : single-length
+  (if-ne v0 v1 l14122)
+; v0 : single-length , v1 : single-length
+  (label l14118)
+  (line 104)
+  (const v0 16973913) ; 0x1030059)
+; v0 : single-length
+  (iput v0 v2 android/support/v4/app/DialogFragment.mTheme int)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (label l14122)
+  (line 106)
+  (if-eqz v4 l1412a)
+; v4 : single-length
+  (line 107)
+  (iput v4 v2 android/support/v4/app/DialogFragment.mTheme int)
+; v4 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (label l1412a)
+  (line 109)
+  (return-void )
+)
+
+(method (attrs public ) show([object android/support/v4/app/FragmentTransaction] [object java/lang/String] )int
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v3 ([object android/support/v4/app/FragmentTransaction])
+  ; parameter[1] : v4 ([object java/lang/String])
+  (const/4 v1 0)
+; v1 : single-length
+  (line 140)
+  (iput-boolean v1 v2 android/support/v4/app/DialogFragment.mDismissed boolean)
+; v1 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 141)
+  (const/4 v0 1)
+; v0 : single-length
+  (iput-boolean v0 v2 android/support/v4/app/DialogFragment.mShownByMe boolean)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 142)
+  (invoke-virtual {v3 v2 v4} android/support/v4/app/FragmentTransaction/add [object android/support/v4/app/Fragment] [object java/lang/String] )
+; v3 : Landroid/support/v4/app/FragmentTransaction; , v2 : Landroid/support/v4/app/DialogFragment; , v4 : Ljava/lang/String;
+  (line 143)
+  (iput-boolean v1 v2 android/support/v4/app/DialogFragment.mViewDestroyed boolean)
+; v1 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 144)
+  (invoke-virtual {v3} android/support/v4/app/FragmentTransaction/commit )
+; v3 : Landroid/support/v4/app/FragmentTransaction;
+  (move-result v0)
+; v0 : single-length
+  (iput v0 v2 android/support/v4/app/DialogFragment.mBackStackId int)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 145)
+  (iget v0 v2 android/support/v4/app/DialogFragment.mBackStackId int)
+; v0 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) show([object android/support/v4/app/FragmentManager] [object java/lang/String] )void
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/app/DialogFragment])
+  ; parameter[0] : v3 ([object android/support/v4/app/FragmentManager])
+  ; parameter[1] : v4 ([object java/lang/String])
+  (line 123)
+  (const/4 v1 0)
+; v1 : single-length
+  (iput-boolean v1 v2 android/support/v4/app/DialogFragment.mDismissed boolean)
+; v1 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 124)
+  (const/4 v1 1)
+; v1 : single-length
+  (iput-boolean v1 v2 android/support/v4/app/DialogFragment.mShownByMe boolean)
+; v1 : single-length , v2 : Landroid/support/v4/app/DialogFragment;
+  (line 125)
+  (invoke-virtual {v3} android/support/v4/app/FragmentManager/beginTransaction )
+; v3 : Landroid/support/v4/app/FragmentManager;
+  (move-result-object v0)
+; v0 : Landroid/support/v4/app/FragmentTransaction;
+  (line 126)
+  (invoke-virtual {v0 v2 v4} android/support/v4/app/FragmentTransaction/add [object android/support/v4/app/Fragment] [object java/lang/String] )
+; v0 : Landroid/support/v4/app/FragmentTransaction; , v2 : Landroid/support/v4/app/DialogFragment; , v4 : Ljava/lang/String;
+  (line 127)
+  (invoke-virtual {v0} android/support/v4/app/FragmentTransaction/commit )
+; v0 : Landroid/support/v4/app/FragmentTransaction;
+  (line 128)
+  (return-void )
+)
+
+)

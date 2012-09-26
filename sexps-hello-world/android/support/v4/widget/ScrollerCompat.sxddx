@@ -1,0 +1,223 @@
+(class (attrs ) android/support/v4/widget/ScrollerCompat
+ (super java/lang/Object)
+ (source "ScrollerCompat.java")
+
+ (field (attrs ) mScroller [object android/widget/Scroller] )
+
+(method (attrs ) <init>([object android/content/Context] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/widget/ScrollerCompat])
+  ; parameter[0] : v2 ([object android/content/Context])
+  (line 50)
+  (invoke-direct {v1} java/lang/Object/<init> )
+; v1 : Landroid/support/v4/widget/ScrollerCompat;
+  (line 51)
+  (new-instance v0 android/widget/Scroller)
+; v0 : Landroid/widget/Scroller;
+  (invoke-direct {v0 v2} android/widget/Scroller/<init> [object android/content/Context] )
+; v0 : Landroid/widget/Scroller; , v2 : Landroid/content/Context;
+  (iput-object v0 v1 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v1 : Landroid/support/v4/widget/ScrollerCompat;
+  (line 52)
+  (return-void )
+ )
+
+(method (attrs public static ) from([object android/content/Context] )[object android/support/v4/widget/ScrollerCompat]
+  (limit registers 3)
+  ; parameter[0] : v2 ([object android/content/Context])
+  (line 44)
+  (sget v0 android/os/Build$VERSION.SDK_INT int)
+; v0 : single-length
+  (const/16 v1 14)
+; v1 : single-length
+  (if-lt v0 v1 l2d238)
+; v0 : single-length , v1 : single-length
+  (line 45)
+  (new-instance v0 android/support/v4/widget/ScrollerCompat$ScrollerCompatImplIcs)
+; v0 : Landroid/support/v4/widget/ScrollerCompat$ScrollerCompatImplIcs;
+  (invoke-direct {v0 v2} android/support/v4/widget/ScrollerCompat$ScrollerCompatImplIcs/<init> [object android/content/Context] )
+; v0 : Landroid/support/v4/widget/ScrollerCompat$ScrollerCompatImplIcs; , v2 : Landroid/content/Context;
+  (label l2d236)
+  (line 47)
+  (return-object v0)
+; v0 : Landroid/support/v4/widget/ScrollerCompat;
+  (label l2d238)
+  (new-instance v0 android/support/v4/widget/ScrollerCompat)
+; v0 : Landroid/support/v4/widget/ScrollerCompat;
+  (invoke-direct {v0 v2} android/support/v4/widget/ScrollerCompat/<init> [object android/content/Context] )
+; v0 : Landroid/support/v4/widget/ScrollerCompat; , v2 : Landroid/content/Context;
+  (goto l2d236)
+ )
+
+(method (attrs public ) abortAnimation()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/ScrollerCompat])
+  (line 179)
+  (iget-object v0 v1 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v1 : Landroid/support/v4/widget/ScrollerCompat;
+  (invoke-virtual {v0} android/widget/Scroller/abortAnimation )
+; v0 : Landroid/widget/Scroller;
+  (line 180)
+  (return-void )
+)
+
+(method (attrs public ) computeScrollOffset()boolean
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/ScrollerCompat])
+  (line 111)
+  (iget-object v0 v1 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v1 : Landroid/support/v4/widget/ScrollerCompat;
+  (invoke-virtual {v0} android/widget/Scroller/computeScrollOffset )
+; v0 : Landroid/widget/Scroller;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) fling(int int int int int int int int )void
+  (limit registers 18)
+  ; this: v9 ([object android/support/v4/widget/ScrollerCompat])
+  ; parameter[0] : v10 (int)
+  ; parameter[1] : v11 (int)
+  ; parameter[2] : v12 (int)
+  ; parameter[3] : v13 (int)
+  ; parameter[4] : v14 (int)
+  ; parameter[5] : v15 (int)
+  ; parameter[6] : v16 (int)
+  ; parameter[7] : v17 (int)
+  (line 170)
+  (iget-object v0 v9 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v9 : Landroid/support/v4/widget/ScrollerCompat;
+  (move v1 v10)
+; v1 : single-length , v10 : single-length
+  (move v2 v11)
+; v2 : single-length , v11 : single-length
+  (move v3 v12)
+; v3 : single-length , v12 : single-length
+  (move v4 v13)
+; v4 : single-length , v13 : single-length
+  (move v5 v14)
+; v5 : single-length , v14 : single-length
+  (move v6 v15)
+; v6 : single-length , v15 : single-length
+  (move/from16 v7 v16)
+; v7 : single-length , v16 : single-length
+  (move/from16 v8 v17)
+; v8 : single-length , v17 : single-length
+  (invoke-virtual/range {v0..v8} android/widget/Scroller/fling int int int int int int int int )
+; v0 : Landroid/widget/Scroller; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length , v5 : single-length , v6 : single-length , v7 : single-length , v8 : single-length
+  (line 171)
+  (return-void )
+)
+
+(method (attrs public ) getCurrVelocity()float
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/ScrollerCompat])
+  (line 102)
+  (const/4 v0 0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getCurrX()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/ScrollerCompat])
+  (line 78)
+  (iget-object v0 v1 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v1 : Landroid/support/v4/widget/ScrollerCompat;
+  (invoke-virtual {v0} android/widget/Scroller/getCurrX )
+; v0 : Landroid/widget/Scroller;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getCurrY()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/ScrollerCompat])
+  (line 87)
+  (iget-object v0 v1 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v1 : Landroid/support/v4/widget/ScrollerCompat;
+  (invoke-virtual {v0} android/widget/Scroller/getCurrY )
+; v0 : Landroid/widget/Scroller;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getDuration()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/ScrollerCompat])
+  (line 69)
+  (iget-object v0 v1 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v1 : Landroid/support/v4/widget/ScrollerCompat;
+  (invoke-virtual {v0} android/widget/Scroller/getDuration )
+; v0 : Landroid/widget/Scroller;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) isFinished()boolean
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/ScrollerCompat])
+  (line 60)
+  (iget-object v0 v1 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v1 : Landroid/support/v4/widget/ScrollerCompat;
+  (invoke-virtual {v0} android/widget/Scroller/isFinished )
+; v0 : Landroid/widget/Scroller;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) startScroll(int int int int )void
+  (limit registers 6)
+  ; this: v1 ([object android/support/v4/widget/ScrollerCompat])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 (int)
+  ; parameter[2] : v4 (int)
+  ; parameter[3] : v5 (int)
+  (line 129)
+  (iget-object v0 v1 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v1 : Landroid/support/v4/widget/ScrollerCompat;
+  (invoke-virtual {v0 v2 v3 v4 v5} android/widget/Scroller/startScroll int int int int )
+; v0 : Landroid/widget/Scroller; , v2 : single-length , v3 : single-length , v4 : single-length , v5 : single-length
+  (line 130)
+  (return-void )
+)
+
+(method (attrs public ) startScroll(int int int int int )void
+  (limit registers 12)
+  ; this: v6 ([object android/support/v4/widget/ScrollerCompat])
+  ; parameter[0] : v7 (int)
+  ; parameter[1] : v8 (int)
+  ; parameter[2] : v9 (int)
+  ; parameter[3] : v10 (int)
+  ; parameter[4] : v11 (int)
+  (line 146)
+  (iget-object v0 v6 android/support/v4/widget/ScrollerCompat.mScroller [object android/widget/Scroller])
+; v0 : Landroid/widget/Scroller; , v6 : Landroid/support/v4/widget/ScrollerCompat;
+  (move v1 v7)
+; v1 : single-length , v7 : single-length
+  (move v2 v8)
+; v2 : single-length , v8 : single-length
+  (move v3 v9)
+; v3 : single-length , v9 : single-length
+  (move v4 v10)
+; v4 : single-length , v10 : single-length
+  (move v5 v11)
+; v5 : single-length , v11 : single-length
+  (invoke-virtual/range {v0..v5} android/widget/Scroller/startScroll int int int int int )
+; v0 : Landroid/widget/Scroller; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length , v5 : single-length
+  (line 147)
+  (return-void )
+)
+
+)

@@ -1,0 +1,32 @@
+(class (attrs ) android/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl
+ (super android/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderStubImpl)
+ (source "AccessibilityNodeProviderCompat.java")
+
+
+(method (attrs ) <init>()void
+  (limit registers 1)
+  ; this: v0 ([object android/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl])
+  (line 43)
+  (invoke-direct {v0} android/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderStubImpl/<init> )
+; v0 : Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl;
+  (return-void )
+ )
+
+(method (attrs public ) newAccessibilityNodeProviderBridge([object android/support/v4/view/accessibility/AccessibilityNodeProviderCompat] )[object java/lang/Object]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl])
+  ; parameter[0] : v2 ([object android/support/v4/view/accessibility/AccessibilityNodeProviderCompat])
+  (line 47)
+  (new-instance v0 android/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl$1)
+; v0 : Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl$1;
+  (invoke-direct {v0 v1 v2} android/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl$1/<init> [object android/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl] [object android/support/v4/view/accessibility/AccessibilityNodeProviderCompat] )
+; v0 : Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl$1; , v1 : Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl; , v2 : Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat;
+  (invoke-static {v0} android/support/v4/view/accessibility/AccessibilityNodeProviderCompatJellyBean/newAccessibilityNodeProviderBridge [object android/support/v4/view/accessibility/AccessibilityNodeProviderCompatJellyBean$AccessibilityNodeInfoBridge] )
+; v0 : Landroid/support/v4/view/accessibility/AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl$1;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+)
+
+)

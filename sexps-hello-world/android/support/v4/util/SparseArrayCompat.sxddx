@@ -1,0 +1,934 @@
+(class (attrs public ) android/support/v4/util/SparseArrayCompat
+ (super java/lang/Object)
+ (source "SparseArrayCompat.java")
+
+ (field (attrs private static final ) DELETED [object java/lang/Object] )
+ (field (attrs private ) mGarbage boolean )
+ (field (attrs private ) mKeys [array int] )
+ (field (attrs private ) mSize int )
+ (field (attrs private ) mValues [array [object java/lang/Object]] )
+
+(method (attrs static ) <clinit>()void
+  (limit registers 1)
+  (line 24)
+  (new-instance v0 java/lang/Object)
+; v0 : Ljava/lang/Object;
+  (invoke-direct {v0} java/lang/Object/<init> )
+; v0 : Ljava/lang/Object;
+  (sput-object v0 android/support/v4/util/SparseArrayCompat.DELETED [object java/lang/Object])
+; v0 : Ljava/lang/Object;
+  (return-void )
+ )
+
+(method (attrs public ) <init>()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/SparseArrayCompat])
+  (line 31)
+  (const/16 v0 10)
+; v0 : single-length
+  (invoke-direct {v1 v0} android/support/v4/util/SparseArrayCompat/<init> int )
+; v1 : Landroid/support/v4/util/SparseArrayCompat; , v0 : single-length
+  (line 32)
+  (return-void )
+ )
+
+(method (attrs public ) <init>(int )void
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v3 (int)
+  (const/4 v1 0)
+; v1 : single-length
+  (line 39)
+  (invoke-direct {v2} java/lang/Object/<init> )
+; v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 25)
+  (iput-boolean v1 v2 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v1 : single-length , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 40)
+  (invoke-static {v3} android/support/v4/util/SparseArrayCompat/idealIntArraySize int )
+; v3 : single-length
+  (move-result v3)
+; v3 : single-length
+  (line 42)
+  (new-array v0 v3 [array int])
+; v0 : [I , v3 : single-length
+  (iput-object v0 v2 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v0 : [I , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 43)
+  (new-array v0 v3 [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v3 : single-length
+  (iput-object v0 v2 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 44)
+  (iput v1 v2 android/support/v4/util/SparseArrayCompat.mSize int)
+; v1 : single-length , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 45)
+  (return-void )
+ )
+
+(method (attrs private static ) binarySearch([array int] int int int )int
+  (limit registers 9)
+  ; parameter[0] : v5 ([array int])
+  ; parameter[1] : v6 (int)
+  ; parameter[2] : v7 (int)
+  ; parameter[3] : v8 (int)
+.var 0 is guess int from l20f26 to l20f36
+.var 1 is high int from l20f10 to l20f46
+  (line 326)
+  (add-int v1 v6 v7)
+; v1 : single-length , v6 : single-length , v7 : single-length
+  (label l20f10)
+  (add-int/lit8 v2 v6 255)
+; v2 : single-length , v6 : single-length
+  (label l20f14)
+  (line 328)
+  (sub-int v3 v1 v2)
+; v3 : single-length , v1 : single-length , v2 : single-length
+  (const/4 v4 1)
+; v4 : single-length
+  (if-le v3 v4 l20f36)
+; v3 : single-length , v4 : single-length
+  (line 329)
+  (add-int v3 v1 v2)
+; v3 : single-length , v1 : single-length , v2 : single-length
+  (div-int/lit8 v0 v3 2)
+; v0 : single-length , v3 : single-length
+  (label l20f26)
+  (line 331)
+  (aget v3 v5 v0)
+; v3 : single-length , v5 : [I , v0 : single-length
+  (if-ge v3 v8 l20f32)
+; v3 : single-length , v8 : single-length
+  (line 332)
+  (move v2 v0)
+; v2 : single-length , v0 : single-length
+  (goto l20f14)
+  (label l20f32)
+  (line 334)
+  (move v1 v0)
+; v1 : single-length , v0 : single-length
+  (goto l20f14)
+  (label l20f36)
+  (line 337)
+  (add-int v3 v6 v7)
+; v3 : single-length , v6 : single-length , v7 : single-length
+  (if-ne v1 v3 l20f48)
+; v1 : single-length , v3 : single-length
+  (line 338)
+  (add-int v3 v6 v7)
+; v3 : single-length , v6 : single-length , v7 : single-length
+  (xor-int/lit8 v1 v3 255)
+; v1 : single-length , v3 : single-length
+  (label l20f46)
+  (line 342)
+  (return v1)
+; v1 : single-length
+  (label l20f48)
+  (line 339)
+  (aget v3 v5 v1)
+; v3 : single-length , v5 : [I , v1 : single-length
+  (if-eq v3 v8 l20f46)
+; v3 : single-length , v8 : single-length
+  (line 342)
+  (xor-int/lit8 v1 v1 255)
+; v1 : single-length , v1 : single-length
+  (goto l20f46)
+ )
+
+(method (attrs private ) gc()void
+  (limit registers 8)
+  ; this: v7 ([object android/support/v4/util/SparseArrayCompat])
+.var 4 is val [object java/lang/Object] from l20f80 to l20fa2
+  (line 116)
+  (iget v2 v7 android/support/v4/util/SparseArrayCompat.mSize int)
+; v2 : single-length , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 117)
+  (const/4 v3 0)
+; v3 : single-length
+  (line 118)
+  (iget-object v1 v7 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v1 : [I , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 119)
+  (iget-object v5 v7 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v5 : [Ljava/lang/Object; , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 121)
+  (const/4 v0 0)
+; v0 : single-length
+  (label l20f78)
+  (if-ge v0 v2 l20fa2)
+; v0 : single-length , v2 : single-length
+  (line 122)
+  (aget-object v4 v5 v0)
+; v4 : Ljava/lang/Object; , v5 : [Ljava/lang/Object; , v0 : single-length
+  (label l20f80)
+  (line 124)
+  (sget-object v6 android/support/v4/util/SparseArrayCompat.DELETED [object java/lang/Object])
+; v6 : Ljava/lang/Object;
+  (if-eq v4 v6 l20f9c)
+; v4 : Ljava/lang/Object; , v6 : Ljava/lang/Object;
+  (line 125)
+  (if-eq v0 v3 l20f98)
+; v0 : single-length , v3 : single-length
+  (line 126)
+  (aget v6 v1 v0)
+; v6 : single-length , v1 : [I , v0 : single-length
+  (aput v6 v1 v3)
+; v6 : single-length , v1 : [I , v3 : single-length
+  (line 127)
+  (aput-object v4 v5 v3)
+; v4 : Ljava/lang/Object; , v5 : [Ljava/lang/Object; , v3 : single-length
+  (label l20f98)
+  (line 130)
+  (add-int/lit8 v3 v3 1)
+; v3 : single-length , v3 : single-length
+  (label l20f9c)
+  (line 121)
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (goto l20f78)
+  (label l20fa2)
+  (line 134)
+  (const/4 v6 0)
+; v6 : single-length
+  (iput-boolean v6 v7 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v6 : single-length , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 135)
+  (iput v3 v7 android/support/v4/util/SparseArrayCompat.mSize int)
+; v3 : single-length , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 138)
+  (return-void )
+ )
+
+(method (attrs static ) idealByteArraySize(int )int
+  (limit registers 4)
+  ; parameter[0] : v3 (int)
+  (const/4 v2 1)
+; v2 : single-length
+  (line 346)
+  (const/4 v0 4)
+; v0 : single-length
+  (label l20fc4)
+  (const/16 v1 32)
+; v1 : single-length
+  (if-ge v0 v1 l20fe0)
+; v0 : single-length , v1 : single-length
+  (line 347)
+  (shl-int v1 v2 v0)
+; v1 : single-length , v2 : single-length , v0 : single-length
+  (add-int/lit8 v1 v1 244)
+; v1 : single-length , v1 : single-length
+  (if-gt v3 v1 l20fe2)
+; v3 : single-length , v1 : single-length
+  (line 348)
+  (shl-int v1 v2 v0)
+; v1 : single-length , v2 : single-length , v0 : single-length
+  (add-int/lit8 v3 v1 244)
+; v3 : single-length , v1 : single-length
+  (label l20fe0)
+  (line 350)
+  (return v3)
+; v3 : single-length
+  (label l20fe2)
+  (line 346)
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (goto l20fc4)
+ )
+
+(method (attrs static ) idealIntArraySize(int )int
+  (limit registers 2)
+  ; parameter[0] : v1 (int)
+  (line 354)
+  (mul-int/lit8 v0 v1 4)
+; v0 : single-length , v1 : single-length
+  (invoke-static {v0} android/support/v4/util/SparseArrayCompat/idealByteArraySize int )
+; v0 : single-length
+  (move-result v0)
+; v0 : single-length
+  (div-int/lit8 v0 v0 4)
+; v0 : single-length , v0 : single-length
+  (return v0)
+; v0 : single-length
+ )
+
+(method (attrs public ) append(int [object java/lang/Object] )void
+  (limit registers 10)
+  ; this: v7 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v8 (int)
+  ; parameter[1] : v9 ([object java/lang/Object])
+.var 0 is n int from l21078 to l210a8
+.var 1 is nkeys [array int] from l2107c to l210a8
+.var 2 is nvalues [array [object java/lang/Object]] from l21080 to l210a8
+  (const/4 v6 0)
+; v6 : single-length
+  (line 296)
+  (iget v4 v7 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-eqz v4 l21042)
+; v4 : single-length
+  (iget-object v4 v7 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget v5 v7 android/support/v4/util/SparseArrayCompat.mSize int)
+; v5 : single-length , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (add-int/lit8 v5 v5 255)
+; v5 : single-length , v5 : single-length
+  (aget v4 v4 v5)
+; v4 : single-length , v4 : single-length , v5 : single-length
+  (if-gt v8 v4 l21042)
+; v8 : single-length , v4 : single-length
+  (line 297)
+  (invoke-virtual {v7 v8 v9} android/support/v4/util/SparseArrayCompat/put int [object java/lang/Object] )
+; v7 : Landroid/support/v4/util/SparseArrayCompat; , v8 : single-length , v9 : Ljava/lang/Object;
+  (label l21040)
+  (line 323)
+  (return-void )
+  (label l21042)
+  (line 301)
+  (iget-boolean v4 v7 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v4 : single-length , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-eqz v4 l2105e)
+; v4 : single-length
+  (iget v4 v7 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget-object v5 v7 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v5 : [I , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (if-lt v4 v5 l2105e)
+; v4 : single-length , v5 : single-length
+  (line 302)
+  (invoke-direct {v7} android/support/v4/util/SparseArrayCompat/gc )
+; v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l2105e)
+  (line 305)
+  (iget v3 v7 android/support/v4/util/SparseArrayCompat.mSize int)
+; v3 : single-length , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 306)
+  (iget-object v4 v7 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (array-length v4 v4)
+; v4 : single-length , v4 : single-length
+  (if-lt v3 v4 l210a8)
+; v3 : single-length , v4 : single-length
+  (line 307)
+  (add-int/lit8 v4 v3 1)
+; v4 : single-length , v3 : single-length
+  (invoke-static {v4} android/support/v4/util/SparseArrayCompat/idealIntArraySize int )
+; v4 : single-length
+  (move-result v0)
+; v0 : single-length
+  (label l21078)
+  (line 309)
+  (new-array v1 v0 [array int])
+; v1 : [I , v0 : single-length
+  (label l2107c)
+  (line 310)
+  (new-array v2 v0 [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object; , v0 : single-length
+  (label l21080)
+  (line 313)
+  (iget-object v4 v7 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget-object v5 v7 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v5 : [I , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (invoke-static {v4 v6 v1 v6 v5} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [I , v6 : single-length , v1 : [I , v6 : single-length , v5 : single-length
+  (line 314)
+  (iget-object v4 v7 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget-object v5 v7 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v5 : [Ljava/lang/Object; , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (invoke-static {v4 v6 v2 v6 v5} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [Ljava/lang/Object; , v6 : single-length , v2 : [Ljava/lang/Object; , v6 : single-length , v5 : single-length
+  (line 316)
+  (iput-object v1 v7 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v1 : [I , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 317)
+  (iput-object v2 v7 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object; , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l210a8)
+  (line 320)
+  (iget-object v4 v7 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (aput v8 v4 v3)
+; v8 : single-length , v4 : [I , v3 : single-length
+  (line 321)
+  (iget-object v4 v7 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (aput-object v9 v4 v3)
+; v9 : Ljava/lang/Object; , v4 : [Ljava/lang/Object; , v3 : single-length
+  (line 322)
+  (add-int/lit8 v4 v3 1)
+; v4 : single-length , v3 : single-length
+  (iput v4 v7 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v7 : Landroid/support/v4/util/SparseArrayCompat;
+  (goto l21040)
+)
+
+(method (attrs public ) clear()void
+  (limit registers 6)
+  ; this: v5 ([object android/support/v4/util/SparseArrayCompat])
+  (const/4 v4 0)
+; v4 : single-length
+  (line 280)
+  (iget v1 v5 android/support/v4/util/SparseArrayCompat.mSize int)
+; v1 : single-length , v5 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 281)
+  (iget-object v2 v5 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object; , v5 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 283)
+  (const/4 v0 0)
+; v0 : single-length
+  (label l210e0)
+  (if-ge v0 v1 l210f0)
+; v0 : single-length , v1 : single-length
+  (line 284)
+  (const/4 v3 0)
+; v3 : single-length
+  (aput-object v3 v2 v0)
+; v3 : single-length , v2 : [Ljava/lang/Object; , v0 : single-length
+  (line 283)
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (goto l210e0)
+  (label l210f0)
+  (line 287)
+  (iput v4 v5 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v5 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 288)
+  (iput-boolean v4 v5 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v4 : single-length , v5 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 289)
+  (return-void )
+)
+
+(method (attrs public ) delete(int )void
+  (limit registers 6)
+  ; this: v4 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v5 (int)
+  (line 73)
+  (iget-object v1 v4 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v1 : [I , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (const/4 v2 0)
+; v2 : single-length
+  (iget v3 v4 android/support/v4/util/SparseArrayCompat.mSize int)
+; v3 : single-length , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (invoke-static {v1 v2 v3 v5} android/support/v4/util/SparseArrayCompat/binarySearch [array int] int int int )
+; v1 : [I , v2 : single-length , v3 : single-length , v5 : single-length
+  (move-result v0)
+; v0 : single-length
+  (line 75)
+  (if-ltz v0 l21144)
+; v0 : single-length
+  (line 76)
+  (iget-object v1 v4 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (aget-object v1 v1 v0)
+; v1 : Ljava/lang/Object; , v1 : Ljava/lang/Object; , v0 : single-length
+  (sget-object v2 android/support/v4/util/SparseArrayCompat.DELETED [object java/lang/Object])
+; v2 : Ljava/lang/Object;
+  (if-eq v1 v2 l21144)
+; v1 : Ljava/lang/Object; , v2 : Ljava/lang/Object;
+  (line 77)
+  (iget-object v1 v4 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (sget-object v2 android/support/v4/util/SparseArrayCompat.DELETED [object java/lang/Object])
+; v2 : Ljava/lang/Object;
+  (aput-object v2 v1 v0)
+; v2 : Ljava/lang/Object; , v1 : [Ljava/lang/Object; , v0 : single-length
+  (line 78)
+  (const/4 v1 1)
+; v1 : single-length
+  (iput-boolean v1 v4 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v1 : single-length , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l21144)
+  (line 81)
+  (return-void )
+)
+
+(method (attrs public ) get(int )[object java/lang/Object]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v2 (int)
+  (line 52)
+  (const/4 v0 0)
+; v0 : single-length
+  (invoke-virtual {v1 v2 v0} android/support/v4/util/SparseArrayCompat/get int [object java/lang/Object] )
+; v1 : Landroid/support/v4/util/SparseArrayCompat; , v2 : single-length , v0 : single-length
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+)
+
+(method (attrs public ) get(int [object java/lang/Object] )[object java/lang/Object]
+  (limit registers 7)
+  ; this: v4 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v5 (int)
+  ; parameter[1] : v6 ([object java/lang/Object])
+.var 6 is valueIfKeyNotFound [object java/lang/Object] from l21174 to l2119a
+  (label l21174)
+  (line 60)
+  (iget-object v1 v4 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v1 : [I , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (const/4 v2 0)
+; v2 : single-length
+  (iget v3 v4 android/support/v4/util/SparseArrayCompat.mSize int)
+; v3 : single-length , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (invoke-static {v1 v2 v3 v5} android/support/v4/util/SparseArrayCompat/binarySearch [array int] int int int )
+; v1 : [I , v2 : single-length , v3 : single-length , v5 : single-length
+  (move-result v0)
+; v0 : single-length
+  (line 62)
+  (if-ltz v0 l2119a)
+; v0 : single-length
+  (iget-object v1 v4 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (aget-object v1 v1 v0)
+; v1 : Ljava/lang/Object; , v1 : Ljava/lang/Object; , v0 : single-length
+  (sget-object v2 android/support/v4/util/SparseArrayCompat.DELETED [object java/lang/Object])
+; v2 : Ljava/lang/Object;
+  (if-ne v1 v2 l2119c)
+; v1 : Ljava/lang/Object; , v2 : Ljava/lang/Object;
+  (label l2119a)
+  (line 65)
+  (return-object v6)
+; v6 : Ljava/lang/Object;
+  (label l2119c)
+  (iget-object v1 v4 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (aget-object v6 v1 v0)
+; v6 : Ljava/lang/Object; , v1 : [Ljava/lang/Object; , v0 : single-length
+  (goto l2119a)
+)
+
+(method (attrs public ) indexOfKey(int )int
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v4 (int)
+  (line 249)
+  (iget-boolean v0 v3 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v0 : single-length , v3 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-eqz v0 l211c6)
+; v0 : single-length
+  (line 250)
+  (invoke-direct {v3} android/support/v4/util/SparseArrayCompat/gc )
+; v3 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l211c6)
+  (line 253)
+  (iget-object v0 v3 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v0 : [I , v3 : Landroid/support/v4/util/SparseArrayCompat;
+  (const/4 v1 0)
+; v1 : single-length
+  (iget v2 v3 android/support/v4/util/SparseArrayCompat.mSize int)
+; v2 : single-length , v3 : Landroid/support/v4/util/SparseArrayCompat;
+  (invoke-static {v0 v1 v2 v4} android/support/v4/util/SparseArrayCompat/binarySearch [array int] int int int )
+; v0 : [I , v1 : single-length , v2 : single-length , v4 : single-length
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) indexOfValue([object java/lang/Object] )int
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v3 ([object java/lang/Object])
+.var 0 is i int from l211fc to l21210
+  (line 265)
+  (iget-boolean v1 v2 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v1 : single-length , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-eqz v1 l211fa)
+; v1 : single-length
+  (line 266)
+  (invoke-direct {v2} android/support/v4/util/SparseArrayCompat/gc )
+; v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l211fa)
+  (line 269)
+  (const/4 v0 0)
+; v0 : single-length
+  (label l211fc)
+  (iget v1 v2 android/support/v4/util/SparseArrayCompat.mSize int)
+; v1 : single-length , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-ge v0 v1 l21218)
+; v0 : single-length , v1 : single-length
+  (line 270)
+  (iget-object v1 v2 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (aget-object v1 v1 v0)
+; v1 : Ljava/lang/Object; , v1 : Ljava/lang/Object; , v0 : single-length
+  (if-ne v1 v3 l21212)
+; v1 : Ljava/lang/Object; , v3 : Ljava/lang/Object;
+  (label l21210)
+  (line 273)
+  (return v0)
+; v0 : single-length
+  (label l21212)
+  (line 269)
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (goto l211fc)
+  (label l21218)
+  (line 273)
+  (const/4 v0 15)
+; v0 : single-length
+  (goto l21210)
+)
+
+(method (attrs public ) keyAt(int )int
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v2 (int)
+  (line 210)
+  (iget-boolean v0 v1 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v0 : single-length , v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-eqz v0 l2123a)
+; v0 : single-length
+  (line 211)
+  (invoke-direct {v1} android/support/v4/util/SparseArrayCompat/gc )
+; v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l2123a)
+  (line 214)
+  (iget-object v0 v1 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v0 : [I , v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (aget v0 v0 v2)
+; v0 : single-length , v0 : single-length , v2 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) put(int [object java/lang/Object] )void
+  (limit registers 11)
+  ; this: v8 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v9 (int)
+  ; parameter[1] : v10 ([object java/lang/Object])
+.var 1 is n int from l212f0 to l21320
+.var 2 is nkeys [array int] from l212f4 to l21320
+.var 3 is nvalues [array [object java/lang/Object]] from l212f8 to l21320
+  (const/4 v6 0)
+; v6 : single-length
+  (line 146)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget v5 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v5 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (invoke-static {v4 v6 v5 v9} android/support/v4/util/SparseArrayCompat/binarySearch [array int] int int int )
+; v4 : [I , v6 : single-length , v5 : single-length , v9 : single-length
+  (move-result v0)
+; v0 : single-length
+  (line 148)
+  (if-ltz v0 l21274)
+; v0 : single-length
+  (line 149)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (aput-object v10 v4 v0)
+; v10 : Ljava/lang/Object; , v4 : [Ljava/lang/Object; , v0 : single-length
+  (label l21272)
+  (line 190)
+  (return-void )
+  (label l21274)
+  (line 151)
+  (xor-int/lit8 v0 v0 255)
+; v0 : single-length , v0 : single-length
+  (line 153)
+  (iget v4 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-ge v0 v4 l212a2)
+; v0 : single-length , v4 : single-length
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (aget-object v4 v4 v0)
+; v4 : Ljava/lang/Object; , v4 : Ljava/lang/Object; , v0 : single-length
+  (sget-object v5 android/support/v4/util/SparseArrayCompat.DELETED [object java/lang/Object])
+; v5 : Ljava/lang/Object;
+  (if-ne v4 v5 l212a2)
+; v4 : Ljava/lang/Object; , v5 : Ljava/lang/Object;
+  (line 154)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (aput v9 v4 v0)
+; v9 : single-length , v4 : [I , v0 : single-length
+  (line 155)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (aput-object v10 v4 v0)
+; v10 : Ljava/lang/Object; , v4 : [Ljava/lang/Object; , v0 : single-length
+  (goto l21272)
+  (label l212a2)
+  (line 159)
+  (iget-boolean v4 v8 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v4 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-eqz v4 l212d2)
+; v4 : single-length
+  (iget v4 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget-object v5 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v5 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (if-lt v4 v5 l212d2)
+; v4 : single-length , v5 : single-length
+  (line 160)
+  (invoke-direct {v8} android/support/v4/util/SparseArrayCompat/gc )
+; v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 163)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget v5 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v5 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (invoke-static {v4 v6 v5 v9} android/support/v4/util/SparseArrayCompat/binarySearch [array int] int int int )
+; v4 : [I , v6 : single-length , v5 : single-length , v9 : single-length
+  (move-result v4)
+; v4 : single-length
+  (xor-int/lit8 v0 v4 255)
+; v0 : single-length , v4 : single-length
+  (label l212d2)
+  (line 166)
+  (iget v4 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget-object v5 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v5 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (if-lt v4 v5 l21320)
+; v4 : single-length , v5 : single-length
+  (line 167)
+  (iget v4 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (add-int/lit8 v4 v4 1)
+; v4 : single-length , v4 : single-length
+  (invoke-static {v4} android/support/v4/util/SparseArrayCompat/idealIntArraySize int )
+; v4 : single-length
+  (move-result v1)
+; v1 : single-length
+  (label l212f0)
+  (line 169)
+  (new-array v2 v1 [array int])
+; v2 : [I , v1 : single-length
+  (label l212f4)
+  (line 170)
+  (new-array v3 v1 [array [object java/lang/Object]])
+; v3 : [Ljava/lang/Object; , v1 : single-length
+  (label l212f8)
+  (line 173)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget-object v5 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v5 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (invoke-static {v4 v6 v2 v6 v5} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v5 : single-length
+  (line 174)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget-object v5 v8 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v5 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (invoke-static {v4 v6 v3 v6 v5} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [Ljava/lang/Object; , v6 : single-length , v3 : [Ljava/lang/Object; , v6 : single-length , v5 : single-length
+  (line 176)
+  (iput-object v2 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v2 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (line 177)
+  (iput-object v3 v8 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v3 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l21320)
+  (line 180)
+  (iget v4 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (sub-int/2addr v4 v0)
+; v4 : single-length , v0 : single-length
+  (if-eqz v4 l2135a)
+; v4 : single-length
+  (line 182)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget-object v5 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v5 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (add-int/lit8 v6 v0 1)
+; v6 : single-length , v0 : single-length
+  (iget v7 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v7 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (sub-int/2addr v7 v0)
+; v7 : single-length , v0 : single-length
+  (invoke-static {v4 v0 v5 v6 v7} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [I , v0 : single-length , v5 : [I , v6 : single-length , v7 : single-length
+  (line 183)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (iget-object v5 v8 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v5 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (add-int/lit8 v6 v0 1)
+; v6 : single-length , v0 : single-length
+  (iget v7 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v7 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (sub-int/2addr v7 v0)
+; v7 : single-length , v0 : single-length
+  (invoke-static {v4 v0 v5 v6 v7} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [Ljava/lang/Object; , v0 : single-length , v5 : [Ljava/lang/Object; , v6 : single-length , v7 : single-length
+  (label l2135a)
+  (line 186)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mKeys [array int])
+; v4 : [I , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (aput v9 v4 v0)
+; v9 : single-length , v4 : [I , v0 : single-length
+  (line 187)
+  (iget-object v4 v8 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (aput-object v10 v4 v0)
+; v10 : Ljava/lang/Object; , v4 : [Ljava/lang/Object; , v0 : single-length
+  (line 188)
+  (iget v4 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (add-int/lit8 v4 v4 1)
+; v4 : single-length , v4 : single-length
+  (iput v4 v8 android/support/v4/util/SparseArrayCompat.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/SparseArrayCompat;
+  (goto/16 l21272)
+)
+
+(method (attrs public ) remove(int )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v1 (int)
+  (line 87)
+  (invoke-virtual {v0 v1} android/support/v4/util/SparseArrayCompat/delete int )
+; v0 : Landroid/support/v4/util/SparseArrayCompat; , v1 : single-length
+  (line 88)
+  (return-void )
+)
+
+(method (attrs public ) removeAt(int )void
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v3 (int)
+  (line 94)
+  (iget-object v0 v2 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (aget-object v0 v0 v3)
+; v0 : Ljava/lang/Object; , v0 : Ljava/lang/Object; , v3 : single-length
+  (sget-object v1 android/support/v4/util/SparseArrayCompat.DELETED [object java/lang/Object])
+; v1 : Ljava/lang/Object;
+  (if-eq v0 v1 l213c6)
+; v0 : Ljava/lang/Object; , v1 : Ljava/lang/Object;
+  (line 95)
+  (iget-object v0 v2 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (sget-object v1 android/support/v4/util/SparseArrayCompat.DELETED [object java/lang/Object])
+; v1 : Ljava/lang/Object;
+  (aput-object v1 v0 v3)
+; v1 : Ljava/lang/Object; , v0 : [Ljava/lang/Object; , v3 : single-length
+  (line 96)
+  (const/4 v0 1)
+; v0 : single-length
+  (iput-boolean v0 v2 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v0 : single-length , v2 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l213c6)
+  (line 98)
+  (return-void )
+)
+
+(method (attrs public ) removeAtRange(int int )void
+  (limit registers 7)
+  ; this: v4 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v5 (int)
+  ; parameter[1] : v6 (int)
+  (line 107)
+  (iget v2 v4 android/support/v4/util/SparseArrayCompat.mSize int)
+; v2 : single-length , v4 : Landroid/support/v4/util/SparseArrayCompat;
+  (add-int v3 v5 v6)
+; v3 : single-length , v5 : single-length , v6 : single-length
+  (invoke-static {v2 v3} java/lang/Math/min int int )
+; v2 : single-length , v3 : single-length
+  (move-result v0)
+; v0 : single-length
+  (line 108)
+  (move v1 v5)
+; v1 : single-length , v5 : single-length
+  (label l213ea)
+  (if-ge v1 v0 l213fa)
+; v1 : single-length , v0 : single-length
+  (line 109)
+  (invoke-virtual {v4 v1} android/support/v4/util/SparseArrayCompat/removeAt int )
+; v4 : Landroid/support/v4/util/SparseArrayCompat; , v1 : single-length
+  (line 108)
+  (add-int/lit8 v1 v1 1)
+; v1 : single-length , v1 : single-length
+  (goto l213ea)
+  (label l213fa)
+  (line 111)
+  (return-void )
+)
+
+(method (attrs public ) setValueAt(int [object java/lang/Object] )void
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 ([object java/lang/Object])
+  (line 236)
+  (iget-boolean v0 v1 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v0 : single-length , v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-eqz v0 l2141a)
+; v0 : single-length
+  (line 237)
+  (invoke-direct {v1} android/support/v4/util/SparseArrayCompat/gc )
+; v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l2141a)
+  (line 240)
+  (iget-object v0 v1 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (aput-object v3 v0 v2)
+; v3 : Ljava/lang/Object; , v0 : [Ljava/lang/Object; , v2 : single-length
+  (line 241)
+  (return-void )
+)
+
+(method (attrs public ) size()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/SparseArrayCompat])
+  (line 197)
+  (iget-boolean v0 v1 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v0 : single-length , v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-eqz v0 l21442)
+; v0 : single-length
+  (line 198)
+  (invoke-direct {v1} android/support/v4/util/SparseArrayCompat/gc )
+; v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l21442)
+  (line 201)
+  (iget v0 v1 android/support/v4/util/SparseArrayCompat.mSize int)
+; v0 : single-length , v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) valueAt(int )[object java/lang/Object]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/util/SparseArrayCompat])
+  ; parameter[0] : v2 (int)
+  (line 223)
+  (iget-boolean v0 v1 android/support/v4/util/SparseArrayCompat.mGarbage boolean)
+; v0 : single-length , v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (if-eqz v0 l21466)
+; v0 : single-length
+  (line 224)
+  (invoke-direct {v1} android/support/v4/util/SparseArrayCompat/gc )
+; v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (label l21466)
+  (line 227)
+  (iget-object v0 v1 android/support/v4/util/SparseArrayCompat.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v1 : Landroid/support/v4/util/SparseArrayCompat;
+  (aget-object v0 v0 v2)
+; v0 : Ljava/lang/Object; , v0 : Ljava/lang/Object; , v2 : single-length
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+)
+
+)

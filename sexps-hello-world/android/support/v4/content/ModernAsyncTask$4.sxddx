@@ -1,0 +1,61 @@
+(class (attrs ) android/support/v4/content/ModernAsyncTask$4
+ (super java/lang/Object)
+ (source "ModernAsyncTask.java")
+
+ (field (attrs static final ) $SwitchMap$android$support$v4$content$ModernAsyncTask$Status [array int] )
+
+(method (attrs static ) <clinit>()void
+  (limit registers 3)
+  (catch java/lang/NoSuchFieldError from l1f5a4 to l1f5ba using l1f5bc)
+  (catch java/lang/NoSuchFieldError from l1f58e to l1f5a4 using l1f5c0)
+  (line 407)
+  (invoke-static {} android/support/v4/content/ModernAsyncTask$Status/values )
+; 
+  (nop )
+  (move-result-object v0)
+; v0 : [Landroid/support/v4/content/ModernAsyncTask$Status;
+  (array-length v0 v0)
+; v0 : single-length , v0 : single-length
+  (new-array v0 v0 [array int])
+; v0 : [I , v0 : [I
+  (sput-object v0 android/support/v4/content/ModernAsyncTask$4.$SwitchMap$android$support$v4$content$ModernAsyncTask$Status [array int])
+; v0 : [I
+  (label l1f58e)
+  (sget-object v0 android/support/v4/content/ModernAsyncTask$4.$SwitchMap$android$support$v4$content$ModernAsyncTask$Status [array int])
+; v0 : [I
+  (sget-object v1 android/support/v4/content/ModernAsyncTask$Status.RUNNING [object android/support/v4/content/ModernAsyncTask$Status])
+; v1 : Landroid/support/v4/content/ModernAsyncTask$Status;
+  (invoke-virtual {v1} android/support/v4/content/ModernAsyncTask$Status/ordinal )
+; v1 : Landroid/support/v4/content/ModernAsyncTask$Status;
+  (move-result v1)
+; v1 : single-length
+  (const/4 v2 1)
+; v2 : single-length
+  (aput v2 v0 v1)
+; v2 : single-length , v0 : [I , v1 : single-length
+  (label l1f5a4)
+  (sget-object v0 android/support/v4/content/ModernAsyncTask$4.$SwitchMap$android$support$v4$content$ModernAsyncTask$Status [array int])
+; v0 : [I
+  (sget-object v1 android/support/v4/content/ModernAsyncTask$Status.FINISHED [object android/support/v4/content/ModernAsyncTask$Status])
+; v1 : Landroid/support/v4/content/ModernAsyncTask$Status;
+  (invoke-virtual {v1} android/support/v4/content/ModernAsyncTask$Status/ordinal )
+; v1 : Landroid/support/v4/content/ModernAsyncTask$Status;
+  (move-result v1)
+; v1 : single-length
+  (const/4 v2 2)
+; v2 : single-length
+  (aput v2 v0 v1)
+; v2 : single-length , v0 : [I , v1 : single-length
+  (label l1f5ba)
+  (return-void )
+  (label l1f5bc)
+  (move-exception v0)
+; v0 : java/lang/NoSuchFieldError
+  (goto l1f5ba)
+  (label l1f5c0)
+  (move-exception v0)
+; v0 : java/lang/NoSuchFieldError
+  (goto l1f5a4)
+ )
+
+)

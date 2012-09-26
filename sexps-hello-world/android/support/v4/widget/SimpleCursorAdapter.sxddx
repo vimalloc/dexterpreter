@@ -1,0 +1,483 @@
+(class (attrs public ) android/support/v4/widget/SimpleCursorAdapter
+ (super android/support/v4/widget/ResourceCursorAdapter)
+ (source "SimpleCursorAdapter.java")
+
+ (field (attrs private ) mCursorToStringConverter [object android/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter] )
+ (field (attrs protected ) mFrom [array int] )
+ (field (attrs ) mOriginalFrom [array [object java/lang/String]] )
+ (field (attrs private ) mStringConversionColumn int )
+ (field (attrs protected ) mTo [array int] )
+ (field (attrs private ) mViewBinder [object android/support/v4/widget/SimpleCursorAdapter$ViewBinder] )
+
+(method (attrs public ) <init>([object android/content/Context] int [object android/database/Cursor] [array [object java/lang/String]] [array int] )void
+  (limit registers 7)
+  ; this: v1 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v2 ([object android/content/Context])
+  ; parameter[1] : v3 (int)
+  ; parameter[2] : v4 ([object android/database/Cursor])
+  ; parameter[3] : v5 ([array [object java/lang/String]])
+  ; parameter[4] : v6 ([array int])
+  (line 63)
+  (invoke-direct {v1 v2 v3 v4} android/support/v4/widget/ResourceCursorAdapter/<init> [object android/content/Context] int [object android/database/Cursor] )
+; v1 : Landroid/support/v4/widget/SimpleCursorAdapter; , v2 : Landroid/content/Context; , v3 : single-length , v4 : Landroid/database/Cursor;
+  (line 47)
+  (const/4 v0 15)
+; v0 : single-length
+  (iput v0 v1 android/support/v4/widget/SimpleCursorAdapter.mStringConversionColumn int)
+; v0 : single-length , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 64)
+  (iput-object v6 v1 android/support/v4/widget/SimpleCursorAdapter.mTo [array int])
+; v6 : [I , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 65)
+  (iput-object v5 v1 android/support/v4/widget/SimpleCursorAdapter.mOriginalFrom [array [object java/lang/String]])
+; v5 : [Ljava/lang/String; , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 66)
+  (invoke-direct {v1 v5} android/support/v4/widget/SimpleCursorAdapter/findColumns [array [object java/lang/String]] )
+; v1 : Landroid/support/v4/widget/SimpleCursorAdapter; , v5 : [Ljava/lang/String;
+  (line 67)
+  (return-void )
+ )
+
+(method (attrs public ) <init>([object android/content/Context] int [object android/database/Cursor] [array [object java/lang/String]] [array int] int )void
+  (limit registers 8)
+  ; this: v1 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v2 ([object android/content/Context])
+  ; parameter[1] : v3 (int)
+  ; parameter[2] : v4 ([object android/database/Cursor])
+  ; parameter[3] : v5 ([array [object java/lang/String]])
+  ; parameter[4] : v6 ([array int])
+  ; parameter[5] : v7 (int)
+  (line 89)
+  (invoke-direct {v1 v2 v3 v4 v7} android/support/v4/widget/ResourceCursorAdapter/<init> [object android/content/Context] int [object android/database/Cursor] int )
+; v1 : Landroid/support/v4/widget/SimpleCursorAdapter; , v2 : Landroid/content/Context; , v3 : single-length , v4 : Landroid/database/Cursor; , v7 : single-length
+  (line 47)
+  (const/4 v0 15)
+; v0 : single-length
+  (iput v0 v1 android/support/v4/widget/SimpleCursorAdapter.mStringConversionColumn int)
+; v0 : single-length , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 90)
+  (iput-object v6 v1 android/support/v4/widget/SimpleCursorAdapter.mTo [array int])
+; v6 : [I , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 91)
+  (iput-object v5 v1 android/support/v4/widget/SimpleCursorAdapter.mOriginalFrom [array [object java/lang/String]])
+; v5 : [Ljava/lang/String; , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 92)
+  (invoke-direct {v1 v5} android/support/v4/widget/SimpleCursorAdapter/findColumns [array [object java/lang/String]] )
+; v1 : Landroid/support/v4/widget/SimpleCursorAdapter; , v5 : [Ljava/lang/String;
+  (line 93)
+  (return-void )
+ )
+
+(method (attrs private ) findColumns([array [object java/lang/String]] )void
+  (limit registers 7)
+  ; this: v5 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v6 ([array [object java/lang/String]])
+.var 0 is count int from l2d756 to l2d794
+.var 1 is i int from l2d772 to l2d794
+  (line 310)
+  (iget-object v2 v5 android/support/v4/widget/SimpleCursorAdapter.mCursor [object android/database/Cursor])
+; v2 : Landroid/database/Cursor; , v5 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (if-eqz v2 l2d794)
+; v2 : Landroid/database/Cursor;
+  (line 312)
+  (array-length v0 v6)
+; v0 : single-length , v6 : [Ljava/lang/String;
+  (label l2d756)
+  (line 313)
+  (iget-object v2 v5 android/support/v4/widget/SimpleCursorAdapter.mFrom [array int])
+; v2 : [I , v5 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (if-eqz v2 l2d768)
+; v2 : [I
+  (iget-object v2 v5 android/support/v4/widget/SimpleCursorAdapter.mFrom [array int])
+; v2 : [I , v5 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (array-length v2 v2)
+; v2 : single-length , v2 : single-length
+  (if-eq v2 v0 l2d770)
+; v2 : single-length , v0 : single-length
+  (label l2d768)
+  (line 314)
+  (new-array v2 v0 [array int])
+; v2 : [I , v0 : single-length
+  (iput-object v2 v5 android/support/v4/widget/SimpleCursorAdapter.mFrom [array int])
+; v2 : [I , v5 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (label l2d770)
+  (line 316)
+  (const/4 v1 0)
+; v1 : single-length
+  (label l2d772)
+  (if-ge v1 v0 l2d79a)
+; v1 : single-length , v0 : single-length
+  (line 317)
+  (iget-object v2 v5 android/support/v4/widget/SimpleCursorAdapter.mFrom [array int])
+; v2 : [I , v5 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (iget-object v3 v5 android/support/v4/widget/SimpleCursorAdapter.mCursor [object android/database/Cursor])
+; v3 : Landroid/database/Cursor; , v5 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (aget-object v4 v6 v1)
+; v4 : Ljava/lang/String; , v6 : [Ljava/lang/String; , v1 : single-length
+  (invoke-interface {v3 v4} android/database/Cursor/getColumnIndexOrThrow [object java/lang/String] )
+; v3 : Landroid/database/Cursor; , v4 : Ljava/lang/String;
+  (move-result v3)
+; v3 : single-length
+  (aput v3 v2 v1)
+; v3 : single-length , v2 : [I , v1 : single-length
+  (line 316)
+  (add-int/lit8 v1 v1 1)
+; v1 : single-length , v1 : single-length
+  (goto l2d772)
+  (label l2d794)
+  (line 320)
+  (const/4 v2 0)
+; v2 : single-length
+  (iput-object v2 v5 android/support/v4/widget/SimpleCursorAdapter.mFrom [array int])
+; v2 : single-length , v5 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (label l2d79a)
+  (line 322)
+  (return-void )
+ )
+
+(method (attrs public ) bindView([object android/view/View] [object android/content/Context] [object android/database/Cursor] )void
+  (limit registers 15)
+  ; this: v11 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v12 ([object android/view/View])
+  ; parameter[1] : v13 ([object android/content/Context])
+  ; parameter[2] : v14 ([object android/database/Cursor])
+.var 7 is v [object android/view/View] from l2d7d0 to l2d80a
+.var 1 is bound boolean from l2d7d6 to l2d810
+.var 5 is text [object java/lang/String] from l2d7f6 to l2d810
+.var 7 is v [object android/view/View] from l2d816 to l2d822
+.var 1 is bound boolean from l2d816 to l2d878
+.var 5 is text [object java/lang/String] from l2d816 to l2d878
+.var 7 is v [object android/view/View] from l2d82a to l2d878
+  (line 121)
+  (iget-object v0 v11 android/support/v4/widget/SimpleCursorAdapter.mViewBinder [object android/support/v4/widget/SimpleCursorAdapter$ViewBinder])
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$ViewBinder; , v11 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 122)
+  (iget-object v8 v11 android/support/v4/widget/SimpleCursorAdapter.mTo [array int])
+; v8 : [I , v11 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (array-length v2 v8)
+; v2 : single-length , v8 : [I
+  (line 123)
+  (iget-object v3 v11 android/support/v4/widget/SimpleCursorAdapter.mFrom [array int])
+; v3 : [I , v11 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 124)
+  (iget-object v6 v11 android/support/v4/widget/SimpleCursorAdapter.mTo [array int])
+; v6 : [I , v11 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 126)
+  (const/4 v4 0)
+; v4 : single-length
+  (label l2d7c0)
+  (if-ge v4 v2 l2d878)
+; v4 : single-length , v2 : single-length
+  (line 127)
+  (aget v8 v6 v4)
+; v8 : single-length , v6 : [I , v4 : single-length
+  (invoke-virtual {v12 v8} android/view/View/findViewById int )
+; v12 : Landroid/view/View; , v8 : single-length
+  (move-result-object v7)
+; v7 : Landroid/view/View;
+  (label l2d7d0)
+  (line 128)
+  (if-eqz v7 l2d810)
+; v7 : Landroid/view/View;
+  (line 129)
+  (const/4 v1 0)
+; v1 : single-length
+  (label l2d7d6)
+  (line 130)
+  (if-eqz v0 l2d7e6)
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$ViewBinder;
+  (line 131)
+  (aget v8 v3 v4)
+; v8 : single-length , v3 : [I , v4 : single-length
+  (invoke-interface {v0 v7 v14 v8} android/support/v4/widget/SimpleCursorAdapter$ViewBinder/setViewValue [object android/view/View] [object android/database/Cursor] int )
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$ViewBinder; , v7 : Landroid/view/View; , v14 : Landroid/database/Cursor; , v8 : single-length
+  (move-result v1)
+; v1 : single-length
+  (label l2d7e6)
+  (line 134)
+  (if-nez v1 l2d810)
+; v1 : single-length
+  (line 135)
+  (aget v8 v3 v4)
+; v8 : single-length , v3 : [I , v4 : single-length
+  (invoke-interface {v14 v8} android/database/Cursor/getString int )
+; v14 : Landroid/database/Cursor; , v8 : single-length
+  (move-result-object v5)
+; v5 : Ljava/lang/String;
+  (label l2d7f6)
+  (line 136)
+  (if-nez v5 l2d7fe)
+; v5 : Ljava/lang/String;
+  (line 137)
+  (const-string v5 "")
+; v5 : Ljava/lang/String;
+  (label l2d7fe)
+  (line 140)
+  (instance-of v8 v7 android/widget/TextView)
+; v8 : single-length , v7 : Landroid/view/View;
+  (if-eqz v8 l2d816)
+; v8 : single-length
+  (line 141)
+  (check-cast v7 [object android/widget/TextView])
+; v7 : Landroid/widget/TextView;
+  (label l2d80a)
+  (invoke-virtual {v11 v7 v5} android/support/v4/widget/SimpleCursorAdapter/setViewText [object android/widget/TextView] [object java/lang/String] )
+; v11 : Landroid/support/v4/widget/SimpleCursorAdapter; , v7 : Landroid/widget/TextView; , v5 : Ljava/lang/String;
+  (label l2d810)
+  (line 126)
+  (add-int/lit8 v4 v4 1)
+; v4 : single-length , v4 : single-length
+  (goto l2d7c0)
+  (label l2d816)
+  (line 142)
+  (instance-of v8 v7 android/widget/ImageView)
+; v8 : single-length , v7 : Landroid/view/View;
+  (if-eqz v8 l2d82a)
+; v8 : single-length
+  (line 143)
+  (check-cast v7 [object android/widget/ImageView])
+; v7 : Landroid/widget/ImageView;
+  (label l2d822)
+  (invoke-virtual {v11 v7 v5} android/support/v4/widget/SimpleCursorAdapter/setViewImage [object android/widget/ImageView] [object java/lang/String] )
+; v11 : Landroid/support/v4/widget/SimpleCursorAdapter; , v7 : Landroid/widget/ImageView; , v5 : Ljava/lang/String;
+  (goto l2d810)
+  (label l2d82a)
+  (line 145)
+  (new-instance v8 java/lang/IllegalStateException)
+; v8 : Ljava/lang/IllegalStateException;
+  (new-instance v9 java/lang/StringBuilder)
+; v9 : Ljava/lang/StringBuilder;
+  (invoke-direct {v9} java/lang/StringBuilder/<init> )
+; v9 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v7} java/lang/Object/getClass )
+; v7 : Landroid/view/View;
+  (move-result-object v10)
+; v10 : Ljava/lang/Class;
+  (invoke-virtual {v10} java/lang/Class/getName )
+; v10 : Ljava/lang/Class;
+  (move-result-object v10)
+; v10 : Ljava/lang/String;
+  (invoke-virtual {v9 v10} java/lang/StringBuilder/append [object java/lang/String] )
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+  (move-result-object v9)
+; v9 : Ljava/lang/StringBuilder;
+  (const-string v10 " is not a ")
+; v10 : Ljava/lang/String;
+  (invoke-virtual {v9 v10} java/lang/StringBuilder/append [object java/lang/String] )
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+  (move-result-object v9)
+; v9 : Ljava/lang/StringBuilder;
+  (const-string v10 " view that can be bounds by this SimpleCursorAdapter")
+; v10 : Ljava/lang/String;
+  (invoke-virtual {v9 v10} java/lang/StringBuilder/append [object java/lang/String] )
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+  (move-result-object v9)
+; v9 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v9} java/lang/StringBuilder/toString )
+; v9 : Ljava/lang/StringBuilder;
+  (move-result-object v9)
+; v9 : Ljava/lang/String;
+  (invoke-direct {v8 v9} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v8 : Ljava/lang/IllegalStateException; , v9 : Ljava/lang/String;
+  (throw v8)
+; v8 : Ljava/lang/IllegalStateException;
+  (label l2d878)
+  (line 151)
+  (return-void )
+)
+
+(method (attrs public ) changeCursorAndColumns([object android/database/Cursor] [array [object java/lang/String]] [array int] )void
+  (limit registers 5)
+  ; this: v1 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v2 ([object android/database/Cursor])
+  ; parameter[1] : v3 ([array [object java/lang/String]])
+  ; parameter[2] : v4 ([array int])
+  (line 344)
+  (iput-object v3 v1 android/support/v4/widget/SimpleCursorAdapter.mOriginalFrom [array [object java/lang/String]])
+; v3 : [Ljava/lang/String; , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 345)
+  (iput-object v4 v1 android/support/v4/widget/SimpleCursorAdapter.mTo [array int])
+; v4 : [I , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 346)
+  (invoke-super {v1 v2} android/support/v4/widget/ResourceCursorAdapter/changeCursor [object android/database/Cursor] )
+; v1 : Landroid/support/v4/widget/SimpleCursorAdapter; , v2 : Landroid/database/Cursor;
+  (line 347)
+  (iget-object v0 v1 android/support/v4/widget/SimpleCursorAdapter.mOriginalFrom [array [object java/lang/String]])
+; v0 : [Ljava/lang/String; , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (invoke-direct {v1 v0} android/support/v4/widget/SimpleCursorAdapter/findColumns [array [object java/lang/String]] )
+; v1 : Landroid/support/v4/widget/SimpleCursorAdapter; , v0 : [Ljava/lang/String;
+  (line 348)
+  (return-void )
+)
+
+(method (attrs public ) convertToString([object android/database/Cursor] )[object java/lang/CharSequence]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v3 ([object android/database/Cursor])
+  (line 294)
+  (iget-object v0 v2 android/support/v4/widget/SimpleCursorAdapter.mCursorToStringConverter [object android/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter])
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter; , v2 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (if-eqz v0 l2d8ce)
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter;
+  (line 295)
+  (iget-object v0 v2 android/support/v4/widget/SimpleCursorAdapter.mCursorToStringConverter [object android/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter])
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter; , v2 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (invoke-interface {v0 v3} android/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter/convertToString [object android/database/Cursor] )
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter; , v3 : Landroid/database/Cursor;
+  (move-result-object v0)
+; v0 : Ljava/lang/CharSequence;
+  (label l2d8cc)
+  (line 300)
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+  (label l2d8ce)
+  (line 296)
+  (iget v0 v2 android/support/v4/widget/SimpleCursorAdapter.mStringConversionColumn int)
+; v0 : single-length , v2 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (const/4 v1 15)
+; v1 : single-length
+  (if-le v0 v1 l2d8e6)
+; v0 : single-length , v1 : single-length
+  (line 297)
+  (iget v0 v2 android/support/v4/widget/SimpleCursorAdapter.mStringConversionColumn int)
+; v0 : single-length , v2 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (invoke-interface {v3 v0} android/database/Cursor/getString int )
+; v3 : Landroid/database/Cursor; , v0 : single-length
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (goto l2d8cc)
+  (label l2d8e6)
+  (line 300)
+  (invoke-super {v2 v3} android/support/v4/widget/ResourceCursorAdapter/convertToString [object android/database/Cursor] )
+; v2 : Landroid/support/v4/widget/SimpleCursorAdapter; , v3 : Landroid/database/Cursor;
+  (move-result-object v0)
+; v0 : Ljava/lang/CharSequence;
+  (goto l2d8cc)
+)
+
+(method (attrs public ) getCursorToStringConverter()[object android/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/SimpleCursorAdapter])
+  (line 262)
+  (iget-object v0 v1 android/support/v4/widget/SimpleCursorAdapter.mCursorToStringConverter [object android/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter])
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter; , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (return-object v0)
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter;
+)
+
+(method (attrs public ) getStringConversionColumn()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/SimpleCursorAdapter])
+  (line 228)
+  (iget v0 v1 android/support/v4/widget/SimpleCursorAdapter.mStringConversionColumn int)
+; v0 : single-length , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getViewBinder()[object android/support/v4/widget/SimpleCursorAdapter$ViewBinder]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/widget/SimpleCursorAdapter])
+  (line 162)
+  (iget-object v0 v1 android/support/v4/widget/SimpleCursorAdapter.mViewBinder [object android/support/v4/widget/SimpleCursorAdapter$ViewBinder])
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$ViewBinder; , v1 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (return-object v0)
+; v0 : Landroid/support/v4/widget/SimpleCursorAdapter$ViewBinder;
+)
+
+(method (attrs public ) setCursorToStringConverter([object android/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v1 ([object android/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter])
+  (line 278)
+  (iput-object v1 v0 android/support/v4/widget/SimpleCursorAdapter.mCursorToStringConverter [object android/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter])
+; v1 : Landroid/support/v4/widget/SimpleCursorAdapter$CursorToStringConverter; , v0 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 279)
+  (return-void )
+)
+
+(method (attrs public ) setStringConversionColumn(int )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v1 (int)
+  (line 246)
+  (iput v1 v0 android/support/v4/widget/SimpleCursorAdapter.mStringConversionColumn int)
+; v1 : single-length , v0 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 247)
+  (return-void )
+)
+
+(method (attrs public ) setViewBinder([object android/support/v4/widget/SimpleCursorAdapter$ViewBinder] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v1 ([object android/support/v4/widget/SimpleCursorAdapter$ViewBinder])
+  (line 175)
+  (iput-object v1 v0 android/support/v4/widget/SimpleCursorAdapter.mViewBinder [object android/support/v4/widget/SimpleCursorAdapter$ViewBinder])
+; v1 : Landroid/support/v4/widget/SimpleCursorAdapter$ViewBinder; , v0 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (line 176)
+  (return-void )
+)
+
+(method (attrs public ) setViewImage([object android/widget/ImageView] [object java/lang/String] )void
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v3 ([object android/widget/ImageView])
+  ; parameter[1] : v4 ([object java/lang/String])
+  (catch java/lang/NumberFormatException from l2d990 to l2d99e using l2d9a0)
+  (label l2d990)
+  (line 195)
+  (invoke-static {v4} java/lang/Integer/parseInt [object java/lang/String] )
+; v4 : Ljava/lang/String;
+  (move-result v1)
+; v1 : single-length
+  (invoke-virtual {v3 v1} android/widget/ImageView/setImageResource int )
+; v3 : Landroid/widget/ImageView; , v1 : single-length
+  (label l2d99e)
+  (line 199)
+  (return-void )
+  (label l2d9a0)
+  (line 196)
+  (move-exception v0)
+; v0 : java/lang/NumberFormatException
+  (line 197)
+  (invoke-static {v4} android/net/Uri/parse [object java/lang/String] )
+; v4 : Ljava/lang/String;
+  (move-result-object v1)
+; v1 : Landroid/net/Uri;
+  (invoke-virtual {v3 v1} android/widget/ImageView/setImageURI [object android/net/Uri] )
+; v3 : Landroid/widget/ImageView; , v1 : Landroid/net/Uri;
+  (goto l2d99e)
+)
+
+(method (attrs public ) setViewText([object android/widget/TextView] [object java/lang/String] )void
+  (limit registers 3)
+  ; this: v0 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v1 ([object android/widget/TextView])
+  ; parameter[1] : v2 ([object java/lang/String])
+  (line 213)
+  (invoke-virtual {v1 v2} android/widget/TextView/setText [object java/lang/CharSequence] )
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+  (line 214)
+  (return-void )
+)
+
+(method (attrs public ) swapCursor([object android/database/Cursor] )[object android/database/Cursor]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/widget/SimpleCursorAdapter])
+  ; parameter[0] : v3 ([object android/database/Cursor])
+  (line 326)
+  (invoke-super {v2 v3} android/support/v4/widget/ResourceCursorAdapter/swapCursor [object android/database/Cursor] )
+; v2 : Landroid/support/v4/widget/SimpleCursorAdapter; , v3 : Landroid/database/Cursor;
+  (move-result-object v0)
+; v0 : Landroid/database/Cursor;
+  (line 328)
+  (iget-object v1 v2 android/support/v4/widget/SimpleCursorAdapter.mOriginalFrom [array [object java/lang/String]])
+; v1 : [Ljava/lang/String; , v2 : Landroid/support/v4/widget/SimpleCursorAdapter;
+  (invoke-direct {v2 v1} android/support/v4/widget/SimpleCursorAdapter/findColumns [array [object java/lang/String]] )
+; v2 : Landroid/support/v4/widget/SimpleCursorAdapter; , v1 : [Ljava/lang/String;
+  (line 329)
+  (return-object v0)
+; v0 : Landroid/database/Cursor;
+)
+
+)

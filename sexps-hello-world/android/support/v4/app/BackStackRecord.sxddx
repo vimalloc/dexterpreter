@@ -1,0 +1,2465 @@
+(class (attrs final ) android/support/v4/app/BackStackRecord
+ (super android/support/v4/app/FragmentTransaction)
+ (source "BackStackRecord.java")
+ (implements android/support/v4/app/FragmentManager$BackStackEntry)
+ (implements java/lang/Runnable)
+
+ (field (attrs static final ) OP_ADD int 1); 0x1 )
+ (field (attrs static final ) OP_ATTACH int 7); 0x7 )
+ (field (attrs static final ) OP_DETACH int 6); 0x6 )
+ (field (attrs static final ) OP_HIDE int 4); 0x4 )
+ (field (attrs static final ) OP_NULL int 0); 0x0 )
+ (field (attrs static final ) OP_REMOVE int 3); 0x3 )
+ (field (attrs static final ) OP_REPLACE int 2); 0x2 )
+ (field (attrs static final ) OP_SHOW int 5); 0x5 )
+ (field (attrs static final ) TAG [object java/lang/String] "BackStackEntry" )
+ (field (attrs ) mAddToBackStack boolean )
+ (field (attrs ) mAllowAddToBackStack boolean )
+ (field (attrs ) mBreadCrumbShortTitleRes int )
+ (field (attrs ) mBreadCrumbShortTitleText [object java/lang/CharSequence] )
+ (field (attrs ) mBreadCrumbTitleRes int )
+ (field (attrs ) mBreadCrumbTitleText [object java/lang/CharSequence] )
+ (field (attrs ) mCommitted boolean )
+ (field (attrs ) mEnterAnim int )
+ (field (attrs ) mExitAnim int )
+ (field (attrs ) mHead [object android/support/v4/app/BackStackRecord$Op] )
+ (field (attrs ) mIndex int )
+ (field (attrs final ) mManager [object android/support/v4/app/FragmentManagerImpl] )
+ (field (attrs ) mName [object java/lang/String] )
+ (field (attrs ) mNumOp int )
+ (field (attrs ) mPopEnterAnim int )
+ (field (attrs ) mPopExitAnim int )
+ (field (attrs ) mTail [object android/support/v4/app/BackStackRecord$Op] )
+ (field (attrs ) mTransition int )
+ (field (attrs ) mTransitionStyle int )
+
+(method (attrs public ) <init>([object android/support/v4/app/FragmentManagerImpl] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v2 ([object android/support/v4/app/FragmentManagerImpl])
+  (line 291)
+  (invoke-direct {v1} android/support/v4/app/FragmentTransaction/<init> )
+; v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 206)
+  (const/4 v0 1)
+; v0 : single-length
+  (iput-boolean v0 v1 android/support/v4/app/BackStackRecord.mAllowAddToBackStack boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 292)
+  (iput-object v2 v1 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v2 : Landroid/support/v4/app/FragmentManagerImpl; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 293)
+  (return-void )
+ )
+
+(method (attrs private ) doAddOp(int [object android/support/v4/app/Fragment] [object java/lang/String] int )void
+  (limit registers 9)
+  ; this: v4 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v5 (int)
+  ; parameter[1] : v6 ([object android/support/v4/app/Fragment])
+  ; parameter[2] : v7 ([object java/lang/String])
+  ; parameter[3] : v8 (int)
+  (line 352)
+  (iget-object v1 v4 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v1 : Landroid/support/v4/app/FragmentManagerImpl; , v4 : Landroid/support/v4/app/BackStackRecord;
+  (iput-object v1 v6 android/support/v4/app/Fragment.mFragmentManager [object android/support/v4/app/FragmentManagerImpl])
+; v1 : Landroid/support/v4/app/FragmentManagerImpl; , v6 : Landroid/support/v4/app/Fragment;
+  (line 354)
+  (if-eqz v7 l1153a)
+; v7 : Ljava/lang/String;
+  (line 355)
+  (iget-object v1 v6 android/support/v4/app/Fragment.mTag [object java/lang/String])
+; v1 : Ljava/lang/String; , v6 : Landroid/support/v4/app/Fragment;
+  (if-eqz v1 l11536)
+; v1 : Ljava/lang/String;
+  (iget-object v1 v6 android/support/v4/app/Fragment.mTag [object java/lang/String])
+; v1 : Ljava/lang/String; , v6 : Landroid/support/v4/app/Fragment;
+  (invoke-virtual {v7 v1} java/lang/String/equals [object java/lang/Object] )
+; v7 : Ljava/lang/String; , v1 : Ljava/lang/String;
+  (move-result v1)
+; v1 : single-length
+  (if-nez v1 l11536)
+; v1 : single-length
+  (line 356)
+  (new-instance v1 java/lang/IllegalStateException)
+; v1 : Ljava/lang/IllegalStateException;
+  (new-instance v2 java/lang/StringBuilder)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-direct {v2} java/lang/StringBuilder/<init> )
+; v2 : Ljava/lang/StringBuilder;
+  (const-string v3 "Can't change tag of fragment ")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v2 v6} java/lang/StringBuilder/append [object java/lang/Object] )
+; v2 : Ljava/lang/StringBuilder; , v6 : Landroid/support/v4/app/Fragment;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (const-string v3 ": was ")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (iget-object v3 v6 android/support/v4/app/Fragment.mTag [object java/lang/String])
+; v3 : Ljava/lang/String; , v6 : Landroid/support/v4/app/Fragment;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (const-string v3 " now ")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v2 v7} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v2} java/lang/StringBuilder/toString )
+; v2 : Ljava/lang/StringBuilder;
+  (move-result-object v2)
+; v2 : Ljava/lang/String;
+  (invoke-direct {v1 v2} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v1 : Ljava/lang/IllegalStateException; , v2 : Ljava/lang/String;
+  (throw v1)
+; v1 : Ljava/lang/IllegalStateException;
+  (label l11536)
+  (line 360)
+  (iput-object v7 v6 android/support/v4/app/Fragment.mTag [object java/lang/String])
+; v7 : Ljava/lang/String; , v6 : Landroid/support/v4/app/Fragment;
+  (label l1153a)
+  (line 363)
+  (if-eqz v5 l115b4)
+; v5 : single-length
+  (line 364)
+  (iget v1 v6 android/support/v4/app/Fragment.mFragmentId int)
+; v1 : single-length , v6 : Landroid/support/v4/app/Fragment;
+  (if-eqz v1 l115ac)
+; v1 : single-length
+  (iget v1 v6 android/support/v4/app/Fragment.mFragmentId int)
+; v1 : single-length , v6 : Landroid/support/v4/app/Fragment;
+  (if-eq v1 v5 l115ac)
+; v1 : single-length , v5 : single-length
+  (line 365)
+  (new-instance v1 java/lang/IllegalStateException)
+; v1 : Ljava/lang/IllegalStateException;
+  (new-instance v2 java/lang/StringBuilder)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-direct {v2} java/lang/StringBuilder/<init> )
+; v2 : Ljava/lang/StringBuilder;
+  (const-string v3 "Can't change container ID of fragment ")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v2 v6} java/lang/StringBuilder/append [object java/lang/Object] )
+; v2 : Ljava/lang/StringBuilder; , v6 : Landroid/support/v4/app/Fragment;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (const-string v3 ": was ")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (iget v3 v6 android/support/v4/app/Fragment.mFragmentId int)
+; v3 : single-length , v6 : Landroid/support/v4/app/Fragment;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append int )
+; v2 : Ljava/lang/StringBuilder; , v3 : single-length
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (const-string v3 " now ")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v2 v5} java/lang/StringBuilder/append int )
+; v2 : Ljava/lang/StringBuilder; , v5 : single-length
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v2} java/lang/StringBuilder/toString )
+; v2 : Ljava/lang/StringBuilder;
+  (move-result-object v2)
+; v2 : Ljava/lang/String;
+  (invoke-direct {v1 v2} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v1 : Ljava/lang/IllegalStateException; , v2 : Ljava/lang/String;
+  (throw v1)
+; v1 : Ljava/lang/IllegalStateException;
+  (label l115ac)
+  (line 369)
+  (iput v5 v6 android/support/v4/app/Fragment.mFragmentId int)
+; v5 : single-length , v6 : Landroid/support/v4/app/Fragment;
+  (iput v5 v6 android/support/v4/app/Fragment.mContainerId int)
+; v5 : single-length , v6 : Landroid/support/v4/app/Fragment;
+  (label l115b4)
+  (line 372)
+  (new-instance v0 android/support/v4/app/BackStackRecord$Op)
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-direct {v0} android/support/v4/app/BackStackRecord$Op/<init> )
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 373)
+  (iput v8 v0 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v8 : single-length , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 374)
+  (iput-object v6 v0 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v6 : Landroid/support/v4/app/Fragment; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 375)
+  (invoke-virtual {v4 v0} android/support/v4/app/BackStackRecord/addOp [object android/support/v4/app/BackStackRecord$Op] )
+; v4 : Landroid/support/v4/app/BackStackRecord; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 376)
+  (return-void )
+ )
+
+(method (attrs public ) add(int [object android/support/v4/app/Fragment] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v3 (int)
+  ; parameter[1] : v4 ([object android/support/v4/app/Fragment])
+  (line 342)
+  (const/4 v0 0)
+; v0 : single-length
+  (const/4 v1 1)
+; v1 : single-length
+  (invoke-direct {v2 v3 v4 v0 v1} android/support/v4/app/BackStackRecord/doAddOp int [object android/support/v4/app/Fragment] [object java/lang/String] int )
+; v2 : Landroid/support/v4/app/BackStackRecord; , v3 : single-length , v4 : Landroid/support/v4/app/Fragment; , v0 : single-length , v1 : single-length
+  (line 343)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) add(int [object android/support/v4/app/Fragment] [object java/lang/String] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 5)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 ([object android/support/v4/app/Fragment])
+  ; parameter[2] : v4 ([object java/lang/String])
+  (line 347)
+  (const/4 v0 1)
+; v0 : single-length
+  (invoke-direct {v1 v2 v3 v4 v0} android/support/v4/app/BackStackRecord/doAddOp int [object android/support/v4/app/Fragment] [object java/lang/String] int )
+; v1 : Landroid/support/v4/app/BackStackRecord; , v2 : single-length , v3 : Landroid/support/v4/app/Fragment; , v4 : Ljava/lang/String; , v0 : single-length
+  (line 348)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) add([object android/support/v4/app/Fragment] [object java/lang/String] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v3 ([object android/support/v4/app/Fragment])
+  ; parameter[1] : v4 ([object java/lang/String])
+  (line 337)
+  (const/4 v0 0)
+; v0 : single-length
+  (const/4 v1 1)
+; v1 : single-length
+  (invoke-direct {v2 v0 v3 v4 v1} android/support/v4/app/BackStackRecord/doAddOp int [object android/support/v4/app/Fragment] [object java/lang/String] int )
+; v2 : Landroid/support/v4/app/BackStackRecord; , v0 : single-length , v3 : Landroid/support/v4/app/Fragment; , v4 : Ljava/lang/String; , v1 : single-length
+  (line 338)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs ) addOp([object android/support/v4/app/BackStackRecord$Op] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v2 ([object android/support/v4/app/BackStackRecord$Op])
+  (line 322)
+  (iget-object v0 v1 android/support/v4/app/BackStackRecord.mHead [object android/support/v4/app/BackStackRecord$Op])
+; v0 : Landroid/support/v4/app/BackStackRecord$Op; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (if-nez v0 l11672)
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 323)
+  (iput-object v2 v1 android/support/v4/app/BackStackRecord.mTail [object android/support/v4/app/BackStackRecord$Op])
+; v2 : Landroid/support/v4/app/BackStackRecord$Op; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (iput-object v2 v1 android/support/v4/app/BackStackRecord.mHead [object android/support/v4/app/BackStackRecord$Op])
+; v2 : Landroid/support/v4/app/BackStackRecord$Op; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (label l11644)
+  (line 329)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mEnterAnim int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (iput v0 v2 android/support/v4/app/BackStackRecord$Op.enterAnim int)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 330)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mExitAnim int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (iput v0 v2 android/support/v4/app/BackStackRecord$Op.exitAnim int)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 331)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mPopEnterAnim int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (iput v0 v2 android/support/v4/app/BackStackRecord$Op.popEnterAnim int)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 332)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mPopExitAnim int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (iput v0 v2 android/support/v4/app/BackStackRecord$Op.popExitAnim int)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 333)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mNumOp int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (iput v0 v1 android/support/v4/app/BackStackRecord.mNumOp int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 334)
+  (return-void )
+  (label l11672)
+  (line 325)
+  (iget-object v0 v1 android/support/v4/app/BackStackRecord.mTail [object android/support/v4/app/BackStackRecord$Op])
+; v0 : Landroid/support/v4/app/BackStackRecord$Op; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (iput-object v0 v2 android/support/v4/app/BackStackRecord$Op.prev [object android/support/v4/app/BackStackRecord$Op])
+; v0 : Landroid/support/v4/app/BackStackRecord$Op; , v2 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 326)
+  (iget-object v0 v1 android/support/v4/app/BackStackRecord.mTail [object android/support/v4/app/BackStackRecord$Op])
+; v0 : Landroid/support/v4/app/BackStackRecord$Op; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (iput-object v2 v0 android/support/v4/app/BackStackRecord$Op.next [object android/support/v4/app/BackStackRecord$Op])
+; v2 : Landroid/support/v4/app/BackStackRecord$Op; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 327)
+  (iput-object v2 v1 android/support/v4/app/BackStackRecord.mTail [object android/support/v4/app/BackStackRecord$Op])
+; v2 : Landroid/support/v4/app/BackStackRecord$Op; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (goto l11644)
+)
+
+(method (attrs public ) addToBackStack([object java/lang/String] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v3 ([object java/lang/String])
+  (line 460)
+  (iget-boolean v0 v2 android/support/v4/app/BackStackRecord.mAllowAddToBackStack boolean)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord;
+  (if-nez v0 l116b0)
+; v0 : single-length
+  (line 461)
+  (new-instance v0 java/lang/IllegalStateException)
+; v0 : Ljava/lang/IllegalStateException;
+  (const-string v1 "This FragmentTransaction is not allowed to be added to the back stack.")
+; v1 : Ljava/lang/String;
+  (invoke-direct {v0 v1} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+  (throw v0)
+; v0 : Ljava/lang/IllegalStateException;
+  (label l116b0)
+  (line 464)
+  (const/4 v0 1)
+; v0 : single-length
+  (iput-boolean v0 v2 android/support/v4/app/BackStackRecord.mAddToBackStack boolean)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord;
+  (line 465)
+  (iput-object v3 v2 android/support/v4/app/BackStackRecord.mName [object java/lang/String])
+; v3 : Ljava/lang/String; , v2 : Landroid/support/v4/app/BackStackRecord;
+  (line 466)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) attach([object android/support/v4/app/Fragment] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v3 ([object android/support/v4/app/Fragment])
+  (line 428)
+  (new-instance v0 android/support/v4/app/BackStackRecord$Op)
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-direct {v0} android/support/v4/app/BackStackRecord$Op/<init> )
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 429)
+  (const/4 v1 7)
+; v1 : single-length
+  (iput v1 v0 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v1 : single-length , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 430)
+  (iput-object v3 v0 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v3 : Landroid/support/v4/app/Fragment; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 431)
+  (invoke-virtual {v2 v0} android/support/v4/app/BackStackRecord/addOp [object android/support/v4/app/BackStackRecord$Op] )
+; v2 : Landroid/support/v4/app/BackStackRecord; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 433)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs ) bumpBackStackNesting(int )void
+  (limit registers 8)
+  ; this: v6 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v7 (int)
+.var 0 is i int from l117dc to l11850
+.var 2 is r [object android/support/v4/app/Fragment] from l117f0 to l11850
+  (line 507)
+  (iget-boolean v3 v6 android/support/v4/app/BackStackRecord.mAddToBackStack boolean)
+; v3 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-nez v3 l11702)
+; v3 : single-length
+  (label l11700)
+  (line 529)
+  (return-void )
+  (label l11702)
+  (line 510)
+  (sget-boolean v3 android/support/v4/app/FragmentManagerImpl.DEBUG boolean)
+; v3 : single-length
+  (if-eqz v3 l1174e)
+; v3 : single-length
+  (const-string v3 "BackStackEntry")
+; v3 : Ljava/lang/String;
+  (new-instance v4 java/lang/StringBuilder)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-direct {v4} java/lang/StringBuilder/<init> )
+; v4 : Ljava/lang/StringBuilder;
+  (const-string v5 "Bump nesting in ")
+; v5 : Ljava/lang/String;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v4 v6} java/lang/StringBuilder/append [object java/lang/Object] )
+; v4 : Ljava/lang/StringBuilder; , v6 : Landroid/support/v4/app/BackStackRecord;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (const-string v5 " by ")
+; v5 : Ljava/lang/String;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v4 v7} java/lang/StringBuilder/append int )
+; v4 : Ljava/lang/StringBuilder; , v7 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v4} java/lang/StringBuilder/toString )
+; v4 : Ljava/lang/StringBuilder;
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-static {v3 v4} android/util/Log/v [object java/lang/String] [object java/lang/String] )
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+  (label l1174e)
+  (line 512)
+  (iget-object v1 v6 android/support/v4/app/BackStackRecord.mHead [object android/support/v4/app/BackStackRecord$Op])
+; v1 : Landroid/support/v4/app/BackStackRecord$Op; , v6 : Landroid/support/v4/app/BackStackRecord;
+  (label l11752)
+  (line 513)
+  (if-eqz v1 l11700)
+; v1 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 514)
+  (iget-object v3 v1 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v3 : Landroid/support/v4/app/Fragment; , v1 : Landroid/support/v4/app/BackStackRecord$Op;
+  (if-eqz v3 l117c4)
+; v3 : Landroid/support/v4/app/Fragment;
+  (line 515)
+  (iget-object v3 v1 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v3 : Landroid/support/v4/app/Fragment; , v1 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iget v4 v3 android/support/v4/app/Fragment.mBackStackNesting int)
+; v4 : single-length , v3 : Landroid/support/v4/app/Fragment;
+  (add-int/2addr v4 v7)
+; v4 : single-length , v7 : single-length
+  (iput v4 v3 android/support/v4/app/Fragment.mBackStackNesting int)
+; v4 : single-length , v3 : Landroid/support/v4/app/Fragment;
+  (line 516)
+  (sget-boolean v3 android/support/v4/app/FragmentManagerImpl.DEBUG boolean)
+; v3 : single-length
+  (if-eqz v3 l117c4)
+; v3 : single-length
+  (const-string v3 "BackStackEntry")
+; v3 : Ljava/lang/String;
+  (new-instance v4 java/lang/StringBuilder)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-direct {v4} java/lang/StringBuilder/<init> )
+; v4 : Ljava/lang/StringBuilder;
+  (const-string v5 "Bump nesting of ")
+; v5 : Ljava/lang/String;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (iget-object v5 v1 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v5 : Landroid/support/v4/app/Fragment; , v1 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/Object] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Landroid/support/v4/app/Fragment;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (const-string v5 " to ")
+; v5 : Ljava/lang/String;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (iget-object v5 v1 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v5 : Landroid/support/v4/app/Fragment; , v1 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iget v5 v5 android/support/v4/app/Fragment.mBackStackNesting int)
+; v5 : single-length , v5 : single-length
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append int )
+; v4 : Ljava/lang/StringBuilder; , v5 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v4} java/lang/StringBuilder/toString )
+; v4 : Ljava/lang/StringBuilder;
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-static {v3 v4} android/util/Log/v [object java/lang/String] [object java/lang/String] )
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+  (label l117c4)
+  (line 519)
+  (iget-object v3 v1 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/BackStackRecord$Op;
+  (if-eqz v3 l11850)
+; v3 : Ljava/util/ArrayList;
+  (line 520)
+  (iget-object v3 v1 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v3} java/util/ArrayList/size )
+; v3 : Ljava/util/ArrayList;
+  (move-result v3)
+; v3 : single-length
+  (add-int/lit8 v0 v3 255)
+; v0 : single-length , v3 : single-length
+  (label l117dc)
+  (if-ltz v0 l11850)
+; v0 : single-length
+  (line 521)
+  (iget-object v3 v1 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v3 v0} java/util/ArrayList/get int )
+; v3 : Ljava/util/ArrayList; , v0 : single-length
+  (move-result-object v2)
+; v2 : Ljava/lang/Object;
+  (check-cast v2 [object android/support/v4/app/Fragment])
+; v2 : Landroid/support/v4/app/Fragment;
+  (label l117f0)
+  (line 522)
+  (iget v3 v2 android/support/v4/app/Fragment.mBackStackNesting int)
+; v3 : single-length , v2 : Landroid/support/v4/app/Fragment;
+  (add-int/2addr v3 v7)
+; v3 : single-length , v7 : single-length
+  (iput v3 v2 android/support/v4/app/Fragment.mBackStackNesting int)
+; v3 : single-length , v2 : Landroid/support/v4/app/Fragment;
+  (line 523)
+  (sget-boolean v3 android/support/v4/app/FragmentManagerImpl.DEBUG boolean)
+; v3 : single-length
+  (if-eqz v3 l1184a)
+; v3 : single-length
+  (const-string v3 "BackStackEntry")
+; v3 : Ljava/lang/String;
+  (new-instance v4 java/lang/StringBuilder)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-direct {v4} java/lang/StringBuilder/<init> )
+; v4 : Ljava/lang/StringBuilder;
+  (const-string v5 "Bump nesting of ")
+; v5 : Ljava/lang/String;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v4 v2} java/lang/StringBuilder/append [object java/lang/Object] )
+; v4 : Ljava/lang/StringBuilder; , v2 : Landroid/support/v4/app/Fragment;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (const-string v5 " to ")
+; v5 : Ljava/lang/String;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (iget v5 v2 android/support/v4/app/Fragment.mBackStackNesting int)
+; v5 : single-length , v2 : Landroid/support/v4/app/Fragment;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append int )
+; v4 : Ljava/lang/StringBuilder; , v5 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v4} java/lang/StringBuilder/toString )
+; v4 : Ljava/lang/StringBuilder;
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-static {v3 v4} android/util/Log/v [object java/lang/String] [object java/lang/String] )
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+  (label l1184a)
+  (line 520)
+  (add-int/lit8 v0 v0 255)
+; v0 : single-length , v0 : single-length
+  (goto l117dc)
+  (label l11850)
+  (line 527)
+  (iget-object v1 v1 android/support/v4/app/BackStackRecord$Op.next [object android/support/v4/app/BackStackRecord$Op])
+; v1 : Landroid/support/v4/app/BackStackRecord$Op; , v1 : Landroid/support/v4/app/BackStackRecord$Op;
+  (goto/16 l11752)
+)
+
+(method (attrs public ) commit()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 532)
+  (const/4 v0 0)
+; v0 : single-length
+  (invoke-virtual {v1 v0} android/support/v4/app/BackStackRecord/commitInternal boolean )
+; v1 : Landroid/support/v4/app/BackStackRecord; , v0 : single-length
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) commitAllowingStateLoss()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 536)
+  (const/4 v0 1)
+; v0 : single-length
+  (invoke-virtual {v1 v0} android/support/v4/app/BackStackRecord/commitInternal boolean )
+; v1 : Landroid/support/v4/app/BackStackRecord; , v0 : single-length
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs ) commitInternal(boolean )int
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v4 (boolean)
+  (line 540)
+  (iget-boolean v0 v3 android/support/v4/app/BackStackRecord.mCommitted boolean)
+; v0 : single-length , v3 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v0 l118b8)
+; v0 : single-length
+  (new-instance v0 java/lang/IllegalStateException)
+; v0 : Ljava/lang/IllegalStateException;
+  (const-string v1 "commit already called")
+; v1 : Ljava/lang/String;
+  (invoke-direct {v0 v1} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+  (throw v0)
+; v0 : Ljava/lang/IllegalStateException;
+  (label l118b8)
+  (line 541)
+  (sget-boolean v0 android/support/v4/app/FragmentManagerImpl.DEBUG boolean)
+; v0 : single-length
+  (if-eqz v0 l118f0)
+; v0 : single-length
+  (const-string v0 "BackStackEntry")
+; v0 : Ljava/lang/String;
+  (new-instance v1 java/lang/StringBuilder)
+; v1 : Ljava/lang/StringBuilder;
+  (invoke-direct {v1} java/lang/StringBuilder/<init> )
+; v1 : Ljava/lang/StringBuilder;
+  (const-string v2 "Commit: ")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v1 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (move-result-object v1)
+; v1 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v1 v3} java/lang/StringBuilder/append [object java/lang/Object] )
+; v1 : Ljava/lang/StringBuilder; , v3 : Landroid/support/v4/app/BackStackRecord;
+  (move-result-object v1)
+; v1 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v1} java/lang/StringBuilder/toString )
+; v1 : Ljava/lang/StringBuilder;
+  (move-result-object v1)
+; v1 : Ljava/lang/String;
+  (invoke-static {v0 v1} android/util/Log/v [object java/lang/String] [object java/lang/String] )
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+  (label l118f0)
+  (line 542)
+  (const/4 v0 1)
+; v0 : single-length
+  (iput-boolean v0 v3 android/support/v4/app/BackStackRecord.mCommitted boolean)
+; v0 : single-length , v3 : Landroid/support/v4/app/BackStackRecord;
+  (line 543)
+  (iget-boolean v0 v3 android/support/v4/app/BackStackRecord.mAddToBackStack boolean)
+; v0 : single-length , v3 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v0 l1191e)
+; v0 : single-length
+  (line 544)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v0 : Landroid/support/v4/app/FragmentManagerImpl; , v3 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v0 v3} android/support/v4/app/FragmentManagerImpl/allocBackStackIndex [object android/support/v4/app/BackStackRecord] )
+; v0 : Landroid/support/v4/app/FragmentManagerImpl; , v3 : Landroid/support/v4/app/BackStackRecord;
+  (move-result v0)
+; v0 : single-length
+  (iput v0 v3 android/support/v4/app/BackStackRecord.mIndex int)
+; v0 : single-length , v3 : Landroid/support/v4/app/BackStackRecord;
+  (label l1190e)
+  (line 548)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v0 : Landroid/support/v4/app/FragmentManagerImpl; , v3 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v0 v3 v4} android/support/v4/app/FragmentManagerImpl/enqueueAction [object java/lang/Runnable] boolean )
+; v0 : Landroid/support/v4/app/FragmentManagerImpl; , v3 : Landroid/support/v4/app/BackStackRecord; , v4 : single-length
+  (line 549)
+  (iget v0 v3 android/support/v4/app/BackStackRecord.mIndex int)
+; v0 : single-length , v3 : Landroid/support/v4/app/BackStackRecord;
+  (return v0)
+; v0 : single-length
+  (label l1191e)
+  (line 546)
+  (const/4 v0 15)
+; v0 : single-length
+  (iput v0 v3 android/support/v4/app/BackStackRecord.mIndex int)
+; v0 : single-length , v3 : Landroid/support/v4/app/BackStackRecord;
+  (goto l1190e)
+)
+
+(method (attrs public ) detach([object android/support/v4/app/Fragment] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v3 ([object android/support/v4/app/Fragment])
+  (line 419)
+  (new-instance v0 android/support/v4/app/BackStackRecord$Op)
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-direct {v0} android/support/v4/app/BackStackRecord$Op/<init> )
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 420)
+  (const/4 v1 6)
+; v1 : single-length
+  (iput v1 v0 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v1 : single-length , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 421)
+  (iput-object v3 v0 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v3 : Landroid/support/v4/app/Fragment; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 422)
+  (invoke-virtual {v2 v0} android/support/v4/app/BackStackRecord/addOp [object android/support/v4/app/BackStackRecord$Op] )
+; v2 : Landroid/support/v4/app/BackStackRecord; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 424)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) disallowAddToBackStack()[object android/support/v4/app/FragmentTransaction]
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  (line 474)
+  (iget-boolean v0 v2 android/support/v4/app/BackStackRecord.mAddToBackStack boolean)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v0 l1197c)
+; v0 : single-length
+  (line 475)
+  (new-instance v0 java/lang/IllegalStateException)
+; v0 : Ljava/lang/IllegalStateException;
+  (const-string v1 "This transaction is already being added to the back stack")
+; v1 : Ljava/lang/String;
+  (invoke-direct {v0 v1} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+  (throw v0)
+; v0 : Ljava/lang/IllegalStateException;
+  (label l1197c)
+  (line 478)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-boolean v0 v2 android/support/v4/app/BackStackRecord.mAllowAddToBackStack boolean)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord;
+  (line 479)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) dump([object java/lang/String] [object java/io/FileDescriptor] [object java/io/PrintWriter] [array [object java/lang/String]] )void
+  (limit registers 11)
+  ; this: v6 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v7 ([object java/lang/String])
+  ; parameter[1] : v8 ([object java/io/FileDescriptor])
+  ; parameter[2] : v9 ([object java/io/PrintWriter])
+  ; parameter[3] : v10 ([array [object java/lang/String]])
+.var 0 is i int from l11c90 to l11d06
+.var 1 is innerPrefix [object java/lang/String] from l11b82 to l11d0e
+.var 2 is num int from l11b88 to l11d0e
+.var 3 is op [object android/support/v4/app/BackStackRecord$Op] from l11b86 to l11d0e
+  (line 217)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "mName=")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (iget-object v4 v6 android/support/v4/app/BackStackRecord.mName [object java/lang/String])
+; v4 : Ljava/lang/String; , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 218)
+  (const-string v4 " mIndex=")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mIndex int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print int )
+; v9 : Ljava/io/PrintWriter; , v4 : single-length
+  (line 219)
+  (const-string v4 " mCommitted=")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (iget-boolean v4 v6 android/support/v4/app/BackStackRecord.mCommitted boolean)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println boolean )
+; v9 : Ljava/io/PrintWriter; , v4 : single-length
+  (line 220)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mTransition int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v4 l11a1c)
+; v4 : single-length
+  (line 221)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "mTransition=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 222)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mTransition int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 223)
+  (const-string v4 " mTransitionStyle=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 224)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (label l11a1c)
+  (line 226)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mEnterAnim int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-nez v4 l11a2c)
+; v4 : single-length
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mExitAnim int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v4 l11a6a)
+; v4 : single-length
+  (label l11a2c)
+  (line 227)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "mEnterAnim=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 228)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mEnterAnim int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 229)
+  (const-string v4 " mExitAnim=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 230)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mExitAnim int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (label l11a6a)
+  (line 232)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mPopEnterAnim int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-nez v4 l11a7a)
+; v4 : single-length
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mPopExitAnim int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v4 l11ab8)
+; v4 : single-length
+  (label l11a7a)
+  (line 233)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "mPopEnterAnim=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 234)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mPopEnterAnim int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 235)
+  (const-string v4 " mPopExitAnim=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 236)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mPopExitAnim int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (label l11ab8)
+  (line 238)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mBreadCrumbTitleRes int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-nez v4 l11ac8)
+; v4 : single-length
+  (iget-object v4 v6 android/support/v4/app/BackStackRecord.mBreadCrumbTitleText [object java/lang/CharSequence])
+; v4 : Ljava/lang/CharSequence; , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v4 l11afe)
+; v4 : Ljava/lang/CharSequence;
+  (label l11ac8)
+  (line 239)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "mBreadCrumbTitleRes=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 240)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mBreadCrumbTitleRes int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 241)
+  (const-string v4 " mBreadCrumbTitleText=")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 242)
+  (iget-object v4 v6 android/support/v4/app/BackStackRecord.mBreadCrumbTitleText [object java/lang/CharSequence])
+; v4 : Ljava/lang/CharSequence; , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/Object] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/CharSequence;
+  (label l11afe)
+  (line 244)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleRes int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-nez v4 l11b0e)
+; v4 : single-length
+  (iget-object v4 v6 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleText [object java/lang/CharSequence])
+; v4 : Ljava/lang/CharSequence; , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v4 l11b44)
+; v4 : Ljava/lang/CharSequence;
+  (label l11b0e)
+  (line 245)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "mBreadCrumbShortTitleRes=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 246)
+  (iget v4 v6 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleRes int)
+; v4 : single-length , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 247)
+  (const-string v4 " mBreadCrumbShortTitleText=")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 248)
+  (iget-object v4 v6 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleText [object java/lang/CharSequence])
+; v4 : Ljava/lang/CharSequence; , v6 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/Object] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/CharSequence;
+  (label l11b44)
+  (line 251)
+  (iget-object v4 v6 android/support/v4/app/BackStackRecord.mHead [object android/support/v4/app/BackStackRecord$Op])
+; v4 : Landroid/support/v4/app/BackStackRecord$Op; , v6 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v4 l11d0e)
+; v4 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 252)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "Operations:")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 253)
+  (new-instance v4 java/lang/StringBuilder)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-direct {v4} java/lang/StringBuilder/<init> )
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v4 v7} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (const-string v5 "    ")
+; v5 : Ljava/lang/String;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v4} java/lang/StringBuilder/toString )
+; v4 : Ljava/lang/StringBuilder;
+  (move-result-object v1)
+; v1 : Ljava/lang/String;
+  (label l11b82)
+  (line 254)
+  (iget-object v3 v6 android/support/v4/app/BackStackRecord.mHead [object android/support/v4/app/BackStackRecord$Op])
+; v3 : Landroid/support/v4/app/BackStackRecord$Op; , v6 : Landroid/support/v4/app/BackStackRecord;
+  (label l11b86)
+  (line 255)
+  (const/4 v2 0)
+; v2 : single-length
+  (label l11b88)
+  (line 256)
+  (if-eqz v3 l11d0e)
+; v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 257)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "  Op #")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v2} java/io/PrintWriter/print int )
+; v9 : Ljava/io/PrintWriter; , v2 : single-length
+  (line 258)
+  (const-string v4 ":")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 259)
+  (invoke-virtual {v9 v1} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v1 : Ljava/lang/String;
+  (const-string v4 "cmd=")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print int )
+; v9 : Ljava/io/PrintWriter; , v4 : single-length
+  (line 260)
+  (const-string v4 " fragment=")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v4 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/Object] )
+; v9 : Ljava/io/PrintWriter; , v4 : Landroid/support/v4/app/Fragment;
+  (line 261)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.enterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (if-nez v4 l11bea)
+; v4 : single-length
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.exitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (if-eqz v4 l11c28)
+; v4 : single-length
+  (label l11bea)
+  (line 262)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "enterAnim=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 263)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.enterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 264)
+  (const-string v4 " exitAnim=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 265)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.exitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (label l11c28)
+  (line 267)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popEnterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (if-nez v4 l11c38)
+; v4 : single-length
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popExitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (if-eqz v4 l11c76)
+; v4 : single-length
+  (label l11c38)
+  (line 268)
+  (invoke-virtual {v9 v7} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v7 : Ljava/lang/String;
+  (const-string v4 "popEnterAnim=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 269)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popEnterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 270)
+  (const-string v4 " popExitAnim=#")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 271)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popExitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-static {v4} java/lang/Integer/toHexString int )
+; v4 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (label l11c76)
+  (line 273)
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (if-eqz v4 l11d06)
+; v4 : Ljava/util/ArrayList;
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v4} java/util/ArrayList/size )
+; v4 : Ljava/util/ArrayList;
+  (move-result v4)
+; v4 : single-length
+  (if-lez v4 l11d06)
+; v4 : single-length
+  (line 274)
+  (const/4 v0 0)
+; v0 : single-length
+  (label l11c90)
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v4} java/util/ArrayList/size )
+; v4 : Ljava/util/ArrayList;
+  (move-result v4)
+; v4 : single-length
+  (if-ge v0 v4 l11d06)
+; v0 : single-length , v4 : single-length
+  (line 275)
+  (invoke-virtual {v9 v1} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v1 : Ljava/lang/String;
+  (line 276)
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v4} java/util/ArrayList/size )
+; v4 : Ljava/util/ArrayList;
+  (move-result v4)
+; v4 : single-length
+  (const/4 v5 1)
+; v5 : single-length
+  (if-ne v4 v5 l11cda)
+; v4 : single-length , v5 : single-length
+  (line 277)
+  (const-string v4 "Removed: ")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (label l11cc2)
+  (line 283)
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v4 v0} java/util/ArrayList/get int )
+; v4 : Ljava/util/ArrayList; , v0 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/Object;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/Object] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/Object;
+  (line 274)
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (goto l11c90)
+  (label l11cda)
+  (line 279)
+  (const-string v4 "Removed:")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/println [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (line 280)
+  (invoke-virtual {v9 v1} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v1 : Ljava/lang/String;
+  (const-string v4 "  #")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v2} java/io/PrintWriter/print int )
+; v9 : Ljava/io/PrintWriter; , v2 : single-length
+  (line 281)
+  (const-string v4 ": ")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v9 v4} java/io/PrintWriter/print [object java/lang/String] )
+; v9 : Ljava/io/PrintWriter; , v4 : Ljava/lang/String;
+  (goto l11cc2)
+  (label l11d06)
+  (line 286)
+  (iget-object v3 v3 android/support/v4/app/BackStackRecord$Op.next [object android/support/v4/app/BackStackRecord$Op])
+; v3 : Landroid/support/v4/app/BackStackRecord$Op; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (goto/16 l11b88)
+  (label l11d0e)
+  (line 289)
+  (return-void )
+)
+
+(method (attrs public ) getBreadCrumbShortTitle()[object java/lang/CharSequence]
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  (line 315)
+  (iget v0 v2 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleRes int)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v0 l11d3e)
+; v0 : single-length
+  (line 316)
+  (iget-object v0 v2 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v0 : Landroid/support/v4/app/FragmentManagerImpl; , v2 : Landroid/support/v4/app/BackStackRecord;
+  (iget-object v0 v0 android/support/v4/app/FragmentManagerImpl.mActivity [object android/support/v4/app/FragmentActivity])
+; v0 : Landroid/support/v4/app/FragmentActivity; , v0 : Landroid/support/v4/app/FragmentActivity;
+  (iget v1 v2 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleRes int)
+; v1 : single-length , v2 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v0 v1} android/support/v4/app/FragmentActivity/getText int )
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : single-length
+  (move-result-object v0)
+; v0 : Ljava/lang/CharSequence;
+  (label l11d3c)
+  (line 318)
+  (return-object v0)
+; v0 : Ljava/lang/CharSequence;
+  (label l11d3e)
+  (iget-object v0 v2 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleText [object java/lang/CharSequence])
+; v0 : Ljava/lang/CharSequence; , v2 : Landroid/support/v4/app/BackStackRecord;
+  (goto l11d3c)
+)
+
+(method (attrs public ) getBreadCrumbShortTitleRes()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 304)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleRes int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getBreadCrumbTitle()[object java/lang/CharSequence]
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  (line 308)
+  (iget v0 v2 android/support/v4/app/BackStackRecord.mBreadCrumbTitleRes int)
+; v0 : single-length , v2 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v0 l11d8a)
+; v0 : single-length
+  (line 309)
+  (iget-object v0 v2 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v0 : Landroid/support/v4/app/FragmentManagerImpl; , v2 : Landroid/support/v4/app/BackStackRecord;
+  (iget-object v0 v0 android/support/v4/app/FragmentManagerImpl.mActivity [object android/support/v4/app/FragmentActivity])
+; v0 : Landroid/support/v4/app/FragmentActivity; , v0 : Landroid/support/v4/app/FragmentActivity;
+  (iget v1 v2 android/support/v4/app/BackStackRecord.mBreadCrumbTitleRes int)
+; v1 : single-length , v2 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v0 v1} android/support/v4/app/FragmentActivity/getText int )
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : single-length
+  (move-result-object v0)
+; v0 : Ljava/lang/CharSequence;
+  (label l11d88)
+  (line 311)
+  (return-object v0)
+; v0 : Ljava/lang/CharSequence;
+  (label l11d8a)
+  (iget-object v0 v2 android/support/v4/app/BackStackRecord.mBreadCrumbTitleText [object java/lang/CharSequence])
+; v0 : Ljava/lang/CharSequence; , v2 : Landroid/support/v4/app/BackStackRecord;
+  (goto l11d88)
+)
+
+(method (attrs public ) getBreadCrumbTitleRes()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 300)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mBreadCrumbTitleRes int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getId()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 296)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mIndex int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getName()[object java/lang/String]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 723)
+  (iget-object v0 v1 android/support/v4/app/BackStackRecord.mName [object java/lang/String])
+; v0 : Ljava/lang/String; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (return-object v0)
+; v0 : Ljava/lang/String;
+)
+
+(method (attrs public ) getTransition()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 727)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mTransition int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getTransitionStyle()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 731)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) hide([object android/support/v4/app/Fragment] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v3 ([object android/support/v4/app/Fragment])
+  (line 401)
+  (new-instance v0 android/support/v4/app/BackStackRecord$Op)
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-direct {v0} android/support/v4/app/BackStackRecord$Op/<init> )
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 402)
+  (const/4 v1 4)
+; v1 : single-length
+  (iput v1 v0 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v1 : single-length , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 403)
+  (iput-object v3 v0 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v3 : Landroid/support/v4/app/Fragment; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 404)
+  (invoke-virtual {v2 v0} android/support/v4/app/BackStackRecord/addOp [object android/support/v4/app/BackStackRecord$Op] )
+; v2 : Landroid/support/v4/app/BackStackRecord; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 406)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) isAddToBackStackAllowed()boolean
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 470)
+  (iget-boolean v0 v1 android/support/v4/app/BackStackRecord.mAllowAddToBackStack boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) isEmpty()boolean
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  (line 735)
+  (iget v0 v1 android/support/v4/app/BackStackRecord.mNumOp int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (if-nez v0 l11e68)
+; v0 : single-length
+  (const/4 v0 1)
+; v0 : single-length
+  (label l11e66)
+  (return v0)
+; v0 : single-length
+  (label l11e68)
+  (const/4 v0 0)
+; v0 : single-length
+  (goto l11e66)
+)
+
+(method (attrs public ) popFromBackStack(boolean )void
+  (limit registers 12)
+  ; this: v10 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v11 (boolean)
+.var 0 is f [object android/support/v4/app/Fragment] from l11f0a to l11f32
+.var 0 is f [object android/support/v4/app/Fragment] from l11f36 to l11f9e
+.var 1 is i int from l11f66 to l11f9e
+.var 2 is old [object android/support/v4/app/Fragment] from l11f86 to l11f9e
+.var 0 is f [object android/support/v4/app/Fragment] from l11fa2 to l11fb6
+.var 0 is f [object android/support/v4/app/Fragment] from l11fba to l11fde
+.var 0 is f [object android/support/v4/app/Fragment] from l11fe2 to l12006
+.var 0 is f [object android/support/v4/app/Fragment] from l1200a to l1202e
+.var 0 is f [object android/support/v4/app/Fragment] from l12032 to l12058
+  (const/4 v7 0)
+; v7 : single-length
+  (const/4 v9 15)
+; v9 : single-length
+  (line 644)
+  (sget-boolean v4 android/support/v4/app/FragmentManagerImpl.DEBUG boolean)
+; v4 : single-length
+  (if-eqz v4 l11eb8)
+; v4 : single-length
+  (const-string v4 "BackStackEntry")
+; v4 : Ljava/lang/String;
+  (new-instance v5 java/lang/StringBuilder)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-direct {v5} java/lang/StringBuilder/<init> )
+; v5 : Ljava/lang/StringBuilder;
+  (const-string v6 "popFromBackStack: ")
+; v6 : Ljava/lang/String;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append [object java/lang/String] )
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5 v10} java/lang/StringBuilder/append [object java/lang/Object] )
+; v5 : Ljava/lang/StringBuilder; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5} java/lang/StringBuilder/toString )
+; v5 : Ljava/lang/StringBuilder;
+  (move-result-object v5)
+; v5 : Ljava/lang/String;
+  (invoke-static {v4 v5} android/util/Log/v [object java/lang/String] [object java/lang/String] )
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+  (label l11eb8)
+  (line 646)
+  (invoke-virtual {v10 v9} android/support/v4/app/BackStackRecord/bumpBackStackNesting int )
+; v10 : Landroid/support/v4/app/BackStackRecord; , v9 : single-length
+  (line 648)
+  (iget-object v3 v10 android/support/v4/app/BackStackRecord.mTail [object android/support/v4/app/BackStackRecord$Op])
+; v3 : Landroid/support/v4/app/BackStackRecord$Op; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (label l11ec2)
+  (line 649)
+  (if-eqz v3 l12058)
+; v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 650)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (packed-switch v4 1
+    ps11eca_11f06 ; case 1
+    ps11eca_11f32 ; case 2
+    ps11eca_11f9e ; case 3
+    ps11eca_11fb6 ; case 4
+    ps11eca_11fde ; case 5
+    ps11eca_12006 ; case 6
+    ps11eca_1202e ; case 7
+    ps11eca_default) ; default
+; v4 : single-length
+  (label ps11eca_default)
+  (line 704)
+  (new-instance v4 java/lang/IllegalArgumentException)
+; v4 : Ljava/lang/IllegalArgumentException;
+  (new-instance v5 java/lang/StringBuilder)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-direct {v5} java/lang/StringBuilder/<init> )
+; v5 : Ljava/lang/StringBuilder;
+  (const-string v6 "Unknown cmd: ")
+; v6 : Ljava/lang/String;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append [object java/lang/String] )
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (iget v6 v3 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v6 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append int )
+; v5 : Ljava/lang/StringBuilder; , v6 : single-length
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5} java/lang/StringBuilder/toString )
+; v5 : Ljava/lang/StringBuilder;
+  (move-result-object v5)
+; v5 : Ljava/lang/String;
+  (invoke-direct {v4 v5} java/lang/IllegalArgumentException/<init> [object java/lang/String] )
+; v4 : Ljava/lang/IllegalArgumentException; , v5 : Ljava/lang/String;
+  (throw v4)
+; v4 : Ljava/lang/IllegalArgumentException;
+  (label ps11eca_11f06)
+  (line 652)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l11f0a)
+  (line 653)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popExitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 654)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v10 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v5} android/support/v4/app/FragmentManagerImpl/reverseTransit int )
+; v5 : single-length
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v10 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/removeFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (label l11f2c)
+  (line 708)
+  (iget-object v3 v3 android/support/v4/app/BackStackRecord$Op.prev [object android/support/v4/app/BackStackRecord$Op])
+; v3 : Landroid/support/v4/app/BackStackRecord$Op; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (goto l11ec2)
+  (label ps11eca_11f32)
+  (label l11f32)
+  (line 659)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l11f36)
+  (line 660)
+  (if-eqz v0 l11f5c)
+; v0 : Landroid/support/v4/app/Fragment;
+  (line 661)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popExitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 662)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v10 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v5} android/support/v4/app/FragmentManagerImpl/reverseTransit int )
+; v5 : single-length
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v10 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/removeFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (label l11f5c)
+  (line 666)
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (if-eqz v4 l11f2c)
+; v4 : Ljava/util/ArrayList;
+  (line 667)
+  (const/4 v1 0)
+; v1 : single-length
+  (label l11f66)
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v4} java/util/ArrayList/size )
+; v4 : Ljava/util/ArrayList;
+  (move-result v4)
+; v4 : single-length
+  (if-ge v1 v4 l11f2c)
+; v1 : single-length , v4 : single-length
+  (line 668)
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v4 v1} java/util/ArrayList/get int )
+; v4 : Ljava/util/ArrayList; , v1 : single-length
+  (move-result-object v2)
+; v2 : Ljava/lang/Object;
+  (check-cast v2 [object android/support/v4/app/Fragment])
+; v2 : Landroid/support/v4/app/Fragment;
+  (label l11f86)
+  (line 669)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popEnterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v2 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v2 : Landroid/support/v4/app/Fragment;
+  (line 670)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v2 v7} android/support/v4/app/FragmentManagerImpl/addFragment [object android/support/v4/app/Fragment] boolean )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v2 : Landroid/support/v4/app/Fragment; , v7 : single-length
+  (line 667)
+  (add-int/lit8 v1 v1 1)
+; v1 : single-length , v1 : single-length
+  (goto l11f66)
+  (label ps11eca_11f9e)
+  (label l11f9e)
+  (line 675)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l11fa2)
+  (line 676)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popEnterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 677)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v7} android/support/v4/app/FragmentManagerImpl/addFragment [object android/support/v4/app/Fragment] boolean )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v7 : single-length
+  (goto l11f2c)
+  (label ps11eca_11fb6)
+  (label l11fb6)
+  (line 680)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l11fba)
+  (line 681)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popEnterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 682)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v10 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v5} android/support/v4/app/FragmentManagerImpl/reverseTransit int )
+; v5 : single-length
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v10 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/showFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto l11f2c)
+  (label ps11eca_11fde)
+  (label l11fde)
+  (line 686)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l11fe2)
+  (line 687)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popExitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 688)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v10 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v5} android/support/v4/app/FragmentManagerImpl/reverseTransit int )
+; v5 : single-length
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v10 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/hideFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto l11f2c)
+  (label ps11eca_12006)
+  (label l12006)
+  (line 692)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l1200a)
+  (line 693)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popEnterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 694)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v10 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v5} android/support/v4/app/FragmentManagerImpl/reverseTransit int )
+; v5 : single-length
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v10 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/attachFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto l11f2c)
+  (label ps11eca_1202e)
+  (label l1202e)
+  (line 698)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l12032)
+  (line 699)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.popEnterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 700)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v10 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v5} android/support/v4/app/FragmentManagerImpl/reverseTransit int )
+; v5 : single-length
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v10 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/detachFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto/16 l11f2c)
+  (label l12058)
+  (line 711)
+  (if-eqz v11 l12080)
+; v11 : single-length
+  (line 712)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (iget-object v5 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v5 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v5 android/support/v4/app/FragmentManagerImpl.mCurState int)
+; v5 : single-length , v5 : single-length
+  (iget v6 v10 android/support/v4/app/BackStackRecord.mTransition int)
+; v6 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-static {v6} android/support/v4/app/FragmentManagerImpl/reverseTransit int )
+; v6 : single-length
+  (move-result v6)
+; v6 : single-length
+  (iget v7 v10 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v7 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (const/4 v8 1)
+; v8 : single-length
+  (invoke-virtual {v4 v5 v6 v7 v8} android/support/v4/app/FragmentManagerImpl/moveToState int int int boolean )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v5 : single-length , v6 : single-length , v7 : single-length , v8 : single-length
+  (label l12080)
+  (line 716)
+  (iget v4 v10 android/support/v4/app/BackStackRecord.mIndex int)
+; v4 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (if-ltz v4 l1209a)
+; v4 : single-length
+  (line 717)
+  (iget-object v4 v10 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v10 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v10 android/support/v4/app/BackStackRecord.mIndex int)
+; v5 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v5} android/support/v4/app/FragmentManagerImpl/freeBackStackIndex int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v5 : single-length
+  (line 718)
+  (iput v9 v10 android/support/v4/app/BackStackRecord.mIndex int)
+; v9 : single-length , v10 : Landroid/support/v4/app/BackStackRecord;
+  (label l1209a)
+  (line 720)
+  (return-void )
+  (line 650)
+)
+
+(method (attrs public ) remove([object android/support/v4/app/Fragment] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v3 ([object android/support/v4/app/Fragment])
+  (line 392)
+  (new-instance v0 android/support/v4/app/BackStackRecord$Op)
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-direct {v0} android/support/v4/app/BackStackRecord$Op/<init> )
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 393)
+  (const/4 v1 3)
+; v1 : single-length
+  (iput v1 v0 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v1 : single-length , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 394)
+  (iput-object v3 v0 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v3 : Landroid/support/v4/app/Fragment; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 395)
+  (invoke-virtual {v2 v0} android/support/v4/app/BackStackRecord/addOp [object android/support/v4/app/BackStackRecord$Op] )
+; v2 : Landroid/support/v4/app/BackStackRecord; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 397)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) replace(int [object android/support/v4/app/Fragment] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 ([object android/support/v4/app/Fragment])
+  (line 379)
+  (const/4 v0 0)
+; v0 : single-length
+  (invoke-virtual {v1 v2 v3 v0} android/support/v4/app/BackStackRecord/replace int [object android/support/v4/app/Fragment] [object java/lang/String] )
+; v1 : Landroid/support/v4/app/BackStackRecord; , v2 : single-length , v3 : Landroid/support/v4/app/Fragment; , v0 : single-length
+  (move-result-object v0)
+; v0 : Landroid/support/v4/app/FragmentTransaction;
+  (return-object v0)
+; v0 : Landroid/support/v4/app/FragmentTransaction;
+)
+
+(method (attrs public ) replace(int [object android/support/v4/app/Fragment] [object java/lang/String] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 6)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v3 (int)
+  ; parameter[1] : v4 ([object android/support/v4/app/Fragment])
+  ; parameter[2] : v5 ([object java/lang/String])
+  (line 383)
+  (if-nez v3 l1212c)
+; v3 : single-length
+  (line 384)
+  (new-instance v0 java/lang/IllegalArgumentException)
+; v0 : Ljava/lang/IllegalArgumentException;
+  (const-string v1 "Must use non-zero containerViewId")
+; v1 : Ljava/lang/String;
+  (invoke-direct {v0 v1} java/lang/IllegalArgumentException/<init> [object java/lang/String] )
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+  (throw v0)
+; v0 : Ljava/lang/IllegalArgumentException;
+  (label l1212c)
+  (line 387)
+  (const/4 v0 2)
+; v0 : single-length
+  (invoke-direct {v2 v3 v4 v5 v0} android/support/v4/app/BackStackRecord/doAddOp int [object android/support/v4/app/Fragment] [object java/lang/String] int )
+; v2 : Landroid/support/v4/app/BackStackRecord; , v3 : single-length , v4 : Landroid/support/v4/app/Fragment; , v5 : Ljava/lang/String; , v0 : single-length
+  (line 388)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) run()void
+  (limit registers 10)
+  ; this: v9 ([object android/support/v4/app/BackStackRecord])
+.var 0 is f [object android/support/v4/app/Fragment] from l121f6 to l1220e
+.var 1 is i int from l12220 to l12354
+.var 2 is old [object android/support/v4/app/Fragment] from l12248 to l12354
+.var 0 is f [object android/support/v4/app/Fragment] from l12212 to l1236e
+.var 0 is f [object android/support/v4/app/Fragment] from l12372 to l12390
+.var 0 is f [object android/support/v4/app/Fragment] from l12394 to l123b2
+.var 0 is f [object android/support/v4/app/Fragment] from l123b6 to l123d4
+.var 0 is f [object android/support/v4/app/Fragment] from l123d8 to l123f6
+.var 0 is f [object android/support/v4/app/Fragment] from l123fa to l12418
+  (const/4 v8 1)
+; v8 : single-length
+  (const/4 v7 0)
+; v7 : single-length
+  (line 553)
+  (sget-boolean v4 android/support/v4/app/FragmentManagerImpl.DEBUG boolean)
+; v4 : single-length
+  (if-eqz v4 l12184)
+; v4 : single-length
+  (const-string v4 "BackStackEntry")
+; v4 : Ljava/lang/String;
+  (new-instance v5 java/lang/StringBuilder)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-direct {v5} java/lang/StringBuilder/<init> )
+; v5 : Ljava/lang/StringBuilder;
+  (const-string v6 "Run: ")
+; v6 : Ljava/lang/String;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append [object java/lang/String] )
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5 v9} java/lang/StringBuilder/append [object java/lang/Object] )
+; v5 : Ljava/lang/StringBuilder; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5} java/lang/StringBuilder/toString )
+; v5 : Ljava/lang/StringBuilder;
+  (move-result-object v5)
+; v5 : Ljava/lang/String;
+  (invoke-static {v4 v5} android/util/Log/v [object java/lang/String] [object java/lang/String] )
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+  (label l12184)
+  (line 555)
+  (iget-boolean v4 v9 android/support/v4/app/BackStackRecord.mAddToBackStack boolean)
+; v4 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v4 l121a4)
+; v4 : single-length
+  (line 556)
+  (iget v4 v9 android/support/v4/app/BackStackRecord.mIndex int)
+; v4 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (if-gez v4 l121a4)
+; v4 : single-length
+  (line 557)
+  (new-instance v4 java/lang/IllegalStateException)
+; v4 : Ljava/lang/IllegalStateException;
+  (const-string v5 "addToBackStack() called after commit()")
+; v5 : Ljava/lang/String;
+  (invoke-direct {v4 v5} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v4 : Ljava/lang/IllegalStateException; , v5 : Ljava/lang/String;
+  (throw v4)
+; v4 : Ljava/lang/IllegalStateException;
+  (label l121a4)
+  (line 561)
+  (invoke-virtual {v9 v8} android/support/v4/app/BackStackRecord/bumpBackStackNesting int )
+; v9 : Landroid/support/v4/app/BackStackRecord; , v8 : single-length
+  (line 563)
+  (iget-object v3 v9 android/support/v4/app/BackStackRecord.mHead [object android/support/v4/app/BackStackRecord$Op])
+; v3 : Landroid/support/v4/app/BackStackRecord$Op; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (label l121ae)
+  (line 564)
+  (if-eqz v3 l12418)
+; v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 565)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (packed-switch v4 1
+    ps121b6_121f2 ; case 1
+    ps121b6_1220e ; case 2
+    ps121b6_1236e ; case 3
+    ps121b6_12390 ; case 4
+    ps121b6_123b2 ; case 5
+    ps121b6_123d4 ; case 6
+    ps121b6_123f6 ; case 7
+    ps121b6_default) ; default
+; v4 : single-length
+  (label ps121b6_default)
+  (line 628)
+  (new-instance v4 java/lang/IllegalArgumentException)
+; v4 : Ljava/lang/IllegalArgumentException;
+  (new-instance v5 java/lang/StringBuilder)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-direct {v5} java/lang/StringBuilder/<init> )
+; v5 : Ljava/lang/StringBuilder;
+  (const-string v6 "Unknown cmd: ")
+; v6 : Ljava/lang/String;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append [object java/lang/String] )
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (iget v6 v3 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v6 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append int )
+; v5 : Ljava/lang/StringBuilder; , v6 : single-length
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5} java/lang/StringBuilder/toString )
+; v5 : Ljava/lang/StringBuilder;
+  (move-result-object v5)
+; v5 : Ljava/lang/String;
+  (invoke-direct {v4 v5} java/lang/IllegalArgumentException/<init> [object java/lang/String] )
+; v4 : Ljava/lang/IllegalArgumentException; , v5 : Ljava/lang/String;
+  (throw v4)
+; v4 : Ljava/lang/IllegalArgumentException;
+  (label ps121b6_121f2)
+  (line 567)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l121f6)
+  (line 568)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.enterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 569)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v7} android/support/v4/app/FragmentManagerImpl/addFragment [object android/support/v4/app/Fragment] boolean )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v7 : single-length
+  (label l12208)
+  (line 632)
+  (iget-object v3 v3 android/support/v4/app/BackStackRecord$Op.next [object android/support/v4/app/BackStackRecord$Op])
+; v3 : Landroid/support/v4/app/BackStackRecord$Op; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (goto l121ae)
+  (label ps121b6_1220e)
+  (label l1220e)
+  (line 572)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l12212)
+  (line 573)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget-object v4 v4 android/support/v4/app/FragmentManagerImpl.mAdded [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v4 : Ljava/util/ArrayList;
+  (if-eqz v4 l12354)
+; v4 : Ljava/util/ArrayList;
+  (line 574)
+  (const/4 v1 0)
+; v1 : single-length
+  (label l12220)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget-object v4 v4 android/support/v4/app/FragmentManagerImpl.mAdded [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v4 : Ljava/util/ArrayList;
+  (invoke-virtual {v4} java/util/ArrayList/size )
+; v4 : Ljava/util/ArrayList;
+  (move-result v4)
+; v4 : single-length
+  (if-ge v1 v4 l12354)
+; v1 : single-length , v4 : single-length
+  (line 575)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget-object v4 v4 android/support/v4/app/FragmentManagerImpl.mAdded [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v4 : Ljava/util/ArrayList;
+  (invoke-virtual {v4 v1} java/util/ArrayList/get int )
+; v4 : Ljava/util/ArrayList; , v1 : single-length
+  (move-result-object v2)
+; v2 : Ljava/lang/Object;
+  (check-cast v2 [object android/support/v4/app/Fragment])
+; v2 : Landroid/support/v4/app/Fragment;
+  (label l12248)
+  (line 576)
+  (sget-boolean v4 android/support/v4/app/FragmentManagerImpl.DEBUG boolean)
+; v4 : single-length
+  (if-eqz v4 l12294)
+; v4 : single-length
+  (const-string v4 "BackStackEntry")
+; v4 : Ljava/lang/String;
+  (new-instance v5 java/lang/StringBuilder)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-direct {v5} java/lang/StringBuilder/<init> )
+; v5 : Ljava/lang/StringBuilder;
+  (const-string v6 "OP_REPLACE: adding=")
+; v6 : Ljava/lang/String;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append [object java/lang/String] )
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5 v0} java/lang/StringBuilder/append [object java/lang/Object] )
+; v5 : Ljava/lang/StringBuilder; , v0 : Landroid/support/v4/app/Fragment;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (const-string v6 " old=")
+; v6 : Ljava/lang/String;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append [object java/lang/String] )
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5 v2} java/lang/StringBuilder/append [object java/lang/Object] )
+; v5 : Ljava/lang/StringBuilder; , v2 : Landroid/support/v4/app/Fragment;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5} java/lang/StringBuilder/toString )
+; v5 : Ljava/lang/StringBuilder;
+  (move-result-object v5)
+; v5 : Ljava/lang/String;
+  (invoke-static {v4 v5} android/util/Log/v [object java/lang/String] [object java/lang/String] )
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+  (label l12294)
+  (line 578)
+  (if-eqz v0 l122a4)
+; v0 : Landroid/support/v4/app/Fragment;
+  (iget v4 v2 android/support/v4/app/Fragment.mContainerId int)
+; v4 : single-length , v2 : Landroid/support/v4/app/Fragment;
+  (iget v5 v0 android/support/v4/app/Fragment.mContainerId int)
+; v5 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (if-ne v4 v5 l122ae)
+; v4 : single-length , v5 : single-length
+  (label l122a4)
+  (line 579)
+  (if-ne v2 v0 l122b4)
+; v2 : Landroid/support/v4/app/Fragment; , v0 : Landroid/support/v4/app/Fragment;
+  (line 580)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l122ae)
+  (line 574)
+  (add-int/lit8 v1 v1 1)
+; v1 : single-length , v1 : single-length
+  (goto l12220)
+  (label l122b4)
+  (line 582)
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (if-nez v4 l122ca)
+; v4 : Ljava/util/ArrayList;
+  (line 583)
+  (new-instance v4 java/util/ArrayList)
+; v4 : Ljava/util/ArrayList;
+  (invoke-direct {v4} java/util/ArrayList/<init> )
+; v4 : Ljava/util/ArrayList;
+  (iput-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l122ca)
+  (line 585)
+  (iget-object v4 v3 android/support/v4/app/BackStackRecord$Op.removed [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-virtual {v4 v2} java/util/ArrayList/add [object java/lang/Object] )
+; v4 : Ljava/util/ArrayList; , v2 : Landroid/support/v4/app/Fragment;
+  (line 586)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.exitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v2 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v2 : Landroid/support/v4/app/Fragment;
+  (line 587)
+  (iget-boolean v4 v9 android/support/v4/app/BackStackRecord.mAddToBackStack boolean)
+; v4 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v4 l12340)
+; v4 : single-length
+  (line 588)
+  (iget v4 v2 android/support/v4/app/Fragment.mBackStackNesting int)
+; v4 : single-length , v2 : Landroid/support/v4/app/Fragment;
+  (add-int/lit8 v4 v4 1)
+; v4 : single-length , v4 : single-length
+  (iput v4 v2 android/support/v4/app/Fragment.mBackStackNesting int)
+; v4 : single-length , v2 : Landroid/support/v4/app/Fragment;
+  (line 589)
+  (sget-boolean v4 android/support/v4/app/FragmentManagerImpl.DEBUG boolean)
+; v4 : single-length
+  (if-eqz v4 l12340)
+; v4 : single-length
+  (const-string v4 "BackStackEntry")
+; v4 : Ljava/lang/String;
+  (new-instance v5 java/lang/StringBuilder)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-direct {v5} java/lang/StringBuilder/<init> )
+; v5 : Ljava/lang/StringBuilder;
+  (const-string v6 "Bump nesting of ")
+; v6 : Ljava/lang/String;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append [object java/lang/String] )
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5 v2} java/lang/StringBuilder/append [object java/lang/Object] )
+; v5 : Ljava/lang/StringBuilder; , v2 : Landroid/support/v4/app/Fragment;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (const-string v6 " to ")
+; v6 : Ljava/lang/String;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append [object java/lang/String] )
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (iget v6 v2 android/support/v4/app/Fragment.mBackStackNesting int)
+; v6 : single-length , v2 : Landroid/support/v4/app/Fragment;
+  (invoke-virtual {v5 v6} java/lang/StringBuilder/append int )
+; v5 : Ljava/lang/StringBuilder; , v6 : single-length
+  (move-result-object v5)
+; v5 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5} java/lang/StringBuilder/toString )
+; v5 : Ljava/lang/StringBuilder;
+  (move-result-object v5)
+; v5 : Ljava/lang/String;
+  (invoke-static {v4 v5} android/util/Log/v [object java/lang/String] [object java/lang/String] )
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+  (label l12340)
+  (line 592)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v9 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v6 v9 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v2 v5 v6} android/support/v4/app/FragmentManagerImpl/removeFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v2 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto l122ae)
+  (label l12354)
+  (line 597)
+  (if-eqz v0 l12208)
+; v0 : Landroid/support/v4/app/Fragment;
+  (line 598)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.enterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 599)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v7} android/support/v4/app/FragmentManagerImpl/addFragment [object android/support/v4/app/Fragment] boolean )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v7 : single-length
+  (goto/16 l12208)
+  (label ps121b6_1236e)
+  (label l1236e)
+  (line 603)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l12372)
+  (line 604)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.exitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 605)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v9 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v6 v9 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/removeFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto/16 l12208)
+  (label ps121b6_12390)
+  (label l12390)
+  (line 608)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l12394)
+  (line 609)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.exitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 610)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v9 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v6 v9 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/hideFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto/16 l12208)
+  (label ps121b6_123b2)
+  (label l123b2)
+  (line 613)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l123b6)
+  (line 614)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.enterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 615)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v9 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v6 v9 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/showFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto/16 l12208)
+  (label ps121b6_123d4)
+  (label l123d4)
+  (line 618)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l123d8)
+  (line 619)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.exitAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 620)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v9 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v6 v9 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/detachFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto/16 l12208)
+  (label ps121b6_123f6)
+  (label l123f6)
+  (line 623)
+  (iget-object v0 v3 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v0 : Landroid/support/v4/app/Fragment; , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (label l123fa)
+  (line 624)
+  (iget v4 v3 android/support/v4/app/BackStackRecord$Op.enterAnim int)
+; v4 : single-length , v3 : Landroid/support/v4/app/BackStackRecord$Op;
+  (iput v4 v0 android/support/v4/app/Fragment.mNextAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/Fragment;
+  (line 625)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v9 android/support/v4/app/BackStackRecord.mTransition int)
+; v5 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v6 v9 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v6 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v0 v5 v6} android/support/v4/app/FragmentManagerImpl/attachFragment [object android/support/v4/app/Fragment] int int )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/Fragment; , v5 : single-length , v6 : single-length
+  (goto/16 l12208)
+  (label l12418)
+  (line 635)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget-object v5 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v5 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v5 v5 android/support/v4/app/FragmentManagerImpl.mCurState int)
+; v5 : single-length , v5 : single-length
+  (iget v6 v9 android/support/v4/app/BackStackRecord.mTransition int)
+; v6 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (iget v7 v9 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v7 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v5 v6 v7 v8} android/support/v4/app/FragmentManagerImpl/moveToState int int int boolean )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v5 : single-length , v6 : single-length , v7 : single-length , v8 : single-length
+  (line 638)
+  (iget-boolean v4 v9 android/support/v4/app/BackStackRecord.mAddToBackStack boolean)
+; v4 : single-length , v9 : Landroid/support/v4/app/BackStackRecord;
+  (if-eqz v4 l12444)
+; v4 : single-length
+  (line 639)
+  (iget-object v4 v9 android/support/v4/app/BackStackRecord.mManager [object android/support/v4/app/FragmentManagerImpl])
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (invoke-virtual {v4 v9} android/support/v4/app/FragmentManagerImpl/addBackStackState [object android/support/v4/app/BackStackRecord] )
+; v4 : Landroid/support/v4/app/FragmentManagerImpl; , v9 : Landroid/support/v4/app/BackStackRecord;
+  (label l12444)
+  (line 641)
+  (return-void )
+  (line 565)
+  (label l12446)
+  (data-array
+    0x00 0x00
+  )
+)
+
+(method (attrs public ) setBreadCrumbShortTitle(int )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v2 (int)
+  (line 495)
+  (iput v2 v1 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleRes int)
+; v2 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 496)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-object v0 v1 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleText [object java/lang/CharSequence])
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 497)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) setBreadCrumbShortTitle([object java/lang/CharSequence] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v2 ([object java/lang/CharSequence])
+  (line 501)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput v0 v1 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleRes int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 502)
+  (iput-object v2 v1 android/support/v4/app/BackStackRecord.mBreadCrumbShortTitleText [object java/lang/CharSequence])
+; v2 : Ljava/lang/CharSequence; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 503)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) setBreadCrumbTitle(int )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v2 (int)
+  (line 483)
+  (iput v2 v1 android/support/v4/app/BackStackRecord.mBreadCrumbTitleRes int)
+; v2 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 484)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-object v0 v1 android/support/v4/app/BackStackRecord.mBreadCrumbTitleText [object java/lang/CharSequence])
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 485)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) setBreadCrumbTitle([object java/lang/CharSequence] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v2 ([object java/lang/CharSequence])
+  (line 489)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput v0 v1 android/support/v4/app/BackStackRecord.mBreadCrumbTitleRes int)
+; v0 : single-length , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 490)
+  (iput-object v2 v1 android/support/v4/app/BackStackRecord.mBreadCrumbTitleText [object java/lang/CharSequence])
+; v2 : Ljava/lang/CharSequence; , v1 : Landroid/support/v4/app/BackStackRecord;
+  (line 491)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) setCustomAnimations(int int )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 (int)
+  (const/4 v0 0)
+; v0 : single-length
+  (line 437)
+  (invoke-virtual {v1 v2 v3 v0 v0} android/support/v4/app/BackStackRecord/setCustomAnimations int int int int )
+; v1 : Landroid/support/v4/app/BackStackRecord; , v2 : single-length , v3 : single-length , v0 : single-length , v0 : single-length
+  (move-result-object v0)
+; v0 : Landroid/support/v4/app/FragmentTransaction;
+  (return-object v0)
+; v0 : Landroid/support/v4/app/FragmentTransaction;
+)
+
+(method (attrs public ) setCustomAnimations(int int int int )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 5)
+  ; this: v0 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v1 (int)
+  ; parameter[1] : v2 (int)
+  ; parameter[2] : v3 (int)
+  ; parameter[3] : v4 (int)
+  (line 442)
+  (iput v1 v0 android/support/v4/app/BackStackRecord.mEnterAnim int)
+; v1 : single-length , v0 : Landroid/support/v4/app/BackStackRecord;
+  (line 443)
+  (iput v2 v0 android/support/v4/app/BackStackRecord.mExitAnim int)
+; v2 : single-length , v0 : Landroid/support/v4/app/BackStackRecord;
+  (line 444)
+  (iput v3 v0 android/support/v4/app/BackStackRecord.mPopEnterAnim int)
+; v3 : single-length , v0 : Landroid/support/v4/app/BackStackRecord;
+  (line 445)
+  (iput v4 v0 android/support/v4/app/BackStackRecord.mPopExitAnim int)
+; v4 : single-length , v0 : Landroid/support/v4/app/BackStackRecord;
+  (line 446)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) setTransition(int )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v1 (int)
+  (line 450)
+  (iput v1 v0 android/support/v4/app/BackStackRecord.mTransition int)
+; v1 : single-length , v0 : Landroid/support/v4/app/BackStackRecord;
+  (line 451)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) setTransitionStyle(int )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v1 (int)
+  (line 455)
+  (iput v1 v0 android/support/v4/app/BackStackRecord.mTransitionStyle int)
+; v1 : single-length , v0 : Landroid/support/v4/app/BackStackRecord;
+  (line 456)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/BackStackRecord;
+)
+
+(method (attrs public ) show([object android/support/v4/app/Fragment] )[object android/support/v4/app/FragmentTransaction]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/BackStackRecord])
+  ; parameter[0] : v3 ([object android/support/v4/app/Fragment])
+  (line 410)
+  (new-instance v0 android/support/v4/app/BackStackRecord$Op)
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (invoke-direct {v0} android/support/v4/app/BackStackRecord$Op/<init> )
+; v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 411)
+  (const/4 v1 5)
+; v1 : single-length
+  (iput v1 v0 android/support/v4/app/BackStackRecord$Op.cmd int)
+; v1 : single-length , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 412)
+  (iput-object v3 v0 android/support/v4/app/BackStackRecord$Op.fragment [object android/support/v4/app/Fragment])
+; v3 : Landroid/support/v4/app/Fragment; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 413)
+  (invoke-virtual {v2 v0} android/support/v4/app/BackStackRecord/addOp [object android/support/v4/app/BackStackRecord$Op] )
+; v2 : Landroid/support/v4/app/BackStackRecord; , v0 : Landroid/support/v4/app/BackStackRecord$Op;
+  (line 415)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/BackStackRecord;
+)
+
+)

@@ -1,0 +1,942 @@
+(class (attrs public ) android/support/v4/util/LruCache
+ (super java/lang/Object)
+ (source "LruCache.java")
+
+ (field (attrs private ) createCount int )
+ (field (attrs private ) evictionCount int )
+ (field (attrs private ) hitCount int )
+ (field (attrs private final ) map [object java/util/LinkedHashMap] )
+ (field (attrs private ) maxSize int )
+ (field (attrs private ) missCount int )
+ (field (attrs private ) putCount int )
+ (field (attrs private ) size int )
+
+(method (attrs public ) <init>(int )void
+  (limit registers 6)
+  ; this: v4 ([object android/support/v4/util/LruCache])
+  ; parameter[0] : v5 (int)
+  (line 47)
+  (invoke-direct {v4} java/lang/Object/<init> )
+; v4 : Landroid/support/v4/util/LruCache;
+  (line 48)
+  (if-gtz v5 l2088a)
+; v5 : single-length
+  (line 49)
+  (new-instance v0 java/lang/IllegalArgumentException)
+; v0 : Ljava/lang/IllegalArgumentException;
+  (const-string v1 "maxSize <= 0")
+; v1 : Ljava/lang/String;
+  (invoke-direct {v0 v1} java/lang/IllegalArgumentException/<init> [object java/lang/String] )
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+  (throw v0)
+; v0 : Ljava/lang/IllegalArgumentException;
+  (label l2088a)
+  (line 51)
+  (iput v5 v4 android/support/v4/util/LruCache.maxSize int)
+; v5 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (line 52)
+  (new-instance v0 java/util/LinkedHashMap)
+; v0 : Ljava/util/LinkedHashMap;
+  (const/4 v1 0)
+; v1 : single-length
+  (const/high16 v2 16192)
+; v2 : single-length
+  (const/4 v3 1)
+; v3 : single-length
+  (invoke-direct {v0 v1 v2 v3} java/util/LinkedHashMap/<init> int float boolean )
+; v0 : Ljava/util/LinkedHashMap; , v1 : single-length , v2 : single-length , v3 : single-length
+  (iput-object v0 v4 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v0 : Ljava/util/LinkedHashMap; , v4 : Landroid/support/v4/util/LruCache;
+  (line 53)
+  (return-void )
+ )
+
+(method (attrs private ) safeSizeOf([object java/lang/Object] [object java/lang/Object] )int
+  (limit registers 7)
+  ; this: v4 ([object android/support/v4/util/LruCache])
+  ; parameter[0] : v5 ([object java/lang/Object])
+  ; parameter[1] : v6 ([object java/lang/Object])
+  (line 230)
+  (invoke-virtual {v4 v5 v6} android/support/v4/util/LruCache/sizeOf [object java/lang/Object] [object java/lang/Object] )
+; v4 : Landroid/support/v4/util/LruCache; , v5 : Ljava/lang/Object; , v6 : Ljava/lang/Object;
+  (move-result v0)
+; v0 : single-length
+  (line 231)
+  (if-gez v0 l2090a)
+; v0 : single-length
+  (line 232)
+  (new-instance v1 java/lang/IllegalStateException)
+; v1 : Ljava/lang/IllegalStateException;
+  (new-instance v2 java/lang/StringBuilder)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-direct {v2} java/lang/StringBuilder/<init> )
+; v2 : Ljava/lang/StringBuilder;
+  (const-string v3 "Negative size: ")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v2 v5} java/lang/StringBuilder/append [object java/lang/Object] )
+; v2 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/Object;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (const-string v3 "=")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} java/lang/StringBuilder/append [object java/lang/String] )
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v2 v6} java/lang/StringBuilder/append [object java/lang/Object] )
+; v2 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/Object;
+  (move-result-object v2)
+; v2 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v2} java/lang/StringBuilder/toString )
+; v2 : Ljava/lang/StringBuilder;
+  (move-result-object v2)
+; v2 : Ljava/lang/String;
+  (invoke-direct {v1 v2} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v1 : Ljava/lang/IllegalStateException; , v2 : Ljava/lang/String;
+  (throw v1)
+; v1 : Ljava/lang/IllegalStateException;
+  (label l2090a)
+  (line 234)
+  (return v0)
+; v0 : single-length
+ )
+
+(method (attrs private ) trimToSize(int )void
+  (limit registers 8)
+  ; this: v6 ([object android/support/v4/util/LruCache])
+  ; parameter[0] : v7 (int)
+  (catch java/lang/Exception from l20986 to l209fc using l20980)
+  (catch java/lang/Exception from l2091e to l20984 using l20980)
+  (label l2091c)
+  (line 146)
+  (monitor-enter v6)
+; v6 : Landroid/support/v4/util/LruCache;
+  (label l2091e)
+  (line 147)
+  (iget v3 v6 android/support/v4/util/LruCache.size int)
+; v3 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (if-ltz v3 l2093e)
+; v3 : single-length
+  (iget-object v3 v6 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v3 : Ljava/util/LinkedHashMap; , v6 : Landroid/support/v4/util/LruCache;
+  (invoke-virtual {v3} java/util/LinkedHashMap/isEmpty )
+; v3 : Ljava/util/LinkedHashMap;
+  (move-result v3)
+; v3 : single-length
+  (if-eqz v3 l20986)
+; v3 : single-length
+  (iget v3 v6 android/support/v4/util/LruCache.size int)
+; v3 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (if-eqz v3 l20986)
+; v3 : single-length
+  (label l2093e)
+  (line 148)
+  (new-instance v3 java/lang/IllegalStateException)
+; v3 : Ljava/lang/IllegalStateException;
+  (new-instance v4 java/lang/StringBuilder)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-direct {v4} java/lang/StringBuilder/<init> )
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v6} java/lang/Object/getClass )
+; v6 : Landroid/support/v4/util/LruCache;
+  (move-result-object v5)
+; v5 : Ljava/lang/Class;
+  (invoke-virtual {v5} java/lang/Class/getName )
+; v5 : Ljava/lang/Class;
+  (move-result-object v5)
+; v5 : Ljava/lang/String;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (const-string v5 ".sizeOf() is reporting inconsistent results!")
+; v5 : Ljava/lang/String;
+  (invoke-virtual {v4 v5} java/lang/StringBuilder/append [object java/lang/String] )
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+  (move-result-object v4)
+; v4 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v4} java/lang/StringBuilder/toString )
+; v4 : Ljava/lang/StringBuilder;
+  (move-result-object v4)
+; v4 : Ljava/lang/String;
+  (invoke-direct {v3 v4} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v3 : Ljava/lang/IllegalStateException; , v4 : Ljava/lang/String;
+  (throw v3)
+; v3 : Ljava/lang/IllegalStateException;
+  (label l20980)
+  (line 162)
+  (move-exception v3)
+; v3 : java/lang/Exception
+  (monitor-exit v6)
+; v6 : Landroid/support/v4/util/LruCache;
+  (label l20984)
+  (throw v3)
+; v3 : java/lang/Exception
+  (label l20986)
+  (line 152)
+  (iget v3 v6 android/support/v4/util/LruCache.size int)
+; v3 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (if-le v3 v7 l2099e)
+; v3 : single-length , v7 : single-length
+  (iget-object v3 v6 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v3 : Ljava/util/LinkedHashMap; , v6 : Landroid/support/v4/util/LruCache;
+  (invoke-virtual {v3} java/util/LinkedHashMap/isEmpty )
+; v3 : Ljava/util/LinkedHashMap;
+  (move-result v3)
+; v3 : single-length
+  (if-eqz v3 l209a2)
+; v3 : single-length
+  (label l2099e)
+  (line 153)
+  (monitor-exit v6)
+; v6 : Landroid/support/v4/util/LruCache;
+  (line 166)
+  (return-void )
+  (label l209a2)
+  (line 156)
+  (iget-object v3 v6 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v3 : Ljava/util/LinkedHashMap; , v6 : Landroid/support/v4/util/LruCache;
+  (invoke-virtual {v3} java/util/LinkedHashMap/entrySet )
+; v3 : Ljava/util/LinkedHashMap;
+  (move-result-object v3)
+; v3 : Ljava/util/Set;
+  (invoke-interface {v3} java/util/Set/iterator )
+; v3 : Ljava/util/Set;
+  (move-result-object v3)
+; v3 : Ljava/util/Iterator;
+  (invoke-interface {v3} java/util/Iterator/next )
+; v3 : Ljava/util/Iterator;
+  (move-result-object v1)
+; v1 : Ljava/lang/Object;
+  (check-cast v1 [object java/util/Map$Entry])
+; v1 : Ljava/util/Map$Entry;
+  (line 157)
+  (invoke-interface {v1} java/util/Map$Entry/getKey )
+; v1 : Ljava/util/Map$Entry;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (line 158)
+  (invoke-interface {v1} java/util/Map$Entry/getValue )
+; v1 : Ljava/util/Map$Entry;
+  (move-result-object v2)
+; v2 : Ljava/lang/Object;
+  (line 159)
+  (iget-object v3 v6 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v3 : Ljava/util/LinkedHashMap; , v6 : Landroid/support/v4/util/LruCache;
+  (invoke-virtual {v3 v0} java/util/LinkedHashMap/remove [object java/lang/Object] )
+; v3 : Ljava/util/LinkedHashMap; , v0 : Ljava/lang/Object;
+  (line 160)
+  (iget v3 v6 android/support/v4/util/LruCache.size int)
+; v3 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (invoke-direct {v6 v0 v2} android/support/v4/util/LruCache/safeSizeOf [object java/lang/Object] [object java/lang/Object] )
+; v6 : Landroid/support/v4/util/LruCache; , v0 : Ljava/lang/Object; , v2 : Ljava/lang/Object;
+  (move-result v4)
+; v4 : single-length
+  (sub-int/2addr v3 v4)
+; v3 : single-length , v4 : single-length
+  (iput v3 v6 android/support/v4/util/LruCache.size int)
+; v3 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (line 161)
+  (iget v3 v6 android/support/v4/util/LruCache.evictionCount int)
+; v3 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (add-int/lit8 v3 v3 1)
+; v3 : single-length , v3 : single-length
+  (iput v3 v6 android/support/v4/util/LruCache.evictionCount int)
+; v3 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (line 162)
+  (monitor-exit v6)
+; v6 : Landroid/support/v4/util/LruCache;
+  (label l209fc)
+  (line 164)
+  (const/4 v3 1)
+; v3 : single-length
+  (const/4 v4 0)
+; v4 : single-length
+  (invoke-virtual {v6 v3 v0 v2 v4} android/support/v4/util/LruCache/entryRemoved boolean [object java/lang/Object] [object java/lang/Object] [object java/lang/Object] )
+; v6 : Landroid/support/v4/util/LruCache; , v3 : single-length , v0 : Ljava/lang/Object; , v2 : Ljava/lang/Object; , v4 : single-length
+  (goto l2091c)
+ )
+
+(method (attrs protected ) create([object java/lang/Object] )[object java/lang/Object]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  ; parameter[0] : v2 ([object java/lang/Object])
+  (line 226)
+  (const/4 v0 0)
+; v0 : single-length
+  (return-object v0)
+; v0 : single-length
+)
+
+(method (attrs public final synchronized ) createCount()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  (catch java/lang/Exception from l20a42 to l20a46 using l20a4a)
+  (line 292)
+  (monitor-enter v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (label l20a42)
+  (iget v0 v1 android/support/v4/util/LruCache.createCount int)
+; v0 : single-length , v1 : Landroid/support/v4/util/LruCache;
+  (label l20a46)
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (return v0)
+; v0 : single-length
+  (label l20a4a)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs protected ) entryRemoved(boolean [object java/lang/Object] [object java/lang/Object] [object java/lang/Object] )void
+  (limit registers 5)
+  ; this: v0 ([object android/support/v4/util/LruCache])
+  ; parameter[0] : v1 (boolean)
+  ; parameter[1] : v2 ([object java/lang/Object])
+  ; parameter[2] : v3 ([object java/lang/Object])
+  ; parameter[3] : v4 ([object java/lang/Object])
+  (line 208)
+  (return-void )
+)
+
+(method (attrs public final ) evictAll()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  (line 252)
+  (const/4 v0 15)
+; v0 : single-length
+  (invoke-direct {v1 v0} android/support/v4/util/LruCache/trimToSize int )
+; v1 : Landroid/support/v4/util/LruCache; , v0 : single-length
+  (line 253)
+  (return-void )
+)
+
+(method (attrs public final synchronized ) evictionCount()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  (catch java/lang/Exception from l20a9e to l20aa2 using l20aa6)
+  (line 306)
+  (monitor-enter v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (label l20a9e)
+  (iget v0 v1 android/support/v4/util/LruCache.evictionCount int)
+; v0 : single-length , v1 : Landroid/support/v4/util/LruCache;
+  (label l20aa2)
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (return v0)
+; v0 : single-length
+  (label l20aa6)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs public final ) get([object java/lang/Object] )[object java/lang/Object]
+  (limit registers 6)
+  ; this: v4 ([object android/support/v4/util/LruCache])
+  ; parameter[0] : v5 ([object java/lang/Object])
+  (catch java/lang/Exception from l20b5e to l20b76 using l20b72)
+  (catch java/lang/Exception from l20b26 to l20b4e using l20b72)
+  (catch java/lang/Exception from l20b20 to l20b22 using l20b1e)
+  (catch java/lang/Exception from l20ade to l20b0e using l20b1e)
+.var 0 is createdValue [object java/lang/Object] from l20b16 to l20b1e
+.var 1 is mapValue [object java/lang/Object] from l20aea to l20b1e
+  (line 62)
+  (if-nez v5 l20adc)
+; v5 : Ljava/lang/Object;
+  (line 63)
+  (new-instance v2 java/lang/NullPointerException)
+; v2 : Ljava/lang/NullPointerException;
+  (const-string v3 "key == null")
+; v3 : Ljava/lang/String;
+  (invoke-direct {v2 v3} java/lang/NullPointerException/<init> [object java/lang/String] )
+; v2 : Ljava/lang/NullPointerException; , v3 : Ljava/lang/String;
+  (throw v2)
+; v2 : Ljava/lang/NullPointerException;
+  (label l20adc)
+  (line 67)
+  (monitor-enter v4)
+; v4 : Landroid/support/v4/util/LruCache;
+  (label l20ade)
+  (line 68)
+  (iget-object v2 v4 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v2 : Ljava/util/LinkedHashMap; , v4 : Landroid/support/v4/util/LruCache;
+  (invoke-virtual {v2 v5} java/util/LinkedHashMap/get [object java/lang/Object] )
+; v2 : Ljava/util/LinkedHashMap; , v5 : Ljava/lang/Object;
+  (move-result-object v1)
+; v1 : Ljava/lang/Object;
+  (label l20aea)
+  (line 69)
+  (if-eqz v1 l20b00)
+; v1 : Ljava/lang/Object;
+  (line 70)
+  (iget v2 v4 android/support/v4/util/LruCache.hitCount int)
+; v2 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (add-int/lit8 v2 v2 1)
+; v2 : single-length , v2 : single-length
+  (iput v2 v4 android/support/v4/util/LruCache.hitCount int)
+; v2 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (line 71)
+  (monitor-exit v4)
+; v4 : Landroid/support/v4/util/LruCache;
+  (move-object v0 v1)
+; v0 : Ljava/lang/Object; , v1 : Ljava/lang/Object;
+  (label l20afe)
+  (line 105)
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+  (label l20b00)
+  (line 73)
+  (iget v2 v4 android/support/v4/util/LruCache.missCount int)
+; v2 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (add-int/lit8 v2 v2 1)
+; v2 : single-length , v2 : single-length
+  (iput v2 v4 android/support/v4/util/LruCache.missCount int)
+; v2 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (line 74)
+  (monitor-exit v4)
+; v4 : Landroid/support/v4/util/LruCache;
+  (label l20b0e)
+  (line 83)
+  (invoke-virtual {v4 v5} android/support/v4/util/LruCache/create [object java/lang/Object] )
+; v4 : Landroid/support/v4/util/LruCache; , v5 : Ljava/lang/Object;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (label l20b16)
+  (line 84)
+  (if-nez v0 l20b24)
+; v0 : Ljava/lang/Object;
+  (line 85)
+  (const/4 v0 0)
+; v0 : single-length
+  (goto l20afe)
+  (label l20b1e)
+  (line 74)
+  (move-exception v2)
+; v2 : java/lang/Exception
+  (label l20b20)
+  (monitor-exit v4)
+; v4 : Landroid/support/v4/util/LruCache;
+  (label l20b22)
+  (throw v2)
+; v2 : java/lang/Exception
+  (label l20b24)
+  (line 88)
+  (monitor-enter v4)
+; v4 : Landroid/support/v4/util/LruCache;
+  (label l20b26)
+  (line 89)
+  (iget v2 v4 android/support/v4/util/LruCache.createCount int)
+; v2 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (add-int/lit8 v2 v2 1)
+; v2 : single-length , v2 : single-length
+  (iput v2 v4 android/support/v4/util/LruCache.createCount int)
+; v2 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (line 90)
+  (iget-object v2 v4 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v2 : Ljava/util/LinkedHashMap; , v4 : Landroid/support/v4/util/LruCache;
+  (invoke-virtual {v2 v5 v0} java/util/LinkedHashMap/put [object java/lang/Object] [object java/lang/Object] )
+; v2 : Ljava/util/LinkedHashMap; , v5 : Ljava/lang/Object; , v0 : Ljava/lang/Object;
+  (move-result-object v1)
+; v1 : Ljava/lang/Object;
+  (line 92)
+  (if-eqz v1 l20b5e)
+; v1 : Ljava/lang/Object;
+  (line 94)
+  (iget-object v2 v4 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v2 : Ljava/util/LinkedHashMap; , v4 : Landroid/support/v4/util/LruCache;
+  (invoke-virtual {v2 v5 v1} java/util/LinkedHashMap/put [object java/lang/Object] [object java/lang/Object] )
+; v2 : Ljava/util/LinkedHashMap; , v5 : Ljava/lang/Object; , v1 : Ljava/lang/Object;
+  (label l20b4c)
+  (line 98)
+  (monitor-exit v4)
+; v4 : Landroid/support/v4/util/LruCache;
+  (label l20b4e)
+  (line 100)
+  (if-eqz v1 l20b78)
+; v1 : Ljava/lang/Object;
+  (line 101)
+  (const/4 v2 0)
+; v2 : single-length
+  (invoke-virtual {v4 v2 v5 v0 v1} android/support/v4/util/LruCache/entryRemoved boolean [object java/lang/Object] [object java/lang/Object] [object java/lang/Object] )
+; v4 : Landroid/support/v4/util/LruCache; , v2 : single-length , v5 : Ljava/lang/Object; , v0 : Ljava/lang/Object; , v1 : Ljava/lang/Object;
+  (move-object v0 v1)
+; v0 : Ljava/lang/Object; , v1 : Ljava/lang/Object;
+  (line 102)
+  (goto l20afe)
+  (label l20b5e)
+  (line 96)
+  (iget v2 v4 android/support/v4/util/LruCache.size int)
+; v2 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (invoke-direct {v4 v5 v0} android/support/v4/util/LruCache/safeSizeOf [object java/lang/Object] [object java/lang/Object] )
+; v4 : Landroid/support/v4/util/LruCache; , v5 : Ljava/lang/Object; , v0 : Ljava/lang/Object;
+  (move-result v3)
+; v3 : single-length
+  (add-int/2addr v2 v3)
+; v2 : single-length , v3 : single-length
+  (iput v2 v4 android/support/v4/util/LruCache.size int)
+; v2 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (goto l20b4c)
+  (label l20b72)
+  (line 98)
+  (move-exception v2)
+; v2 : java/lang/Exception
+  (monitor-exit v4)
+; v4 : Landroid/support/v4/util/LruCache;
+  (label l20b76)
+  (throw v2)
+; v2 : java/lang/Exception
+  (label l20b78)
+  (line 104)
+  (iget v2 v4 android/support/v4/util/LruCache.maxSize int)
+; v2 : single-length , v4 : Landroid/support/v4/util/LruCache;
+  (invoke-direct {v4 v2} android/support/v4/util/LruCache/trimToSize int )
+; v4 : Landroid/support/v4/util/LruCache; , v2 : single-length
+  (goto l20afe)
+)
+
+(method (attrs public final synchronized ) hitCount()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  (catch java/lang/Exception from l20bbe to l20bc2 using l20bc6)
+  (line 277)
+  (monitor-enter v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (label l20bbe)
+  (iget v0 v1 android/support/v4/util/LruCache.hitCount int)
+; v0 : single-length , v1 : Landroid/support/v4/util/LruCache;
+  (label l20bc2)
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (return v0)
+; v0 : single-length
+  (label l20bc6)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs public final synchronized ) maxSize()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  (catch java/lang/Exception from l20bea to l20bee using l20bf2)
+  (line 270)
+  (monitor-enter v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (label l20bea)
+  (iget v0 v1 android/support/v4/util/LruCache.maxSize int)
+; v0 : single-length , v1 : Landroid/support/v4/util/LruCache;
+  (label l20bee)
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (return v0)
+; v0 : single-length
+  (label l20bf2)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs public final synchronized ) missCount()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  (catch java/lang/Exception from l20c16 to l20c1a using l20c1e)
+  (line 285)
+  (monitor-enter v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (label l20c16)
+  (iget v0 v1 android/support/v4/util/LruCache.missCount int)
+; v0 : single-length , v1 : Landroid/support/v4/util/LruCache;
+  (label l20c1a)
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (return v0)
+; v0 : single-length
+  (label l20c1e)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs public final ) put([object java/lang/Object] [object java/lang/Object] )[object java/lang/Object]
+  (limit registers 6)
+  ; this: v3 ([object android/support/v4/util/LruCache])
+  ; parameter[0] : v4 ([object java/lang/Object])
+  ; parameter[1] : v5 ([object java/lang/Object])
+  (catch java/lang/Exception from l20cb6 to l20cb8 using l20cb4)
+  (catch java/lang/Exception from l20c5a to l20c9c using l20cb4)
+.var 0 is previous [object java/lang/Object] from l20c84 to l20cb4
+  (line 116)
+  (if-eqz v4 l20c48)
+; v4 : Ljava/lang/Object;
+  (if-nez v5 l20c58)
+; v5 : Ljava/lang/Object;
+  (label l20c48)
+  (line 117)
+  (new-instance v1 java/lang/NullPointerException)
+; v1 : Ljava/lang/NullPointerException;
+  (const-string v2 "key == null || value == null")
+; v2 : Ljava/lang/String;
+  (invoke-direct {v1 v2} java/lang/NullPointerException/<init> [object java/lang/String] )
+; v1 : Ljava/lang/NullPointerException; , v2 : Ljava/lang/String;
+  (throw v1)
+; v1 : Ljava/lang/NullPointerException;
+  (label l20c58)
+  (line 121)
+  (monitor-enter v3)
+; v3 : Landroid/support/v4/util/LruCache;
+  (label l20c5a)
+  (line 122)
+  (iget v1 v3 android/support/v4/util/LruCache.putCount int)
+; v1 : single-length , v3 : Landroid/support/v4/util/LruCache;
+  (add-int/lit8 v1 v1 1)
+; v1 : single-length , v1 : single-length
+  (iput v1 v3 android/support/v4/util/LruCache.putCount int)
+; v1 : single-length , v3 : Landroid/support/v4/util/LruCache;
+  (line 123)
+  (iget v1 v3 android/support/v4/util/LruCache.size int)
+; v1 : single-length , v3 : Landroid/support/v4/util/LruCache;
+  (invoke-direct {v3 v4 v5} android/support/v4/util/LruCache/safeSizeOf [object java/lang/Object] [object java/lang/Object] )
+; v3 : Landroid/support/v4/util/LruCache; , v4 : Ljava/lang/Object; , v5 : Ljava/lang/Object;
+  (move-result v2)
+; v2 : single-length
+  (add-int/2addr v1 v2)
+; v1 : single-length , v2 : single-length
+  (iput v1 v3 android/support/v4/util/LruCache.size int)
+; v1 : single-length , v3 : Landroid/support/v4/util/LruCache;
+  (line 124)
+  (iget-object v1 v3 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v1 : Ljava/util/LinkedHashMap; , v3 : Landroid/support/v4/util/LruCache;
+  (invoke-virtual {v1 v4 v5} java/util/LinkedHashMap/put [object java/lang/Object] [object java/lang/Object] )
+; v1 : Ljava/util/LinkedHashMap; , v4 : Ljava/lang/Object; , v5 : Ljava/lang/Object;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (label l20c84)
+  (line 125)
+  (if-eqz v0 l20c9a)
+; v0 : Ljava/lang/Object;
+  (line 126)
+  (iget v1 v3 android/support/v4/util/LruCache.size int)
+; v1 : single-length , v3 : Landroid/support/v4/util/LruCache;
+  (invoke-direct {v3 v4 v0} android/support/v4/util/LruCache/safeSizeOf [object java/lang/Object] [object java/lang/Object] )
+; v3 : Landroid/support/v4/util/LruCache; , v4 : Ljava/lang/Object; , v0 : Ljava/lang/Object;
+  (move-result v2)
+; v2 : single-length
+  (sub-int/2addr v1 v2)
+; v1 : single-length , v2 : single-length
+  (iput v1 v3 android/support/v4/util/LruCache.size int)
+; v1 : single-length , v3 : Landroid/support/v4/util/LruCache;
+  (label l20c9a)
+  (line 128)
+  (monitor-exit v3)
+; v3 : Landroid/support/v4/util/LruCache;
+  (label l20c9c)
+  (line 130)
+  (if-eqz v0 l20ca8)
+; v0 : Ljava/lang/Object;
+  (line 131)
+  (const/4 v1 0)
+; v1 : single-length
+  (invoke-virtual {v3 v1 v4 v0 v5} android/support/v4/util/LruCache/entryRemoved boolean [object java/lang/Object] [object java/lang/Object] [object java/lang/Object] )
+; v3 : Landroid/support/v4/util/LruCache; , v1 : single-length , v4 : Ljava/lang/Object; , v0 : Ljava/lang/Object; , v5 : Ljava/lang/Object;
+  (label l20ca8)
+  (line 134)
+  (iget v1 v3 android/support/v4/util/LruCache.maxSize int)
+; v1 : single-length , v3 : Landroid/support/v4/util/LruCache;
+  (invoke-direct {v3 v1} android/support/v4/util/LruCache/trimToSize int )
+; v3 : Landroid/support/v4/util/LruCache; , v1 : single-length
+  (line 135)
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+  (label l20cb4)
+  (line 128)
+  (move-exception v1)
+; v1 : java/lang/Exception
+  (label l20cb6)
+  (monitor-exit v3)
+; v3 : Landroid/support/v4/util/LruCache;
+  (label l20cb8)
+  (throw v1)
+; v1 : java/lang/Exception
+)
+
+(method (attrs public final synchronized ) putCount()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  (catch java/lang/Exception from l20ce2 to l20ce6 using l20cea)
+  (line 299)
+  (monitor-enter v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (label l20ce2)
+  (iget v0 v1 android/support/v4/util/LruCache.putCount int)
+; v0 : single-length , v1 : Landroid/support/v4/util/LruCache;
+  (label l20ce6)
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (return v0)
+; v0 : single-length
+  (label l20cea)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs public final ) remove([object java/lang/Object] )[object java/lang/Object]
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/util/LruCache])
+  ; parameter[0] : v4 ([object java/lang/Object])
+  (catch java/lang/Exception from l20d58 to l20d5a using l20d56)
+  (catch java/lang/Exception from l20d22 to l20d46 using l20d56)
+.var 0 is previous [object java/lang/Object] from l20d2e to l20d56
+  (line 174)
+  (if-nez v4 l20d20)
+; v4 : Ljava/lang/Object;
+  (line 175)
+  (new-instance v1 java/lang/NullPointerException)
+; v1 : Ljava/lang/NullPointerException;
+  (const-string v2 "key == null")
+; v2 : Ljava/lang/String;
+  (invoke-direct {v1 v2} java/lang/NullPointerException/<init> [object java/lang/String] )
+; v1 : Ljava/lang/NullPointerException; , v2 : Ljava/lang/String;
+  (throw v1)
+; v1 : Ljava/lang/NullPointerException;
+  (label l20d20)
+  (line 179)
+  (monitor-enter v3)
+; v3 : Landroid/support/v4/util/LruCache;
+  (label l20d22)
+  (line 180)
+  (iget-object v1 v3 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v1 : Ljava/util/LinkedHashMap; , v3 : Landroid/support/v4/util/LruCache;
+  (invoke-virtual {v1 v4} java/util/LinkedHashMap/remove [object java/lang/Object] )
+; v1 : Ljava/util/LinkedHashMap; , v4 : Ljava/lang/Object;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (label l20d2e)
+  (line 181)
+  (if-eqz v0 l20d44)
+; v0 : Ljava/lang/Object;
+  (line 182)
+  (iget v1 v3 android/support/v4/util/LruCache.size int)
+; v1 : single-length , v3 : Landroid/support/v4/util/LruCache;
+  (invoke-direct {v3 v4 v0} android/support/v4/util/LruCache/safeSizeOf [object java/lang/Object] [object java/lang/Object] )
+; v3 : Landroid/support/v4/util/LruCache; , v4 : Ljava/lang/Object; , v0 : Ljava/lang/Object;
+  (move-result v2)
+; v2 : single-length
+  (sub-int/2addr v1 v2)
+; v1 : single-length , v2 : single-length
+  (iput v1 v3 android/support/v4/util/LruCache.size int)
+; v1 : single-length , v3 : Landroid/support/v4/util/LruCache;
+  (label l20d44)
+  (line 184)
+  (monitor-exit v3)
+; v3 : Landroid/support/v4/util/LruCache;
+  (label l20d46)
+  (line 186)
+  (if-eqz v0 l20d54)
+; v0 : Ljava/lang/Object;
+  (line 187)
+  (const/4 v1 0)
+; v1 : single-length
+  (const/4 v2 0)
+; v2 : single-length
+  (invoke-virtual {v3 v1 v4 v0 v2} android/support/v4/util/LruCache/entryRemoved boolean [object java/lang/Object] [object java/lang/Object] [object java/lang/Object] )
+; v3 : Landroid/support/v4/util/LruCache; , v1 : single-length , v4 : Ljava/lang/Object; , v0 : Ljava/lang/Object; , v2 : single-length
+  (label l20d54)
+  (line 190)
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+  (label l20d56)
+  (line 184)
+  (move-exception v1)
+; v1 : java/lang/Exception
+  (label l20d58)
+  (monitor-exit v3)
+; v3 : Landroid/support/v4/util/LruCache;
+  (label l20d5a)
+  (throw v1)
+; v1 : java/lang/Exception
+)
+
+(method (attrs public final synchronized ) size()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  (catch java/lang/Exception from l20d82 to l20d86 using l20d8a)
+  (line 261)
+  (monitor-enter v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (label l20d82)
+  (iget v0 v1 android/support/v4/util/LruCache.size int)
+; v0 : single-length , v1 : Landroid/support/v4/util/LruCache;
+  (label l20d86)
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (return v0)
+; v0 : single-length
+  (label l20d8a)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (monitor-exit v1)
+; v1 : Landroid/support/v4/util/LruCache;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs protected ) sizeOf([object java/lang/Object] [object java/lang/Object] )int
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/util/LruCache])
+  ; parameter[0] : v2 ([object java/lang/Object])
+  ; parameter[1] : v3 ([object java/lang/Object])
+  (line 245)
+  (const/4 v0 1)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public final synchronized ) snapshot()[object java/util/Map]
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/util/LruCache])
+  (catch java/lang/Exception from l20dc2 to l20dd0 using l20dd4)
+  (line 314)
+  (monitor-enter v2)
+; v2 : Landroid/support/v4/util/LruCache;
+  (label l20dc2)
+  (new-instance v0 java/util/LinkedHashMap)
+; v0 : Ljava/util/LinkedHashMap;
+  (iget-object v1 v2 android/support/v4/util/LruCache.map [object java/util/LinkedHashMap])
+; v1 : Ljava/util/LinkedHashMap; , v2 : Landroid/support/v4/util/LruCache;
+  (invoke-direct {v0 v1} java/util/LinkedHashMap/<init> [object java/util/Map] )
+; v0 : Ljava/util/LinkedHashMap; , v1 : Ljava/util/LinkedHashMap;
+  (label l20dd0)
+  (monitor-exit v2)
+; v2 : Landroid/support/v4/util/LruCache;
+  (return-object v0)
+; v0 : Ljava/util/LinkedHashMap;
+  (label l20dd4)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (monitor-exit v2)
+; v2 : Landroid/support/v4/util/LruCache;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs public final synchronized ) toString()[object java/lang/String]
+  (limit registers 7)
+  ; this: v6 ([object android/support/v4/util/LruCache])
+  (catch java/lang/Exception from l20dfc to l20e6c using l20e72)
+.var 0 is accesses int from l20e08 to l20e72
+.var 1 is hitPercent int from l20e18 to l20e72
+  (const/4 v1 0)
+; v1 : single-length
+  (line 318)
+  (monitor-enter v6)
+; v6 : Landroid/support/v4/util/LruCache;
+  (label l20dfc)
+  (iget v2 v6 android/support/v4/util/LruCache.hitCount int)
+; v2 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (iget v3 v6 android/support/v4/util/LruCache.missCount int)
+; v3 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (add-int v0 v2 v3)
+; v0 : single-length , v2 : single-length , v3 : single-length
+  (label l20e08)
+  (line 319)
+  (if-eqz v0 l20e18)
+; v0 : single-length
+  (iget v2 v6 android/support/v4/util/LruCache.hitCount int)
+; v2 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (mul-int/lit8 v2 v2 100)
+; v2 : single-length , v2 : single-length
+  (div-int v1 v2 v0)
+; v1 : single-length , v2 : single-length , v0 : single-length
+  (label l20e18)
+  (line 320)
+  (const-string v2 "LruCache[maxSize=%d,hits=%d,misses=%d,hitRate=%d%%]")
+; v2 : Ljava/lang/String;
+  (const/4 v3 4)
+; v3 : single-length
+  (new-array v3 v3 [array [object java/lang/Object]])
+; v3 : [Ljava/lang/Object; , v3 : [Ljava/lang/Object;
+  (const/4 v4 0)
+; v4 : single-length
+  (iget v5 v6 android/support/v4/util/LruCache.maxSize int)
+; v5 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (invoke-static {v5} java/lang/Integer/valueOf int )
+; v5 : single-length
+  (move-result-object v5)
+; v5 : Ljava/lang/Integer;
+  (aput-object v5 v3 v4)
+; v5 : Ljava/lang/Integer; , v3 : [Ljava/lang/Object; , v4 : single-length
+  (const/4 v4 1)
+; v4 : single-length
+  (iget v5 v6 android/support/v4/util/LruCache.hitCount int)
+; v5 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (invoke-static {v5} java/lang/Integer/valueOf int )
+; v5 : single-length
+  (move-result-object v5)
+; v5 : Ljava/lang/Integer;
+  (aput-object v5 v3 v4)
+; v5 : Ljava/lang/Integer; , v3 : [Ljava/lang/Object; , v4 : single-length
+  (const/4 v4 2)
+; v4 : single-length
+  (iget v5 v6 android/support/v4/util/LruCache.missCount int)
+; v5 : single-length , v6 : Landroid/support/v4/util/LruCache;
+  (invoke-static {v5} java/lang/Integer/valueOf int )
+; v5 : single-length
+  (move-result-object v5)
+; v5 : Ljava/lang/Integer;
+  (aput-object v5 v3 v4)
+; v5 : Ljava/lang/Integer; , v3 : [Ljava/lang/Object; , v4 : single-length
+  (const/4 v4 3)
+; v4 : single-length
+  (invoke-static {v1} java/lang/Integer/valueOf int )
+; v1 : single-length
+  (move-result-object v5)
+; v5 : Ljava/lang/Integer;
+  (aput-object v5 v3 v4)
+; v5 : Ljava/lang/Integer; , v3 : [Ljava/lang/Object; , v4 : single-length
+  (invoke-static {v2 v3} java/lang/String/format [object java/lang/String] [array [object java/lang/Object]] )
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+  (label l20e6c)
+  (move-result-object v2)
+; v2 : Ljava/lang/String;
+  (monitor-exit v6)
+; v6 : Landroid/support/v4/util/LruCache;
+  (return-object v2)
+; v2 : Ljava/lang/String;
+  (label l20e72)
+  (line 318)
+  (move-exception v2)
+; v2 : java/lang/Exception
+  (monitor-exit v6)
+; v6 : Landroid/support/v4/util/LruCache;
+  (throw v2)
+; v2 : java/lang/Exception
+)
+
+)

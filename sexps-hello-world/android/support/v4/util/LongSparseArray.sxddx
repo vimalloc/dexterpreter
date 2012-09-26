@@ -1,0 +1,978 @@
+(class (attrs public ) android/support/v4/util/LongSparseArray
+ (super java/lang/Object)
+ (source "LongSparseArray.java")
+ (implements java/lang/Cloneable)
+
+ (field (attrs private static final ) DELETED [object java/lang/Object] )
+ (field (attrs private ) mGarbage boolean )
+ (field (attrs private ) mKeys [array long] )
+ (field (attrs private ) mSize int )
+ (field (attrs private ) mValues [array [object java/lang/Object]] )
+
+(method (attrs static ) <clinit>()void
+  (limit registers 1)
+  (line 25)
+  (new-instance v0 java/lang/Object)
+; v0 : Ljava/lang/Object;
+  (invoke-direct {v0} java/lang/Object/<init> )
+; v0 : Ljava/lang/Object;
+  (sput-object v0 android/support/v4/util/LongSparseArray.DELETED [object java/lang/Object])
+; v0 : Ljava/lang/Object;
+  (return-void )
+ )
+
+(method (attrs public ) <init>()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LongSparseArray])
+  (line 36)
+  (const/16 v0 10)
+; v0 : single-length
+  (invoke-direct {v1 v0} android/support/v4/util/LongSparseArray/<init> int )
+; v1 : Landroid/support/v4/util/LongSparseArray; , v0 : single-length
+  (line 37)
+  (return-void )
+ )
+
+(method (attrs public ) <init>(int )void
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v3 (int)
+  (const/4 v1 0)
+; v1 : single-length
+  (line 44)
+  (invoke-direct {v2} java/lang/Object/<init> )
+; v2 : Landroid/support/v4/util/LongSparseArray;
+  (line 26)
+  (iput-boolean v1 v2 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v1 : single-length , v2 : Landroid/support/v4/util/LongSparseArray;
+  (line 45)
+  (invoke-static {v3} android/support/v4/util/LongSparseArray/idealLongArraySize int )
+; v3 : single-length
+  (move-result v3)
+; v3 : single-length
+  (line 47)
+  (new-array v0 v3 [array long])
+; v0 : [J , v3 : single-length
+  (iput-object v0 v2 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v0 : [J , v2 : Landroid/support/v4/util/LongSparseArray;
+  (line 48)
+  (new-array v0 v3 [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v3 : single-length
+  (iput-object v0 v2 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v2 : Landroid/support/v4/util/LongSparseArray;
+  (line 49)
+  (iput v1 v2 android/support/v4/util/LongSparseArray.mSize int)
+; v1 : single-length , v2 : Landroid/support/v4/util/LongSparseArray;
+  (line 50)
+  (return-void )
+ )
+
+(method (attrs private static ) binarySearch([array long] int int long )int
+  (limit registers 10)
+  ; parameter[0] : v5 ([array long])
+  ; parameter[1] : v6 (int)
+  ; parameter[2] : v7 (int)
+  ; parameter[3] : v8 (long)
+.var 0 is guess int from l202be to l202d2
+.var 1 is high int from l202a8 to l202e2
+  (line 335)
+  (add-int v1 v6 v7)
+; v1 : single-length , v6 : single-length , v7 : single-length
+  (label l202a8)
+  (add-int/lit8 v2 v6 255)
+; v2 : single-length , v6 : single-length
+  (label l202ac)
+  (line 337)
+  (sub-int v3 v1 v2)
+; v3 : single-length , v1 : single-length , v2 : single-length
+  (const/4 v4 1)
+; v4 : single-length
+  (if-le v3 v4 l202d2)
+; v3 : single-length , v4 : single-length
+  (line 338)
+  (add-int v3 v1 v2)
+; v3 : single-length , v1 : single-length , v2 : single-length
+  (div-int/lit8 v0 v3 2)
+; v0 : single-length , v3 : single-length
+  (label l202be)
+  (line 340)
+  (aget-wide v3 v5 v0)
+; v3 : double-length , v5 : [J , v0 : single-length
+  (cmp-long v3 v3 v8)
+; v3 : single-length , v3 : single-length , v8 : double-length
+  (if-gez v3 l202ce)
+; v3 : single-length
+  (line 341)
+  (move v2 v0)
+; v2 : single-length , v0 : single-length
+  (goto l202ac)
+  (label l202ce)
+  (line 343)
+  (move v1 v0)
+; v1 : single-length , v0 : single-length
+  (goto l202ac)
+  (label l202d2)
+  (line 346)
+  (add-int v3 v6 v7)
+; v3 : single-length , v6 : single-length , v7 : single-length
+  (if-ne v1 v3 l202e4)
+; v1 : single-length , v3 : single-length
+  (line 347)
+  (add-int v3 v6 v7)
+; v3 : single-length , v6 : single-length , v7 : single-length
+  (xor-int/lit8 v1 v3 255)
+; v1 : single-length , v3 : single-length
+  (label l202e2)
+  (line 351)
+  (return v1)
+; v1 : single-length
+  (label l202e4)
+  (line 348)
+  (aget-wide v3 v5 v1)
+; v3 : double-length , v5 : [J , v1 : single-length
+  (cmp-long v3 v3 v8)
+; v3 : single-length , v3 : single-length , v8 : double-length
+  (if-eqz v3 l202e2)
+; v3 : single-length
+  (line 351)
+  (xor-int/lit8 v1 v1 255)
+; v1 : single-length , v1 : single-length
+  (goto l202e2)
+ )
+
+(method (attrs private ) gc()void
+  (limit registers 9)
+  ; this: v8 ([object android/support/v4/util/LongSparseArray])
+.var 4 is val [object java/lang/Object] from l20320 to l20348
+  (line 123)
+  (iget v2 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v2 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (line 124)
+  (const/4 v3 0)
+; v3 : single-length
+  (line 125)
+  (iget-object v1 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v1 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (line 126)
+  (iget-object v5 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v5 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (line 128)
+  (const/4 v0 0)
+; v0 : single-length
+  (label l20318)
+  (if-ge v0 v2 l20348)
+; v0 : single-length , v2 : single-length
+  (line 129)
+  (aget-object v4 v5 v0)
+; v4 : Ljava/lang/Object; , v5 : [Ljava/lang/Object; , v0 : single-length
+  (label l20320)
+  (line 131)
+  (sget-object v6 android/support/v4/util/LongSparseArray.DELETED [object java/lang/Object])
+; v6 : Ljava/lang/Object;
+  (if-eq v4 v6 l20342)
+; v4 : Ljava/lang/Object; , v6 : Ljava/lang/Object;
+  (line 132)
+  (if-eq v0 v3 l2033e)
+; v0 : single-length , v3 : single-length
+  (line 133)
+  (aget-wide v6 v1 v0)
+; v6 : double-length , v1 : [J , v0 : single-length
+  (aput-wide v6 v1 v3)
+; v6 : double-length , v1 : [J , v3 : single-length
+  (line 134)
+  (aput-object v4 v5 v3)
+; v4 : Ljava/lang/Object; , v5 : [Ljava/lang/Object; , v3 : single-length
+  (line 135)
+  (const/4 v6 0)
+; v6 : single-length
+  (aput-object v6 v5 v0)
+; v6 : single-length , v5 : [Ljava/lang/Object; , v0 : single-length
+  (label l2033e)
+  (line 138)
+  (add-int/lit8 v3 v3 1)
+; v3 : single-length , v3 : single-length
+  (label l20342)
+  (line 128)
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (goto l20318)
+  (label l20348)
+  (line 142)
+  (const/4 v6 0)
+; v6 : single-length
+  (iput-boolean v6 v8 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v6 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (line 143)
+  (iput v3 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v3 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (line 146)
+  (return-void )
+ )
+
+(method (attrs public static ) idealByteArraySize(int )int
+  (limit registers 4)
+  ; parameter[0] : v3 (int)
+  (const/4 v2 1)
+; v2 : single-length
+  (line 355)
+  (const/4 v0 4)
+; v0 : single-length
+  (label l20368)
+  (const/16 v1 32)
+; v1 : single-length
+  (if-ge v0 v1 l20384)
+; v0 : single-length , v1 : single-length
+  (line 356)
+  (shl-int v1 v2 v0)
+; v1 : single-length , v2 : single-length , v0 : single-length
+  (add-int/lit8 v1 v1 244)
+; v1 : single-length , v1 : single-length
+  (if-gt v3 v1 l20386)
+; v3 : single-length , v1 : single-length
+  (line 357)
+  (shl-int v1 v2 v0)
+; v1 : single-length , v2 : single-length , v0 : single-length
+  (add-int/lit8 v3 v1 244)
+; v3 : single-length , v1 : single-length
+  (label l20384)
+  (line 359)
+  (return v3)
+; v3 : single-length
+  (label l20386)
+  (line 355)
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (goto l20368)
+ )
+
+(method (attrs public static ) idealLongArraySize(int )int
+  (limit registers 2)
+  ; parameter[0] : v1 (int)
+  (line 363)
+  (mul-int/lit8 v0 v1 8)
+; v0 : single-length , v1 : single-length
+  (invoke-static {v0} android/support/v4/util/LongSparseArray/idealByteArraySize int )
+; v0 : single-length
+  (move-result v0)
+; v0 : single-length
+  (div-int/lit8 v0 v0 8)
+; v0 : single-length , v0 : single-length
+  (return v0)
+; v0 : single-length
+ )
+
+(method (attrs public ) append(long [object java/lang/Object] )void
+  (limit registers 11)
+  ; this: v7 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v8 (long)
+  ; parameter[1] : v10 ([object java/lang/Object])
+.var 0 is n int from l20420 to l20450
+.var 1 is nkeys [array long] from l20424 to l20450
+.var 2 is nvalues [array [object java/lang/Object]] from l20428 to l20450
+  (const/4 v6 0)
+; v6 : single-length
+  (line 305)
+  (iget v4 v7 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v7 : Landroid/support/v4/util/LongSparseArray;
+  (if-eqz v4 l203ea)
+; v4 : single-length
+  (iget-object v4 v7 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v7 : Landroid/support/v4/util/LongSparseArray;
+  (iget v5 v7 android/support/v4/util/LongSparseArray.mSize int)
+; v5 : single-length , v7 : Landroid/support/v4/util/LongSparseArray;
+  (add-int/lit8 v5 v5 255)
+; v5 : single-length , v5 : single-length
+  (aget-wide v4 v4 v5)
+; v4 : double-length , v4 : double-length , v5 : single-length
+  (cmp-long v4 v8 v4)
+; v4 : single-length , v8 : double-length , v4 : single-length
+  (if-gtz v4 l203ea)
+; v4 : single-length
+  (line 306)
+  (invoke-virtual {v7 v8 v9 v10} android/support/v4/util/LongSparseArray/put long [object java/lang/Object] )
+; v7 : Landroid/support/v4/util/LongSparseArray; , v8 : double-length , v10 : Ljava/lang/Object;
+  (label l203e8)
+  (line 332)
+  (return-void )
+  (label l203ea)
+  (line 310)
+  (iget-boolean v4 v7 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v4 : single-length , v7 : Landroid/support/v4/util/LongSparseArray;
+  (if-eqz v4 l20406)
+; v4 : single-length
+  (iget v4 v7 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v7 : Landroid/support/v4/util/LongSparseArray;
+  (iget-object v5 v7 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v5 : [J , v7 : Landroid/support/v4/util/LongSparseArray;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (if-lt v4 v5 l20406)
+; v4 : single-length , v5 : single-length
+  (line 311)
+  (invoke-direct {v7} android/support/v4/util/LongSparseArray/gc )
+; v7 : Landroid/support/v4/util/LongSparseArray;
+  (label l20406)
+  (line 314)
+  (iget v3 v7 android/support/v4/util/LongSparseArray.mSize int)
+; v3 : single-length , v7 : Landroid/support/v4/util/LongSparseArray;
+  (line 315)
+  (iget-object v4 v7 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v7 : Landroid/support/v4/util/LongSparseArray;
+  (array-length v4 v4)
+; v4 : single-length , v4 : single-length
+  (if-lt v3 v4 l20450)
+; v3 : single-length , v4 : single-length
+  (line 316)
+  (add-int/lit8 v4 v3 1)
+; v4 : single-length , v3 : single-length
+  (invoke-static {v4} android/support/v4/util/LongSparseArray/idealLongArraySize int )
+; v4 : single-length
+  (move-result v0)
+; v0 : single-length
+  (label l20420)
+  (line 318)
+  (new-array v1 v0 [array long])
+; v1 : [J , v0 : single-length
+  (label l20424)
+  (line 319)
+  (new-array v2 v0 [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object; , v0 : single-length
+  (label l20428)
+  (line 322)
+  (iget-object v4 v7 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v7 : Landroid/support/v4/util/LongSparseArray;
+  (iget-object v5 v7 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v5 : [J , v7 : Landroid/support/v4/util/LongSparseArray;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (invoke-static {v4 v6 v1 v6 v5} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [J , v6 : single-length , v1 : [J , v6 : single-length , v5 : single-length
+  (line 323)
+  (iget-object v4 v7 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v7 : Landroid/support/v4/util/LongSparseArray;
+  (iget-object v5 v7 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v5 : [Ljava/lang/Object; , v7 : Landroid/support/v4/util/LongSparseArray;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (invoke-static {v4 v6 v2 v6 v5} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [Ljava/lang/Object; , v6 : single-length , v2 : [Ljava/lang/Object; , v6 : single-length , v5 : single-length
+  (line 325)
+  (iput-object v1 v7 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v1 : [J , v7 : Landroid/support/v4/util/LongSparseArray;
+  (line 326)
+  (iput-object v2 v7 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object; , v7 : Landroid/support/v4/util/LongSparseArray;
+  (label l20450)
+  (line 329)
+  (iget-object v4 v7 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v7 : Landroid/support/v4/util/LongSparseArray;
+  (aput-wide v8 v4 v3)
+; v8 : double-length , v4 : [J , v3 : single-length
+  (line 330)
+  (iget-object v4 v7 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v7 : Landroid/support/v4/util/LongSparseArray;
+  (aput-object v10 v4 v3)
+; v10 : Ljava/lang/Object; , v4 : [Ljava/lang/Object; , v3 : single-length
+  (line 331)
+  (add-int/lit8 v4 v3 1)
+; v4 : single-length , v3 : single-length
+  (iput v4 v7 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v7 : Landroid/support/v4/util/LongSparseArray;
+  (goto l203e8)
+)
+
+(method (attrs public ) clear()void
+  (limit registers 6)
+  ; this: v5 ([object android/support/v4/util/LongSparseArray])
+  (const/4 v4 0)
+; v4 : single-length
+  (line 289)
+  (iget v1 v5 android/support/v4/util/LongSparseArray.mSize int)
+; v1 : single-length , v5 : Landroid/support/v4/util/LongSparseArray;
+  (line 290)
+  (iget-object v2 v5 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object; , v5 : Landroid/support/v4/util/LongSparseArray;
+  (line 292)
+  (const/4 v0 0)
+; v0 : single-length
+  (label l20488)
+  (if-ge v0 v1 l20498)
+; v0 : single-length , v1 : single-length
+  (line 293)
+  (const/4 v3 0)
+; v3 : single-length
+  (aput-object v3 v2 v0)
+; v3 : single-length , v2 : [Ljava/lang/Object; , v0 : single-length
+  (line 292)
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (goto l20488)
+  (label l20498)
+  (line 296)
+  (iput v4 v5 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v5 : Landroid/support/v4/util/LongSparseArray;
+  (line 297)
+  (iput-boolean v4 v5 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v4 : single-length , v5 : Landroid/support/v4/util/LongSparseArray;
+  (line 298)
+  (return-void )
+)
+
+(method (attrs public ) clone()[object android/support/v4/util/LongSparseArray]
+  (limit registers 4)
+  ; this: v3 ([object android/support/v4/util/LongSparseArray])
+  (catch java/lang/CloneNotSupportedException from l204b6 to l204ee using l204f0)
+  (line 55)
+  (const/4 v1 0)
+; v1 : single-length
+  (label l204b6)
+  (line 57)
+  (invoke-super {v3} java/lang/Object/clone )
+; v3 : Landroid/support/v4/util/LongSparseArray;
+  (move-result-object v2)
+; v2 : Ljava/lang/Object;
+  (move-object v0 v2)
+; v0 : Ljava/lang/Object; , v2 : Ljava/lang/Object;
+  (check-cast v0 [object android/support/v4/util/LongSparseArray])
+; v0 : Landroid/support/v4/util/LongSparseArray;
+  (move-object v1 v0)
+; v1 : Landroid/support/v4/util/LongSparseArray; , v0 : Landroid/support/v4/util/LongSparseArray;
+  (line 58)
+  (iget-object v2 v3 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v2 : [J , v3 : Landroid/support/v4/util/LongSparseArray;
+  (invoke-virtual {v2} [array long]/clone )
+; v2 : [J
+  (move-result-object v2)
+; v2 : Ljava/lang/Object;
+  (check-cast v2 [array long])
+; v2 : [J
+  (iput-object v2 v1 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v2 : [J , v1 : Landroid/support/v4/util/LongSparseArray;
+  (line 59)
+  (iget-object v2 v3 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object; , v3 : Landroid/support/v4/util/LongSparseArray;
+  (invoke-virtual {v2} [array [object java/lang/Object]]/clone )
+; v2 : [Ljava/lang/Object;
+  (move-result-object v2)
+; v2 : Ljava/lang/Object;
+  (check-cast v2 [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object;
+  (iput-object v2 v1 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object; , v1 : Landroid/support/v4/util/LongSparseArray;
+  (label l204ee)
+  (line 63)
+  (return-object v1)
+; v1 : Landroid/support/v4/util/LongSparseArray;
+  (label l204f0)
+  (line 60)
+  (move-exception v2)
+; v2 : java/lang/CloneNotSupportedException
+  (goto l204ee)
+)
+
+(method (attrs public ) clone()[object java/lang/Object]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LongSparseArray])
+  (line 24)
+  (invoke-virtual {v1} android/support/v4/util/LongSparseArray/clone )
+; v1 : Landroid/support/v4/util/LongSparseArray;
+  (move-result-object v0)
+; v0 : Landroid/support/v4/util/LongSparseArray;
+  (return-object v0)
+; v0 : Landroid/support/v4/util/LongSparseArray;
+)
+
+(method (attrs public ) delete(long )void
+  (limit registers 7)
+  ; this: v4 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v5 (long)
+  (line 93)
+  (iget-object v1 v4 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v1 : [J , v4 : Landroid/support/v4/util/LongSparseArray;
+  (const/4 v2 0)
+; v2 : single-length
+  (iget v3 v4 android/support/v4/util/LongSparseArray.mSize int)
+; v3 : single-length , v4 : Landroid/support/v4/util/LongSparseArray;
+  (invoke-static {v1 v2 v3 v5 v6} android/support/v4/util/LongSparseArray/binarySearch [array long] int int long )
+; v1 : [J , v2 : single-length , v3 : single-length , v5 : double-length
+  (move-result v0)
+; v0 : single-length
+  (line 95)
+  (if-ltz v0 l20568)
+; v0 : single-length
+  (line 96)
+  (iget-object v1 v4 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v4 : Landroid/support/v4/util/LongSparseArray;
+  (aget-object v1 v1 v0)
+; v1 : Ljava/lang/Object; , v1 : Ljava/lang/Object; , v0 : single-length
+  (sget-object v2 android/support/v4/util/LongSparseArray.DELETED [object java/lang/Object])
+; v2 : Ljava/lang/Object;
+  (if-eq v1 v2 l20568)
+; v1 : Ljava/lang/Object; , v2 : Ljava/lang/Object;
+  (line 97)
+  (iget-object v1 v4 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v4 : Landroid/support/v4/util/LongSparseArray;
+  (sget-object v2 android/support/v4/util/LongSparseArray.DELETED [object java/lang/Object])
+; v2 : Ljava/lang/Object;
+  (aput-object v2 v1 v0)
+; v2 : Ljava/lang/Object; , v1 : [Ljava/lang/Object; , v0 : single-length
+  (line 98)
+  (const/4 v1 1)
+; v1 : single-length
+  (iput-boolean v1 v4 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v1 : single-length , v4 : Landroid/support/v4/util/LongSparseArray;
+  (label l20568)
+  (line 101)
+  (return-void )
+)
+
+(method (attrs public ) get(long )[object java/lang/Object]
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v2 (long)
+  (line 71)
+  (const/4 v0 0)
+; v0 : single-length
+  (invoke-virtual {v1 v2 v3 v0} android/support/v4/util/LongSparseArray/get long [object java/lang/Object] )
+; v1 : Landroid/support/v4/util/LongSparseArray; , v2 : double-length , v0 : single-length
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+)
+
+(method (attrs public ) get(long [object java/lang/Object] )[object java/lang/Object]
+  (limit registers 8)
+  ; this: v4 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v5 (long)
+  ; parameter[1] : v7 ([object java/lang/Object])
+.var 7 is valueIfKeyNotFound [object java/lang/Object] from l20598 to l205be
+  (label l20598)
+  (line 80)
+  (iget-object v1 v4 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v1 : [J , v4 : Landroid/support/v4/util/LongSparseArray;
+  (const/4 v2 0)
+; v2 : single-length
+  (iget v3 v4 android/support/v4/util/LongSparseArray.mSize int)
+; v3 : single-length , v4 : Landroid/support/v4/util/LongSparseArray;
+  (invoke-static {v1 v2 v3 v5 v6} android/support/v4/util/LongSparseArray/binarySearch [array long] int int long )
+; v1 : [J , v2 : single-length , v3 : single-length , v5 : double-length
+  (move-result v0)
+; v0 : single-length
+  (line 82)
+  (if-ltz v0 l205be)
+; v0 : single-length
+  (iget-object v1 v4 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v4 : Landroid/support/v4/util/LongSparseArray;
+  (aget-object v1 v1 v0)
+; v1 : Ljava/lang/Object; , v1 : Ljava/lang/Object; , v0 : single-length
+  (sget-object v2 android/support/v4/util/LongSparseArray.DELETED [object java/lang/Object])
+; v2 : Ljava/lang/Object;
+  (if-ne v1 v2 l205c0)
+; v1 : Ljava/lang/Object; , v2 : Ljava/lang/Object;
+  (label l205be)
+  (line 85)
+  (return-object v7)
+; v7 : Ljava/lang/Object;
+  (label l205c0)
+  (iget-object v1 v4 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v4 : Landroid/support/v4/util/LongSparseArray;
+  (aget-object v7 v1 v0)
+; v7 : Ljava/lang/Object; , v1 : [Ljava/lang/Object; , v0 : single-length
+  (goto l205be)
+)
+
+(method (attrs public ) indexOfKey(long )int
+  (limit registers 6)
+  ; this: v3 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v4 (long)
+  (line 258)
+  (iget-boolean v0 v3 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v0 : single-length , v3 : Landroid/support/v4/util/LongSparseArray;
+  (if-eqz v0 l205ea)
+; v0 : single-length
+  (line 259)
+  (invoke-direct {v3} android/support/v4/util/LongSparseArray/gc )
+; v3 : Landroid/support/v4/util/LongSparseArray;
+  (label l205ea)
+  (line 262)
+  (iget-object v0 v3 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v0 : [J , v3 : Landroid/support/v4/util/LongSparseArray;
+  (const/4 v1 0)
+; v1 : single-length
+  (iget v2 v3 android/support/v4/util/LongSparseArray.mSize int)
+; v2 : single-length , v3 : Landroid/support/v4/util/LongSparseArray;
+  (invoke-static {v0 v1 v2 v4 v5} android/support/v4/util/LongSparseArray/binarySearch [array long] int int long )
+; v0 : [J , v1 : single-length , v2 : single-length , v4 : double-length
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) indexOfValue([object java/lang/Object] )int
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v3 ([object java/lang/Object])
+.var 0 is i int from l20620 to l20634
+  (line 274)
+  (iget-boolean v1 v2 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v1 : single-length , v2 : Landroid/support/v4/util/LongSparseArray;
+  (if-eqz v1 l2061e)
+; v1 : single-length
+  (line 275)
+  (invoke-direct {v2} android/support/v4/util/LongSparseArray/gc )
+; v2 : Landroid/support/v4/util/LongSparseArray;
+  (label l2061e)
+  (line 278)
+  (const/4 v0 0)
+; v0 : single-length
+  (label l20620)
+  (iget v1 v2 android/support/v4/util/LongSparseArray.mSize int)
+; v1 : single-length , v2 : Landroid/support/v4/util/LongSparseArray;
+  (if-ge v0 v1 l2063c)
+; v0 : single-length , v1 : single-length
+  (line 279)
+  (iget-object v1 v2 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v1 : [Ljava/lang/Object; , v2 : Landroid/support/v4/util/LongSparseArray;
+  (aget-object v1 v1 v0)
+; v1 : Ljava/lang/Object; , v1 : Ljava/lang/Object; , v0 : single-length
+  (if-ne v1 v3 l20636)
+; v1 : Ljava/lang/Object; , v3 : Ljava/lang/Object;
+  (label l20634)
+  (line 282)
+  (return v0)
+; v0 : single-length
+  (label l20636)
+  (line 278)
+  (add-int/lit8 v0 v0 1)
+; v0 : single-length , v0 : single-length
+  (goto l20620)
+  (label l2063c)
+  (line 282)
+  (const/4 v0 15)
+; v0 : single-length
+  (goto l20634)
+)
+
+(method (attrs public ) keyAt(int )long
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v3 (int)
+  (line 218)
+  (iget-boolean v0 v2 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v0 : single-length , v2 : Landroid/support/v4/util/LongSparseArray;
+  (if-eqz v0 l2065e)
+; v0 : single-length
+  (line 219)
+  (invoke-direct {v2} android/support/v4/util/LongSparseArray/gc )
+; v2 : Landroid/support/v4/util/LongSparseArray;
+  (label l2065e)
+  (line 222)
+  (iget-object v0 v2 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v0 : [J , v2 : Landroid/support/v4/util/LongSparseArray;
+  (aget-wide v0 v0 v3)
+; v0 : double-length , v0 : double-length , v3 : single-length
+  (return-wide v0)
+; v0 : double-length
+)
+
+(method (attrs public ) put(long [object java/lang/Object] )void
+  (limit registers 12)
+  ; this: v8 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v9 (long)
+  ; parameter[1] : v11 ([object java/lang/Object])
+.var 1 is n int from l20714 to l20744
+.var 2 is nkeys [array long] from l20718 to l20744
+.var 3 is nvalues [array [object java/lang/Object]] from l2071c to l20744
+  (const/4 v6 0)
+; v6 : single-length
+  (line 154)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (iget v5 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v5 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (invoke-static {v4 v6 v5 v9 v10} android/support/v4/util/LongSparseArray/binarySearch [array long] int int long )
+; v4 : [J , v6 : single-length , v5 : single-length , v9 : double-length
+  (move-result v0)
+; v0 : single-length
+  (line 156)
+  (if-ltz v0 l20698)
+; v0 : single-length
+  (line 157)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (aput-object v11 v4 v0)
+; v11 : Ljava/lang/Object; , v4 : [Ljava/lang/Object; , v0 : single-length
+  (label l20696)
+  (line 198)
+  (return-void )
+  (label l20698)
+  (line 159)
+  (xor-int/lit8 v0 v0 255)
+; v0 : single-length , v0 : single-length
+  (line 161)
+  (iget v4 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (if-ge v0 v4 l206c6)
+; v0 : single-length , v4 : single-length
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (aget-object v4 v4 v0)
+; v4 : Ljava/lang/Object; , v4 : Ljava/lang/Object; , v0 : single-length
+  (sget-object v5 android/support/v4/util/LongSparseArray.DELETED [object java/lang/Object])
+; v5 : Ljava/lang/Object;
+  (if-ne v4 v5 l206c6)
+; v4 : Ljava/lang/Object; , v5 : Ljava/lang/Object;
+  (line 162)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (aput-wide v9 v4 v0)
+; v9 : double-length , v4 : [J , v0 : single-length
+  (line 163)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (aput-object v11 v4 v0)
+; v11 : Ljava/lang/Object; , v4 : [Ljava/lang/Object; , v0 : single-length
+  (goto l20696)
+  (label l206c6)
+  (line 167)
+  (iget-boolean v4 v8 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v4 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (if-eqz v4 l206f6)
+; v4 : single-length
+  (iget v4 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (iget-object v5 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v5 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (if-lt v4 v5 l206f6)
+; v4 : single-length , v5 : single-length
+  (line 168)
+  (invoke-direct {v8} android/support/v4/util/LongSparseArray/gc )
+; v8 : Landroid/support/v4/util/LongSparseArray;
+  (line 171)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (iget v5 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v5 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (invoke-static {v4 v6 v5 v9 v10} android/support/v4/util/LongSparseArray/binarySearch [array long] int int long )
+; v4 : [J , v6 : single-length , v5 : single-length , v9 : double-length
+  (move-result v4)
+; v4 : single-length
+  (xor-int/lit8 v0 v4 255)
+; v0 : single-length , v4 : single-length
+  (label l206f6)
+  (line 174)
+  (iget v4 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (iget-object v5 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v5 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (if-lt v4 v5 l20744)
+; v4 : single-length , v5 : single-length
+  (line 175)
+  (iget v4 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (add-int/lit8 v4 v4 1)
+; v4 : single-length , v4 : single-length
+  (invoke-static {v4} android/support/v4/util/LongSparseArray/idealLongArraySize int )
+; v4 : single-length
+  (move-result v1)
+; v1 : single-length
+  (label l20714)
+  (line 177)
+  (new-array v2 v1 [array long])
+; v2 : [J , v1 : single-length
+  (label l20718)
+  (line 178)
+  (new-array v3 v1 [array [object java/lang/Object]])
+; v3 : [Ljava/lang/Object; , v1 : single-length
+  (label l2071c)
+  (line 181)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (iget-object v5 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v5 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (invoke-static {v4 v6 v2 v6 v5} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [J , v6 : single-length , v2 : [J , v6 : single-length , v5 : single-length
+  (line 182)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (iget-object v5 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v5 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (array-length v5 v5)
+; v5 : single-length , v5 : single-length
+  (invoke-static {v4 v6 v3 v6 v5} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [Ljava/lang/Object; , v6 : single-length , v3 : [Ljava/lang/Object; , v6 : single-length , v5 : single-length
+  (line 184)
+  (iput-object v2 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v2 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (line 185)
+  (iput-object v3 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v3 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (label l20744)
+  (line 188)
+  (iget v4 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (sub-int/2addr v4 v0)
+; v4 : single-length , v0 : single-length
+  (if-eqz v4 l2077e)
+; v4 : single-length
+  (line 190)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (iget-object v5 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v5 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (add-int/lit8 v6 v0 1)
+; v6 : single-length , v0 : single-length
+  (iget v7 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v7 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (sub-int/2addr v7 v0)
+; v7 : single-length , v0 : single-length
+  (invoke-static {v4 v0 v5 v6 v7} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [J , v0 : single-length , v5 : [J , v6 : single-length , v7 : single-length
+  (line 191)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (iget-object v5 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v5 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (add-int/lit8 v6 v0 1)
+; v6 : single-length , v0 : single-length
+  (iget v7 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v7 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (sub-int/2addr v7 v0)
+; v7 : single-length , v0 : single-length
+  (invoke-static {v4 v0 v5 v6 v7} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v4 : [Ljava/lang/Object; , v0 : single-length , v5 : [Ljava/lang/Object; , v6 : single-length , v7 : single-length
+  (label l2077e)
+  (line 194)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mKeys [array long])
+; v4 : [J , v8 : Landroid/support/v4/util/LongSparseArray;
+  (aput-wide v9 v4 v0)
+; v9 : double-length , v4 : [J , v0 : single-length
+  (line 195)
+  (iget-object v4 v8 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v4 : [Ljava/lang/Object; , v8 : Landroid/support/v4/util/LongSparseArray;
+  (aput-object v11 v4 v0)
+; v11 : Ljava/lang/Object; , v4 : [Ljava/lang/Object; , v0 : single-length
+  (line 196)
+  (iget v4 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (add-int/lit8 v4 v4 1)
+; v4 : single-length , v4 : single-length
+  (iput v4 v8 android/support/v4/util/LongSparseArray.mSize int)
+; v4 : single-length , v8 : Landroid/support/v4/util/LongSparseArray;
+  (goto/16 l20696)
+)
+
+(method (attrs public ) remove(long )void
+  (limit registers 3)
+  ; this: v0 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v1 (long)
+  (line 107)
+  (invoke-virtual {v0 v1 v2} android/support/v4/util/LongSparseArray/delete long )
+; v0 : Landroid/support/v4/util/LongSparseArray; , v1 : double-length
+  (line 108)
+  (return-void )
+)
+
+(method (attrs public ) removeAt(int )void
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v3 (int)
+  (line 114)
+  (iget-object v0 v2 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v2 : Landroid/support/v4/util/LongSparseArray;
+  (aget-object v0 v0 v3)
+; v0 : Ljava/lang/Object; , v0 : Ljava/lang/Object; , v3 : single-length
+  (sget-object v1 android/support/v4/util/LongSparseArray.DELETED [object java/lang/Object])
+; v1 : Ljava/lang/Object;
+  (if-eq v0 v1 l207ea)
+; v0 : Ljava/lang/Object; , v1 : Ljava/lang/Object;
+  (line 115)
+  (iget-object v0 v2 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v2 : Landroid/support/v4/util/LongSparseArray;
+  (sget-object v1 android/support/v4/util/LongSparseArray.DELETED [object java/lang/Object])
+; v1 : Ljava/lang/Object;
+  (aput-object v1 v0 v3)
+; v1 : Ljava/lang/Object; , v0 : [Ljava/lang/Object; , v3 : single-length
+  (line 116)
+  (const/4 v0 1)
+; v0 : single-length
+  (iput-boolean v0 v2 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v0 : single-length , v2 : Landroid/support/v4/util/LongSparseArray;
+  (label l207ea)
+  (line 118)
+  (return-void )
+)
+
+(method (attrs public ) setValueAt(int [object java/lang/Object] )void
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 ([object java/lang/Object])
+  (line 245)
+  (iget-boolean v0 v1 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v0 : single-length , v1 : Landroid/support/v4/util/LongSparseArray;
+  (if-eqz v0 l2080a)
+; v0 : single-length
+  (line 246)
+  (invoke-direct {v1} android/support/v4/util/LongSparseArray/gc )
+; v1 : Landroid/support/v4/util/LongSparseArray;
+  (label l2080a)
+  (line 249)
+  (iget-object v0 v1 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v1 : Landroid/support/v4/util/LongSparseArray;
+  (aput-object v3 v0 v2)
+; v3 : Ljava/lang/Object; , v0 : [Ljava/lang/Object; , v2 : single-length
+  (line 250)
+  (return-void )
+)
+
+(method (attrs public ) size()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/util/LongSparseArray])
+  (line 205)
+  (iget-boolean v0 v1 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v0 : single-length , v1 : Landroid/support/v4/util/LongSparseArray;
+  (if-eqz v0 l20832)
+; v0 : single-length
+  (line 206)
+  (invoke-direct {v1} android/support/v4/util/LongSparseArray/gc )
+; v1 : Landroid/support/v4/util/LongSparseArray;
+  (label l20832)
+  (line 209)
+  (iget v0 v1 android/support/v4/util/LongSparseArray.mSize int)
+; v0 : single-length , v1 : Landroid/support/v4/util/LongSparseArray;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) valueAt(int )[object java/lang/Object]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/util/LongSparseArray])
+  ; parameter[0] : v2 (int)
+  (line 232)
+  (iget-boolean v0 v1 android/support/v4/util/LongSparseArray.mGarbage boolean)
+; v0 : single-length , v1 : Landroid/support/v4/util/LongSparseArray;
+  (if-eqz v0 l20856)
+; v0 : single-length
+  (line 233)
+  (invoke-direct {v1} android/support/v4/util/LongSparseArray/gc )
+; v1 : Landroid/support/v4/util/LongSparseArray;
+  (label l20856)
+  (line 236)
+  (iget-object v0 v1 android/support/v4/util/LongSparseArray.mValues [array [object java/lang/Object]])
+; v0 : [Ljava/lang/Object; , v1 : Landroid/support/v4/util/LongSparseArray;
+  (aget-object v0 v0 v2)
+; v0 : Ljava/lang/Object; , v0 : Ljava/lang/Object; , v2 : single-length
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+)
+
+)

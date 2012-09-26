@@ -1,0 +1,855 @@
+(class (attrs public ) android/support/v4/app/ListFragment
+ (super android/support/v4/app/Fragment)
+ (source "ListFragment.java")
+
+ (field (attrs static final ) INTERNAL_EMPTY_ID int 16711681); 0xff0001 )
+ (field (attrs static final ) INTERNAL_LIST_CONTAINER_ID int 16711683); 0xff0003 )
+ (field (attrs static final ) INTERNAL_PROGRESS_CONTAINER_ID int 16711682); 0xff0002 )
+ (field (attrs ) mAdapter [object android/widget/ListAdapter] )
+ (field (attrs ) mEmptyText [object java/lang/CharSequence] )
+ (field (attrs ) mEmptyView [object android/view/View] )
+ (field (attrs private final ) mHandler [object android/os/Handler] )
+ (field (attrs ) mList [object android/widget/ListView] )
+ (field (attrs ) mListContainer [object android/view/View] )
+ (field (attrs ) mListShown boolean )
+ (field (attrs private final ) mOnClickListener [object android/widget/AdapterView$OnItemClickListener] )
+ (field (attrs ) mProgressContainer [object android/view/View] )
+ (field (attrs private final ) mRequestFocus [object java/lang/Runnable] )
+ (field (attrs ) mStandardEmptyView [object android/widget/TextView] )
+
+(method (attrs public ) <init>()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/ListFragment])
+  (line 71)
+  (invoke-direct {v1} android/support/v4/app/Fragment/<init> )
+; v1 : Landroid/support/v4/app/ListFragment;
+  (line 47)
+  (new-instance v0 android/os/Handler)
+; v0 : Landroid/os/Handler;
+  (invoke-direct {v0} android/os/Handler/<init> )
+; v0 : Landroid/os/Handler;
+  (iput-object v0 v1 android/support/v4/app/ListFragment.mHandler [object android/os/Handler])
+; v0 : Landroid/os/Handler; , v1 : Landroid/support/v4/app/ListFragment;
+  (line 49)
+  (new-instance v0 android/support/v4/app/ListFragment$1)
+; v0 : Landroid/support/v4/app/ListFragment$1;
+  (invoke-direct {v0 v1} android/support/v4/app/ListFragment$1/<init> [object android/support/v4/app/ListFragment] )
+; v0 : Landroid/support/v4/app/ListFragment$1; , v1 : Landroid/support/v4/app/ListFragment;
+  (iput-object v0 v1 android/support/v4/app/ListFragment.mRequestFocus [object java/lang/Runnable])
+; v0 : Landroid/support/v4/app/ListFragment$1; , v1 : Landroid/support/v4/app/ListFragment;
+  (line 55)
+  (new-instance v0 android/support/v4/app/ListFragment$2)
+; v0 : Landroid/support/v4/app/ListFragment$2;
+  (invoke-direct {v0 v1} android/support/v4/app/ListFragment$2/<init> [object android/support/v4/app/ListFragment] )
+; v0 : Landroid/support/v4/app/ListFragment$2; , v1 : Landroid/support/v4/app/ListFragment;
+  (iput-object v0 v1 android/support/v4/app/ListFragment.mOnClickListener [object android/widget/AdapterView$OnItemClickListener])
+; v0 : Landroid/support/v4/app/ListFragment$2; , v1 : Landroid/support/v4/app/ListFragment;
+  (line 72)
+  (return-void )
+ )
+
+(method (attrs private ) ensureList()void
+  (limit registers 7)
+  ; this: v6 ([object android/support/v4/app/ListFragment])
+.var 2 is root [object android/view/View] from l196a0 to l196c0
+.var 0 is adapter [object android/widget/ListAdapter] from l196e4 to l196f0
+.var 1 is rawListView [object android/view/View] from l19762 to l1977e
+.var 1 is rawListView [object android/view/View] from l1978e to l197a2
+.var 2 is root [object android/view/View] from l19700 to l197e6
+  (const/4 v5 0)
+; v5 : single-length
+  (line 323)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v3 : Landroid/widget/ListView; , v6 : Landroid/support/v4/app/ListFragment;
+  (if-eqz v3 l19698)
+; v3 : Landroid/widget/ListView;
+  (label l19696)
+  (line 374)
+  (return-void )
+  (label l19698)
+  (line 326)
+  (invoke-virtual {v6} android/support/v4/app/ListFragment/getView )
+; v6 : Landroid/support/v4/app/ListFragment;
+  (move-result-object v2)
+; v2 : Landroid/view/View;
+  (label l196a0)
+  (line 327)
+  (if-nez v2 l196b4)
+; v2 : Landroid/view/View;
+  (line 328)
+  (new-instance v3 java/lang/IllegalStateException)
+; v3 : Ljava/lang/IllegalStateException;
+  (const-string v4 "Content view not yet created")
+; v4 : Ljava/lang/String;
+  (invoke-direct {v3 v4} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v3 : Ljava/lang/IllegalStateException; , v4 : Ljava/lang/String;
+  (throw v3)
+; v3 : Ljava/lang/IllegalStateException;
+  (label l196b4)
+  (line 330)
+  (instance-of v3 v2 android/widget/ListView)
+; v3 : single-length , v2 : Landroid/view/View;
+  (if-eqz v3 l19700)
+; v3 : single-length
+  (line 331)
+  (check-cast v2 [object android/widget/ListView])
+; v2 : Landroid/widget/ListView;
+  (label l196c0)
+  (iput-object v2 v6 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v2 : Landroid/widget/ListView; , v6 : Landroid/support/v4/app/ListFragment;
+  (label l196c4)
+  (line 360)
+  (const/4 v3 1)
+; v3 : single-length
+  (iput-boolean v3 v6 android/support/v4/app/ListFragment.mListShown boolean)
+; v3 : single-length , v6 : Landroid/support/v4/app/ListFragment;
+  (line 361)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v3 : Landroid/widget/ListView; , v6 : Landroid/support/v4/app/ListFragment;
+  (iget-object v4 v6 android/support/v4/app/ListFragment.mOnClickListener [object android/widget/AdapterView$OnItemClickListener])
+; v4 : Landroid/widget/AdapterView$OnItemClickListener; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v3 v4} android/widget/ListView/setOnItemClickListener [object android/widget/AdapterView$OnItemClickListener] )
+; v3 : Landroid/widget/ListView; , v4 : Landroid/widget/AdapterView$OnItemClickListener;
+  (line 362)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mAdapter [object android/widget/ListAdapter])
+; v3 : Landroid/widget/ListAdapter; , v6 : Landroid/support/v4/app/ListFragment;
+  (if-eqz v3 l197e6)
+; v3 : Landroid/widget/ListAdapter;
+  (line 363)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mAdapter [object android/widget/ListAdapter])
+; v0 : Landroid/widget/ListAdapter; , v6 : Landroid/support/v4/app/ListFragment;
+  (label l196e4)
+  (line 364)
+  (const/4 v3 0)
+; v3 : single-length
+  (iput-object v3 v6 android/support/v4/app/ListFragment.mAdapter [object android/widget/ListAdapter])
+; v3 : single-length , v6 : Landroid/support/v4/app/ListFragment;
+  (line 365)
+  (invoke-virtual {v6 v0} android/support/v4/app/ListFragment/setListAdapter [object android/widget/ListAdapter] )
+; v6 : Landroid/support/v4/app/ListFragment; , v0 : Landroid/widget/ListAdapter;
+  (label l196f0)
+  (line 373)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mHandler [object android/os/Handler])
+; v3 : Landroid/os/Handler; , v6 : Landroid/support/v4/app/ListFragment;
+  (iget-object v4 v6 android/support/v4/app/ListFragment.mRequestFocus [object java/lang/Runnable])
+; v4 : Ljava/lang/Runnable; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v3 v4} android/os/Handler/post [object java/lang/Runnable] )
+; v3 : Landroid/os/Handler; , v4 : Ljava/lang/Runnable;
+  (goto l19696)
+  (label l19700)
+  (line 333)
+  (const v3 16711681) ; 0xff0001)
+; v3 : single-length
+  (invoke-virtual {v2 v3} android/view/View/findViewById int )
+; v2 : Landroid/view/View; , v3 : single-length
+  (move-result-object v3)
+; v3 : Landroid/view/View;
+  (check-cast v3 [object android/widget/TextView])
+; v3 : Landroid/widget/TextView;
+  (iput-object v3 v6 android/support/v4/app/ListFragment.mStandardEmptyView [object android/widget/TextView])
+; v3 : Landroid/widget/TextView; , v6 : Landroid/support/v4/app/ListFragment;
+  (line 334)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mStandardEmptyView [object android/widget/TextView])
+; v3 : Landroid/widget/TextView; , v6 : Landroid/support/v4/app/ListFragment;
+  (if-nez v3 l1977e)
+; v3 : Landroid/widget/TextView;
+  (line 335)
+  (const v3 16908292) ; 0x1020004)
+; v3 : single-length
+  (invoke-virtual {v2 v3} android/view/View/findViewById int )
+; v2 : Landroid/view/View; , v3 : single-length
+  (move-result-object v3)
+; v3 : Landroid/view/View;
+  (iput-object v3 v6 android/support/v4/app/ListFragment.mEmptyView [object android/view/View])
+; v3 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (label l19730)
+  (line 339)
+  (const v3 16711682) ; 0xff0002)
+; v3 : single-length
+  (invoke-virtual {v2 v3} android/view/View/findViewById int )
+; v2 : Landroid/view/View; , v3 : single-length
+  (move-result-object v3)
+; v3 : Landroid/view/View;
+  (iput-object v3 v6 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v3 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (line 340)
+  (const v3 16711683) ; 0xff0003)
+; v3 : single-length
+  (invoke-virtual {v2 v3} android/view/View/findViewById int )
+; v2 : Landroid/view/View; , v3 : single-length
+  (move-result-object v3)
+; v3 : Landroid/view/View;
+  (iput-object v3 v6 android/support/v4/app/ListFragment.mListContainer [object android/view/View])
+; v3 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (line 341)
+  (const v3 16908298) ; 0x102000a)
+; v3 : single-length
+  (invoke-virtual {v2 v3} android/view/View/findViewById int )
+; v2 : Landroid/view/View; , v3 : single-length
+  (move-result-object v1)
+; v1 : Landroid/view/View;
+  (label l19762)
+  (line 342)
+  (instance-of v3 v1 android/widget/ListView)
+; v3 : single-length , v1 : Landroid/view/View;
+  (if-nez v3 l1979e)
+; v3 : single-length
+  (line 343)
+  (if-nez v1 l1978e)
+; v1 : Landroid/view/View;
+  (line 344)
+  (new-instance v3 java/lang/RuntimeException)
+; v3 : Ljava/lang/RuntimeException;
+  (const-string v4 "Your content must have a ListView whose id attribute is 'android.R.id.list'")
+; v4 : Ljava/lang/String;
+  (invoke-direct {v3 v4} java/lang/RuntimeException/<init> [object java/lang/String] )
+; v3 : Ljava/lang/RuntimeException; , v4 : Ljava/lang/String;
+  (throw v3)
+; v3 : Ljava/lang/RuntimeException;
+  (label l1977e)
+  (line 337)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mStandardEmptyView [object android/widget/TextView])
+; v3 : Landroid/widget/TextView; , v6 : Landroid/support/v4/app/ListFragment;
+  (const/16 v4 8)
+; v4 : single-length
+  (invoke-virtual {v3 v4} android/widget/TextView/setVisibility int )
+; v3 : Landroid/widget/TextView; , v4 : single-length
+  (goto l19730)
+  (label l1978e)
+  (line 348)
+  (new-instance v3 java/lang/RuntimeException)
+; v3 : Ljava/lang/RuntimeException;
+  (const-string v4 "Content has view with id attribute 'android.R.id.list' that is not a ListView class")
+; v4 : Ljava/lang/String;
+  (invoke-direct {v3 v4} java/lang/RuntimeException/<init> [object java/lang/String] )
+; v3 : Ljava/lang/RuntimeException; , v4 : Ljava/lang/String;
+  (throw v3)
+; v3 : Ljava/lang/RuntimeException;
+  (label l1979e)
+  (line 352)
+  (check-cast v1 [object android/widget/ListView])
+; v1 : Landroid/widget/ListView;
+  (label l197a2)
+  (iput-object v1 v6 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v1 : Landroid/widget/ListView; , v6 : Landroid/support/v4/app/ListFragment;
+  (line 353)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mEmptyView [object android/view/View])
+; v3 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (if-eqz v3 l197be)
+; v3 : Landroid/view/View;
+  (line 354)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v3 : Landroid/widget/ListView; , v6 : Landroid/support/v4/app/ListFragment;
+  (iget-object v4 v6 android/support/v4/app/ListFragment.mEmptyView [object android/view/View])
+; v4 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v3 v4} android/widget/ListView/setEmptyView [object android/view/View] )
+; v3 : Landroid/widget/ListView; , v4 : Landroid/view/View;
+  (goto l196c4)
+  (label l197be)
+  (line 355)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mEmptyText [object java/lang/CharSequence])
+; v3 : Ljava/lang/CharSequence; , v6 : Landroid/support/v4/app/ListFragment;
+  (if-eqz v3 l196c4)
+; v3 : Ljava/lang/CharSequence;
+  (line 356)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mStandardEmptyView [object android/widget/TextView])
+; v3 : Landroid/widget/TextView; , v6 : Landroid/support/v4/app/ListFragment;
+  (iget-object v4 v6 android/support/v4/app/ListFragment.mEmptyText [object java/lang/CharSequence])
+; v4 : Ljava/lang/CharSequence; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v3 v4} android/widget/TextView/setText [object java/lang/CharSequence] )
+; v3 : Landroid/widget/TextView; , v4 : Ljava/lang/CharSequence;
+  (line 357)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v3 : Landroid/widget/ListView; , v6 : Landroid/support/v4/app/ListFragment;
+  (iget-object v4 v6 android/support/v4/app/ListFragment.mStandardEmptyView [object android/widget/TextView])
+; v4 : Landroid/widget/TextView; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v3 v4} android/widget/ListView/setEmptyView [object android/view/View] )
+; v3 : Landroid/widget/ListView; , v4 : Landroid/widget/TextView;
+  (goto/16 l196c4)
+  (label l197e6)
+  (line 369)
+  (iget-object v3 v6 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v3 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (if-eqz v3 l196f0)
+; v3 : Landroid/view/View;
+  (line 370)
+  (invoke-direct {v6 v5 v5} android/support/v4/app/ListFragment/setListShown boolean boolean )
+; v6 : Landroid/support/v4/app/ListFragment; , v5 : single-length , v5 : single-length
+  (goto/16 l196f0)
+ )
+
+(method (attrs private ) setListShown(boolean boolean )void
+  (limit registers 9)
+  ; this: v6 ([object android/support/v4/app/ListFragment])
+  ; parameter[0] : v7 (boolean)
+  ; parameter[1] : v8 (boolean)
+  (const v5 17432577) ; 0x10a0001)
+; v5 : single-length
+  (const/high16 v4 266)
+; v4 : single-length
+  (const/16 v3 8)
+; v3 : single-length
+  (const/4 v2 0)
+; v2 : single-length
+  (line 280)
+  (invoke-direct {v6} android/support/v4/app/ListFragment/ensureList )
+; v6 : Landroid/support/v4/app/ListFragment;
+  (line 281)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (if-nez v0 l19836)
+; v0 : Landroid/view/View;
+  (line 282)
+  (new-instance v0 java/lang/IllegalStateException)
+; v0 : Ljava/lang/IllegalStateException;
+  (const-string v1 "Can't be used with a custom content view")
+; v1 : Ljava/lang/String;
+  (invoke-direct {v0 v1} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+  (throw v0)
+; v0 : Ljava/lang/IllegalStateException;
+  (label l19836)
+  (line 284)
+  (iget-boolean v0 v6 android/support/v4/app/ListFragment.mListShown boolean)
+; v0 : single-length , v6 : Landroid/support/v4/app/ListFragment;
+  (if-ne v0 v7 l19840)
+; v0 : single-length , v7 : single-length
+  (label l1983e)
+  (line 313)
+  (return-void )
+  (label l19840)
+  (line 287)
+  (iput-boolean v7 v6 android/support/v4/app/ListFragment.mListShown boolean)
+; v7 : single-length , v6 : Landroid/support/v4/app/ListFragment;
+  (line 288)
+  (if-eqz v7 l198ac)
+; v7 : single-length
+  (line 289)
+  (if-eqz v8 l19896)
+; v8 : single-length
+  (line 290)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v6} android/support/v4/app/ListFragment/getActivity )
+; v6 : Landroid/support/v4/app/ListFragment;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/app/FragmentActivity;
+  (invoke-static {v1 v5} android/view/animation/AnimationUtils/loadAnimation [object android/content/Context] int )
+; v1 : Landroid/support/v4/app/FragmentActivity; , v5 : single-length
+  (move-result-object v1)
+; v1 : Landroid/view/animation/Animation;
+  (invoke-virtual {v0 v1} android/view/View/startAnimation [object android/view/animation/Animation] )
+; v0 : Landroid/view/View; , v1 : Landroid/view/animation/Animation;
+  (line 292)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mListContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v6} android/support/v4/app/ListFragment/getActivity )
+; v6 : Landroid/support/v4/app/ListFragment;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/app/FragmentActivity;
+  (invoke-static {v1 v4} android/view/animation/AnimationUtils/loadAnimation [object android/content/Context] int )
+; v1 : Landroid/support/v4/app/FragmentActivity; , v4 : single-length
+  (move-result-object v1)
+; v1 : Landroid/view/animation/Animation;
+  (invoke-virtual {v0 v1} android/view/View/startAnimation [object android/view/animation/Animation] )
+; v0 : Landroid/view/View; , v1 : Landroid/view/animation/Animation;
+  (label l19880)
+  (line 298)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0 v3} android/view/View/setVisibility int )
+; v0 : Landroid/view/View; , v3 : single-length
+  (line 299)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mListContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0 v2} android/view/View/setVisibility int )
+; v0 : Landroid/view/View; , v2 : single-length
+  (goto l1983e)
+  (label l19896)
+  (line 295)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0} android/view/View/clearAnimation )
+; v0 : Landroid/view/View;
+  (line 296)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mListContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0} android/view/View/clearAnimation )
+; v0 : Landroid/view/View;
+  (goto l19880)
+  (label l198ac)
+  (line 301)
+  (if-eqz v8 l198fa)
+; v8 : single-length
+  (line 302)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v6} android/support/v4/app/ListFragment/getActivity )
+; v6 : Landroid/support/v4/app/ListFragment;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/app/FragmentActivity;
+  (invoke-static {v1 v4} android/view/animation/AnimationUtils/loadAnimation [object android/content/Context] int )
+; v1 : Landroid/support/v4/app/FragmentActivity; , v4 : single-length
+  (move-result-object v1)
+; v1 : Landroid/view/animation/Animation;
+  (invoke-virtual {v0 v1} android/view/View/startAnimation [object android/view/animation/Animation] )
+; v0 : Landroid/view/View; , v1 : Landroid/view/animation/Animation;
+  (line 304)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mListContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v6} android/support/v4/app/ListFragment/getActivity )
+; v6 : Landroid/support/v4/app/ListFragment;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/app/FragmentActivity;
+  (invoke-static {v1 v5} android/view/animation/AnimationUtils/loadAnimation [object android/content/Context] int )
+; v1 : Landroid/support/v4/app/FragmentActivity; , v5 : single-length
+  (move-result-object v1)
+; v1 : Landroid/view/animation/Animation;
+  (invoke-virtual {v0 v1} android/view/View/startAnimation [object android/view/animation/Animation] )
+; v0 : Landroid/view/View; , v1 : Landroid/view/animation/Animation;
+  (label l198e4)
+  (line 310)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0 v2} android/view/View/setVisibility int )
+; v0 : Landroid/view/View; , v2 : single-length
+  (line 311)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mListContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0 v3} android/view/View/setVisibility int )
+; v0 : Landroid/view/View; , v3 : single-length
+  (goto l1983e)
+  (label l198fa)
+  (line 307)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0} android/view/View/clearAnimation )
+; v0 : Landroid/view/View;
+  (line 308)
+  (iget-object v0 v6 android/support/v4/app/ListFragment.mListContainer [object android/view/View])
+; v0 : Landroid/view/View; , v6 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0} android/view/View/clearAnimation )
+; v0 : Landroid/view/View;
+  (goto l198e4)
+ )
+
+(method (attrs public ) getListAdapter()[object android/widget/ListAdapter]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/ListFragment])
+  (line 319)
+  (iget-object v0 v1 android/support/v4/app/ListFragment.mAdapter [object android/widget/ListAdapter])
+; v0 : Landroid/widget/ListAdapter; , v1 : Landroid/support/v4/app/ListFragment;
+  (return-object v0)
+; v0 : Landroid/widget/ListAdapter;
+)
+
+(method (attrs public ) getListView()[object android/widget/ListView]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/ListFragment])
+  (line 222)
+  (invoke-direct {v1} android/support/v4/app/ListFragment/ensureList )
+; v1 : Landroid/support/v4/app/ListFragment;
+  (line 223)
+  (iget-object v0 v1 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v0 : Landroid/widget/ListView; , v1 : Landroid/support/v4/app/ListFragment;
+  (return-object v0)
+; v0 : Landroid/widget/ListView;
+)
+
+(method (attrs public ) getSelectedItemId()long
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/app/ListFragment])
+  (line 214)
+  (invoke-direct {v2} android/support/v4/app/ListFragment/ensureList )
+; v2 : Landroid/support/v4/app/ListFragment;
+  (line 215)
+  (iget-object v0 v2 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v0 : Landroid/widget/ListView; , v2 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0} android/widget/ListView/getSelectedItemId )
+; v0 : Landroid/widget/ListView;
+  (move-result-wide v0)
+; v0 : double-length
+  (return-wide v0)
+; v0 : double-length
+)
+
+(method (attrs public ) getSelectedItemPosition()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/ListFragment])
+  (line 206)
+  (invoke-direct {v1} android/support/v4/app/ListFragment/ensureList )
+; v1 : Landroid/support/v4/app/ListFragment;
+  (line 207)
+  (iget-object v0 v1 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v0 : Landroid/widget/ListView; , v1 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0} android/widget/ListView/getSelectedItemPosition )
+; v0 : Landroid/widget/ListView;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) onCreateView([object android/view/LayoutInflater] [object android/view/ViewGroup] [object android/os/Bundle] )[object android/view/View]
+  (limit registers 16)
+  ; this: v12 ([object android/support/v4/app/ListFragment])
+  ; parameter[0] : v13 ([object android/view/LayoutInflater])
+  ; parameter[1] : v14 ([object android/view/ViewGroup])
+  ; parameter[2] : v15 ([object android/os/Bundle])
+  (const/16 v11 17)
+; v11 : single-length
+  (const/4 v10 14)
+; v10 : single-length
+  (const/4 v9 15)
+; v9 : single-length
+  (line 91)
+  (invoke-virtual {v12} android/support/v4/app/ListFragment/getActivity )
+; v12 : Landroid/support/v4/app/ListFragment;
+  (move-result-object v0)
+; v0 : Landroid/support/v4/app/FragmentActivity;
+  (line 93)
+  (new-instance v5 android/widget/FrameLayout)
+; v5 : Landroid/widget/FrameLayout;
+  (invoke-direct {v5 v0} android/widget/FrameLayout/<init> [object android/content/Context] )
+; v5 : Landroid/widget/FrameLayout; , v0 : Landroid/support/v4/app/FragmentActivity;
+  (line 97)
+  (new-instance v3 android/widget/LinearLayout)
+; v3 : Landroid/widget/LinearLayout;
+  (invoke-direct {v3 v0} android/widget/LinearLayout/<init> [object android/content/Context] )
+; v3 : Landroid/widget/LinearLayout; , v0 : Landroid/support/v4/app/FragmentActivity;
+  (line 98)
+  (const v7 16711682) ; 0xff0002)
+; v7 : single-length
+  (invoke-virtual {v3 v7} android/widget/LinearLayout/setId int )
+; v3 : Landroid/widget/LinearLayout; , v7 : single-length
+  (line 99)
+  (const/4 v7 1)
+; v7 : single-length
+  (invoke-virtual {v3 v7} android/widget/LinearLayout/setOrientation int )
+; v3 : Landroid/widget/LinearLayout; , v7 : single-length
+  (line 100)
+  (const/16 v7 8)
+; v7 : single-length
+  (invoke-virtual {v3 v7} android/widget/LinearLayout/setVisibility int )
+; v3 : Landroid/widget/LinearLayout; , v7 : single-length
+  (line 101)
+  (invoke-virtual {v3 v11} android/widget/LinearLayout/setGravity int )
+; v3 : Landroid/widget/LinearLayout; , v11 : single-length
+  (line 103)
+  (new-instance v4 android/widget/ProgressBar)
+; v4 : Landroid/widget/ProgressBar;
+  (const/4 v7 0)
+; v7 : single-length
+  (const v8 16842874) ; 0x101007a)
+; v8 : single-length
+  (invoke-direct {v4 v0 v7 v8} android/widget/ProgressBar/<init> [object android/content/Context] [object android/util/AttributeSet] int )
+; v4 : Landroid/widget/ProgressBar; , v0 : Landroid/support/v4/app/FragmentActivity; , v7 : single-length , v8 : single-length
+  (line 105)
+  (new-instance v7 android/widget/FrameLayout$LayoutParams)
+; v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (invoke-direct {v7 v10 v10} android/widget/FrameLayout$LayoutParams/<init> int int )
+; v7 : Landroid/widget/FrameLayout$LayoutParams; , v10 : single-length , v10 : single-length
+  (invoke-virtual {v3 v4 v7} android/widget/LinearLayout/addView [object android/view/View] [object android/view/ViewGroup$LayoutParams] )
+; v3 : Landroid/widget/LinearLayout; , v4 : Landroid/widget/ProgressBar; , v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (line 108)
+  (new-instance v7 android/widget/FrameLayout$LayoutParams)
+; v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (invoke-direct {v7 v9 v9} android/widget/FrameLayout$LayoutParams/<init> int int )
+; v7 : Landroid/widget/FrameLayout$LayoutParams; , v9 : single-length , v9 : single-length
+  (invoke-virtual {v5 v3 v7} android/widget/FrameLayout/addView [object android/view/View] [object android/view/ViewGroup$LayoutParams] )
+; v5 : Landroid/widget/FrameLayout; , v3 : Landroid/widget/LinearLayout; , v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (line 113)
+  (new-instance v1 android/widget/FrameLayout)
+; v1 : Landroid/widget/FrameLayout;
+  (invoke-direct {v1 v0} android/widget/FrameLayout/<init> [object android/content/Context] )
+; v1 : Landroid/widget/FrameLayout; , v0 : Landroid/support/v4/app/FragmentActivity;
+  (line 114)
+  (const v7 16711683) ; 0xff0003)
+; v7 : single-length
+  (invoke-virtual {v1 v7} android/widget/FrameLayout/setId int )
+; v1 : Landroid/widget/FrameLayout; , v7 : single-length
+  (line 116)
+  (new-instance v6 android/widget/TextView)
+; v6 : Landroid/widget/TextView;
+  (invoke-virtual {v12} android/support/v4/app/ListFragment/getActivity )
+; v12 : Landroid/support/v4/app/ListFragment;
+  (move-result-object v7)
+; v7 : Landroid/support/v4/app/FragmentActivity;
+  (invoke-direct {v6 v7} android/widget/TextView/<init> [object android/content/Context] )
+; v6 : Landroid/widget/TextView; , v7 : Landroid/support/v4/app/FragmentActivity;
+  (line 117)
+  (const v7 16711681) ; 0xff0001)
+; v7 : single-length
+  (invoke-virtual {v6 v7} android/widget/TextView/setId int )
+; v6 : Landroid/widget/TextView; , v7 : single-length
+  (line 118)
+  (invoke-virtual {v6 v11} android/widget/TextView/setGravity int )
+; v6 : Landroid/widget/TextView; , v11 : single-length
+  (line 119)
+  (new-instance v7 android/widget/FrameLayout$LayoutParams)
+; v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (invoke-direct {v7 v9 v9} android/widget/FrameLayout$LayoutParams/<init> int int )
+; v7 : Landroid/widget/FrameLayout$LayoutParams; , v9 : single-length , v9 : single-length
+  (invoke-virtual {v1 v6 v7} android/widget/FrameLayout/addView [object android/view/View] [object android/view/ViewGroup$LayoutParams] )
+; v1 : Landroid/widget/FrameLayout; , v6 : Landroid/widget/TextView; , v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (line 122)
+  (new-instance v2 android/widget/ListView)
+; v2 : Landroid/widget/ListView;
+  (invoke-virtual {v12} android/support/v4/app/ListFragment/getActivity )
+; v12 : Landroid/support/v4/app/ListFragment;
+  (move-result-object v7)
+; v7 : Landroid/support/v4/app/FragmentActivity;
+  (invoke-direct {v2 v7} android/widget/ListView/<init> [object android/content/Context] )
+; v2 : Landroid/widget/ListView; , v7 : Landroid/support/v4/app/FragmentActivity;
+  (line 123)
+  (const v7 16908298) ; 0x102000a)
+; v7 : single-length
+  (invoke-virtual {v2 v7} android/widget/ListView/setId int )
+; v2 : Landroid/widget/ListView; , v7 : single-length
+  (line 124)
+  (const/4 v7 0)
+; v7 : single-length
+  (invoke-virtual {v2 v7} android/widget/ListView/setDrawSelectorOnTop boolean )
+; v2 : Landroid/widget/ListView; , v7 : single-length
+  (line 125)
+  (new-instance v7 android/widget/FrameLayout$LayoutParams)
+; v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (invoke-direct {v7 v9 v9} android/widget/FrameLayout$LayoutParams/<init> int int )
+; v7 : Landroid/widget/FrameLayout$LayoutParams; , v9 : single-length , v9 : single-length
+  (invoke-virtual {v1 v2 v7} android/widget/FrameLayout/addView [object android/view/View] [object android/view/ViewGroup$LayoutParams] )
+; v1 : Landroid/widget/FrameLayout; , v2 : Landroid/widget/ListView; , v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (line 128)
+  (new-instance v7 android/widget/FrameLayout$LayoutParams)
+; v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (invoke-direct {v7 v9 v9} android/widget/FrameLayout$LayoutParams/<init> int int )
+; v7 : Landroid/widget/FrameLayout$LayoutParams; , v9 : single-length , v9 : single-length
+  (invoke-virtual {v5 v1 v7} android/widget/FrameLayout/addView [object android/view/View] [object android/view/ViewGroup$LayoutParams] )
+; v5 : Landroid/widget/FrameLayout; , v1 : Landroid/widget/FrameLayout; , v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (line 133)
+  (new-instance v7 android/widget/FrameLayout$LayoutParams)
+; v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (invoke-direct {v7 v9 v9} android/widget/FrameLayout$LayoutParams/<init> int int )
+; v7 : Landroid/widget/FrameLayout$LayoutParams; , v9 : single-length , v9 : single-length
+  (invoke-virtual {v5 v7} android/widget/FrameLayout/setLayoutParams [object android/view/ViewGroup$LayoutParams] )
+; v5 : Landroid/widget/FrameLayout; , v7 : Landroid/widget/FrameLayout$LayoutParams;
+  (line 136)
+  (return-object v5)
+; v5 : Landroid/widget/FrameLayout;
+)
+
+(method (attrs public ) onDestroyView()void
+  (limit registers 4)
+  ; this: v3 ([object android/support/v4/app/ListFragment])
+  (const/4 v2 0)
+; v2 : single-length
+  (line 153)
+  (iget-object v0 v3 android/support/v4/app/ListFragment.mHandler [object android/os/Handler])
+; v0 : Landroid/os/Handler; , v3 : Landroid/support/v4/app/ListFragment;
+  (iget-object v1 v3 android/support/v4/app/ListFragment.mRequestFocus [object java/lang/Runnable])
+; v1 : Ljava/lang/Runnable; , v3 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0 v1} android/os/Handler/removeCallbacks [object java/lang/Runnable] )
+; v0 : Landroid/os/Handler; , v1 : Ljava/lang/Runnable;
+  (line 154)
+  (iput-object v2 v3 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v2 : single-length , v3 : Landroid/support/v4/app/ListFragment;
+  (line 155)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-boolean v0 v3 android/support/v4/app/ListFragment.mListShown boolean)
+; v0 : single-length , v3 : Landroid/support/v4/app/ListFragment;
+  (line 156)
+  (iput-object v2 v3 android/support/v4/app/ListFragment.mListContainer [object android/view/View])
+; v2 : single-length , v3 : Landroid/support/v4/app/ListFragment;
+  (iput-object v2 v3 android/support/v4/app/ListFragment.mProgressContainer [object android/view/View])
+; v2 : single-length , v3 : Landroid/support/v4/app/ListFragment;
+  (iput-object v2 v3 android/support/v4/app/ListFragment.mEmptyView [object android/view/View])
+; v2 : single-length , v3 : Landroid/support/v4/app/ListFragment;
+  (line 157)
+  (iput-object v2 v3 android/support/v4/app/ListFragment.mStandardEmptyView [object android/widget/TextView])
+; v2 : single-length , v3 : Landroid/support/v4/app/ListFragment;
+  (line 158)
+  (invoke-super {v3} android/support/v4/app/Fragment/onDestroyView )
+; v3 : Landroid/support/v4/app/ListFragment;
+  (line 159)
+  (return-void )
+)
+
+(method (attrs public ) onListItemClick([object android/widget/ListView] [object android/view/View] int long )void
+  (limit registers 6)
+  ; this: v0 ([object android/support/v4/app/ListFragment])
+  ; parameter[0] : v1 ([object android/widget/ListView])
+  ; parameter[1] : v2 ([object android/view/View])
+  ; parameter[2] : v3 (int)
+  ; parameter[3] : v4 (long)
+  (line 173)
+  (return-void )
+)
+
+(method (attrs public ) onViewCreated([object android/view/View] [object android/os/Bundle] )void
+  (limit registers 3)
+  ; this: v0 ([object android/support/v4/app/ListFragment])
+  ; parameter[0] : v1 ([object android/view/View])
+  ; parameter[1] : v2 ([object android/os/Bundle])
+  (line 144)
+  (invoke-super {v0 v1 v2} android/support/v4/app/Fragment/onViewCreated [object android/view/View] [object android/os/Bundle] )
+; v0 : Landroid/support/v4/app/ListFragment; , v1 : Landroid/view/View; , v2 : Landroid/os/Bundle;
+  (line 145)
+  (invoke-direct {v0} android/support/v4/app/ListFragment/ensureList )
+; v0 : Landroid/support/v4/app/ListFragment;
+  (line 146)
+  (return-void )
+)
+
+(method (attrs public ) setEmptyText([object java/lang/CharSequence] )void
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/ListFragment])
+  ; parameter[0] : v3 ([object java/lang/CharSequence])
+  (line 232)
+  (invoke-direct {v2} android/support/v4/app/ListFragment/ensureList )
+; v2 : Landroid/support/v4/app/ListFragment;
+  (line 233)
+  (iget-object v0 v2 android/support/v4/app/ListFragment.mStandardEmptyView [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v2 : Landroid/support/v4/app/ListFragment;
+  (if-nez v0 l19b5e)
+; v0 : Landroid/widget/TextView;
+  (line 234)
+  (new-instance v0 java/lang/IllegalStateException)
+; v0 : Ljava/lang/IllegalStateException;
+  (const-string v1 "Can't be used with a custom content view")
+; v1 : Ljava/lang/String;
+  (invoke-direct {v0 v1} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+  (throw v0)
+; v0 : Ljava/lang/IllegalStateException;
+  (label l19b5e)
+  (line 236)
+  (iget-object v0 v2 android/support/v4/app/ListFragment.mStandardEmptyView [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v2 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0 v3} android/widget/TextView/setText [object java/lang/CharSequence] )
+; v0 : Landroid/widget/TextView; , v3 : Ljava/lang/CharSequence;
+  (line 237)
+  (iget-object v0 v2 android/support/v4/app/ListFragment.mEmptyText [object java/lang/CharSequence])
+; v0 : Ljava/lang/CharSequence; , v2 : Landroid/support/v4/app/ListFragment;
+  (if-nez v0 l19b7e)
+; v0 : Ljava/lang/CharSequence;
+  (line 238)
+  (iget-object v0 v2 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v0 : Landroid/widget/ListView; , v2 : Landroid/support/v4/app/ListFragment;
+  (iget-object v1 v2 android/support/v4/app/ListFragment.mStandardEmptyView [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v2 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0 v1} android/widget/ListView/setEmptyView [object android/view/View] )
+; v0 : Landroid/widget/ListView; , v1 : Landroid/widget/TextView;
+  (label l19b7e)
+  (line 240)
+  (iput-object v3 v2 android/support/v4/app/ListFragment.mEmptyText [object java/lang/CharSequence])
+; v3 : Ljava/lang/CharSequence; , v2 : Landroid/support/v4/app/ListFragment;
+  (line 241)
+  (return-void )
+)
+
+(method (attrs public ) setListAdapter([object android/widget/ListAdapter] )void
+  (limit registers 6)
+  ; this: v4 ([object android/support/v4/app/ListFragment])
+  ; parameter[0] : v5 ([object android/widget/ListAdapter])
+.var 0 is hadAdapter boolean from l19ba2 to l19be2
+  (const/4 v2 0)
+; v2 : single-length
+  (const/4 v1 1)
+; v1 : single-length
+  (line 179)
+  (iget-object v3 v4 android/support/v4/app/ListFragment.mAdapter [object android/widget/ListAdapter])
+; v3 : Landroid/widget/ListAdapter; , v4 : Landroid/support/v4/app/ListFragment;
+  (if-eqz v3 l19be2)
+; v3 : Landroid/widget/ListAdapter;
+  (move v0 v1)
+; v0 : single-length , v1 : single-length
+  (label l19ba2)
+  (line 180)
+  (iput-object v5 v4 android/support/v4/app/ListFragment.mAdapter [object android/widget/ListAdapter])
+; v5 : Landroid/widget/ListAdapter; , v4 : Landroid/support/v4/app/ListFragment;
+  (line 181)
+  (iget-object v3 v4 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v3 : Landroid/widget/ListView; , v4 : Landroid/support/v4/app/ListFragment;
+  (if-eqz v3 l19be0)
+; v3 : Landroid/widget/ListView;
+  (line 182)
+  (iget-object v3 v4 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v3 : Landroid/widget/ListView; , v4 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v3 v5} android/widget/ListView/setAdapter [object android/widget/ListAdapter] )
+; v3 : Landroid/widget/ListView; , v5 : Landroid/widget/ListAdapter;
+  (line 183)
+  (iget-boolean v3 v4 android/support/v4/app/ListFragment.mListShown boolean)
+; v3 : single-length , v4 : Landroid/support/v4/app/ListFragment;
+  (if-nez v3 l19be0)
+; v3 : single-length
+  (if-nez v0 l19be0)
+; v0 : single-length
+  (line 186)
+  (invoke-virtual {v4} android/support/v4/app/ListFragment/getView )
+; v4 : Landroid/support/v4/app/ListFragment;
+  (move-result-object v3)
+; v3 : Landroid/view/View;
+  (invoke-virtual {v3} android/view/View/getWindowToken )
+; v3 : Landroid/view/View;
+  (move-result-object v3)
+; v3 : Landroid/os/IBinder;
+  (if-eqz v3 l19bda)
+; v3 : Landroid/os/IBinder;
+  (move v2 v1)
+; v2 : single-length , v1 : single-length
+  (label l19bda)
+  (invoke-direct {v4 v1 v2} android/support/v4/app/ListFragment/setListShown boolean boolean )
+; v4 : Landroid/support/v4/app/ListFragment; , v1 : single-length , v2 : single-length
+  (label l19be0)
+  (line 189)
+  (return-void )
+  (label l19be2)
+  (move v0 v2)
+; v0 : single-length , v2 : single-length
+  (line 179)
+  (goto l19ba2)
+)
+
+(method (attrs public ) setListShown(boolean )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ListFragment])
+  ; parameter[0] : v2 (boolean)
+  (line 258)
+  (const/4 v0 1)
+; v0 : single-length
+  (invoke-direct {v1 v2 v0} android/support/v4/app/ListFragment/setListShown boolean boolean )
+; v1 : Landroid/support/v4/app/ListFragment; , v2 : single-length , v0 : single-length
+  (line 259)
+  (return-void )
+)
+
+(method (attrs public ) setListShownNoAnimation(boolean )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ListFragment])
+  ; parameter[0] : v2 (boolean)
+  (line 266)
+  (const/4 v0 0)
+; v0 : single-length
+  (invoke-direct {v1 v2 v0} android/support/v4/app/ListFragment/setListShown boolean boolean )
+; v1 : Landroid/support/v4/app/ListFragment; , v2 : single-length , v0 : single-length
+  (line 267)
+  (return-void )
+)
+
+(method (attrs public ) setSelection(int )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ListFragment])
+  ; parameter[0] : v2 (int)
+  (line 198)
+  (invoke-direct {v1} android/support/v4/app/ListFragment/ensureList )
+; v1 : Landroid/support/v4/app/ListFragment;
+  (line 199)
+  (iget-object v0 v1 android/support/v4/app/ListFragment.mList [object android/widget/ListView])
+; v0 : Landroid/widget/ListView; , v1 : Landroid/support/v4/app/ListFragment;
+  (invoke-virtual {v0 v2} android/widget/ListView/setSelection int )
+; v0 : Landroid/widget/ListView; , v2 : single-length
+  (line 200)
+  (return-void )
+)
+
+)

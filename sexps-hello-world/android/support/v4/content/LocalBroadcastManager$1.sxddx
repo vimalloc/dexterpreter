@@ -1,0 +1,52 @@
+(class (attrs ) android/support/v4/content/LocalBroadcastManager$1
+ (super android/os/Handler)
+ (source "LocalBroadcastManager.java")
+
+ (field (attrs final ) this$0 [object android/support/v4/content/LocalBroadcastManager] )
+
+(method (attrs ) <init>([object android/support/v4/content/LocalBroadcastManager] [object android/os/Looper] )void
+  (limit registers 3)
+  ; this: v0 ([object android/support/v4/content/LocalBroadcastManager$1])
+  ; parameter[0] : v1 ([object android/support/v4/content/LocalBroadcastManager])
+  ; parameter[1] : v2 ([object android/os/Looper])
+  (line 110)
+  (iput-object v1 v0 android/support/v4/content/LocalBroadcastManager$1.this$0 [object android/support/v4/content/LocalBroadcastManager])
+; v1 : Landroid/support/v4/content/LocalBroadcastManager; , v0 : Landroid/support/v4/content/LocalBroadcastManager$1;
+  (invoke-direct {v0 v2} android/os/Handler/<init> [object android/os/Looper] )
+; v0 : Landroid/support/v4/content/LocalBroadcastManager$1; , v2 : Landroid/os/Looper;
+  (return-void )
+ )
+
+(method (attrs public ) handleMessage([object android/os/Message] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/content/LocalBroadcastManager$1])
+  ; parameter[0] : v2 ([object android/os/Message])
+  (line 114)
+  (iget v0 v2 android/os/Message.what int)
+; v0 : single-length , v2 : Landroid/os/Message;
+  (packed-switch v0 1
+    ps1ec80_1ec8e ; case 1
+    ps1ec80_default) ; default
+; v0 : single-length
+  (label ps1ec80_default)
+  (line 119)
+  (invoke-super {v1 v2} android/os/Handler/handleMessage [object android/os/Message] )
+; v1 : Landroid/support/v4/content/LocalBroadcastManager$1; , v2 : Landroid/os/Message;
+  (label l1ec8c)
+  (line 121)
+  (return-void )
+  (label ps1ec80_1ec8e)
+  (line 116)
+  (iget-object v0 v1 android/support/v4/content/LocalBroadcastManager$1.this$0 [object android/support/v4/content/LocalBroadcastManager])
+; v0 : Landroid/support/v4/content/LocalBroadcastManager; , v1 : Landroid/support/v4/content/LocalBroadcastManager$1;
+  (invoke-static {v0} android/support/v4/content/LocalBroadcastManager/access$000 [object android/support/v4/content/LocalBroadcastManager] )
+; v0 : Landroid/support/v4/content/LocalBroadcastManager;
+  (goto l1ec8c)
+  (line 114)
+  (label l1ec9a)
+  (data-array
+    0x00 0x00
+  )
+)
+
+)

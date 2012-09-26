@@ -1,0 +1,149 @@
+(class (attrs ) android/support/v4/view/PagerTitleStrip$PageListener
+ (super android/database/DataSetObserver)
+ (source "PagerTitleStrip.java")
+ (implements android/support/v4/view/ViewPager$OnPageChangeListener)
+ (implements android/support/v4/view/ViewPager$OnAdapterChangeListener)
+
+ (field (attrs private ) mScrollState int )
+ (field (attrs final ) this$0 [object android/support/v4/view/PagerTitleStrip] )
+
+(method (attrs private ) <init>([object android/support/v4/view/PagerTitleStrip] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/view/PagerTitleStrip$PageListener])
+  ; parameter[0] : v1 ([object android/support/v4/view/PagerTitleStrip])
+  (line 464)
+  (iput-object v1 v0 android/support/v4/view/PagerTitleStrip$PageListener.this$0 [object android/support/v4/view/PagerTitleStrip])
+; v1 : Landroid/support/v4/view/PagerTitleStrip; , v0 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (invoke-direct {v0} android/database/DataSetObserver/<init> )
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (return-void )
+ )
+
+(method (attrs ) <init>([object android/support/v4/view/PagerTitleStrip] [object android/support/v4/view/PagerTitleStrip$1] )void
+  (limit registers 3)
+  ; this: v0 ([object android/support/v4/view/PagerTitleStrip$PageListener])
+  ; parameter[0] : v1 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[1] : v2 ([object android/support/v4/view/PagerTitleStrip$1])
+  (line 464)
+  (invoke-direct {v0 v1} android/support/v4/view/PagerTitleStrip$PageListener/<init> [object android/support/v4/view/PagerTitleStrip] )
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PageListener; , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (return-void )
+ )
+
+(method (attrs public ) onAdapterChanged([object android/support/v4/view/PagerAdapter] [object android/support/v4/view/PagerAdapter] )void
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/view/PagerTitleStrip$PageListener])
+  ; parameter[0] : v2 ([object android/support/v4/view/PagerAdapter])
+  ; parameter[1] : v3 ([object android/support/v4/view/PagerAdapter])
+  (line 492)
+  (iget-object v0 v1 android/support/v4/view/PagerTitleStrip$PageListener.this$0 [object android/support/v4/view/PagerTitleStrip])
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v1 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (invoke-virtual {v0 v2 v3} android/support/v4/view/PagerTitleStrip/updateAdapter [object android/support/v4/view/PagerAdapter] [object android/support/v4/view/PagerAdapter] )
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v2 : Landroid/support/v4/view/PagerAdapter; , v3 : Landroid/support/v4/view/PagerAdapter;
+  (line 493)
+  (return-void )
+)
+
+(method (attrs public ) onChanged()void
+  (limit registers 4)
+  ; this: v3 ([object android/support/v4/view/PagerTitleStrip$PageListener])
+  (line 497)
+  (iget-object v0 v3 android/support/v4/view/PagerTitleStrip$PageListener.this$0 [object android/support/v4/view/PagerTitleStrip])
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (iget-object v1 v3 android/support/v4/view/PagerTitleStrip$PageListener.this$0 [object android/support/v4/view/PagerTitleStrip])
+; v1 : Landroid/support/v4/view/PagerTitleStrip; , v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (iget-object v1 v1 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v1 : Landroid/support/v4/view/ViewPager;
+  (invoke-virtual {v1} android/support/v4/view/ViewPager/getCurrentItem )
+; v1 : Landroid/support/v4/view/ViewPager;
+  (move-result v1)
+; v1 : single-length
+  (iget-object v2 v3 android/support/v4/view/PagerTitleStrip$PageListener.this$0 [object android/support/v4/view/PagerTitleStrip])
+; v2 : Landroid/support/v4/view/PagerTitleStrip; , v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (iget-object v2 v2 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager;
+  (invoke-virtual {v2} android/support/v4/view/ViewPager/getAdapter )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v2)
+; v2 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v0 v1 v2} android/support/v4/view/PagerTitleStrip/updateText int [object android/support/v4/view/PagerAdapter] )
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v1 : single-length , v2 : Landroid/support/v4/view/PagerAdapter;
+  (line 498)
+  (return-void )
+)
+
+(method (attrs public ) onPageScrollStateChanged(int )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/view/PagerTitleStrip$PageListener])
+  ; parameter[0] : v1 (int)
+  (line 487)
+  (iput v1 v0 android/support/v4/view/PagerTitleStrip$PageListener.mScrollState int)
+; v1 : single-length , v0 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (line 488)
+  (return-void )
+)
+
+(method (attrs public ) onPageScrolled(int float int )void
+  (limit registers 6)
+  ; this: v2 ([object android/support/v4/view/PagerTitleStrip$PageListener])
+  ; parameter[0] : v3 (int)
+  ; parameter[1] : v4 (float)
+  ; parameter[2] : v5 (int)
+  (line 470)
+  (const/high16 v0 16128)
+; v0 : single-length
+  (cmpl-float v0 v4 v0)
+; v0 : single-length , v4 : single-length , v0 : single-length
+  (if-lez v0 l23d4c)
+; v0 : single-length
+  (line 472)
+  (add-int/lit8 v3 v3 1)
+; v3 : single-length , v3 : single-length
+  (label l23d4c)
+  (line 474)
+  (iget-object v0 v2 android/support/v4/view/PagerTitleStrip$PageListener.this$0 [object android/support/v4/view/PagerTitleStrip])
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v2 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (const/4 v1 0)
+; v1 : single-length
+  (invoke-virtual {v0 v3 v4 v1} android/support/v4/view/PagerTitleStrip/updateTextPositions int float boolean )
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v3 : single-length , v4 : single-length , v1 : single-length
+  (line 475)
+  (return-void )
+)
+
+(method (attrs public ) onPageSelected(int )void
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/view/PagerTitleStrip$PageListener])
+  ; parameter[0] : v4 (int)
+  (line 479)
+  (iget v0 v3 android/support/v4/view/PagerTitleStrip$PageListener.mScrollState int)
+; v0 : single-length , v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (if-nez v0 l23d9e)
+; v0 : single-length
+  (line 481)
+  (iget-object v0 v3 android/support/v4/view/PagerTitleStrip$PageListener.this$0 [object android/support/v4/view/PagerTitleStrip])
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (iget-object v1 v3 android/support/v4/view/PagerTitleStrip$PageListener.this$0 [object android/support/v4/view/PagerTitleStrip])
+; v1 : Landroid/support/v4/view/PagerTitleStrip; , v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (iget-object v1 v1 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v1 : Landroid/support/v4/view/ViewPager;
+  (invoke-virtual {v1} android/support/v4/view/ViewPager/getCurrentItem )
+; v1 : Landroid/support/v4/view/ViewPager;
+  (move-result v1)
+; v1 : single-length
+  (iget-object v2 v3 android/support/v4/view/PagerTitleStrip$PageListener.this$0 [object android/support/v4/view/PagerTitleStrip])
+; v2 : Landroid/support/v4/view/PagerTitleStrip; , v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (iget-object v2 v2 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager;
+  (invoke-virtual {v2} android/support/v4/view/ViewPager/getAdapter )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v2)
+; v2 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v0 v1 v2} android/support/v4/view/PagerTitleStrip/updateText int [object android/support/v4/view/PagerAdapter] )
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v1 : single-length , v2 : Landroid/support/v4/view/PagerAdapter;
+  (label l23d9e)
+  (line 483)
+  (return-void )
+)
+
+)

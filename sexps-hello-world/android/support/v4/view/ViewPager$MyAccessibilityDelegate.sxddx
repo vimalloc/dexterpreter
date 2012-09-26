@@ -1,0 +1,325 @@
+(class (attrs ) android/support/v4/view/ViewPager$MyAccessibilityDelegate
+ (super android/support/v4/view/AccessibilityDelegateCompat)
+ (source "ViewPager.java")
+
+ (field (attrs final ) this$0 [object android/support/v4/view/ViewPager] )
+
+(method (attrs ) <init>([object android/support/v4/view/ViewPager] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/view/ViewPager$MyAccessibilityDelegate])
+  ; parameter[0] : v1 ([object android/support/v4/view/ViewPager])
+  (line 2472)
+  (iput-object v1 v0 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v0 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-direct {v0} android/support/v4/view/AccessibilityDelegateCompat/<init> )
+; v0 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (return-void )
+ )
+
+(method (attrs public ) onInitializeAccessibilityEvent([object android/view/View] [object android/view/accessibility/AccessibilityEvent] )void
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/view/ViewPager$MyAccessibilityDelegate])
+  ; parameter[0] : v2 ([object android/view/View])
+  ; parameter[1] : v3 ([object android/view/accessibility/AccessibilityEvent])
+  (line 2476)
+  (invoke-super {v1 v2 v3} android/support/v4/view/AccessibilityDelegateCompat/onInitializeAccessibilityEvent [object android/view/View] [object android/view/accessibility/AccessibilityEvent] )
+; v1 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate; , v2 : Landroid/view/View; , v3 : Landroid/view/accessibility/AccessibilityEvent;
+  (line 2477)
+  (const-class v0 android/support/v4/view/ViewPager)
+; v0 : Ljava/lang/Class;
+  (invoke-virtual {v0} java/lang/Class/getName )
+; v0 : Ljava/lang/Class;
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (invoke-virtual {v3 v0} android/view/accessibility/AccessibilityEvent/setClassName [object java/lang/CharSequence] )
+; v3 : Landroid/view/accessibility/AccessibilityEvent; , v0 : Ljava/lang/String;
+  (line 2478)
+  (return-void )
+)
+
+(method (attrs public ) onInitializeAccessibilityNodeInfo([object android/view/View] [object android/support/v4/view/accessibility/AccessibilityNodeInfoCompat] )void
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/view/ViewPager$MyAccessibilityDelegate])
+  ; parameter[0] : v3 ([object android/view/View])
+  ; parameter[1] : v4 ([object android/support/v4/view/accessibility/AccessibilityNodeInfoCompat])
+  (const/4 v0 1)
+; v0 : single-length
+  (line 2482)
+  (invoke-super {v2 v3 v4} android/support/v4/view/AccessibilityDelegateCompat/onInitializeAccessibilityNodeInfo [object android/view/View] [object android/support/v4/view/accessibility/AccessibilityNodeInfoCompat] )
+; v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate; , v3 : Landroid/view/View; , v4 : Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat;
+  (line 2483)
+  (const-class v1 android/support/v4/view/ViewPager)
+; v1 : Ljava/lang/Class;
+  (invoke-virtual {v1} java/lang/Class/getName )
+; v1 : Ljava/lang/Class;
+  (move-result-object v1)
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v4 v1} android/support/v4/view/accessibility/AccessibilityNodeInfoCompat/setClassName [object java/lang/CharSequence] )
+; v4 : Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat; , v1 : Ljava/lang/String;
+  (line 2484)
+  (iget-object v1 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v1} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v1 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/view/PagerAdapter;
+  (if-eqz v1 l24d92)
+; v1 : Landroid/support/v4/view/PagerAdapter;
+  (iget-object v1 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v1} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v1 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v1} android/support/v4/view/PagerAdapter/getCount )
+; v1 : Landroid/support/v4/view/PagerAdapter;
+  (move-result v1)
+; v1 : single-length
+  (if-le v1 v0 l24d92)
+; v1 : single-length , v0 : single-length
+  (label l24cea)
+  (invoke-virtual {v4 v0} android/support/v4/view/accessibility/AccessibilityNodeInfoCompat/setScrollable boolean )
+; v4 : Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat; , v0 : single-length
+  (line 2485)
+  (iget-object v0 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v0} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v0 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v0)
+; v0 : Landroid/support/v4/view/PagerAdapter;
+  (if-eqz v0 l24d42)
+; v0 : Landroid/support/v4/view/PagerAdapter;
+  (iget-object v0 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v0} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v0 : Landroid/support/v4/view/ViewPager;
+  (move-result v0)
+; v0 : single-length
+  (if-ltz v0 l24d42)
+; v0 : single-length
+  (iget-object v0 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v0} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v0 : Landroid/support/v4/view/ViewPager;
+  (move-result v0)
+; v0 : single-length
+  (iget-object v1 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v1} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v1 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v1} android/support/v4/view/PagerAdapter/getCount )
+; v1 : Landroid/support/v4/view/PagerAdapter;
+  (move-result v1)
+; v1 : single-length
+  (add-int/lit8 v1 v1 255)
+; v1 : single-length , v1 : single-length
+  (if-ge v0 v1 l24d42)
+; v0 : single-length , v1 : single-length
+  (line 2486)
+  (const/16 v0 4096)
+; v0 : single-length
+  (invoke-virtual {v4 v0} android/support/v4/view/accessibility/AccessibilityNodeInfoCompat/addAction int )
+; v4 : Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat; , v0 : single-length
+  (label l24d42)
+  (line 2488)
+  (iget-object v0 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v0} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v0 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v0)
+; v0 : Landroid/support/v4/view/PagerAdapter;
+  (if-eqz v0 l24d90)
+; v0 : Landroid/support/v4/view/PagerAdapter;
+  (iget-object v0 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v0} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v0 : Landroid/support/v4/view/ViewPager;
+  (move-result v0)
+; v0 : single-length
+  (if-lez v0 l24d90)
+; v0 : single-length
+  (iget-object v0 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v0} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v0 : Landroid/support/v4/view/ViewPager;
+  (move-result v0)
+; v0 : single-length
+  (iget-object v1 v2 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v1} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v1 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v1)
+; v1 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v1} android/support/v4/view/PagerAdapter/getCount )
+; v1 : Landroid/support/v4/view/PagerAdapter;
+  (move-result v1)
+; v1 : single-length
+  (if-ge v0 v1 l24d90)
+; v0 : single-length , v1 : single-length
+  (line 2489)
+  (const/16 v0 8192)
+; v0 : single-length
+  (invoke-virtual {v4 v0} android/support/v4/view/accessibility/AccessibilityNodeInfoCompat/addAction int )
+; v4 : Landroid/support/v4/view/accessibility/AccessibilityNodeInfoCompat; , v0 : single-length
+  (label l24d90)
+  (line 2491)
+  (return-void )
+  (label l24d92)
+  (line 2484)
+  (const/4 v0 0)
+; v0 : single-length
+  (goto l24cea)
+)
+
+(method (attrs public ) performAccessibilityAction([object android/view/View] int [object android/os/Bundle] )boolean
+  (limit registers 8)
+  ; this: v4 ([object android/support/v4/view/ViewPager$MyAccessibilityDelegate])
+  ; parameter[0] : v5 ([object android/view/View])
+  ; parameter[1] : v6 (int)
+  ; parameter[2] : v7 ([object android/os/Bundle])
+  (const/4 v0 1)
+; v0 : single-length
+  (const/4 v1 0)
+; v1 : single-length
+  (line 2495)
+  (invoke-super {v4 v5 v6 v7} android/support/v4/view/AccessibilityDelegateCompat/performAccessibilityAction [object android/view/View] int [object android/os/Bundle] )
+; v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate; , v5 : Landroid/view/View; , v6 : single-length , v7 : Landroid/os/Bundle;
+  (move-result v2)
+; v2 : single-length
+  (if-eqz v2 l24dba)
+; v2 : single-length
+  (label l24db8)
+  (line 2512)
+  (return v0)
+; v0 : single-length
+  (label l24dba)
+  (line 2498)
+  (sparse-switch v6
+    (4096 sp24dba_24dc4)
+    (8192 sp24dba_24e2c)
+    (default sp24dba_default)
+  )
+; v6 : single-length
+  (label sp24dba_default)
+  (move v0 v1)
+; v0 : single-length , v1 : single-length
+  (line 2512)
+  (goto l24db8)
+  (label sp24dba_24dc4)
+  (line 2500)
+  (iget-object v2 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v2} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v2)
+; v2 : Landroid/support/v4/view/PagerAdapter;
+  (if-eqz v2 l24e28)
+; v2 : Landroid/support/v4/view/PagerAdapter;
+  (iget-object v2 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v2} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result v2)
+; v2 : single-length
+  (if-ltz v2 l24e28)
+; v2 : single-length
+  (iget-object v2 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v2} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result v2)
+; v2 : single-length
+  (iget-object v3 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v3 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v3} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v3 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v3)
+; v3 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v3} android/support/v4/view/PagerAdapter/getCount )
+; v3 : Landroid/support/v4/view/PagerAdapter;
+  (move-result v3)
+; v3 : single-length
+  (add-int/lit8 v3 v3 255)
+; v3 : single-length , v3 : single-length
+  (if-ge v2 v3 l24e28)
+; v2 : single-length , v3 : single-length
+  (line 2501)
+  (iget-object v1 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (iget-object v2 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v2} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result v2)
+; v2 : single-length
+  (add-int/lit8 v2 v2 1)
+; v2 : single-length , v2 : single-length
+  (invoke-virtual {v1 v2} android/support/v4/view/ViewPager/setCurrentItem int )
+; v1 : Landroid/support/v4/view/ViewPager; , v2 : single-length
+  (goto l24db8)
+  (label l24e28)
+  (move v0 v1)
+; v0 : single-length , v1 : single-length
+  (line 2504)
+  (goto l24db8)
+  (label sp24dba_24e2c)
+  (line 2506)
+  (iget-object v2 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v2} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v2)
+; v2 : Landroid/support/v4/view/PagerAdapter;
+  (if-eqz v2 l24e8c)
+; v2 : Landroid/support/v4/view/PagerAdapter;
+  (iget-object v2 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v2} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result v2)
+; v2 : single-length
+  (if-lez v2 l24e8c)
+; v2 : single-length
+  (iget-object v2 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v2} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result v2)
+; v2 : single-length
+  (iget-object v3 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v3 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v3} android/support/v4/view/ViewPager/access$100 [object android/support/v4/view/ViewPager] )
+; v3 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v3)
+; v3 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v3} android/support/v4/view/PagerAdapter/getCount )
+; v3 : Landroid/support/v4/view/PagerAdapter;
+  (move-result v3)
+; v3 : single-length
+  (if-ge v2 v3 l24e8c)
+; v2 : single-length , v3 : single-length
+  (line 2507)
+  (iget-object v1 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (iget-object v2 v4 android/support/v4/view/ViewPager$MyAccessibilityDelegate.this$0 [object android/support/v4/view/ViewPager])
+; v2 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/support/v4/view/ViewPager$MyAccessibilityDelegate;
+  (invoke-static {v2} android/support/v4/view/ViewPager/access$200 [object android/support/v4/view/ViewPager] )
+; v2 : Landroid/support/v4/view/ViewPager;
+  (move-result v2)
+; v2 : single-length
+  (add-int/lit8 v2 v2 255)
+; v2 : single-length , v2 : single-length
+  (invoke-virtual {v1 v2} android/support/v4/view/ViewPager/setCurrentItem int )
+; v1 : Landroid/support/v4/view/ViewPager; , v2 : single-length
+  (goto l24db8)
+  (label l24e8c)
+  (move v0 v1)
+; v0 : single-length , v1 : single-length
+  (line 2510)
+  (goto l24db8)
+  (line 2498)
+)
+
+)

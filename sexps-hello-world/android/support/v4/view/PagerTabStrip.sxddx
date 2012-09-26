@@ -1,0 +1,875 @@
+(class (attrs public ) android/support/v4/view/PagerTabStrip
+ (super android/support/v4/view/PagerTitleStrip)
+ (source "PagerTabStrip.java")
+
+ (field (attrs private static final ) FULL_UNDERLINE_HEIGHT int 1); 0x1 )
+ (field (attrs private static final ) INDICATOR_HEIGHT int 3); 0x3 )
+ (field (attrs private static final ) MIN_PADDING_BOTTOM int 6); 0x6 )
+ (field (attrs private static final ) MIN_STRIP_HEIGHT int 32); 0x20 )
+ (field (attrs private static final ) MIN_TEXT_SPACING int 64); 0x40 )
+ (field (attrs private static final ) TAB_PADDING int 16); 0x10 )
+ (field (attrs private static final ) TAB_SPACING int 32); 0x20 )
+ (field (attrs private static final ) TAG [object java/lang/String] "PagerTabStrip" )
+ (field (attrs private ) mDrawFullUnderline boolean )
+ (field (attrs private ) mDrawFullUnderlineSet boolean )
+ (field (attrs private ) mFullUnderlineHeight int )
+ (field (attrs private ) mIgnoreTap boolean )
+ (field (attrs private ) mIndicatorColor int )
+ (field (attrs private ) mIndicatorHeight int )
+ (field (attrs private ) mInitialMotionX float )
+ (field (attrs private ) mInitialMotionY float )
+ (field (attrs private ) mMinPaddingBottom int )
+ (field (attrs private ) mMinStripHeight int )
+ (field (attrs private ) mMinTextSpacing int )
+ (field (attrs private ) mTabAlpha int )
+ (field (attrs private ) mTabPadding int )
+ (field (attrs private final ) mTabPaint [object android/graphics/Paint] )
+ (field (attrs private final ) mTempRect [object android/graphics/Rect] )
+ (field (attrs private ) mTouchSlop int )
+
+(method (attrs public ) <init>([object android/content/Context] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v2 ([object android/content/Context])
+  (line 76)
+  (const/4 v0 0)
+; v0 : single-length
+  (invoke-direct {v1 v2 v0} android/support/v4/view/PagerTabStrip/<init> [object android/content/Context] [object android/util/AttributeSet] )
+; v1 : Landroid/support/v4/view/PagerTabStrip; , v2 : Landroid/content/Context; , v0 : single-length
+  (line 77)
+  (return-void )
+ )
+
+(method (attrs public ) <init>([object android/content/Context] [object android/util/AttributeSet] )void
+  (limit registers 10)
+  ; this: v7 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v8 ([object android/content/Context])
+  ; parameter[1] : v9 ([object android/util/AttributeSet])
+  (const/4 v6 1)
+; v6 : single-length
+  (const/4 v5 0)
+; v5 : single-length
+  (const/high16 v3 16128)
+; v3 : single-length
+  (line 80)
+  (invoke-direct {v7 v8 v9} android/support/v4/view/PagerTitleStrip/<init> [object android/content/Context] [object android/util/AttributeSet] )
+; v7 : Landroid/support/v4/view/PagerTabStrip; , v8 : Landroid/content/Context; , v9 : Landroid/util/AttributeSet;
+  (line 61)
+  (new-instance v1 android/graphics/Paint)
+; v1 : Landroid/graphics/Paint;
+  (invoke-direct {v1} android/graphics/Paint/<init> )
+; v1 : Landroid/graphics/Paint;
+  (iput-object v1 v7 android/support/v4/view/PagerTabStrip.mTabPaint [object android/graphics/Paint])
+; v1 : Landroid/graphics/Paint; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 62)
+  (new-instance v1 android/graphics/Rect)
+; v1 : Landroid/graphics/Rect;
+  (invoke-direct {v1} android/graphics/Rect/<init> )
+; v1 : Landroid/graphics/Rect;
+  (iput-object v1 v7 android/support/v4/view/PagerTabStrip.mTempRect [object android/graphics/Rect])
+; v1 : Landroid/graphics/Rect; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 64)
+  (const/16 v1 255)
+; v1 : single-length
+  (iput v1 v7 android/support/v4/view/PagerTabStrip.mTabAlpha int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 66)
+  (iput-boolean v5 v7 android/support/v4/view/PagerTabStrip.mDrawFullUnderline boolean)
+; v5 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 67)
+  (iput-boolean v5 v7 android/support/v4/view/PagerTabStrip.mDrawFullUnderlineSet boolean)
+; v5 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 82)
+  (iget v1 v7 android/support/v4/view/PagerTabStrip.mTextColor int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (iput v1 v7 android/support/v4/view/PagerTabStrip.mIndicatorColor int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 83)
+  (iget-object v1 v7 android/support/v4/view/PagerTabStrip.mTabPaint [object android/graphics/Paint])
+; v1 : Landroid/graphics/Paint; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (iget v2 v7 android/support/v4/view/PagerTabStrip.mIndicatorColor int)
+; v2 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v1 v2} android/graphics/Paint/setColor int )
+; v1 : Landroid/graphics/Paint; , v2 : single-length
+  (line 87)
+  (invoke-virtual {v8} android/content/Context/getResources )
+; v8 : Landroid/content/Context;
+  (move-result-object v1)
+; v1 : Landroid/content/res/Resources;
+  (invoke-virtual {v1} android/content/res/Resources/getDisplayMetrics )
+; v1 : Landroid/content/res/Resources;
+  (move-result-object v1)
+; v1 : Landroid/util/DisplayMetrics;
+  (iget v0 v1 android/util/DisplayMetrics.density float)
+; v0 : single-length , v1 : Landroid/util/DisplayMetrics;
+  (line 88)
+  (const/high16 v1 16448)
+; v1 : single-length
+  (mul-float/2addr v1 v0)
+; v1 : single-length , v0 : single-length
+  (add-float/2addr v1 v3)
+; v1 : single-length , v3 : single-length
+  (float-to-int v1 v1)
+; v1 : single-length , v1 : single-length
+  (iput v1 v7 android/support/v4/view/PagerTabStrip.mIndicatorHeight int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 89)
+  (const/high16 v1 16576)
+; v1 : single-length
+  (mul-float/2addr v1 v0)
+; v1 : single-length , v0 : single-length
+  (add-float/2addr v1 v3)
+; v1 : single-length , v3 : single-length
+  (float-to-int v1 v1)
+; v1 : single-length , v1 : single-length
+  (iput v1 v7 android/support/v4/view/PagerTabStrip.mMinPaddingBottom int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 90)
+  (const/high16 v1 17024)
+; v1 : single-length
+  (mul-float/2addr v1 v0)
+; v1 : single-length , v0 : single-length
+  (float-to-int v1 v1)
+; v1 : single-length , v1 : single-length
+  (iput v1 v7 android/support/v4/view/PagerTabStrip.mMinTextSpacing int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 91)
+  (const/high16 v1 16768)
+; v1 : single-length
+  (mul-float/2addr v1 v0)
+; v1 : single-length , v0 : single-length
+  (add-float/2addr v1 v3)
+; v1 : single-length , v3 : single-length
+  (float-to-int v1 v1)
+; v1 : single-length , v1 : single-length
+  (iput v1 v7 android/support/v4/view/PagerTabStrip.mTabPadding int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 92)
+  (const/high16 v1 16256)
+; v1 : single-length
+  (mul-float/2addr v1 v0)
+; v1 : single-length , v0 : single-length
+  (add-float/2addr v1 v3)
+; v1 : single-length , v3 : single-length
+  (float-to-int v1 v1)
+; v1 : single-length , v1 : single-length
+  (iput v1 v7 android/support/v4/view/PagerTabStrip.mFullUnderlineHeight int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 93)
+  (const/high16 v1 16896)
+; v1 : single-length
+  (mul-float/2addr v1 v0)
+; v1 : single-length , v0 : single-length
+  (add-float/2addr v1 v3)
+; v1 : single-length , v3 : single-length
+  (float-to-int v1 v1)
+; v1 : single-length , v1 : single-length
+  (iput v1 v7 android/support/v4/view/PagerTabStrip.mMinStripHeight int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 94)
+  (invoke-static {v8} android/view/ViewConfiguration/get [object android/content/Context] )
+; v8 : Landroid/content/Context;
+  (move-result-object v1)
+; v1 : Landroid/view/ViewConfiguration;
+  (invoke-virtual {v1} android/view/ViewConfiguration/getScaledTouchSlop )
+; v1 : Landroid/view/ViewConfiguration;
+  (move-result v1)
+; v1 : single-length
+  (iput v1 v7 android/support/v4/view/PagerTabStrip.mTouchSlop int)
+; v1 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 97)
+  (invoke-virtual {v7} android/support/v4/view/PagerTabStrip/getPaddingLeft )
+; v7 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result v1)
+; v1 : single-length
+  (invoke-virtual {v7} android/support/v4/view/PagerTabStrip/getPaddingTop )
+; v7 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result v2)
+; v2 : single-length
+  (invoke-virtual {v7} android/support/v4/view/PagerTabStrip/getPaddingRight )
+; v7 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result v3)
+; v3 : single-length
+  (invoke-virtual {v7} android/support/v4/view/PagerTabStrip/getPaddingBottom )
+; v7 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result v4)
+; v4 : single-length
+  (invoke-virtual {v7 v1 v2 v3 v4} android/support/v4/view/PagerTabStrip/setPadding int int int int )
+; v7 : Landroid/support/v4/view/PagerTabStrip; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length
+  (line 98)
+  (invoke-virtual {v7} android/support/v4/view/PagerTabStrip/getTextSpacing )
+; v7 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result v1)
+; v1 : single-length
+  (invoke-virtual {v7 v1} android/support/v4/view/PagerTabStrip/setTextSpacing int )
+; v7 : Landroid/support/v4/view/PagerTabStrip; , v1 : single-length
+  (line 100)
+  (invoke-virtual {v7 v5} android/support/v4/view/PagerTabStrip/setWillNotDraw boolean )
+; v7 : Landroid/support/v4/view/PagerTabStrip; , v5 : single-length
+  (line 102)
+  (iget-object v1 v7 android/support/v4/view/PagerTabStrip.mPrevText [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v1 v6} android/widget/TextView/setFocusable boolean )
+; v1 : Landroid/widget/TextView; , v6 : single-length
+  (line 103)
+  (iget-object v1 v7 android/support/v4/view/PagerTabStrip.mPrevText [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (new-instance v2 android/support/v4/view/PagerTabStrip$1)
+; v2 : Landroid/support/v4/view/PagerTabStrip$1;
+  (invoke-direct {v2 v7} android/support/v4/view/PagerTabStrip$1/<init> [object android/support/v4/view/PagerTabStrip] )
+; v2 : Landroid/support/v4/view/PagerTabStrip$1; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v1 v2} android/widget/TextView/setOnClickListener [object android/view/View$OnClickListener] )
+; v1 : Landroid/widget/TextView; , v2 : Landroid/support/v4/view/PagerTabStrip$1;
+  (line 110)
+  (iget-object v1 v7 android/support/v4/view/PagerTabStrip.mNextText [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v1 v6} android/widget/TextView/setFocusable boolean )
+; v1 : Landroid/widget/TextView; , v6 : single-length
+  (line 111)
+  (iget-object v1 v7 android/support/v4/view/PagerTabStrip.mNextText [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (new-instance v2 android/support/v4/view/PagerTabStrip$2)
+; v2 : Landroid/support/v4/view/PagerTabStrip$2;
+  (invoke-direct {v2 v7} android/support/v4/view/PagerTabStrip$2/<init> [object android/support/v4/view/PagerTabStrip] )
+; v2 : Landroid/support/v4/view/PagerTabStrip$2; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v1 v2} android/widget/TextView/setOnClickListener [object android/view/View$OnClickListener] )
+; v1 : Landroid/widget/TextView; , v2 : Landroid/support/v4/view/PagerTabStrip$2;
+  (line 118)
+  (invoke-virtual {v7} android/support/v4/view/PagerTabStrip/getBackground )
+; v7 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result-object v1)
+; v1 : Landroid/graphics/drawable/Drawable;
+  (if-nez v1 l23840)
+; v1 : Landroid/graphics/drawable/Drawable;
+  (line 119)
+  (iput-boolean v6 v7 android/support/v4/view/PagerTabStrip.mDrawFullUnderline boolean)
+; v6 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (label l23840)
+  (line 121)
+  (return-void )
+ )
+
+(method (attrs public ) getDrawFullUnderline()boolean
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  (line 210)
+  (iget-boolean v0 v1 android/support/v4/view/PagerTabStrip.mDrawFullUnderline boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs ) getMinHeight()int
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/view/PagerTabStrip])
+  (line 215)
+  (invoke-super {v2} android/support/v4/view/PagerTitleStrip/getMinHeight )
+; v2 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result v0)
+; v0 : single-length
+  (iget v1 v2 android/support/v4/view/PagerTabStrip.mMinStripHeight int)
+; v1 : single-length , v2 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-static {v0 v1} java/lang/Math/max int int )
+; v0 : single-length , v1 : single-length
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) getTabIndicatorColor()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  (line 147)
+  (iget v0 v1 android/support/v4/view/PagerTabStrip.mIndicatorColor int)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs protected ) onDraw([object android/graphics/Canvas] )void
+  (limit registers 14)
+  ; this: v12 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v13 ([object android/graphics/Canvas])
+  (const v11 16777215) ; 0xffffff)
+; v11 : single-length
+  (line 257)
+  (invoke-super {v12 v13} android/support/v4/view/PagerTitleStrip/onDraw [object android/graphics/Canvas] )
+; v12 : Landroid/support/v4/view/PagerTabStrip; , v13 : Landroid/graphics/Canvas;
+  (line 259)
+  (invoke-virtual {v12} android/support/v4/view/PagerTabStrip/getHeight )
+; v12 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result v7)
+; v7 : single-length
+  (line 260)
+  (move v6 v7)
+; v6 : single-length , v7 : single-length
+  (line 261)
+  (iget-object v0 v12 android/support/v4/view/PagerTabStrip.mCurrText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v0} android/widget/TextView/getLeft )
+; v0 : Landroid/widget/TextView;
+  (move-result v0)
+; v0 : single-length
+  (iget v1 v12 android/support/v4/view/PagerTabStrip.mTabPadding int)
+; v1 : single-length , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (sub-int v8 v0 v1)
+; v8 : single-length , v0 : single-length , v1 : single-length
+  (line 262)
+  (iget-object v0 v12 android/support/v4/view/PagerTabStrip.mCurrText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v0} android/widget/TextView/getRight )
+; v0 : Landroid/widget/TextView;
+  (move-result v0)
+; v0 : single-length
+  (iget v1 v12 android/support/v4/view/PagerTabStrip.mTabPadding int)
+; v1 : single-length , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (add-int v9 v0 v1)
+; v9 : single-length , v0 : single-length , v1 : single-length
+  (line 263)
+  (iget v0 v12 android/support/v4/view/PagerTabStrip.mIndicatorHeight int)
+; v0 : single-length , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (sub-int v10 v6 v0)
+; v10 : single-length , v6 : single-length , v0 : single-length
+  (line 265)
+  (iget-object v0 v12 android/support/v4/view/PagerTabStrip.mTabPaint [object android/graphics/Paint])
+; v0 : Landroid/graphics/Paint; , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (iget v1 v12 android/support/v4/view/PagerTabStrip.mTabAlpha int)
+; v1 : single-length , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (shl-int/lit8 v1 v1 24)
+; v1 : single-length , v1 : single-length
+  (iget v2 v12 android/support/v4/view/PagerTabStrip.mIndicatorColor int)
+; v2 : single-length , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (and-int/2addr v2 v11)
+; v2 : single-length , v11 : single-length
+  (or-int/2addr v1 v2)
+; v1 : single-length , v2 : single-length
+  (invoke-virtual {v0 v1} android/graphics/Paint/setColor int )
+; v0 : Landroid/graphics/Paint; , v1 : single-length
+  (line 266)
+  (int-to-float v1 v8)
+; v1 : single-length , v8 : single-length
+  (int-to-float v2 v10)
+; v2 : single-length , v10 : single-length
+  (int-to-float v3 v9)
+; v3 : single-length , v9 : single-length
+  (int-to-float v4 v6)
+; v4 : single-length , v6 : single-length
+  (iget-object v5 v12 android/support/v4/view/PagerTabStrip.mTabPaint [object android/graphics/Paint])
+; v5 : Landroid/graphics/Paint; , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (move-object v0 v13)
+; v0 : Landroid/graphics/Canvas; , v13 : Landroid/graphics/Canvas;
+  (invoke-virtual/range {v0..v5} android/graphics/Canvas/drawRect float float float float [object android/graphics/Paint] )
+; v0 : Landroid/graphics/Canvas; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length , v5 : Landroid/graphics/Paint;
+  (line 268)
+  (iget-boolean v0 v12 android/support/v4/view/PagerTabStrip.mDrawFullUnderline boolean)
+; v0 : single-length , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (if-eqz v0 l23962)
+; v0 : single-length
+  (line 269)
+  (iget-object v0 v12 android/support/v4/view/PagerTabStrip.mTabPaint [object android/graphics/Paint])
+; v0 : Landroid/graphics/Paint; , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (const/high16 v1 65280)
+; v1 : single-length
+  (iget v2 v12 android/support/v4/view/PagerTabStrip.mIndicatorColor int)
+; v2 : single-length , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (and-int/2addr v2 v11)
+; v2 : single-length , v11 : single-length
+  (or-int/2addr v1 v2)
+; v1 : single-length , v2 : single-length
+  (invoke-virtual {v0 v1} android/graphics/Paint/setColor int )
+; v0 : Landroid/graphics/Paint; , v1 : single-length
+  (line 270)
+  (const/4 v1 0)
+; v1 : single-length
+  (iget v0 v12 android/support/v4/view/PagerTabStrip.mFullUnderlineHeight int)
+; v0 : single-length , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (sub-int v0 v7 v0)
+; v0 : single-length , v7 : single-length , v0 : single-length
+  (int-to-float v2 v0)
+; v2 : single-length , v0 : single-length
+  (invoke-virtual {v12} android/support/v4/view/PagerTabStrip/getWidth )
+; v12 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result v0)
+; v0 : single-length
+  (int-to-float v3 v0)
+; v3 : single-length , v0 : single-length
+  (int-to-float v4 v7)
+; v4 : single-length , v7 : single-length
+  (iget-object v5 v12 android/support/v4/view/PagerTabStrip.mTabPaint [object android/graphics/Paint])
+; v5 : Landroid/graphics/Paint; , v12 : Landroid/support/v4/view/PagerTabStrip;
+  (move-object v0 v13)
+; v0 : Landroid/graphics/Canvas; , v13 : Landroid/graphics/Canvas;
+  (invoke-virtual/range {v0..v5} android/graphics/Canvas/drawRect float float float float [object android/graphics/Paint] )
+; v0 : Landroid/graphics/Canvas; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length , v5 : Landroid/graphics/Paint;
+  (label l23962)
+  (line 272)
+  (return-void )
+)
+
+(method (attrs public ) onTouchEvent([object android/view/MotionEvent] )boolean
+  (limit registers 8)
+  ; this: v6 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v7 ([object android/view/MotionEvent])
+  (const/4 v4 1)
+; v4 : single-length
+  (const/4 v3 0)
+; v3 : single-length
+  (line 220)
+  (invoke-virtual {v7} android/view/MotionEvent/getAction )
+; v7 : Landroid/view/MotionEvent;
+  (move-result v0)
+; v0 : single-length
+  (line 221)
+  (if-eqz v0 l2398e)
+; v0 : single-length
+  (iget-boolean v5 v6 android/support/v4/view/PagerTabStrip.mIgnoreTap boolean)
+; v5 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (if-eqz v5 l2398e)
+; v5 : single-length
+  (label l2398c)
+  (line 252)
+  (return v3)
+; v3 : single-length
+  (label l2398e)
+  (line 227)
+  (invoke-virtual {v7} android/view/MotionEvent/getX )
+; v7 : Landroid/view/MotionEvent;
+  (move-result v1)
+; v1 : single-length
+  (line 228)
+  (invoke-virtual {v7} android/view/MotionEvent/getY )
+; v7 : Landroid/view/MotionEvent;
+  (move-result v2)
+; v2 : single-length
+  (line 229)
+  (packed-switch v0 0
+    ps2399e_239a8 ; case 0
+    ps2399e_239f8 ; case 1
+    ps2399e_239b6 ; case 2
+    ps2399e_default) ; default
+; v0 : single-length
+  (label l239a4)
+  (label ps2399e_default)
+  (move v3 v4)
+; v3 : single-length , v4 : single-length
+  (line 252)
+  (goto l2398c)
+  (label ps2399e_239a8)
+  (line 231)
+  (iput v1 v6 android/support/v4/view/PagerTabStrip.mInitialMotionX float)
+; v1 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (line 232)
+  (iput v2 v6 android/support/v4/view/PagerTabStrip.mInitialMotionY float)
+; v2 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (line 233)
+  (iput-boolean v3 v6 android/support/v4/view/PagerTabStrip.mIgnoreTap boolean)
+; v3 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (goto l239a4)
+  (label ps2399e_239b6)
+  (line 237)
+  (iget v3 v6 android/support/v4/view/PagerTabStrip.mInitialMotionX float)
+; v3 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (sub-float v3 v1 v3)
+; v3 : single-length , v1 : single-length , v3 : single-length
+  (invoke-static {v3} java/lang/Math/abs float )
+; v3 : single-length
+  (move-result v3)
+; v3 : single-length
+  (iget v5 v6 android/support/v4/view/PagerTabStrip.mTouchSlop int)
+; v5 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (int-to-float v5 v5)
+; v5 : single-length , v5 : single-length
+  (cmpl-float v3 v3 v5)
+; v3 : single-length , v3 : single-length , v5 : single-length
+  (if-gtz v3 l239f2)
+; v3 : single-length
+  (iget v3 v6 android/support/v4/view/PagerTabStrip.mInitialMotionY float)
+; v3 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (sub-float v3 v2 v3)
+; v3 : single-length , v2 : single-length , v3 : single-length
+  (invoke-static {v3} java/lang/Math/abs float )
+; v3 : single-length
+  (move-result v3)
+; v3 : single-length
+  (iget v5 v6 android/support/v4/view/PagerTabStrip.mTouchSlop int)
+; v5 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (int-to-float v5 v5)
+; v5 : single-length , v5 : single-length
+  (cmpl-float v3 v3 v5)
+; v3 : single-length , v3 : single-length , v5 : single-length
+  (if-lez v3 l239a4)
+; v3 : single-length
+  (label l239f2)
+  (line 239)
+  (iput-boolean v4 v6 android/support/v4/view/PagerTabStrip.mIgnoreTap boolean)
+; v4 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (goto l239a4)
+  (label ps2399e_239f8)
+  (line 244)
+  (iget-object v3 v6 android/support/v4/view/PagerTabStrip.mCurrText [object android/widget/TextView])
+; v3 : Landroid/widget/TextView; , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v3} android/widget/TextView/getLeft )
+; v3 : Landroid/widget/TextView;
+  (move-result v3)
+; v3 : single-length
+  (iget v5 v6 android/support/v4/view/PagerTabStrip.mTabPadding int)
+; v5 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (sub-int/2addr v3 v5)
+; v3 : single-length , v5 : single-length
+  (int-to-float v3 v3)
+; v3 : single-length , v3 : single-length
+  (cmpg-float v3 v1 v3)
+; v3 : single-length , v1 : single-length , v3 : single-length
+  (if-gez v3 l23a30)
+; v3 : single-length
+  (line 245)
+  (iget-object v3 v6 android/support/v4/view/PagerTabStrip.mPager [object android/support/v4/view/ViewPager])
+; v3 : Landroid/support/v4/view/ViewPager; , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (iget-object v5 v6 android/support/v4/view/PagerTabStrip.mPager [object android/support/v4/view/ViewPager])
+; v5 : Landroid/support/v4/view/ViewPager; , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v5} android/support/v4/view/ViewPager/getCurrentItem )
+; v5 : Landroid/support/v4/view/ViewPager;
+  (move-result v5)
+; v5 : single-length
+  (add-int/lit8 v5 v5 255)
+; v5 : single-length , v5 : single-length
+  (invoke-virtual {v3 v5} android/support/v4/view/ViewPager/setCurrentItem int )
+; v3 : Landroid/support/v4/view/ViewPager; , v5 : single-length
+  (goto l239a4)
+  (label l23a30)
+  (line 246)
+  (iget-object v3 v6 android/support/v4/view/PagerTabStrip.mCurrText [object android/widget/TextView])
+; v3 : Landroid/widget/TextView; , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v3} android/widget/TextView/getRight )
+; v3 : Landroid/widget/TextView;
+  (move-result v3)
+; v3 : single-length
+  (iget v5 v6 android/support/v4/view/PagerTabStrip.mTabPadding int)
+; v5 : single-length , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (add-int/2addr v3 v5)
+; v3 : single-length , v5 : single-length
+  (int-to-float v3 v3)
+; v3 : single-length , v3 : single-length
+  (cmpl-float v3 v1 v3)
+; v3 : single-length , v1 : single-length , v3 : single-length
+  (if-lez v3 l239a4)
+; v3 : single-length
+  (line 247)
+  (iget-object v3 v6 android/support/v4/view/PagerTabStrip.mPager [object android/support/v4/view/ViewPager])
+; v3 : Landroid/support/v4/view/ViewPager; , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (iget-object v5 v6 android/support/v4/view/PagerTabStrip.mPager [object android/support/v4/view/ViewPager])
+; v5 : Landroid/support/v4/view/ViewPager; , v6 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v5} android/support/v4/view/ViewPager/getCurrentItem )
+; v5 : Landroid/support/v4/view/ViewPager;
+  (move-result v5)
+; v5 : single-length
+  (add-int/lit8 v5 v5 1)
+; v5 : single-length , v5 : single-length
+  (invoke-virtual {v3 v5} android/support/v4/view/ViewPager/setCurrentItem int )
+; v3 : Landroid/support/v4/view/ViewPager; , v5 : single-length
+  (goto l239a4)
+  (line 229)
+)
+
+(method (attrs public ) setBackgroundColor(int )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v2 (int)
+  (line 176)
+  (invoke-super {v1 v2} android/support/v4/view/PagerTitleStrip/setBackgroundColor int )
+; v1 : Landroid/support/v4/view/PagerTabStrip; , v2 : single-length
+  (line 177)
+  (iget-boolean v0 v1 android/support/v4/view/PagerTabStrip.mDrawFullUnderlineSet boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (if-nez v0 l23aaa)
+; v0 : single-length
+  (line 178)
+  (const/high16 v0 65280)
+; v0 : single-length
+  (and-int/2addr v0 v2)
+; v0 : single-length , v2 : single-length
+  (if-nez v0 l23aac)
+; v0 : single-length
+  (const/4 v0 1)
+; v0 : single-length
+  (label l23aa6)
+  (iput-boolean v0 v1 android/support/v4/view/PagerTabStrip.mDrawFullUnderline boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (label l23aaa)
+  (line 180)
+  (return-void )
+  (label l23aac)
+  (line 178)
+  (const/4 v0 0)
+; v0 : single-length
+  (goto l23aa6)
+)
+
+(method (attrs public ) setBackgroundDrawable([object android/graphics/drawable/Drawable] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v2 ([object android/graphics/drawable/Drawable])
+  (line 168)
+  (invoke-super {v1 v2} android/support/v4/view/PagerTitleStrip/setBackgroundDrawable [object android/graphics/drawable/Drawable] )
+; v1 : Landroid/support/v4/view/PagerTabStrip; , v2 : Landroid/graphics/drawable/Drawable;
+  (line 169)
+  (iget-boolean v0 v1 android/support/v4/view/PagerTabStrip.mDrawFullUnderlineSet boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (if-nez v0 l23ad8)
+; v0 : single-length
+  (line 170)
+  (if-nez v2 l23ada)
+; v2 : Landroid/graphics/drawable/Drawable;
+  (const/4 v0 1)
+; v0 : single-length
+  (label l23ad4)
+  (iput-boolean v0 v1 android/support/v4/view/PagerTabStrip.mDrawFullUnderline boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (label l23ad8)
+  (line 172)
+  (return-void )
+  (label l23ada)
+  (line 170)
+  (const/4 v0 0)
+; v0 : single-length
+  (goto l23ad4)
+)
+
+(method (attrs public ) setBackgroundResource(int )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v2 (int)
+  (line 184)
+  (invoke-super {v1 v2} android/support/v4/view/PagerTitleStrip/setBackgroundResource int )
+; v1 : Landroid/support/v4/view/PagerTabStrip; , v2 : single-length
+  (line 185)
+  (iget-boolean v0 v1 android/support/v4/view/PagerTabStrip.mDrawFullUnderlineSet boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (if-nez v0 l23b08)
+; v0 : single-length
+  (line 186)
+  (if-nez v2 l23b0a)
+; v2 : single-length
+  (const/4 v0 1)
+; v0 : single-length
+  (label l23b04)
+  (iput-boolean v0 v1 android/support/v4/view/PagerTabStrip.mDrawFullUnderline boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (label l23b08)
+  (line 188)
+  (return-void )
+  (label l23b0a)
+  (line 186)
+  (const/4 v0 0)
+; v0 : single-length
+  (goto l23b04)
+)
+
+(method (attrs public ) setDrawFullUnderline(boolean )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v2 (boolean)
+  (line 197)
+  (iput-boolean v2 v1 android/support/v4/view/PagerTabStrip.mDrawFullUnderline boolean)
+; v2 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (line 198)
+  (const/4 v0 1)
+; v0 : single-length
+  (iput-boolean v0 v1 android/support/v4/view/PagerTabStrip.mDrawFullUnderlineSet boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (line 199)
+  (invoke-virtual {v1} android/support/v4/view/PagerTabStrip/invalidate )
+; v1 : Landroid/support/v4/view/PagerTabStrip;
+  (line 200)
+  (return-void )
+)
+
+(method (attrs public ) setPadding(int int int int )void
+  (limit registers 6)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 (int)
+  ; parameter[2] : v4 (int)
+  ; parameter[3] : v5 (int)
+  (line 152)
+  (iget v0 v1 android/support/v4/view/PagerTabStrip.mMinPaddingBottom int)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (if-ge v5 v0 l23b50)
+; v5 : single-length , v0 : single-length
+  (line 153)
+  (iget v5 v1 android/support/v4/view/PagerTabStrip.mMinPaddingBottom int)
+; v5 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (label l23b50)
+  (line 155)
+  (invoke-super {v1 v2 v3 v4 v5} android/support/v4/view/PagerTitleStrip/setPadding int int int int )
+; v1 : Landroid/support/v4/view/PagerTabStrip; , v2 : single-length , v3 : single-length , v4 : single-length , v5 : single-length
+  (line 156)
+  (return-void )
+)
+
+(method (attrs public ) setTabIndicatorColor(int )void
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v3 (int)
+  (line 129)
+  (iput v3 v2 android/support/v4/view/PagerTabStrip.mIndicatorColor int)
+; v3 : single-length , v2 : Landroid/support/v4/view/PagerTabStrip;
+  (line 130)
+  (iget-object v0 v2 android/support/v4/view/PagerTabStrip.mTabPaint [object android/graphics/Paint])
+; v0 : Landroid/graphics/Paint; , v2 : Landroid/support/v4/view/PagerTabStrip;
+  (iget v1 v2 android/support/v4/view/PagerTabStrip.mIndicatorColor int)
+; v1 : single-length , v2 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v0 v1} android/graphics/Paint/setColor int )
+; v0 : Landroid/graphics/Paint; , v1 : single-length
+  (line 131)
+  (invoke-virtual {v2} android/support/v4/view/PagerTabStrip/invalidate )
+; v2 : Landroid/support/v4/view/PagerTabStrip;
+  (line 132)
+  (return-void )
+)
+
+(method (attrs public ) setTabIndicatorColorResource(int )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v2 (int)
+  (line 140)
+  (invoke-virtual {v1} android/support/v4/view/PagerTabStrip/getContext )
+; v1 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result-object v0)
+; v0 : Landroid/content/Context;
+  (invoke-virtual {v0} android/content/Context/getResources )
+; v0 : Landroid/content/Context;
+  (move-result-object v0)
+; v0 : Landroid/content/res/Resources;
+  (invoke-virtual {v0 v2} android/content/res/Resources/getColor int )
+; v0 : Landroid/content/res/Resources; , v2 : single-length
+  (move-result v0)
+; v0 : single-length
+  (invoke-virtual {v1 v0} android/support/v4/view/PagerTabStrip/setTabIndicatorColor int )
+; v1 : Landroid/support/v4/view/PagerTabStrip; , v0 : single-length
+  (line 141)
+  (return-void )
+)
+
+(method (attrs public ) setTextSpacing(int )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v2 (int)
+  (line 160)
+  (iget v0 v1 android/support/v4/view/PagerTabStrip.mMinTextSpacing int)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (if-ge v2 v0 l23bd0)
+; v2 : single-length , v0 : single-length
+  (line 161)
+  (iget v2 v1 android/support/v4/view/PagerTabStrip.mMinTextSpacing int)
+; v2 : single-length , v1 : Landroid/support/v4/view/PagerTabStrip;
+  (label l23bd0)
+  (line 163)
+  (invoke-super {v1 v2} android/support/v4/view/PagerTitleStrip/setTextSpacing int )
+; v1 : Landroid/support/v4/view/PagerTabStrip; , v2 : single-length
+  (line 164)
+  (return-void )
+)
+
+(method (attrs ) updateTextPositions(int float boolean )void
+  (limit registers 11)
+  ; this: v7 ([object android/support/v4/view/PagerTabStrip])
+  ; parameter[0] : v8 (int)
+  ; parameter[1] : v9 (float)
+  ; parameter[2] : v10 (boolean)
+  (line 276)
+  (iget-object v2 v7 android/support/v4/view/PagerTabStrip.mTempRect [object android/graphics/Rect])
+; v2 : Landroid/graphics/Rect; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 277)
+  (invoke-virtual {v7} android/support/v4/view/PagerTabStrip/getHeight )
+; v7 : Landroid/support/v4/view/PagerTabStrip;
+  (move-result v0)
+; v0 : single-length
+  (line 278)
+  (iget-object v5 v7 android/support/v4/view/PagerTabStrip.mCurrText [object android/widget/TextView])
+; v5 : Landroid/widget/TextView; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v5} android/widget/TextView/getLeft )
+; v5 : Landroid/widget/TextView;
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v7 android/support/v4/view/PagerTabStrip.mTabPadding int)
+; v6 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (sub-int v1 v5 v6)
+; v1 : single-length , v5 : single-length , v6 : single-length
+  (line 279)
+  (iget-object v5 v7 android/support/v4/view/PagerTabStrip.mCurrText [object android/widget/TextView])
+; v5 : Landroid/widget/TextView; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v5} android/widget/TextView/getRight )
+; v5 : Landroid/widget/TextView;
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v7 android/support/v4/view/PagerTabStrip.mTabPadding int)
+; v6 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (add-int v3 v5 v6)
+; v3 : single-length , v5 : single-length , v6 : single-length
+  (line 280)
+  (iget v5 v7 android/support/v4/view/PagerTabStrip.mIndicatorHeight int)
+; v5 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (sub-int v4 v0 v5)
+; v4 : single-length , v0 : single-length , v5 : single-length
+  (line 282)
+  (invoke-virtual {v2 v1 v4 v3 v0} android/graphics/Rect/set int int int int )
+; v2 : Landroid/graphics/Rect; , v1 : single-length , v4 : single-length , v3 : single-length , v0 : single-length
+  (line 284)
+  (invoke-super {v7 v8 v9 v10} android/support/v4/view/PagerTitleStrip/updateTextPositions int float boolean )
+; v7 : Landroid/support/v4/view/PagerTabStrip; , v8 : single-length , v9 : single-length , v10 : single-length
+  (line 285)
+  (const/high16 v5 16128)
+; v5 : single-length
+  (sub-float v5 v9 v5)
+; v5 : single-length , v9 : single-length , v5 : single-length
+  (invoke-static {v5} java/lang/Math/abs float )
+; v5 : single-length
+  (move-result v5)
+; v5 : single-length
+  (const/high16 v6 16384)
+; v6 : single-length
+  (mul-float/2addr v5 v6)
+; v5 : single-length , v6 : single-length
+  (const/high16 v6 17279)
+; v6 : single-length
+  (mul-float/2addr v5 v6)
+; v5 : single-length , v6 : single-length
+  (float-to-int v5 v5)
+; v5 : single-length , v5 : single-length
+  (iput v5 v7 android/support/v4/view/PagerTabStrip.mTabAlpha int)
+; v5 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (line 287)
+  (iget-object v5 v7 android/support/v4/view/PagerTabStrip.mCurrText [object android/widget/TextView])
+; v5 : Landroid/widget/TextView; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v5} android/widget/TextView/getLeft )
+; v5 : Landroid/widget/TextView;
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v7 android/support/v4/view/PagerTabStrip.mTabPadding int)
+; v6 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (sub-int v1 v5 v6)
+; v1 : single-length , v5 : single-length , v6 : single-length
+  (line 288)
+  (iget-object v5 v7 android/support/v4/view/PagerTabStrip.mCurrText [object android/widget/TextView])
+; v5 : Landroid/widget/TextView; , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (invoke-virtual {v5} android/widget/TextView/getRight )
+; v5 : Landroid/widget/TextView;
+  (move-result v5)
+; v5 : single-length
+  (iget v6 v7 android/support/v4/view/PagerTabStrip.mTabPadding int)
+; v6 : single-length , v7 : Landroid/support/v4/view/PagerTabStrip;
+  (add-int v3 v5 v6)
+; v3 : single-length , v5 : single-length , v6 : single-length
+  (line 289)
+  (invoke-virtual {v2 v1 v4 v3 v0} android/graphics/Rect/union int int int int )
+; v2 : Landroid/graphics/Rect; , v1 : single-length , v4 : single-length , v3 : single-length , v0 : single-length
+  (line 291)
+  (invoke-virtual {v7 v2} android/support/v4/view/PagerTabStrip/invalidate [object android/graphics/Rect] )
+; v7 : Landroid/support/v4/view/PagerTabStrip; , v2 : Landroid/graphics/Rect;
+  (line 292)
+  (return-void )
+)
+
+)

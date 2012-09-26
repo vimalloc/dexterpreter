@@ -1,0 +1,94 @@
+(class (attrs public ) android/support/v4/net/ConnectivityManagerCompat
+ (super java/lang/Object)
+ (source "ConnectivityManagerCompat.java")
+
+ (field (attrs private static final ) IMPL [object android/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl] )
+
+(method (attrs static ) <clinit>()void
+  (limit registers 2)
+  (line 83)
+  (sget v0 android/os/Build$VERSION.SDK_INT int)
+; v0 : single-length
+  (const/16 v1 16)
+; v1 : single-length
+  (if-lt v0 v1 l1f968)
+; v0 : single-length , v1 : single-length
+  (line 84)
+  (new-instance v0 android/support/v4/net/ConnectivityManagerCompat$JellyBeanConnectivityManagerCompatImpl)
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$JellyBeanConnectivityManagerCompatImpl;
+  (invoke-direct {v0} android/support/v4/net/ConnectivityManagerCompat$JellyBeanConnectivityManagerCompatImpl/<init> )
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$JellyBeanConnectivityManagerCompatImpl;
+  (sput-object v0 android/support/v4/net/ConnectivityManagerCompat.IMPL [object android/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl])
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl;
+  (label l1f966)
+  (line 92)
+  (return-void )
+  (label l1f968)
+  (line 85)
+  (sget v0 android/os/Build$VERSION.SDK_INT int)
+; v0 : single-length
+  (const/16 v1 13)
+; v1 : single-length
+  (if-lt v0 v1 l1f984)
+; v0 : single-length , v1 : single-length
+  (line 86)
+  (new-instance v0 android/support/v4/net/ConnectivityManagerCompat$HoneycombMR2ConnectivityManagerCompatImpl)
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$HoneycombMR2ConnectivityManagerCompatImpl;
+  (invoke-direct {v0} android/support/v4/net/ConnectivityManagerCompat$HoneycombMR2ConnectivityManagerCompatImpl/<init> )
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$HoneycombMR2ConnectivityManagerCompatImpl;
+  (sput-object v0 android/support/v4/net/ConnectivityManagerCompat.IMPL [object android/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl])
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl;
+  (goto l1f966)
+  (label l1f984)
+  (line 87)
+  (sget v0 android/os/Build$VERSION.SDK_INT int)
+; v0 : single-length
+  (const/16 v1 8)
+; v1 : single-length
+  (if-lt v0 v1 l1f9a0)
+; v0 : single-length , v1 : single-length
+  (line 88)
+  (new-instance v0 android/support/v4/net/ConnectivityManagerCompat$GingerbreadConnectivityManagerCompatImpl)
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$GingerbreadConnectivityManagerCompatImpl;
+  (invoke-direct {v0} android/support/v4/net/ConnectivityManagerCompat$GingerbreadConnectivityManagerCompatImpl/<init> )
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$GingerbreadConnectivityManagerCompatImpl;
+  (sput-object v0 android/support/v4/net/ConnectivityManagerCompat.IMPL [object android/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl])
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl;
+  (goto l1f966)
+  (label l1f9a0)
+  (line 90)
+  (new-instance v0 android/support/v4/net/ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl)
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl;
+  (invoke-direct {v0} android/support/v4/net/ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl/<init> )
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$BaseConnectivityManagerCompatImpl;
+  (sput-object v0 android/support/v4/net/ConnectivityManagerCompat.IMPL [object android/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl])
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl;
+  (goto l1f966)
+ )
+
+(method (attrs public ) <init>()void
+  (limit registers 1)
+  ; this: v0 ([object android/support/v4/net/ConnectivityManagerCompat])
+  (line 30)
+  (invoke-direct {v0} java/lang/Object/<init> )
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat;
+  (line 73)
+  (return-void )
+ )
+
+(method (attrs public ) isActiveNetworkMetered([object android/net/ConnectivityManager] )boolean
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/net/ConnectivityManagerCompat])
+  ; parameter[0] : v2 ([object android/net/ConnectivityManager])
+  (line 102)
+  (sget-object v0 android/support/v4/net/ConnectivityManagerCompat.IMPL [object android/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl])
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl;
+  (invoke-interface {v0 v2} android/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl/isActiveNetworkMetered [object android/net/ConnectivityManager] )
+; v0 : Landroid/support/v4/net/ConnectivityManagerCompat$ConnectivityManagerCompatImpl; , v2 : Landroid/net/ConnectivityManager;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+)

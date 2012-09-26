@@ -1,0 +1,841 @@
+(class (attrs public ) android/support/v4/app/ShareCompat$IntentBuilder
+ (super java/lang/Object)
+ (source "ShareCompat.java")
+
+ (field (attrs private ) mActivity [object android/app/Activity] )
+ (field (attrs private ) mBccAddresses [object java/util/ArrayList] )
+ (field (attrs private ) mCcAddresses [object java/util/ArrayList] )
+ (field (attrs private ) mChooserTitle [object java/lang/CharSequence] )
+ (field (attrs private ) mIntent [object android/content/Intent] )
+ (field (attrs private ) mStreams [object java/util/ArrayList] )
+ (field (attrs private ) mToAddresses [object java/util/ArrayList] )
+
+(method (attrs private ) <init>([object android/app/Activity] )void
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v4 ([object android/app/Activity])
+  (line 278)
+  (invoke-direct {v3} java/lang/Object/<init> )
+; v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (line 279)
+  (iput-object v4 v3 android/support/v4/app/ShareCompat$IntentBuilder.mActivity [object android/app/Activity])
+; v4 : Landroid/app/Activity; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (line 280)
+  (new-instance v0 android/content/Intent)
+; v0 : Landroid/content/Intent;
+  (invoke-direct {v0} android/content/Intent/<init> )
+; v0 : Landroid/content/Intent;
+  (const-string v1 "android.intent.action.SEND")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1} android/content/Intent/setAction [object java/lang/String] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Landroid/content/Intent;
+  (iput-object v0 v3 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (line 281)
+  (iget-object v0 v3 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.support.v4.app.EXTRA_CALLING_PACKAGE")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v4} android/app/Activity/getPackageName )
+; v4 : Landroid/app/Activity;
+  (move-result-object v2)
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v0 v1 v2} android/content/Intent/putExtra [object java/lang/String] [object java/lang/String] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+  (line 282)
+  (iget-object v0 v3 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.support.v4.app.EXTRA_CALLING_ACTIVITY")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v4} android/app/Activity/getComponentName )
+; v4 : Landroid/app/Activity;
+  (move-result-object v2)
+; v2 : Landroid/content/ComponentName;
+  (invoke-virtual {v0 v1 v2} android/content/Intent/putExtra [object java/lang/String] [object android/os/Parcelable] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v2 : Landroid/content/ComponentName;
+  (line 283)
+  (iget-object v0 v3 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const/high16 v1 8)
+; v1 : single-length
+  (invoke-virtual {v0 v1} android/content/Intent/addFlags int )
+; v0 : Landroid/content/Intent; , v1 : single-length
+  (line 284)
+  (return-void )
+ )
+
+(method (attrs private ) combineArrayExtra([object java/lang/String] [object java/util/ArrayList] )void
+  (limit registers 8)
+  ; this: v5 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v6 ([object java/lang/String])
+  ; parameter[1] : v7 ([object java/util/ArrayList])
+.var 1 is currentLength int from l1c79c to l1c7ce
+.var 2 is finalAddresses [array [object java/lang/String]] from l1c7aa to l1c7ce
+  (const/4 v3 0)
+; v3 : single-length
+  (line 344)
+  (iget-object v4 v5 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v4 : Landroid/content/Intent; , v5 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v4 v6} android/content/Intent/getStringArrayExtra [object java/lang/String] )
+; v4 : Landroid/content/Intent; , v6 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : [Ljava/lang/String;
+  (line 345)
+  (if-eqz v0 l1c7ce)
+; v0 : [Ljava/lang/String;
+  (array-length v1 v0)
+; v1 : single-length , v0 : [Ljava/lang/String;
+  (label l1c79c)
+  (line 346)
+  (invoke-virtual {v7} java/util/ArrayList/size )
+; v7 : Ljava/util/ArrayList;
+  (move-result v4)
+; v4 : single-length
+  (add-int/2addr v4 v1)
+; v4 : single-length , v1 : single-length
+  (new-array v2 v4 [array [object java/lang/String]])
+; v2 : [Ljava/lang/String; , v4 : single-length
+  (label l1c7aa)
+  (line 347)
+  (invoke-virtual {v7 v2} java/util/ArrayList/toArray [array [object java/lang/Object]] )
+; v7 : Ljava/util/ArrayList; , v2 : [Ljava/lang/String;
+  (line 348)
+  (if-eqz v0 l1c7c2)
+; v0 : [Ljava/lang/String;
+  (line 349)
+  (invoke-virtual {v7} java/util/ArrayList/size )
+; v7 : Ljava/util/ArrayList;
+  (move-result v4)
+; v4 : single-length
+  (invoke-static {v0 v3 v2 v4 v1} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v0 : [Ljava/lang/String; , v3 : single-length , v2 : [Ljava/lang/String; , v4 : single-length , v1 : single-length
+  (label l1c7c2)
+  (line 351)
+  (iget-object v3 v5 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v3 : Landroid/content/Intent; , v5 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v3 v6 v2} android/content/Intent/putExtra [object java/lang/String] [array [object java/lang/String]] )
+; v3 : Landroid/content/Intent; , v6 : Ljava/lang/String; , v2 : [Ljava/lang/String;
+  (line 352)
+  (return-void )
+  (label l1c7ce)
+  (move v1 v3)
+; v1 : single-length , v3 : single-length
+  (line 345)
+  (goto l1c79c)
+ )
+
+(method (attrs private ) combineArrayExtra([object java/lang/String] [array [object java/lang/String]] )void
+  (limit registers 9)
+  ; this: v6 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v7 ([object java/lang/String])
+  ; parameter[1] : v8 ([array [object java/lang/String]])
+.var 2 is oldLength int from l1c7fc to l1c81e
+.var 3 is result [array [object java/lang/String]] from l1c804 to l1c81e
+  (const/4 v4 0)
+; v4 : single-length
+  (line 356)
+  (invoke-virtual {v6} android/support/v4/app/ShareCompat$IntentBuilder/getIntent )
+; v6 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (move-result-object v0)
+; v0 : Landroid/content/Intent;
+  (line 357)
+  (invoke-virtual {v0 v7} android/content/Intent/getStringArrayExtra [object java/lang/String] )
+; v0 : Landroid/content/Intent; , v7 : Ljava/lang/String;
+  (move-result-object v1)
+; v1 : [Ljava/lang/String;
+  (line 358)
+  (if-eqz v1 l1c81e)
+; v1 : [Ljava/lang/String;
+  (array-length v2 v1)
+; v2 : single-length , v1 : [Ljava/lang/String;
+  (label l1c7fc)
+  (line 359)
+  (array-length v5 v8)
+; v5 : single-length , v8 : [Ljava/lang/String;
+  (add-int/2addr v5 v2)
+; v5 : single-length , v2 : single-length
+  (new-array v3 v5 [array [object java/lang/String]])
+; v3 : [Ljava/lang/String; , v5 : single-length
+  (label l1c804)
+  (line 360)
+  (if-eqz v1 l1c80e)
+; v1 : [Ljava/lang/String;
+  (invoke-static {v1 v4 v3 v4 v2} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v1 : [Ljava/lang/String; , v4 : single-length , v3 : [Ljava/lang/String; , v4 : single-length , v2 : single-length
+  (label l1c80e)
+  (line 361)
+  (array-length v5 v8)
+; v5 : single-length , v8 : [Ljava/lang/String;
+  (invoke-static {v8 v4 v3 v2 v5} java/lang/System/arraycopy [object java/lang/Object] int [object java/lang/Object] int int )
+; v8 : [Ljava/lang/String; , v4 : single-length , v3 : [Ljava/lang/String; , v2 : single-length , v5 : single-length
+  (line 362)
+  (invoke-virtual {v0 v7 v3} android/content/Intent/putExtra [object java/lang/String] [array [object java/lang/String]] )
+; v0 : Landroid/content/Intent; , v7 : Ljava/lang/String; , v3 : [Ljava/lang/String;
+  (line 363)
+  (return-void )
+  (label l1c81e)
+  (move v2 v4)
+; v2 : single-length , v4 : single-length
+  (line 358)
+  (goto l1c7fc)
+ )
+
+(method (attrs public static ) from([object android/app/Activity] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 2)
+  ; parameter[0] : v1 ([object android/app/Activity])
+  (line 275)
+  (new-instance v0 android/support/v4/app/ShareCompat$IntentBuilder)
+; v0 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-direct {v0 v1} android/support/v4/app/ShareCompat$IntentBuilder/<init> [object android/app/Activity] )
+; v0 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v1 : Landroid/app/Activity;
+  (return-object v0)
+; v0 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+ )
+
+(method (attrs public ) addEmailBcc([object java/lang/String] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v2 ([object java/lang/String])
+  (line 605)
+  (iget-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mBccAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-nez v0 l1c866)
+; v0 : Ljava/util/ArrayList;
+  (line 606)
+  (new-instance v0 java/util/ArrayList)
+; v0 : Ljava/util/ArrayList;
+  (invoke-direct {v0} java/util/ArrayList/<init> )
+; v0 : Ljava/util/ArrayList;
+  (iput-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mBccAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1c866)
+  (line 608)
+  (iget-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mBccAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v0 v2} java/util/ArrayList/add [object java/lang/Object] )
+; v0 : Ljava/util/ArrayList; , v2 : Ljava/lang/String;
+  (line 609)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) addEmailBcc([array [object java/lang/String]] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v2 ([array [object java/lang/String]])
+  (line 620)
+  (const-string v0 "android.intent.extra.BCC")
+; v0 : Ljava/lang/String;
+  (invoke-direct {v1 v0 v2} android/support/v4/app/ShareCompat$IntentBuilder/combineArrayExtra [object java/lang/String] [array [object java/lang/String]] )
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v0 : Ljava/lang/String; , v2 : [Ljava/lang/String;
+  (line 621)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) addEmailCc([object java/lang/String] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v2 ([object java/lang/String])
+  (line 565)
+  (iget-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mCcAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-nez v0 l1c8b6)
+; v0 : Ljava/util/ArrayList;
+  (line 566)
+  (new-instance v0 java/util/ArrayList)
+; v0 : Ljava/util/ArrayList;
+  (invoke-direct {v0} java/util/ArrayList/<init> )
+; v0 : Ljava/util/ArrayList;
+  (iput-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mCcAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1c8b6)
+  (line 568)
+  (iget-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mCcAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v0 v2} java/util/ArrayList/add [object java/lang/Object] )
+; v0 : Ljava/util/ArrayList; , v2 : Ljava/lang/String;
+  (line 569)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) addEmailCc([array [object java/lang/String]] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v2 ([array [object java/lang/String]])
+  (line 580)
+  (const-string v0 "android.intent.extra.CC")
+; v0 : Ljava/lang/String;
+  (invoke-direct {v1 v0 v2} android/support/v4/app/ShareCompat$IntentBuilder/combineArrayExtra [object java/lang/String] [array [object java/lang/String]] )
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v0 : Ljava/lang/String; , v2 : [Ljava/lang/String;
+  (line 581)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) addEmailTo([object java/lang/String] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v2 ([object java/lang/String])
+  (line 525)
+  (iget-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mToAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-nez v0 l1c906)
+; v0 : Ljava/util/ArrayList;
+  (line 526)
+  (new-instance v0 java/util/ArrayList)
+; v0 : Ljava/util/ArrayList;
+  (invoke-direct {v0} java/util/ArrayList/<init> )
+; v0 : Ljava/util/ArrayList;
+  (iput-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mToAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1c906)
+  (line 528)
+  (iget-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mToAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v0 v2} java/util/ArrayList/add [object java/lang/Object] )
+; v0 : Ljava/util/ArrayList; , v2 : Ljava/lang/String;
+  (line 529)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) addEmailTo([array [object java/lang/String]] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v2 ([array [object java/lang/String]])
+  (line 540)
+  (const-string v0 "android.intent.extra.EMAIL")
+; v0 : Ljava/lang/String;
+  (invoke-direct {v1 v0 v2} android/support/v4/app/ShareCompat$IntentBuilder/combineArrayExtra [object java/lang/String] [array [object java/lang/String]] )
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v0 : Ljava/lang/String; , v2 : [Ljava/lang/String;
+  (line 541)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) addStream([object android/net/Uri] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v4 ([object android/net/Uri])
+  (line 486)
+  (iget-object v1 v3 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v1 : Landroid/content/Intent; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v2 "android.intent.extra.STREAM")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v1 v2} android/content/Intent/getParcelableExtra [object java/lang/String] )
+; v1 : Landroid/content/Intent; , v2 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Landroid/os/Parcelable;
+  (check-cast v0 [object android/net/Uri])
+; v0 : Landroid/net/Uri;
+  (line 487)
+  (if-nez v0 l1c962)
+; v0 : Landroid/net/Uri;
+  (line 488)
+  (invoke-virtual {v3 v4} android/support/v4/app/ShareCompat$IntentBuilder/setStream [object android/net/Uri] )
+; v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v4 : Landroid/net/Uri;
+  (move-result-object v3)
+; v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1c960)
+  (line 498)
+  (return-object v3)
+; v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1c962)
+  (line 490)
+  (iget-object v1 v3 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v1 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-nez v1 l1c978)
+; v1 : Ljava/util/ArrayList;
+  (line 491)
+  (new-instance v1 java/util/ArrayList)
+; v1 : Ljava/util/ArrayList;
+  (invoke-direct {v1} java/util/ArrayList/<init> )
+; v1 : Ljava/util/ArrayList;
+  (iput-object v1 v3 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v1 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1c978)
+  (line 493)
+  (if-eqz v0 l1c994)
+; v0 : Landroid/net/Uri;
+  (line 494)
+  (iget-object v1 v3 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v1 : Landroid/content/Intent; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v2 "android.intent.extra.STREAM")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v1 v2} android/content/Intent/removeExtra [object java/lang/String] )
+; v1 : Landroid/content/Intent; , v2 : Ljava/lang/String;
+  (line 495)
+  (iget-object v1 v3 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v1 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v1 v0} java/util/ArrayList/add [object java/lang/Object] )
+; v1 : Ljava/util/ArrayList; , v0 : Landroid/net/Uri;
+  (label l1c994)
+  (line 497)
+  (iget-object v1 v3 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v1 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v1 v4} java/util/ArrayList/add [object java/lang/Object] )
+; v1 : Ljava/util/ArrayList; , v4 : Landroid/net/Uri;
+  (goto l1c960)
+)
+
+(method (attrs public ) createChooserIntent()[object android/content/Intent]
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  (line 373)
+  (invoke-virtual {v2} android/support/v4/app/ShareCompat$IntentBuilder/getIntent )
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (move-result-object v0)
+; v0 : Landroid/content/Intent;
+  (iget-object v1 v2 android/support/v4/app/ShareCompat$IntentBuilder.mChooserTitle [object java/lang/CharSequence])
+; v1 : Ljava/lang/CharSequence; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-static {v0 v1} android/content/Intent/createChooser [object android/content/Intent] [object java/lang/CharSequence] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/CharSequence;
+  (move-result-object v0)
+; v0 : Landroid/content/Intent;
+  (return-object v0)
+; v0 : Landroid/content/Intent;
+)
+
+(method (attrs ) getActivity()[object android/app/Activity]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  (line 340)
+  (iget-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mActivity [object android/app/Activity])
+; v0 : Landroid/app/Activity; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (return-object v0)
+; v0 : Landroid/app/Activity;
+)
+
+(method (attrs public ) getIntent()[object android/content/Intent]
+  (limit registers 8)
+  ; this: v7 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+.var 0 is isSendMultiple boolean from l1ca74 to l1cb0a
+.var 1 is needsSendMultiple boolean from l1ca5c to l1cb0a
+  (const/4 v1 1)
+; v1 : single-length
+  (const/4 v2 0)
+; v2 : single-length
+  (const/4 v6 0)
+; v6 : single-length
+  (line 296)
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mToAddresses [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-eqz v3 l1ca10)
+; v3 : Ljava/util/ArrayList;
+  (line 297)
+  (const-string v3 "android.intent.extra.EMAIL")
+; v3 : Ljava/lang/String;
+  (iget-object v4 v7 android/support/v4/app/ShareCompat$IntentBuilder.mToAddresses [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-direct {v7 v3 v4} android/support/v4/app/ShareCompat$IntentBuilder/combineArrayExtra [object java/lang/String] [object java/util/ArrayList] )
+; v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v3 : Ljava/lang/String; , v4 : Ljava/util/ArrayList;
+  (line 298)
+  (iput-object v6 v7 android/support/v4/app/ShareCompat$IntentBuilder.mToAddresses [object java/util/ArrayList])
+; v6 : single-length , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1ca10)
+  (line 300)
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mCcAddresses [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-eqz v3 l1ca2a)
+; v3 : Ljava/util/ArrayList;
+  (line 301)
+  (const-string v3 "android.intent.extra.CC")
+; v3 : Ljava/lang/String;
+  (iget-object v4 v7 android/support/v4/app/ShareCompat$IntentBuilder.mCcAddresses [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-direct {v7 v3 v4} android/support/v4/app/ShareCompat$IntentBuilder/combineArrayExtra [object java/lang/String] [object java/util/ArrayList] )
+; v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v3 : Ljava/lang/String; , v4 : Ljava/util/ArrayList;
+  (line 302)
+  (iput-object v6 v7 android/support/v4/app/ShareCompat$IntentBuilder.mCcAddresses [object java/util/ArrayList])
+; v6 : single-length , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1ca2a)
+  (line 304)
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mBccAddresses [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-eqz v3 l1ca44)
+; v3 : Ljava/util/ArrayList;
+  (line 305)
+  (const-string v3 "android.intent.extra.BCC")
+; v3 : Ljava/lang/String;
+  (iget-object v4 v7 android/support/v4/app/ShareCompat$IntentBuilder.mBccAddresses [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-direct {v7 v3 v4} android/support/v4/app/ShareCompat$IntentBuilder/combineArrayExtra [object java/lang/String] [object java/util/ArrayList] )
+; v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v3 : Ljava/lang/String; , v4 : Ljava/util/ArrayList;
+  (line 306)
+  (iput-object v6 v7 android/support/v4/app/ShareCompat$IntentBuilder.mBccAddresses [object java/util/ArrayList])
+; v6 : single-length , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1ca44)
+  (line 310)
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-eqz v3 l1cb0a)
+; v3 : Ljava/util/ArrayList;
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v3} java/util/ArrayList/size )
+; v3 : Ljava/util/ArrayList;
+  (move-result v3)
+; v3 : single-length
+  (if-le v3 v1 l1cb0a)
+; v3 : single-length , v1 : single-length
+  (label l1ca5c)
+  (line 311)
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v3 : Landroid/content/Intent; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v3} android/content/Intent/getAction )
+; v3 : Landroid/content/Intent;
+  (move-result-object v3)
+; v3 : Ljava/lang/String;
+  (const-string v4 "android.intent.action.SEND_MULTIPLE")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v3 v4} java/lang/String/equals [object java/lang/Object] )
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+  (move-result v0)
+; v0 : single-length
+  (label l1ca74)
+  (line 313)
+  (if-nez v1 l1cac4)
+; v1 : single-length
+  (if-eqz v0 l1cac4)
+; v0 : single-length
+  (line 316)
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v3 : Landroid/content/Intent; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v4 "android.intent.action.SEND")
+; v4 : Ljava/lang/String;
+  (invoke-virtual {v3 v4} android/content/Intent/setAction [object java/lang/String] )
+; v3 : Landroid/content/Intent; , v4 : Ljava/lang/String;
+  (line 317)
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-eqz v3 l1cb0e)
+; v3 : Ljava/util/ArrayList;
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v3 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v3} java/util/ArrayList/isEmpty )
+; v3 : Ljava/util/ArrayList;
+  (move-result v3)
+; v3 : single-length
+  (if-nez v3 l1cb0e)
+; v3 : single-length
+  (line 318)
+  (iget-object v3 v7 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v3 : Landroid/content/Intent; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v4 "android.intent.extra.STREAM")
+; v4 : Ljava/lang/String;
+  (iget-object v5 v7 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v5 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v5 v2} java/util/ArrayList/get int )
+; v5 : Ljava/util/ArrayList; , v2 : single-length
+  (move-result-object v2)
+; v2 : Ljava/lang/Object;
+  (check-cast v2 [object android/os/Parcelable])
+; v2 : Landroid/os/Parcelable;
+  (invoke-virtual {v3 v4 v2} android/content/Intent/putExtra [object java/lang/String] [object android/os/Parcelable] )
+; v3 : Landroid/content/Intent; , v4 : Ljava/lang/String; , v2 : Landroid/os/Parcelable;
+  (label l1cac0)
+  (line 322)
+  (iput-object v6 v7 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v6 : single-length , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1cac4)
+  (line 325)
+  (if-eqz v1 l1cb04)
+; v1 : single-length
+  (if-nez v0 l1cb04)
+; v0 : single-length
+  (line 328)
+  (iget-object v2 v7 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v2 : Landroid/content/Intent; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v3 "android.intent.action.SEND_MULTIPLE")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} android/content/Intent/setAction [object java/lang/String] )
+; v2 : Landroid/content/Intent; , v3 : Ljava/lang/String;
+  (line 329)
+  (iget-object v2 v7 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v2 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-eqz v2 l1cb1e)
+; v2 : Ljava/util/ArrayList;
+  (iget-object v2 v7 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v2 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v2} java/util/ArrayList/isEmpty )
+; v2 : Ljava/util/ArrayList;
+  (move-result v2)
+; v2 : single-length
+  (if-nez v2 l1cb1e)
+; v2 : single-length
+  (line 330)
+  (iget-object v2 v7 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v2 : Landroid/content/Intent; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v3 "android.intent.extra.STREAM")
+; v3 : Ljava/lang/String;
+  (iget-object v4 v7 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v4 : Ljava/util/ArrayList; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v2 v3 v4} android/content/Intent/putParcelableArrayListExtra [object java/lang/String] [object java/util/ArrayList] )
+; v2 : Landroid/content/Intent; , v3 : Ljava/lang/String; , v4 : Ljava/util/ArrayList;
+  (label l1cb04)
+  (line 336)
+  (iget-object v2 v7 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v2 : Landroid/content/Intent; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (return-object v2)
+; v2 : Landroid/content/Intent;
+  (label l1cb0a)
+  (move v1 v2)
+; v1 : single-length , v2 : single-length
+  (line 310)
+  (goto l1ca5c)
+  (label l1cb0e)
+  (line 320)
+  (iget-object v2 v7 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v2 : Landroid/content/Intent; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v3 "android.intent.extra.STREAM")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} android/content/Intent/removeExtra [object java/lang/String] )
+; v2 : Landroid/content/Intent; , v3 : Ljava/lang/String;
+  (goto l1cac0)
+  (label l1cb1e)
+  (line 332)
+  (iget-object v2 v7 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v2 : Landroid/content/Intent; , v7 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v3 "android.intent.extra.STREAM")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} android/content/Intent/removeExtra [object java/lang/String] )
+; v2 : Landroid/content/Intent; , v3 : Ljava/lang/String;
+  (goto l1cb04)
+)
+
+(method (attrs public ) setChooserTitle(int )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v2 (int)
+  (line 407)
+  (iget-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mActivity [object android/app/Activity])
+; v0 : Landroid/app/Activity; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v0 v2} android/app/Activity/getText int )
+; v0 : Landroid/app/Activity; , v2 : single-length
+  (move-result-object v0)
+; v0 : Ljava/lang/CharSequence;
+  (invoke-virtual {v1 v0} android/support/v4/app/ShareCompat$IntentBuilder/setChooserTitle [object java/lang/CharSequence] )
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v0 : Ljava/lang/CharSequence;
+  (move-result-object v0)
+; v0 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (return-object v0)
+; v0 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) setChooserTitle([object java/lang/CharSequence] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v1 ([object java/lang/CharSequence])
+  (line 396)
+  (iput-object v1 v0 android/support/v4/app/ShareCompat$IntentBuilder.mChooserTitle [object java/lang/CharSequence])
+; v1 : Ljava/lang/CharSequence; , v0 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (line 397)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) setEmailBcc([array [object java/lang/String]] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v3 ([array [object java/lang/String]])
+  (line 593)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.intent.extra.BCC")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1 v3} android/content/Intent/putExtra [object java/lang/String] [array [object java/lang/String]] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v3 : [Ljava/lang/String;
+  (line 594)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) setEmailCc([array [object java/lang/String]] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v3 ([array [object java/lang/String]])
+  (line 553)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.intent.extra.CC")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1 v3} android/content/Intent/putExtra [object java/lang/String] [array [object java/lang/String]] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v3 : [Ljava/lang/String;
+  (line 554)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) setEmailTo([array [object java/lang/String]] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v3 ([array [object java/lang/String]])
+  (line 510)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mToAddresses [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (if-eqz v0 l1cbce)
+; v0 : Ljava/util/ArrayList;
+  (line 511)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mToAddresses [object java/util/ArrayList])
+; v0 : single-length , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (label l1cbce)
+  (line 513)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.intent.extra.EMAIL")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1 v3} android/content/Intent/putExtra [object java/lang/String] [array [object java/lang/String]] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v3 : [Ljava/lang/String;
+  (line 514)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) setHtmlText([object java/lang/String] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v3 ([object java/lang/String])
+  (line 447)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.intent.extra.HTML_TEXT")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1 v3} android/content/Intent/putExtra [object java/lang/String] [object java/lang/String] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+  (line 448)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.intent.extra.TEXT")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1} android/content/Intent/hasExtra [object java/lang/String] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+  (move-result v0)
+; v0 : single-length
+  (if-nez v0 l1cc20)
+; v0 : single-length
+  (line 450)
+  (invoke-static {v3} android/text/Html/fromHtml [object java/lang/String] )
+; v3 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Landroid/text/Spanned;
+  (invoke-virtual {v2 v0} android/support/v4/app/ShareCompat$IntentBuilder/setText [object java/lang/CharSequence] )
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder; , v0 : Landroid/text/Spanned;
+  (label l1cc20)
+  (line 452)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) setStream([object android/net/Uri] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v3 ([object android/net/Uri])
+  (line 466)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v0} android/content/Intent/getAction )
+; v0 : Landroid/content/Intent;
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (const-string v1 "android.intent.action.SEND")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1} java/lang/String/equals [object java/lang/Object] )
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+  (move-result v0)
+; v0 : single-length
+  (if-nez v0 l1cc5e)
+; v0 : single-length
+  (line 467)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.intent.action.SEND")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1} android/content/Intent/setAction [object java/lang/String] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+  (label l1cc5e)
+  (line 469)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mStreams [object java/util/ArrayList])
+; v0 : single-length , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (line 470)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.intent.extra.STREAM")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1 v3} android/content/Intent/putExtra [object java/lang/String] [object android/os/Parcelable] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v3 : Landroid/net/Uri;
+  (line 471)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) setSubject([object java/lang/String] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v3 ([object java/lang/String])
+  (line 632)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.intent.extra.SUBJECT")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1 v3} android/content/Intent/putExtra [object java/lang/String] [object java/lang/String] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+  (line 633)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) setText([object java/lang/CharSequence] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v3 ([object java/lang/CharSequence])
+  (line 431)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (const-string v1 "android.intent.extra.TEXT")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1 v3} android/content/Intent/putExtra [object java/lang/String] [object java/lang/CharSequence] )
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v3 : Ljava/lang/CharSequence;
+  (line 432)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) setType([object java/lang/String] )[object android/support/v4/app/ShareCompat$IntentBuilder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  ; parameter[0] : v2 ([object java/lang/String])
+  (line 418)
+  (iget-object v0 v1 android/support/v4/app/ShareCompat$IntentBuilder.mIntent [object android/content/Intent])
+; v0 : Landroid/content/Intent; , v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v0 v2} android/content/Intent/setType [object java/lang/String] )
+; v0 : Landroid/content/Intent; , v2 : Ljava/lang/String;
+  (line 419)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+)
+
+(method (attrs public ) startChooser()void
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  (line 386)
+  (iget-object v0 v2 android/support/v4/app/ShareCompat$IntentBuilder.mActivity [object android/app/Activity])
+; v0 : Landroid/app/Activity; , v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (invoke-virtual {v2} android/support/v4/app/ShareCompat$IntentBuilder/createChooserIntent )
+; v2 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (move-result-object v1)
+; v1 : Landroid/content/Intent;
+  (invoke-virtual {v0 v1} android/app/Activity/startActivity [object android/content/Intent] )
+; v0 : Landroid/app/Activity; , v1 : Landroid/content/Intent;
+  (line 387)
+  (return-void )
+)
+
+)

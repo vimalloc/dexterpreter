@@ -1,0 +1,171 @@
+(class (attrs public ) android/support/v4/widget/EdgeEffectCompat
+ (super java/lang/Object)
+ (source "EdgeEffectCompat.java")
+
+ (field (attrs private static final ) IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl] )
+ (field (attrs private ) mEdgeEffect [object java/lang/Object] )
+
+(method (attrs static ) <clinit>()void
+  (limit registers 2)
+  (line 37)
+  (sget v0 android/os/Build$VERSION.SDK_INT int)
+; v0 : single-length
+  (const/16 v1 14)
+; v1 : single-length
+  (if-lt v0 v1 l2ce94)
+; v0 : single-length , v1 : single-length
+  (line 38)
+  (new-instance v0 android/support/v4/widget/EdgeEffectCompat$EdgeEffectIcsImpl)
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectIcsImpl;
+  (invoke-direct {v0} android/support/v4/widget/EdgeEffectCompat$EdgeEffectIcsImpl/<init> )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectIcsImpl;
+  (sput-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (label l2ce92)
+  (line 42)
+  (return-void )
+  (label l2ce94)
+  (line 40)
+  (new-instance v0 android/support/v4/widget/EdgeEffectCompat$BaseEdgeEffectImpl)
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$BaseEdgeEffectImpl;
+  (invoke-direct {v0} android/support/v4/widget/EdgeEffectCompat$BaseEdgeEffectImpl/<init> )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$BaseEdgeEffectImpl;
+  (sput-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (goto l2ce92)
+ )
+
+(method (attrs public ) <init>([object android/content/Context] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/widget/EdgeEffectCompat])
+  ; parameter[0] : v2 ([object android/content/Context])
+  (line 132)
+  (invoke-direct {v1} java/lang/Object/<init> )
+; v1 : Landroid/support/v4/widget/EdgeEffectCompat;
+  (line 133)
+  (sget-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (invoke-interface {v0 v2} android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl/newEdgeEffect [object android/content/Context] )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl; , v2 : Landroid/content/Context;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (iput-object v0 v1 android/support/v4/widget/EdgeEffectCompat.mEdgeEffect [object java/lang/Object])
+; v0 : Ljava/lang/Object; , v1 : Landroid/support/v4/widget/EdgeEffectCompat;
+  (line 134)
+  (return-void )
+ )
+
+(method (attrs public ) draw([object android/graphics/Canvas] )boolean
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/widget/EdgeEffectCompat])
+  ; parameter[0] : v3 ([object android/graphics/Canvas])
+  (line 218)
+  (sget-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (iget-object v1 v2 android/support/v4/widget/EdgeEffectCompat.mEdgeEffect [object java/lang/Object])
+; v1 : Ljava/lang/Object; , v2 : Landroid/support/v4/widget/EdgeEffectCompat;
+  (invoke-interface {v0 v1 v3} android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl/draw [object java/lang/Object] [object android/graphics/Canvas] )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl; , v1 : Ljava/lang/Object; , v3 : Landroid/graphics/Canvas;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) finish()void
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/widget/EdgeEffectCompat])
+  (line 162)
+  (sget-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (iget-object v1 v2 android/support/v4/widget/EdgeEffectCompat.mEdgeEffect [object java/lang/Object])
+; v1 : Ljava/lang/Object; , v2 : Landroid/support/v4/widget/EdgeEffectCompat;
+  (invoke-interface {v0 v1} android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl/finish [object java/lang/Object] )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl; , v1 : Ljava/lang/Object;
+  (line 163)
+  (return-void )
+)
+
+(method (attrs public ) isFinished()boolean
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/widget/EdgeEffectCompat])
+  (line 154)
+  (sget-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (iget-object v1 v2 android/support/v4/widget/EdgeEffectCompat.mEdgeEffect [object java/lang/Object])
+; v1 : Ljava/lang/Object; , v2 : Landroid/support/v4/widget/EdgeEffectCompat;
+  (invoke-interface {v0 v1} android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl/isFinished [object java/lang/Object] )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl; , v1 : Ljava/lang/Object;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) onAbsorb(int )boolean
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/widget/EdgeEffectCompat])
+  ; parameter[0] : v3 (int)
+  (line 204)
+  (sget-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (iget-object v1 v2 android/support/v4/widget/EdgeEffectCompat.mEdgeEffect [object java/lang/Object])
+; v1 : Ljava/lang/Object; , v2 : Landroid/support/v4/widget/EdgeEffectCompat;
+  (invoke-interface {v0 v1 v3} android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl/onAbsorb [object java/lang/Object] int )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl; , v1 : Ljava/lang/Object; , v3 : single-length
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) onPull(float )boolean
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/widget/EdgeEffectCompat])
+  ; parameter[0] : v3 (float)
+  (line 177)
+  (sget-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (iget-object v1 v2 android/support/v4/widget/EdgeEffectCompat.mEdgeEffect [object java/lang/Object])
+; v1 : Ljava/lang/Object; , v2 : Landroid/support/v4/widget/EdgeEffectCompat;
+  (invoke-interface {v0 v1 v3} android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl/onPull [object java/lang/Object] float )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl; , v1 : Ljava/lang/Object; , v3 : single-length
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) onRelease()boolean
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/widget/EdgeEffectCompat])
+  (line 189)
+  (sget-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (iget-object v1 v2 android/support/v4/widget/EdgeEffectCompat.mEdgeEffect [object java/lang/Object])
+; v1 : Ljava/lang/Object; , v2 : Landroid/support/v4/widget/EdgeEffectCompat;
+  (invoke-interface {v0 v1} android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl/onRelease [object java/lang/Object] )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl; , v1 : Ljava/lang/Object;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) setSize(int int )void
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/widget/EdgeEffectCompat])
+  ; parameter[0] : v3 (int)
+  ; parameter[1] : v4 (int)
+  (line 143)
+  (sget-object v0 android/support/v4/widget/EdgeEffectCompat.IMPL [object android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl])
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl;
+  (iget-object v1 v2 android/support/v4/widget/EdgeEffectCompat.mEdgeEffect [object java/lang/Object])
+; v1 : Ljava/lang/Object; , v2 : Landroid/support/v4/widget/EdgeEffectCompat;
+  (invoke-interface {v0 v1 v3 v4} android/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl/setSize [object java/lang/Object] int int )
+; v0 : Landroid/support/v4/widget/EdgeEffectCompat$EdgeEffectImpl; , v1 : Ljava/lang/Object; , v3 : single-length , v4 : single-length
+  (line 144)
+  (return-void )
+)
+
+)

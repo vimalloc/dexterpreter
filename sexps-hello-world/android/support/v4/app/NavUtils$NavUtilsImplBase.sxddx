@@ -1,0 +1,172 @@
+(class (attrs ) android/support/v4/app/NavUtils$NavUtilsImplBase
+ (super java/lang/Object)
+ (source "NavUtils.java")
+ (implements android/support/v4/app/NavUtils$NavUtilsImpl)
+
+
+(method (attrs ) <init>()void
+  (limit registers 1)
+  ; this: v0 ([object android/support/v4/app/NavUtils$NavUtilsImplBase])
+  (line 46)
+  (invoke-direct {v0} java/lang/Object/<init> )
+; v0 : Landroid/support/v4/app/NavUtils$NavUtilsImplBase;
+  (return-void )
+ )
+
+(method (attrs public ) getParentActivityIntent([object android/app/Activity] )[object android/content/Intent]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/NavUtils$NavUtilsImplBase])
+  ; parameter[0] : v3 ([object android/app/Activity])
+  (line 50)
+  (invoke-static {v3} android/support/v4/app/NavUtils/getParentActivityName [object android/app/Activity] )
+; v3 : Landroid/app/Activity;
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (line 51)
+  (if-nez v0 l1b278)
+; v0 : Ljava/lang/String;
+  (const/4 v1 0)
+; v1 : single-length
+  (label l1b276)
+  (line 52)
+  (return-object v1)
+; v1 : Landroid/content/Intent;
+  (label l1b278)
+  (new-instance v1 android/content/Intent)
+; v1 : Landroid/content/Intent;
+  (invoke-direct {v1} android/content/Intent/<init> )
+; v1 : Landroid/content/Intent;
+  (invoke-virtual {v1 v3 v0} android/content/Intent/setClassName [object android/content/Context] [object java/lang/String] )
+; v1 : Landroid/content/Intent; , v3 : Landroid/app/Activity; , v0 : Ljava/lang/String;
+  (move-result-object v1)
+; v1 : Landroid/content/Intent;
+  (goto l1b276)
+)
+
+(method (attrs public ) getParentActivityName([object android/content/Context] [object android/content/pm/ActivityInfo] )[object java/lang/String]
+  (limit registers 7)
+  ; this: v4 ([object android/support/v4/app/NavUtils$NavUtilsImplBase])
+  ; parameter[0] : v5 ([object android/content/Context])
+  ; parameter[1] : v6 ([object android/content/pm/ActivityInfo])
+  (const/4 v1 0)
+; v1 : single-length
+  (line 70)
+  (iget-object v2 v6 android/content/pm/ActivityInfo.metaData [object android/os/Bundle])
+; v2 : Landroid/os/Bundle; , v6 : Landroid/content/pm/ActivityInfo;
+  (if-nez v2 l1b2aa)
+; v2 : Landroid/os/Bundle;
+  (move-object v0 v1)
+; v0 : single-length , v1 : single-length
+  (label l1b2a8)
+  (line 76)
+  (return-object v0)
+; v0 : Ljava/lang/String;
+  (label l1b2aa)
+  (line 71)
+  (iget-object v2 v6 android/content/pm/ActivityInfo.metaData [object android/os/Bundle])
+; v2 : Landroid/os/Bundle; , v6 : Landroid/content/pm/ActivityInfo;
+  (const-string v3 "android.support.PARENT_ACTIVITY")
+; v3 : Ljava/lang/String;
+  (invoke-virtual {v2 v3} android/os/Bundle/getString [object java/lang/String] )
+; v2 : Landroid/os/Bundle; , v3 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (line 72)
+  (if-nez v0 l1b2c2)
+; v0 : Ljava/lang/String;
+  (move-object v0 v1)
+; v0 : single-length , v1 : single-length
+  (goto l1b2a8)
+  (label l1b2c2)
+  (line 73)
+  (const/4 v1 0)
+; v1 : single-length
+  (invoke-virtual {v0 v1} java/lang/String/charAt int )
+; v0 : Ljava/lang/String; , v1 : single-length
+  (move-result v1)
+; v1 : single-length
+  (const/16 v2 46)
+; v2 : single-length
+  (if-ne v1 v2 l1b2a8)
+; v1 : single-length , v2 : single-length
+  (line 74)
+  (new-instance v1 java/lang/StringBuilder)
+; v1 : Ljava/lang/StringBuilder;
+  (invoke-direct {v1} java/lang/StringBuilder/<init> )
+; v1 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v5} android/content/Context/getPackageName )
+; v5 : Landroid/content/Context;
+  (move-result-object v2)
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v1 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (move-result-object v1)
+; v1 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v1 v0} java/lang/StringBuilder/append [object java/lang/String] )
+; v1 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+  (move-result-object v1)
+; v1 : Ljava/lang/StringBuilder;
+  (invoke-virtual {v1} java/lang/StringBuilder/toString )
+; v1 : Ljava/lang/StringBuilder;
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (goto l1b2a8)
+)
+
+(method (attrs public ) navigateUpTo([object android/app/Activity] [object android/content/Intent] )void
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/app/NavUtils$NavUtilsImplBase])
+  ; parameter[0] : v2 ([object android/app/Activity])
+  ; parameter[1] : v3 ([object android/content/Intent])
+  (line 63)
+  (const/high16 v0 1024)
+; v0 : single-length
+  (invoke-virtual {v3 v0} android/content/Intent/addFlags int )
+; v3 : Landroid/content/Intent; , v0 : single-length
+  (line 64)
+  (invoke-virtual {v2 v3} android/app/Activity/startActivity [object android/content/Intent] )
+; v2 : Landroid/app/Activity; , v3 : Landroid/content/Intent;
+  (line 65)
+  (invoke-virtual {v2} android/app/Activity/finish )
+; v2 : Landroid/app/Activity;
+  (line 66)
+  (return-void )
+)
+
+(method (attrs public ) shouldUpRecreateTask([object android/app/Activity] [object android/content/Intent] )boolean
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/app/NavUtils$NavUtilsImplBase])
+  ; parameter[0] : v3 ([object android/app/Activity])
+  ; parameter[1] : v4 ([object android/content/Intent])
+  (line 57)
+  (invoke-virtual {v3} android/app/Activity/getIntent )
+; v3 : Landroid/app/Activity;
+  (move-result-object v1)
+; v1 : Landroid/content/Intent;
+  (invoke-virtual {v1} android/content/Intent/getAction )
+; v1 : Landroid/content/Intent;
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (line 58)
+  (if-eqz v0 l1b360)
+; v0 : Ljava/lang/String;
+  (const-string v1 "android.intent.action.MAIN")
+; v1 : Ljava/lang/String;
+  (invoke-virtual {v0 v1} java/lang/String/equals [object java/lang/Object] )
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+  (move-result v1)
+; v1 : single-length
+  (if-nez v1 l1b360)
+; v1 : single-length
+  (const/4 v1 1)
+; v1 : single-length
+  (label l1b35e)
+  (return v1)
+; v1 : single-length
+  (label l1b360)
+  (const/4 v1 0)
+; v1 : single-length
+  (goto l1b35e)
+)
+
+)

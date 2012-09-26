@@ -1,0 +1,376 @@
+(class (attrs ) android/support/v4/app/NotificationCompatJellybean
+ (super java/lang/Object)
+ (source "NotificationCompatJellybean.java")
+
+ (field (attrs private ) b [object android/app/Notification$Builder] )
+
+(method (attrs public ) <init>([object android/content/Context] [object android/app/Notification] [object java/lang/CharSequence] [object java/lang/CharSequence] [object java/lang/CharSequence] [object android/widget/RemoteViews] int [object android/app/PendingIntent] [object android/app/PendingIntent] [object android/graphics/Bitmap] int int boolean boolean int [object java/lang/CharSequence] )void
+  (limit registers 24)
+  ; this: v7 ([object android/support/v4/app/NotificationCompatJellybean])
+  ; parameter[0] : v8 ([object android/content/Context])
+  ; parameter[1] : v9 ([object android/app/Notification])
+  ; parameter[2] : v10 ([object java/lang/CharSequence])
+  ; parameter[3] : v11 ([object java/lang/CharSequence])
+  ; parameter[4] : v12 ([object java/lang/CharSequence])
+  ; parameter[5] : v13 ([object android/widget/RemoteViews])
+  ; parameter[6] : v14 (int)
+  ; parameter[7] : v15 ([object android/app/PendingIntent])
+  ; parameter[8] : v16 ([object android/app/PendingIntent])
+  ; parameter[9] : v17 ([object android/graphics/Bitmap])
+  ; parameter[10] : v18 (int)
+  ; parameter[11] : v19 (int)
+  ; parameter[12] : v20 (boolean)
+  ; parameter[13] : v21 (boolean)
+  ; parameter[14] : v22 (int)
+  ; parameter[15] : v23 ([object java/lang/CharSequence])
+  (line 33)
+  (invoke-direct {v7} java/lang/Object/<init> )
+; v7 : Landroid/support/v4/app/NotificationCompatJellybean;
+  (line 34)
+  (new-instance v3 android/app/Notification$Builder)
+; v3 : Landroid/app/Notification$Builder;
+  (invoke-direct {v3 v8} android/app/Notification$Builder/<init> [object android/content/Context] )
+; v3 : Landroid/app/Notification$Builder; , v8 : Landroid/content/Context;
+  (iget-wide v4 v9 android/app/Notification.when long)
+; v4 : double-length , v9 : Landroid/app/Notification;
+  (invoke-virtual {v3 v4 v5} android/app/Notification$Builder/setWhen long )
+; v3 : Landroid/app/Notification$Builder; , v4 : double-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (iget v4 v9 android/app/Notification.icon int)
+; v4 : single-length , v9 : Landroid/app/Notification;
+  (iget v5 v9 android/app/Notification.iconLevel int)
+; v5 : single-length , v9 : Landroid/app/Notification;
+  (invoke-virtual {v3 v4 v5} android/app/Notification$Builder/setSmallIcon int int )
+; v3 : Landroid/app/Notification$Builder; , v4 : single-length , v5 : single-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (iget-object v4 v9 android/app/Notification.contentView [object android/widget/RemoteViews])
+; v4 : Landroid/widget/RemoteViews; , v9 : Landroid/app/Notification;
+  (invoke-virtual {v3 v4} android/app/Notification$Builder/setContent [object android/widget/RemoteViews] )
+; v3 : Landroid/app/Notification$Builder; , v4 : Landroid/widget/RemoteViews;
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (iget-object v4 v9 android/app/Notification.tickerText [object java/lang/CharSequence])
+; v4 : Ljava/lang/CharSequence; , v9 : Landroid/app/Notification;
+  (invoke-virtual {v3 v4 v13} android/app/Notification$Builder/setTicker [object java/lang/CharSequence] [object android/widget/RemoteViews] )
+; v3 : Landroid/app/Notification$Builder; , v4 : Ljava/lang/CharSequence; , v13 : Landroid/widget/RemoteViews;
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (iget-object v4 v9 android/app/Notification.sound [object android/net/Uri])
+; v4 : Landroid/net/Uri; , v9 : Landroid/app/Notification;
+  (iget v5 v9 android/app/Notification.audioStreamType int)
+; v5 : single-length , v9 : Landroid/app/Notification;
+  (invoke-virtual {v3 v4 v5} android/app/Notification$Builder/setSound [object android/net/Uri] int )
+; v3 : Landroid/app/Notification$Builder; , v4 : Landroid/net/Uri; , v5 : single-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (iget-object v4 v9 android/app/Notification.vibrate [array long])
+; v4 : [J , v9 : Landroid/app/Notification;
+  (invoke-virtual {v3 v4} android/app/Notification$Builder/setVibrate [array long] )
+; v3 : Landroid/app/Notification$Builder; , v4 : [J
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (iget v4 v9 android/app/Notification.ledARGB int)
+; v4 : single-length , v9 : Landroid/app/Notification;
+  (iget v5 v9 android/app/Notification.ledOnMS int)
+; v5 : single-length , v9 : Landroid/app/Notification;
+  (iget v6 v9 android/app/Notification.ledOffMS int)
+; v6 : single-length , v9 : Landroid/app/Notification;
+  (invoke-virtual {v3 v4 v5 v6} android/app/Notification$Builder/setLights int int int )
+; v3 : Landroid/app/Notification$Builder; , v4 : single-length , v5 : single-length , v6 : single-length
+  (move-result-object v4)
+; v4 : Landroid/app/Notification$Builder;
+  (iget v3 v9 android/app/Notification.flags int)
+; v3 : single-length , v9 : Landroid/app/Notification;
+  (and-int/lit8 v3 v3 2)
+; v3 : single-length , v3 : single-length
+  (if-eqz v3 l1c5ce)
+; v3 : single-length
+  (const/4 v3 1)
+; v3 : single-length
+  (label l1c4f6)
+  (invoke-virtual {v4 v3} android/app/Notification$Builder/setOngoing boolean )
+; v4 : Landroid/app/Notification$Builder; , v3 : single-length
+  (move-result-object v4)
+; v4 : Landroid/app/Notification$Builder;
+  (iget v3 v9 android/app/Notification.flags int)
+; v3 : single-length , v9 : Landroid/app/Notification;
+  (and-int/lit8 v3 v3 8)
+; v3 : single-length , v3 : single-length
+  (if-eqz v3 l1c5d2)
+; v3 : single-length
+  (const/4 v3 1)
+; v3 : single-length
+  (label l1c50c)
+  (invoke-virtual {v4 v3} android/app/Notification$Builder/setOnlyAlertOnce boolean )
+; v4 : Landroid/app/Notification$Builder; , v3 : single-length
+  (move-result-object v4)
+; v4 : Landroid/app/Notification$Builder;
+  (iget v3 v9 android/app/Notification.flags int)
+; v3 : single-length , v9 : Landroid/app/Notification;
+  (and-int/lit8 v3 v3 16)
+; v3 : single-length , v3 : single-length
+  (if-eqz v3 l1c5d6)
+; v3 : single-length
+  (const/4 v3 1)
+; v3 : single-length
+  (label l1c522)
+  (invoke-virtual {v4 v3} android/app/Notification$Builder/setAutoCancel boolean )
+; v4 : Landroid/app/Notification$Builder; , v3 : single-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (iget v4 v9 android/app/Notification.defaults int)
+; v4 : single-length , v9 : Landroid/app/Notification;
+  (invoke-virtual {v3 v4} android/app/Notification$Builder/setDefaults int )
+; v3 : Landroid/app/Notification$Builder; , v4 : single-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (invoke-virtual {v3 v10} android/app/Notification$Builder/setContentTitle [object java/lang/CharSequence] )
+; v3 : Landroid/app/Notification$Builder; , v10 : Ljava/lang/CharSequence;
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (invoke-virtual {v3 v11} android/app/Notification$Builder/setContentText [object java/lang/CharSequence] )
+; v3 : Landroid/app/Notification$Builder; , v11 : Ljava/lang/CharSequence;
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (move-object/from16 v0 v23)
+; v0 : Ljava/lang/CharSequence; , v23 : Ljava/lang/CharSequence;
+  (invoke-virtual {v3 v0} android/app/Notification$Builder/setSubText [object java/lang/CharSequence] )
+; v3 : Landroid/app/Notification$Builder; , v0 : Ljava/lang/CharSequence;
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (invoke-virtual {v3 v12} android/app/Notification$Builder/setContentInfo [object java/lang/CharSequence] )
+; v3 : Landroid/app/Notification$Builder; , v12 : Ljava/lang/CharSequence;
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (invoke-virtual {v3 v15} android/app/Notification$Builder/setContentIntent [object android/app/PendingIntent] )
+; v3 : Landroid/app/Notification$Builder; , v15 : Landroid/app/PendingIntent;
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (iget-object v4 v9 android/app/Notification.deleteIntent [object android/app/PendingIntent])
+; v4 : Landroid/app/PendingIntent; , v9 : Landroid/app/Notification;
+  (invoke-virtual {v3 v4} android/app/Notification$Builder/setDeleteIntent [object android/app/PendingIntent] )
+; v3 : Landroid/app/Notification$Builder; , v4 : Landroid/app/PendingIntent;
+  (move-result-object v4)
+; v4 : Landroid/app/Notification$Builder;
+  (iget v3 v9 android/app/Notification.flags int)
+; v3 : single-length , v9 : Landroid/app/Notification;
+  (and-int/lit16 v3 v3 128)
+; v3 : single-length , v3 : single-length
+  (if-eqz v3 l1c5da)
+; v3 : single-length
+  (const/4 v3 1)
+; v3 : single-length
+  (label l1c57c)
+  (move-object/from16 v0 v16)
+; v0 : Landroid/app/PendingIntent; , v16 : Landroid/app/PendingIntent;
+  (invoke-virtual {v4 v0 v3} android/app/Notification$Builder/setFullScreenIntent [object android/app/PendingIntent] boolean )
+; v4 : Landroid/app/Notification$Builder; , v0 : Landroid/app/PendingIntent; , v3 : single-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (move-object/from16 v0 v17)
+; v0 : Landroid/graphics/Bitmap; , v17 : Landroid/graphics/Bitmap;
+  (invoke-virtual {v3 v0} android/app/Notification$Builder/setLargeIcon [object android/graphics/Bitmap] )
+; v3 : Landroid/app/Notification$Builder; , v0 : Landroid/graphics/Bitmap;
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (invoke-virtual {v3 v14} android/app/Notification$Builder/setNumber int )
+; v3 : Landroid/app/Notification$Builder; , v14 : single-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (move/from16 v0 v21)
+; v0 : single-length , v21 : single-length
+  (invoke-virtual {v3 v0} android/app/Notification$Builder/setUsesChronometer boolean )
+; v3 : Landroid/app/Notification$Builder; , v0 : single-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (move/from16 v0 v22)
+; v0 : single-length , v22 : single-length
+  (invoke-virtual {v3 v0} android/app/Notification$Builder/setPriority int )
+; v3 : Landroid/app/Notification$Builder; , v0 : single-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (move/from16 v0 v18)
+; v0 : single-length , v18 : single-length
+  (move/from16 v1 v19)
+; v1 : single-length , v19 : single-length
+  (move/from16 v2 v20)
+; v2 : single-length , v20 : single-length
+  (invoke-virtual {v3 v0 v1 v2} android/app/Notification$Builder/setProgress int int boolean )
+; v3 : Landroid/app/Notification$Builder; , v0 : single-length , v1 : single-length , v2 : single-length
+  (move-result-object v3)
+; v3 : Landroid/app/Notification$Builder;
+  (iput-object v3 v7 android/support/v4/app/NotificationCompatJellybean.b [object android/app/Notification$Builder])
+; v3 : Landroid/app/Notification$Builder; , v7 : Landroid/support/v4/app/NotificationCompatJellybean;
+  (line 59)
+  (return-void )
+  (label l1c5ce)
+  (line 34)
+  (const/4 v3 0)
+; v3 : single-length
+  (goto l1c4f6)
+  (label l1c5d2)
+  (const/4 v3 0)
+; v3 : single-length
+  (goto l1c50c)
+  (label l1c5d6)
+  (const/4 v3 0)
+; v3 : single-length
+  (goto l1c522)
+  (label l1c5da)
+  (const/4 v3 0)
+; v3 : single-length
+  (goto l1c57c)
+ )
+
+(method (attrs public ) addAction(int [object java/lang/CharSequence] [object android/app/PendingIntent] )void
+  (limit registers 5)
+  ; this: v1 ([object android/support/v4/app/NotificationCompatJellybean])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 ([object java/lang/CharSequence])
+  ; parameter[2] : v4 ([object android/app/PendingIntent])
+  (line 62)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompatJellybean.b [object android/app/Notification$Builder])
+; v0 : Landroid/app/Notification$Builder; , v1 : Landroid/support/v4/app/NotificationCompatJellybean;
+  (invoke-virtual {v0 v2 v3 v4} android/app/Notification$Builder/addAction int [object java/lang/CharSequence] [object android/app/PendingIntent] )
+; v0 : Landroid/app/Notification$Builder; , v2 : single-length , v3 : Ljava/lang/CharSequence; , v4 : Landroid/app/PendingIntent;
+  (line 63)
+  (return-void )
+)
+
+(method (attrs public ) addBigPictureStyle([object java/lang/CharSequence] boolean [object java/lang/CharSequence] [object android/graphics/Bitmap] )void
+  (limit registers 8)
+  ; this: v3 ([object android/support/v4/app/NotificationCompatJellybean])
+  ; parameter[0] : v4 ([object java/lang/CharSequence])
+  ; parameter[1] : v5 (boolean)
+  ; parameter[2] : v6 ([object java/lang/CharSequence])
+  ; parameter[3] : v7 ([object android/graphics/Bitmap])
+  (line 77)
+  (new-instance v1 android/app/Notification$BigPictureStyle)
+; v1 : Landroid/app/Notification$BigPictureStyle;
+  (iget-object v2 v3 android/support/v4/app/NotificationCompatJellybean.b [object android/app/Notification$Builder])
+; v2 : Landroid/app/Notification$Builder; , v3 : Landroid/support/v4/app/NotificationCompatJellybean;
+  (invoke-direct {v1 v2} android/app/Notification$BigPictureStyle/<init> [object android/app/Notification$Builder] )
+; v1 : Landroid/app/Notification$BigPictureStyle; , v2 : Landroid/app/Notification$Builder;
+  (invoke-virtual {v1 v4} android/app/Notification$BigPictureStyle/setBigContentTitle [object java/lang/CharSequence] )
+; v1 : Landroid/app/Notification$BigPictureStyle; , v4 : Ljava/lang/CharSequence;
+  (move-result-object v1)
+; v1 : Landroid/app/Notification$BigPictureStyle;
+  (invoke-virtual {v1 v7} android/app/Notification$BigPictureStyle/bigPicture [object android/graphics/Bitmap] )
+; v1 : Landroid/app/Notification$BigPictureStyle; , v7 : Landroid/graphics/Bitmap;
+  (move-result-object v0)
+; v0 : Landroid/app/Notification$BigPictureStyle;
+  (line 80)
+  (if-eqz v5 l1c634)
+; v5 : single-length
+  (line 81)
+  (invoke-virtual {v0 v6} android/app/Notification$BigPictureStyle/setSummaryText [object java/lang/CharSequence] )
+; v0 : Landroid/app/Notification$BigPictureStyle; , v6 : Ljava/lang/CharSequence;
+  (label l1c634)
+  (line 83)
+  (return-void )
+)
+
+(method (attrs public ) addBigTextStyle([object java/lang/CharSequence] boolean [object java/lang/CharSequence] [object java/lang/CharSequence] )void
+  (limit registers 8)
+  ; this: v3 ([object android/support/v4/app/NotificationCompatJellybean])
+  ; parameter[0] : v4 ([object java/lang/CharSequence])
+  ; parameter[1] : v5 (boolean)
+  ; parameter[2] : v6 ([object java/lang/CharSequence])
+  ; parameter[3] : v7 ([object java/lang/CharSequence])
+  (line 67)
+  (new-instance v1 android/app/Notification$BigTextStyle)
+; v1 : Landroid/app/Notification$BigTextStyle;
+  (iget-object v2 v3 android/support/v4/app/NotificationCompatJellybean.b [object android/app/Notification$Builder])
+; v2 : Landroid/app/Notification$Builder; , v3 : Landroid/support/v4/app/NotificationCompatJellybean;
+  (invoke-direct {v1 v2} android/app/Notification$BigTextStyle/<init> [object android/app/Notification$Builder] )
+; v1 : Landroid/app/Notification$BigTextStyle; , v2 : Landroid/app/Notification$Builder;
+  (invoke-virtual {v1 v4} android/app/Notification$BigTextStyle/setBigContentTitle [object java/lang/CharSequence] )
+; v1 : Landroid/app/Notification$BigTextStyle; , v4 : Ljava/lang/CharSequence;
+  (move-result-object v1)
+; v1 : Landroid/app/Notification$BigTextStyle;
+  (invoke-virtual {v1 v7} android/app/Notification$BigTextStyle/bigText [object java/lang/CharSequence] )
+; v1 : Landroid/app/Notification$BigTextStyle; , v7 : Ljava/lang/CharSequence;
+  (move-result-object v0)
+; v0 : Landroid/app/Notification$BigTextStyle;
+  (line 70)
+  (if-eqz v5 l1c670)
+; v5 : single-length
+  (line 71)
+  (invoke-virtual {v0 v6} android/app/Notification$BigTextStyle/setSummaryText [object java/lang/CharSequence] )
+; v0 : Landroid/app/Notification$BigTextStyle; , v6 : Ljava/lang/CharSequence;
+  (label l1c670)
+  (line 73)
+  (return-void )
+)
+
+(method (attrs public ) addInboxStyle([object java/lang/CharSequence] boolean [object java/lang/CharSequence] [object java/util/ArrayList] )void
+  (limit registers 10)
+  ; this: v5 ([object android/support/v4/app/NotificationCompatJellybean])
+  ; parameter[0] : v6 ([object java/lang/CharSequence])
+  ; parameter[1] : v7 (boolean)
+  ; parameter[2] : v8 ([object java/lang/CharSequence])
+  ; parameter[3] : v9 ([object java/util/ArrayList])
+.var 2 is text [object java/lang/CharSequence] from l1c6c4 to l1c6cc
+  (line 87)
+  (new-instance v3 android/app/Notification$InboxStyle)
+; v3 : Landroid/app/Notification$InboxStyle;
+  (iget-object v4 v5 android/support/v4/app/NotificationCompatJellybean.b [object android/app/Notification$Builder])
+; v4 : Landroid/app/Notification$Builder; , v5 : Landroid/support/v4/app/NotificationCompatJellybean;
+  (invoke-direct {v3 v4} android/app/Notification$InboxStyle/<init> [object android/app/Notification$Builder] )
+; v3 : Landroid/app/Notification$InboxStyle; , v4 : Landroid/app/Notification$Builder;
+  (invoke-virtual {v3 v6} android/app/Notification$InboxStyle/setBigContentTitle [object java/lang/CharSequence] )
+; v3 : Landroid/app/Notification$InboxStyle; , v6 : Ljava/lang/CharSequence;
+  (move-result-object v1)
+; v1 : Landroid/app/Notification$InboxStyle;
+  (line 89)
+  (if-eqz v7 l1c6a4)
+; v7 : single-length
+  (line 90)
+  (invoke-virtual {v1 v8} android/app/Notification$InboxStyle/setSummaryText [object java/lang/CharSequence] )
+; v1 : Landroid/app/Notification$InboxStyle; , v8 : Ljava/lang/CharSequence;
+  (label l1c6a4)
+  (line 92)
+  (invoke-virtual {v9} java/util/ArrayList/iterator )
+; v9 : Ljava/util/ArrayList;
+  (move-result-object v0)
+; v0 : Ljava/util/Iterator;
+  (label l1c6ac)
+  (invoke-interface {v0} java/util/Iterator/hasNext )
+; v0 : Ljava/util/Iterator;
+  (move-result v3)
+; v3 : single-length
+  (if-eqz v3 l1c6cc)
+; v3 : single-length
+  (invoke-interface {v0} java/util/Iterator/next )
+; v0 : Ljava/util/Iterator;
+  (move-result-object v2)
+; v2 : Ljava/lang/Object;
+  (check-cast v2 [object java/lang/CharSequence])
+; v2 : Ljava/lang/CharSequence;
+  (label l1c6c4)
+  (line 93)
+  (invoke-virtual {v1 v2} android/app/Notification$InboxStyle/addLine [object java/lang/CharSequence] )
+; v1 : Landroid/app/Notification$InboxStyle; , v2 : Ljava/lang/CharSequence;
+  (goto l1c6ac)
+  (label l1c6cc)
+  (line 95)
+  (return-void )
+)
+
+(method (attrs public ) build()[object android/app/Notification]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/NotificationCompatJellybean])
+  (line 98)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompatJellybean.b [object android/app/Notification$Builder])
+; v0 : Landroid/app/Notification$Builder; , v1 : Landroid/support/v4/app/NotificationCompatJellybean;
+  (invoke-virtual {v0} android/app/Notification$Builder/build )
+; v0 : Landroid/app/Notification$Builder;
+  (move-result-object v0)
+; v0 : Landroid/app/Notification;
+  (return-object v0)
+; v0 : Landroid/app/Notification;
+)
+
+)

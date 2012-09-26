@@ -1,0 +1,162 @@
+(class (attrs public abstract ) android/support/v4/widget/ResourceCursorAdapter
+ (super android/support/v4/widget/CursorAdapter)
+ (source "ResourceCursorAdapter.java")
+
+ (field (attrs private ) mDropDownLayout int )
+ (field (attrs private ) mInflater [object android/view/LayoutInflater] )
+ (field (attrs private ) mLayout int )
+
+(method (attrs public ) <init>([object android/content/Context] int [object android/database/Cursor] )void
+  (limit registers 5)
+  ; this: v1 ([object android/support/v4/widget/ResourceCursorAdapter])
+  ; parameter[0] : v2 ([object android/content/Context])
+  ; parameter[1] : v3 (int)
+  ; parameter[2] : v4 ([object android/database/Cursor])
+  (line 54)
+  (invoke-direct {v1 v2 v4} android/support/v4/widget/CursorAdapter/<init> [object android/content/Context] [object android/database/Cursor] )
+; v1 : Landroid/support/v4/widget/ResourceCursorAdapter; , v2 : Landroid/content/Context; , v4 : Landroid/database/Cursor;
+  (line 55)
+  (iput v3 v1 android/support/v4/widget/ResourceCursorAdapter.mDropDownLayout int)
+; v3 : single-length , v1 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (iput v3 v1 android/support/v4/widget/ResourceCursorAdapter.mLayout int)
+; v3 : single-length , v1 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (line 56)
+  (const-string v0 "layout_inflater")
+; v0 : Ljava/lang/String;
+  (invoke-virtual {v2 v0} android/content/Context/getSystemService [object java/lang/String] )
+; v2 : Landroid/content/Context; , v0 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (check-cast v0 [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater;
+  (iput-object v0 v1 android/support/v4/widget/ResourceCursorAdapter.mInflater [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater; , v1 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (line 57)
+  (return-void )
+ )
+
+(method (attrs public ) <init>([object android/content/Context] int [object android/database/Cursor] int )void
+  (limit registers 6)
+  ; this: v1 ([object android/support/v4/widget/ResourceCursorAdapter])
+  ; parameter[0] : v2 ([object android/content/Context])
+  ; parameter[1] : v3 (int)
+  ; parameter[2] : v4 ([object android/database/Cursor])
+  ; parameter[3] : v5 (int)
+  (line 93)
+  (invoke-direct {v1 v2 v4 v5} android/support/v4/widget/CursorAdapter/<init> [object android/content/Context] [object android/database/Cursor] int )
+; v1 : Landroid/support/v4/widget/ResourceCursorAdapter; , v2 : Landroid/content/Context; , v4 : Landroid/database/Cursor; , v5 : single-length
+  (line 94)
+  (iput v3 v1 android/support/v4/widget/ResourceCursorAdapter.mDropDownLayout int)
+; v3 : single-length , v1 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (iput v3 v1 android/support/v4/widget/ResourceCursorAdapter.mLayout int)
+; v3 : single-length , v1 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (line 95)
+  (const-string v0 "layout_inflater")
+; v0 : Ljava/lang/String;
+  (invoke-virtual {v2 v0} android/content/Context/getSystemService [object java/lang/String] )
+; v2 : Landroid/content/Context; , v0 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (check-cast v0 [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater;
+  (iput-object v0 v1 android/support/v4/widget/ResourceCursorAdapter.mInflater [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater; , v1 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (line 96)
+  (return-void )
+ )
+
+(method (attrs public ) <init>([object android/content/Context] int [object android/database/Cursor] boolean )void
+  (limit registers 6)
+  ; this: v1 ([object android/support/v4/widget/ResourceCursorAdapter])
+  ; parameter[0] : v2 ([object android/content/Context])
+  ; parameter[1] : v3 (int)
+  ; parameter[2] : v4 ([object android/database/Cursor])
+  ; parameter[3] : v5 (boolean)
+  (line 76)
+  (invoke-direct {v1 v2 v4 v5} android/support/v4/widget/CursorAdapter/<init> [object android/content/Context] [object android/database/Cursor] boolean )
+; v1 : Landroid/support/v4/widget/ResourceCursorAdapter; , v2 : Landroid/content/Context; , v4 : Landroid/database/Cursor; , v5 : single-length
+  (line 77)
+  (iput v3 v1 android/support/v4/widget/ResourceCursorAdapter.mDropDownLayout int)
+; v3 : single-length , v1 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (iput v3 v1 android/support/v4/widget/ResourceCursorAdapter.mLayout int)
+; v3 : single-length , v1 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (line 78)
+  (const-string v0 "layout_inflater")
+; v0 : Ljava/lang/String;
+  (invoke-virtual {v2 v0} android/content/Context/getSystemService [object java/lang/String] )
+; v2 : Landroid/content/Context; , v0 : Ljava/lang/String;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (check-cast v0 [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater;
+  (iput-object v0 v1 android/support/v4/widget/ResourceCursorAdapter.mInflater [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater; , v1 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (line 79)
+  (return-void )
+ )
+
+(method (attrs public ) newDropDownView([object android/content/Context] [object android/database/Cursor] [object android/view/ViewGroup] )[object android/view/View]
+  (limit registers 7)
+  ; this: v3 ([object android/support/v4/widget/ResourceCursorAdapter])
+  ; parameter[0] : v4 ([object android/content/Context])
+  ; parameter[1] : v5 ([object android/database/Cursor])
+  ; parameter[2] : v6 ([object android/view/ViewGroup])
+  (line 111)
+  (iget-object v0 v3 android/support/v4/widget/ResourceCursorAdapter.mInflater [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater; , v3 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (iget v1 v3 android/support/v4/widget/ResourceCursorAdapter.mDropDownLayout int)
+; v1 : single-length , v3 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (const/4 v2 0)
+; v2 : single-length
+  (invoke-virtual {v0 v1 v6 v2} android/view/LayoutInflater/inflate int [object android/view/ViewGroup] boolean )
+; v0 : Landroid/view/LayoutInflater; , v1 : single-length , v6 : Landroid/view/ViewGroup; , v2 : single-length
+  (move-result-object v0)
+; v0 : Landroid/view/View;
+  (return-object v0)
+; v0 : Landroid/view/View;
+)
+
+(method (attrs public ) newView([object android/content/Context] [object android/database/Cursor] [object android/view/ViewGroup] )[object android/view/View]
+  (limit registers 7)
+  ; this: v3 ([object android/support/v4/widget/ResourceCursorAdapter])
+  ; parameter[0] : v4 ([object android/content/Context])
+  ; parameter[1] : v5 ([object android/database/Cursor])
+  ; parameter[2] : v6 ([object android/view/ViewGroup])
+  (line 106)
+  (iget-object v0 v3 android/support/v4/widget/ResourceCursorAdapter.mInflater [object android/view/LayoutInflater])
+; v0 : Landroid/view/LayoutInflater; , v3 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (iget v1 v3 android/support/v4/widget/ResourceCursorAdapter.mLayout int)
+; v1 : single-length , v3 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (const/4 v2 0)
+; v2 : single-length
+  (invoke-virtual {v0 v1 v6 v2} android/view/LayoutInflater/inflate int [object android/view/ViewGroup] boolean )
+; v0 : Landroid/view/LayoutInflater; , v1 : single-length , v6 : Landroid/view/ViewGroup; , v2 : single-length
+  (move-result-object v0)
+; v0 : Landroid/view/View;
+  (return-object v0)
+; v0 : Landroid/view/View;
+)
+
+(method (attrs public ) setDropDownViewResource(int )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/widget/ResourceCursorAdapter])
+  ; parameter[0] : v1 (int)
+  (line 129)
+  (iput v1 v0 android/support/v4/widget/ResourceCursorAdapter.mDropDownLayout int)
+; v1 : single-length , v0 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (line 130)
+  (return-void )
+)
+
+(method (attrs public ) setViewResource(int )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/widget/ResourceCursorAdapter])
+  ; parameter[0] : v1 (int)
+  (line 120)
+  (iput v1 v0 android/support/v4/widget/ResourceCursorAdapter.mLayout int)
+; v1 : single-length , v0 : Landroid/support/v4/widget/ResourceCursorAdapter;
+  (line 121)
+  (return-void )
+)
+
+)

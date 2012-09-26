@@ -1,0 +1,33 @@
+(class (attrs final ) android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$1
+ (super java/lang/Object)
+ (source "AccessibilityManagerCompatIcs.java")
+ (implements android/view/accessibility/AccessibilityManager$AccessibilityStateChangeListener)
+
+ (field (attrs final ) val$bridge [object android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge] )
+
+(method (attrs ) <init>([object android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$1])
+  ; parameter[0] : v1 ([object android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge])
+  (line 36)
+  (iput-object v1 v0 android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$1.val$bridge [object android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge])
+; v1 : Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge; , v0 : Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$1;
+  (invoke-direct {v0} java/lang/Object/<init> )
+; v0 : Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$1;
+  (return-void )
+ )
+
+(method (attrs public ) onAccessibilityStateChanged(boolean )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$1])
+  ; parameter[0] : v2 (boolean)
+  (line 39)
+  (iget-object v0 v1 android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$1.val$bridge [object android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge])
+; v0 : Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge; , v1 : Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$1;
+  (invoke-interface {v0 v2} android/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge/onAccessibilityStateChanged boolean )
+; v0 : Landroid/support/v4/view/accessibility/AccessibilityManagerCompatIcs$AccessibilityStateChangeListenerBridge; , v2 : single-length
+  (line 40)
+  (return-void )
+)
+
+)

@@ -1,0 +1,157 @@
+(class (attrs final ) android/support/v4/content/AsyncTaskLoader$LoadTask
+ (super android/support/v4/content/ModernAsyncTask)
+ (source "AsyncTaskLoader.java")
+ (implements java/lang/Runnable)
+
+ (field (attrs private ) done [object java/util/concurrent/CountDownLatch] )
+ (field (attrs ) result [object java/lang/Object] )
+ (field (attrs final ) this$0 [object android/support/v4/content/AsyncTaskLoader] )
+ (field (attrs ) waiting boolean )
+
+(method (attrs ) <init>([object android/support/v4/content/AsyncTaskLoader] )void
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/content/AsyncTaskLoader$LoadTask])
+  ; parameter[0] : v3 ([object android/support/v4/content/AsyncTaskLoader])
+  (line 40)
+  (iput-object v3 v2 android/support/v4/content/AsyncTaskLoader$LoadTask.this$0 [object android/support/v4/content/AsyncTaskLoader])
+; v3 : Landroid/support/v4/content/AsyncTaskLoader; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (invoke-direct {v2} android/support/v4/content/ModernAsyncTask/<init> )
+; v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (line 45)
+  (new-instance v0 java/util/concurrent/CountDownLatch)
+; v0 : Ljava/util/concurrent/CountDownLatch;
+  (const/4 v1 1)
+; v1 : single-length
+  (invoke-direct {v0 v1} java/util/concurrent/CountDownLatch/<init> int )
+; v0 : Ljava/util/concurrent/CountDownLatch; , v1 : single-length
+  (iput-object v0 v2 android/support/v4/content/AsyncTaskLoader$LoadTask.done [object java/util/concurrent/CountDownLatch])
+; v0 : Ljava/util/concurrent/CountDownLatch; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (return-void )
+ )
+
+(method (attrs static ) access$000([object android/support/v4/content/AsyncTaskLoader$LoadTask] )[object java/util/concurrent/CountDownLatch]
+  (limit registers 2)
+  ; parameter[0] : v1 ([object android/support/v4/content/AsyncTaskLoader$LoadTask])
+  (line 40)
+  (iget-object v0 v1 android/support/v4/content/AsyncTaskLoader$LoadTask.done [object java/util/concurrent/CountDownLatch])
+; v0 : Ljava/util/concurrent/CountDownLatch; , v1 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (return-object v0)
+; v0 : Ljava/util/concurrent/CountDownLatch;
+ )
+
+(method (attrs protected ) doInBackground([array [object java/lang/Object]] )[object java/lang/Object]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/content/AsyncTaskLoader$LoadTask])
+  ; parameter[0] : v2 ([array [object java/lang/Object]])
+  (line 40)
+  (check-cast v2 [array [object java/lang/Void]])
+; v2 : [Ljava/lang/Void;
+  (invoke-virtual {v1 v2} android/support/v4/content/AsyncTaskLoader$LoadTask/doInBackground [array [object java/lang/Void]] )
+; v1 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask; , v2 : [Ljava/lang/Void;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+)
+
+(method (attrs protected ) doInBackground([array [object java/lang/Void]] )[object java/lang/Object]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/content/AsyncTaskLoader$LoadTask])
+  ; parameter[0] : v2 ([array [object java/lang/Void]])
+  (line 51)
+  (iget-object v0 v1 android/support/v4/content/AsyncTaskLoader$LoadTask.this$0 [object android/support/v4/content/AsyncTaskLoader])
+; v0 : Landroid/support/v4/content/AsyncTaskLoader; , v1 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (invoke-virtual {v0} android/support/v4/content/AsyncTaskLoader/onLoadInBackground )
+; v0 : Landroid/support/v4/content/AsyncTaskLoader;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (iput-object v0 v1 android/support/v4/content/AsyncTaskLoader$LoadTask.result [object java/lang/Object])
+; v0 : Ljava/lang/Object; , v1 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (line 53)
+  (iget-object v0 v1 android/support/v4/content/AsyncTaskLoader$LoadTask.result [object java/lang/Object])
+; v0 : Ljava/lang/Object; , v1 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+)
+
+(method (attrs protected ) onCancelled()void
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/content/AsyncTaskLoader$LoadTask])
+  (catch java/lang/Exception from l1df7c to l1df8a using l1df96)
+  (label l1df7c)
+  (line 71)
+  (iget-object v0 v2 android/support/v4/content/AsyncTaskLoader$LoadTask.this$0 [object android/support/v4/content/AsyncTaskLoader])
+; v0 : Landroid/support/v4/content/AsyncTaskLoader; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (iget-object v1 v2 android/support/v4/content/AsyncTaskLoader$LoadTask.result [object java/lang/Object])
+; v1 : Ljava/lang/Object; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (invoke-virtual {v0 v2 v1} android/support/v4/content/AsyncTaskLoader/dispatchOnCancelled [object android/support/v4/content/AsyncTaskLoader$LoadTask] [object java/lang/Object] )
+; v0 : Landroid/support/v4/content/AsyncTaskLoader; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask; , v1 : Ljava/lang/Object;
+  (label l1df8a)
+  (line 73)
+  (iget-object v0 v2 android/support/v4/content/AsyncTaskLoader$LoadTask.done [object java/util/concurrent/CountDownLatch])
+; v0 : Ljava/util/concurrent/CountDownLatch; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (invoke-virtual {v0} java/util/concurrent/CountDownLatch/countDown )
+; v0 : Ljava/util/concurrent/CountDownLatch;
+  (line 75)
+  (return-void )
+  (label l1df96)
+  (line 73)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (iget-object v1 v2 android/support/v4/content/AsyncTaskLoader$LoadTask.done [object java/util/concurrent/CountDownLatch])
+; v1 : Ljava/util/concurrent/CountDownLatch; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (invoke-virtual {v1} java/util/concurrent/CountDownLatch/countDown )
+; v1 : Ljava/util/concurrent/CountDownLatch;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs protected ) onPostExecute([object java/lang/Object] )void
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/content/AsyncTaskLoader$LoadTask])
+  ; parameter[0] : v3 ([object java/lang/Object])
+  (catch java/lang/Exception from l1dfc0 to l1dfca using l1dfd6)
+  (label l1dfc0)
+  (line 61)
+  (iget-object v0 v2 android/support/v4/content/AsyncTaskLoader$LoadTask.this$0 [object android/support/v4/content/AsyncTaskLoader])
+; v0 : Landroid/support/v4/content/AsyncTaskLoader; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (invoke-virtual {v0 v2 v3} android/support/v4/content/AsyncTaskLoader/dispatchOnLoadComplete [object android/support/v4/content/AsyncTaskLoader$LoadTask] [object java/lang/Object] )
+; v0 : Landroid/support/v4/content/AsyncTaskLoader; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask; , v3 : Ljava/lang/Object;
+  (label l1dfca)
+  (line 63)
+  (iget-object v0 v2 android/support/v4/content/AsyncTaskLoader$LoadTask.done [object java/util/concurrent/CountDownLatch])
+; v0 : Ljava/util/concurrent/CountDownLatch; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (invoke-virtual {v0} java/util/concurrent/CountDownLatch/countDown )
+; v0 : Ljava/util/concurrent/CountDownLatch;
+  (line 65)
+  (return-void )
+  (label l1dfd6)
+  (line 63)
+  (move-exception v0)
+; v0 : java/lang/Exception
+  (iget-object v1 v2 android/support/v4/content/AsyncTaskLoader$LoadTask.done [object java/util/concurrent/CountDownLatch])
+; v1 : Ljava/util/concurrent/CountDownLatch; , v2 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (invoke-virtual {v1} java/util/concurrent/CountDownLatch/countDown )
+; v1 : Ljava/util/concurrent/CountDownLatch;
+  (throw v0)
+; v0 : java/lang/Exception
+)
+
+(method (attrs public ) run()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/content/AsyncTaskLoader$LoadTask])
+  (line 79)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-boolean v0 v1 android/support/v4/content/AsyncTaskLoader$LoadTask.waiting boolean)
+; v0 : single-length , v1 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (line 80)
+  (iget-object v0 v1 android/support/v4/content/AsyncTaskLoader$LoadTask.this$0 [object android/support/v4/content/AsyncTaskLoader])
+; v0 : Landroid/support/v4/content/AsyncTaskLoader; , v1 : Landroid/support/v4/content/AsyncTaskLoader$LoadTask;
+  (invoke-virtual {v0} android/support/v4/content/AsyncTaskLoader/executePendingTask )
+; v0 : Landroid/support/v4/content/AsyncTaskLoader;
+  (line 81)
+  (return-void )
+)
+
+)

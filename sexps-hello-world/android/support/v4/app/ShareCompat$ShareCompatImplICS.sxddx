@@ -1,0 +1,72 @@
+(class (attrs ) android/support/v4/app/ShareCompat$ShareCompatImplICS
+ (super android/support/v4/app/ShareCompat$ShareCompatImplBase)
+ (source "ShareCompat.java")
+
+
+(method (attrs ) <init>()void
+  (limit registers 1)
+  ; this: v0 ([object android/support/v4/app/ShareCompat$ShareCompatImplICS])
+  (line 123)
+  (invoke-direct {v0} android/support/v4/app/ShareCompat$ShareCompatImplBase/<init> )
+; v0 : Landroid/support/v4/app/ShareCompat$ShareCompatImplICS;
+  (return-void )
+ )
+
+(method (attrs public ) configureMenuItem([object android/view/MenuItem] [object android/support/v4/app/ShareCompat$IntentBuilder] )void
+  (limit registers 5)
+  ; this: v2 ([object android/support/v4/app/ShareCompat$ShareCompatImplICS])
+  ; parameter[0] : v3 ([object android/view/MenuItem])
+  ; parameter[1] : v4 ([object android/support/v4/app/ShareCompat$IntentBuilder])
+  (line 125)
+  (invoke-virtual {v4} android/support/v4/app/ShareCompat$IntentBuilder/getActivity )
+; v4 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (move-result-object v0)
+; v0 : Landroid/app/Activity;
+  (invoke-virtual {v4} android/support/v4/app/ShareCompat$IntentBuilder/getIntent )
+; v4 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (move-result-object v1)
+; v1 : Landroid/content/Intent;
+  (invoke-static {v3 v0 v1} android/support/v4/app/ShareCompatICS/configureMenuItem [object android/view/MenuItem] [object android/app/Activity] [object android/content/Intent] )
+; v3 : Landroid/view/MenuItem; , v0 : Landroid/app/Activity; , v1 : Landroid/content/Intent;
+  (line 127)
+  (invoke-virtual {v2 v3} android/support/v4/app/ShareCompat$ShareCompatImplICS/shouldAddChooserIntent [object android/view/MenuItem] )
+; v2 : Landroid/support/v4/app/ShareCompat$ShareCompatImplICS; , v3 : Landroid/view/MenuItem;
+  (move-result v0)
+; v0 : single-length
+  (if-eqz v0 l1d350)
+; v0 : single-length
+  (line 128)
+  (invoke-virtual {v4} android/support/v4/app/ShareCompat$IntentBuilder/createChooserIntent )
+; v4 : Landroid/support/v4/app/ShareCompat$IntentBuilder;
+  (move-result-object v0)
+; v0 : Landroid/content/Intent;
+  (invoke-interface {v3 v0} android/view/MenuItem/setIntent [object android/content/Intent] )
+; v3 : Landroid/view/MenuItem; , v0 : Landroid/content/Intent;
+  (label l1d350)
+  (line 130)
+  (return-void )
+)
+
+(method (attrs ) shouldAddChooserIntent([object android/view/MenuItem] )boolean
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/ShareCompat$ShareCompatImplICS])
+  ; parameter[0] : v2 ([object android/view/MenuItem])
+  (line 133)
+  (invoke-interface {v2} android/view/MenuItem/hasSubMenu )
+; v2 : Landroid/view/MenuItem;
+  (move-result v0)
+; v0 : single-length
+  (if-nez v0 l1d374)
+; v0 : single-length
+  (const/4 v0 1)
+; v0 : single-length
+  (label l1d372)
+  (return v0)
+; v0 : single-length
+  (label l1d374)
+  (const/4 v0 0)
+; v0 : single-length
+  (goto l1d372)
+)
+
+)

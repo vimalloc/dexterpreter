@@ -1,0 +1,75 @@
+(class (attrs ) android/support/v4/app/FragmentActivity$1
+ (super android/os/Handler)
+ (source "FragmentActivity.java")
+
+ (field (attrs final ) this$0 [object android/support/v4/app/FragmentActivity] )
+
+(method (attrs ) <init>([object android/support/v4/app/FragmentActivity] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/FragmentActivity$1])
+  ; parameter[0] : v1 ([object android/support/v4/app/FragmentActivity])
+  (line 80)
+  (iput-object v1 v0 android/support/v4/app/FragmentActivity$1.this$0 [object android/support/v4/app/FragmentActivity])
+; v1 : Landroid/support/v4/app/FragmentActivity; , v0 : Landroid/support/v4/app/FragmentActivity$1;
+  (invoke-direct {v0} android/os/Handler/<init> )
+; v0 : Landroid/support/v4/app/FragmentActivity$1;
+  (return-void )
+ )
+
+(method (attrs public ) handleMessage([object android/os/Message] )void
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/FragmentActivity$1])
+  ; parameter[0] : v3 ([object android/os/Message])
+  (line 83)
+  (iget v0 v3 android/os/Message.what int)
+; v0 : single-length , v3 : Landroid/os/Message;
+  (packed-switch v0 1
+    ps14310_1431e ; case 1
+    ps14310_14338 ; case 2
+    ps14310_default) ; default
+; v0 : single-length
+  (label ps14310_default)
+  (line 94)
+  (invoke-super {v2 v3} android/os/Handler/handleMessage [object android/os/Message] )
+; v2 : Landroid/support/v4/app/FragmentActivity$1; , v3 : Landroid/os/Message;
+  (label l1431c)
+  (line 96)
+  (return-void )
+  (label ps14310_1431e)
+  (line 85)
+  (iget-object v0 v2 android/support/v4/app/FragmentActivity$1.this$0 [object android/support/v4/app/FragmentActivity])
+; v0 : Landroid/support/v4/app/FragmentActivity; , v2 : Landroid/support/v4/app/FragmentActivity$1;
+  (iget-boolean v0 v0 android/support/v4/app/FragmentActivity.mStopped boolean)
+; v0 : single-length , v0 : single-length
+  (if-eqz v0 l1431c)
+; v0 : single-length
+  (line 86)
+  (iget-object v0 v2 android/support/v4/app/FragmentActivity$1.this$0 [object android/support/v4/app/FragmentActivity])
+; v0 : Landroid/support/v4/app/FragmentActivity; , v2 : Landroid/support/v4/app/FragmentActivity$1;
+  (const/4 v1 0)
+; v1 : single-length
+  (invoke-virtual {v0 v1} android/support/v4/app/FragmentActivity/doReallyStop boolean )
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : single-length
+  (goto l1431c)
+  (label ps14310_14338)
+  (line 90)
+  (iget-object v0 v2 android/support/v4/app/FragmentActivity$1.this$0 [object android/support/v4/app/FragmentActivity])
+; v0 : Landroid/support/v4/app/FragmentActivity; , v2 : Landroid/support/v4/app/FragmentActivity$1;
+  (invoke-virtual {v0} android/support/v4/app/FragmentActivity/onResumeFragments )
+; v0 : Landroid/support/v4/app/FragmentActivity;
+  (line 91)
+  (iget-object v0 v2 android/support/v4/app/FragmentActivity$1.this$0 [object android/support/v4/app/FragmentActivity])
+; v0 : Landroid/support/v4/app/FragmentActivity; , v2 : Landroid/support/v4/app/FragmentActivity$1;
+  (iget-object v0 v0 android/support/v4/app/FragmentActivity.mFragments [object android/support/v4/app/FragmentManagerImpl])
+; v0 : Landroid/support/v4/app/FragmentManagerImpl; , v0 : Landroid/support/v4/app/FragmentManagerImpl;
+  (invoke-virtual {v0} android/support/v4/app/FragmentManagerImpl/execPendingActions )
+; v0 : Landroid/support/v4/app/FragmentManagerImpl;
+  (goto l1431c)
+  (line 83)
+  (label l14352)
+  (data-array
+    0x00 0x00
+  )
+)
+
+)

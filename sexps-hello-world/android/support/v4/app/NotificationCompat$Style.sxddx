@@ -1,0 +1,75 @@
+(class (attrs public abstract ) android/support/v4/app/NotificationCompat$Style
+ (super java/lang/Object)
+ (source "NotificationCompat.java")
+
+ (field (attrs ) mBigContentTitle [object java/lang/CharSequence] )
+ (field (attrs ) mBuilder [object android/support/v4/app/NotificationCompat$Builder] )
+ (field (attrs ) mSummaryText [object java/lang/CharSequence] )
+ (field (attrs ) mSummaryTextSet boolean )
+
+(method (attrs public ) <init>()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Style])
+  (line 566)
+  (invoke-direct {v1} java/lang/Object/<init> )
+; v1 : Landroid/support/v4/app/NotificationCompat$Style;
+  (line 571)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput-boolean v0 v1 android/support/v4/app/NotificationCompat$Style.mSummaryTextSet boolean)
+; v0 : single-length , v1 : Landroid/support/v4/app/NotificationCompat$Style;
+  (return-void )
+ )
+
+(method (attrs public ) build()[object android/app/Notification]
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/app/NotificationCompat$Style])
+  (line 583)
+  (const/4 v0 0)
+; v0 : single-length
+  (line 584)
+  (iget-object v1 v2 android/support/v4/app/NotificationCompat$Style.mBuilder [object android/support/v4/app/NotificationCompat$Builder])
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v2 : Landroid/support/v4/app/NotificationCompat$Style;
+  (if-eqz v1 l1b7aa)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 585)
+  (iget-object v1 v2 android/support/v4/app/NotificationCompat$Style.mBuilder [object android/support/v4/app/NotificationCompat$Builder])
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v2 : Landroid/support/v4/app/NotificationCompat$Style;
+  (invoke-virtual {v1} android/support/v4/app/NotificationCompat$Builder/build )
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (move-result-object v0)
+; v0 : Landroid/app/Notification;
+  (label l1b7aa)
+  (line 587)
+  (return-object v0)
+; v0 : single-length
+)
+
+(method (attrs public ) setBuilder([object android/support/v4/app/NotificationCompat$Builder] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Style])
+  ; parameter[0] : v2 ([object android/support/v4/app/NotificationCompat$Builder])
+  (line 574)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Style.mBuilder [object android/support/v4/app/NotificationCompat$Builder])
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder; , v1 : Landroid/support/v4/app/NotificationCompat$Style;
+  (if-eq v0 v2 l1b7da)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder; , v2 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 575)
+  (iput-object v2 v1 android/support/v4/app/NotificationCompat$Style.mBuilder [object android/support/v4/app/NotificationCompat$Builder])
+; v2 : Landroid/support/v4/app/NotificationCompat$Builder; , v1 : Landroid/support/v4/app/NotificationCompat$Style;
+  (line 576)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Style.mBuilder [object android/support/v4/app/NotificationCompat$Builder])
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder; , v1 : Landroid/support/v4/app/NotificationCompat$Style;
+  (if-eqz v0 l1b7da)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 577)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Style.mBuilder [object android/support/v4/app/NotificationCompat$Builder])
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder; , v1 : Landroid/support/v4/app/NotificationCompat$Style;
+  (invoke-virtual {v0 v1} android/support/v4/app/NotificationCompat$Builder/setStyle [object android/support/v4/app/NotificationCompat$Style] )
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder; , v1 : Landroid/support/v4/app/NotificationCompat$Style;
+  (label l1b7da)
+  (line 580)
+  (return-void )
+)
+
+)

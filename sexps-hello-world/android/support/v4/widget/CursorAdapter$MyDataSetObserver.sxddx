@@ -1,0 +1,68 @@
+(class (attrs ) android/support/v4/widget/CursorAdapter$MyDataSetObserver
+ (super android/database/DataSetObserver)
+ (source "CursorAdapter.java")
+
+ (field (attrs final ) this$0 [object android/support/v4/widget/CursorAdapter] )
+
+(method (attrs private ) <init>([object android/support/v4/widget/CursorAdapter] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/widget/CursorAdapter$MyDataSetObserver])
+  ; parameter[0] : v1 ([object android/support/v4/widget/CursorAdapter])
+  (line 469)
+  (iput-object v1 v0 android/support/v4/widget/CursorAdapter$MyDataSetObserver.this$0 [object android/support/v4/widget/CursorAdapter])
+; v1 : Landroid/support/v4/widget/CursorAdapter; , v0 : Landroid/support/v4/widget/CursorAdapter$MyDataSetObserver;
+  (invoke-direct {v0} android/database/DataSetObserver/<init> )
+; v0 : Landroid/support/v4/widget/CursorAdapter$MyDataSetObserver;
+  (return-void )
+ )
+
+(method (attrs ) <init>([object android/support/v4/widget/CursorAdapter] [object android/support/v4/widget/CursorAdapter$1] )void
+  (limit registers 3)
+  ; this: v0 ([object android/support/v4/widget/CursorAdapter$MyDataSetObserver])
+  ; parameter[0] : v1 ([object android/support/v4/widget/CursorAdapter])
+  ; parameter[1] : v2 ([object android/support/v4/widget/CursorAdapter$1])
+  (line 469)
+  (invoke-direct {v0 v1} android/support/v4/widget/CursorAdapter$MyDataSetObserver/<init> [object android/support/v4/widget/CursorAdapter] )
+; v0 : Landroid/support/v4/widget/CursorAdapter$MyDataSetObserver; , v1 : Landroid/support/v4/widget/CursorAdapter;
+  (return-void )
+ )
+
+(method (attrs public ) onChanged()void
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/widget/CursorAdapter$MyDataSetObserver])
+  (line 472)
+  (iget-object v0 v2 android/support/v4/widget/CursorAdapter$MyDataSetObserver.this$0 [object android/support/v4/widget/CursorAdapter])
+; v0 : Landroid/support/v4/widget/CursorAdapter; , v2 : Landroid/support/v4/widget/CursorAdapter$MyDataSetObserver;
+  (const/4 v1 1)
+; v1 : single-length
+  (iput-boolean v1 v0 android/support/v4/widget/CursorAdapter.mDataValid boolean)
+; v1 : single-length , v0 : Landroid/support/v4/widget/CursorAdapter;
+  (line 473)
+  (iget-object v0 v2 android/support/v4/widget/CursorAdapter$MyDataSetObserver.this$0 [object android/support/v4/widget/CursorAdapter])
+; v0 : Landroid/support/v4/widget/CursorAdapter; , v2 : Landroid/support/v4/widget/CursorAdapter$MyDataSetObserver;
+  (invoke-virtual {v0} android/support/v4/widget/CursorAdapter/notifyDataSetChanged )
+; v0 : Landroid/support/v4/widget/CursorAdapter;
+  (line 474)
+  (return-void )
+)
+
+(method (attrs public ) onInvalidated()void
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/widget/CursorAdapter$MyDataSetObserver])
+  (line 478)
+  (iget-object v0 v2 android/support/v4/widget/CursorAdapter$MyDataSetObserver.this$0 [object android/support/v4/widget/CursorAdapter])
+; v0 : Landroid/support/v4/widget/CursorAdapter; , v2 : Landroid/support/v4/widget/CursorAdapter$MyDataSetObserver;
+  (const/4 v1 0)
+; v1 : single-length
+  (iput-boolean v1 v0 android/support/v4/widget/CursorAdapter.mDataValid boolean)
+; v1 : single-length , v0 : Landroid/support/v4/widget/CursorAdapter;
+  (line 479)
+  (iget-object v0 v2 android/support/v4/widget/CursorAdapter$MyDataSetObserver.this$0 [object android/support/v4/widget/CursorAdapter])
+; v0 : Landroid/support/v4/widget/CursorAdapter; , v2 : Landroid/support/v4/widget/CursorAdapter$MyDataSetObserver;
+  (invoke-virtual {v0} android/support/v4/widget/CursorAdapter/notifyDataSetInvalidated )
+; v0 : Landroid/support/v4/widget/CursorAdapter;
+  (line 480)
+  (return-void )
+)
+
+)

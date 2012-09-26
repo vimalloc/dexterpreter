@@ -1,0 +1,59 @@
+(class (attrs ) android/support/v4/content/ModernAsyncTask$2
+ (super android/support/v4/content/ModernAsyncTask$WorkerRunnable)
+ (source "ModernAsyncTask.java")
+
+ (field (attrs final ) this$0 [object android/support/v4/content/ModernAsyncTask] )
+
+(method (attrs ) <init>([object android/support/v4/content/ModernAsyncTask] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/content/ModernAsyncTask$2])
+  ; parameter[0] : v2 ([object android/support/v4/content/ModernAsyncTask])
+  (line 118)
+  (iput-object v2 v1 android/support/v4/content/ModernAsyncTask$2.this$0 [object android/support/v4/content/ModernAsyncTask])
+; v2 : Landroid/support/v4/content/ModernAsyncTask; , v1 : Landroid/support/v4/content/ModernAsyncTask$2;
+  (const/4 v0 0)
+; v0 : single-length
+  (invoke-direct {v1 v0} android/support/v4/content/ModernAsyncTask$WorkerRunnable/<init> [object android/support/v4/content/ModernAsyncTask$1] )
+; v1 : Landroid/support/v4/content/ModernAsyncTask$2; , v0 : single-length
+  (return-void )
+ )
+
+(method (attrs public ) call()[object java/lang/Object]
+  (limit registers 4)
+  ; this: v3 ([object android/support/v4/content/ModernAsyncTask$2])
+  (line 120)
+  (iget-object v0 v3 android/support/v4/content/ModernAsyncTask$2.this$0 [object android/support/v4/content/ModernAsyncTask])
+; v0 : Landroid/support/v4/content/ModernAsyncTask; , v3 : Landroid/support/v4/content/ModernAsyncTask$2;
+  (invoke-static {v0} android/support/v4/content/ModernAsyncTask/access$200 [object android/support/v4/content/ModernAsyncTask] )
+; v0 : Landroid/support/v4/content/ModernAsyncTask;
+  (move-result-object v0)
+; v0 : Ljava/util/concurrent/atomic/AtomicBoolean;
+  (const/4 v1 1)
+; v1 : single-length
+  (invoke-virtual {v0 v1} java/util/concurrent/atomic/AtomicBoolean/set boolean )
+; v0 : Ljava/util/concurrent/atomic/AtomicBoolean; , v1 : single-length
+  (line 122)
+  (const/16 v0 10)
+; v0 : single-length
+  (invoke-static {v0} android/os/Process/setThreadPriority int )
+; v0 : single-length
+  (line 123)
+  (iget-object v0 v3 android/support/v4/content/ModernAsyncTask$2.this$0 [object android/support/v4/content/ModernAsyncTask])
+; v0 : Landroid/support/v4/content/ModernAsyncTask; , v3 : Landroid/support/v4/content/ModernAsyncTask$2;
+  (iget-object v1 v3 android/support/v4/content/ModernAsyncTask$2.this$0 [object android/support/v4/content/ModernAsyncTask])
+; v1 : Landroid/support/v4/content/ModernAsyncTask; , v3 : Landroid/support/v4/content/ModernAsyncTask$2;
+  (iget-object v2 v3 android/support/v4/content/ModernAsyncTask$2.mParams [array [object java/lang/Object]])
+; v2 : [Ljava/lang/Object; , v3 : Landroid/support/v4/content/ModernAsyncTask$2;
+  (invoke-virtual {v1 v2} android/support/v4/content/ModernAsyncTask/doInBackground [array [object java/lang/Object]] )
+; v1 : Landroid/support/v4/content/ModernAsyncTask; , v2 : [Ljava/lang/Object;
+  (move-result-object v1)
+; v1 : Ljava/lang/Object;
+  (invoke-static {v0 v1} android/support/v4/content/ModernAsyncTask/access$300 [object android/support/v4/content/ModernAsyncTask] [object java/lang/Object] )
+; v0 : Landroid/support/v4/content/ModernAsyncTask; , v1 : Ljava/lang/Object;
+  (move-result-object v0)
+; v0 : Ljava/lang/Object;
+  (return-object v0)
+; v0 : Ljava/lang/Object;
+)
+
+)

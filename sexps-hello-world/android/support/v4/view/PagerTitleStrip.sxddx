@@ -1,0 +1,1678 @@
+(class (attrs public ) android/support/v4/view/PagerTitleStrip
+ (super android/view/ViewGroup)
+ (source "PagerTitleStrip.java")
+ (implements android/support/v4/view/ViewPager$Decor)
+
+ (field (attrs private static final ) ATTRS [array int] null )
+ (field (attrs private static final ) IMPL [object android/support/v4/view/PagerTitleStrip$PagerTitleStripImpl] null )
+ (field (attrs private static final ) SIDE_ALPHA float 0.6 )
+ (field (attrs private static final ) TAG [object java/lang/String] "PagerTitleStrip" )
+ (field (attrs private static final ) TEXT_ATTRS [array int] null )
+ (field (attrs private static final ) TEXT_SPACING int 16); 0x10 )
+ (field (attrs ) mCurrText [object android/widget/TextView] )
+ (field (attrs private ) mGravity int )
+ (field (attrs private ) mLastKnownCurrentPage int )
+ (field (attrs private ) mLastKnownPositionOffset float )
+ (field (attrs ) mNextText [object android/widget/TextView] )
+ (field (attrs private ) mNonPrimaryAlpha int )
+ (field (attrs private final ) mPageListener [object android/support/v4/view/PagerTitleStrip$PageListener] )
+ (field (attrs ) mPager [object android/support/v4/view/ViewPager] )
+ (field (attrs ) mPrevText [object android/widget/TextView] )
+ (field (attrs private ) mScaledTextSpacing int )
+ (field (attrs ) mTextColor int )
+ (field (attrs private ) mUpdatingPositions boolean )
+ (field (attrs private ) mUpdatingText boolean )
+
+(method (attrs static ) <clinit>()void
+  (limit registers 3)
+  (line 61)
+  (const/4 v0 4)
+; v0 : single-length
+  (new-array v0 v0 [array int])
+; v0 : [I , v0 : [I
+  (fill-array-data v0 l22c60)
+; v0 : [I
+  (sput-object v0 android/support/v4/view/PagerTitleStrip.ATTRS [array int])
+; v0 : [I
+  (line 68)
+  (const/4 v0 1)
+; v0 : single-length
+  (new-array v0 v0 [array int])
+; v0 : [I , v0 : [I
+  (const/4 v1 0)
+; v1 : single-length
+  (const v2 16843660) ; 0x101038c)
+; v2 : single-length
+  (aput v2 v0 v1)
+; v2 : single-length , v0 : [I , v1 : single-length
+  (sput-object v0 android/support/v4/view/PagerTitleStrip.TEXT_ATTRS [array int])
+; v0 : [I
+  (line 96)
+  (sget v0 android/os/Build$VERSION.SDK_INT int)
+; v0 : single-length
+  (const/16 v1 14)
+; v1 : single-length
+  (if-lt v0 v1 l22c4e)
+; v0 : single-length , v1 : single-length
+  (line 97)
+  (new-instance v0 android/support/v4/view/PagerTitleStrip$PagerTitleStripImplIcs)
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PagerTitleStripImplIcs;
+  (invoke-direct {v0} android/support/v4/view/PagerTitleStrip$PagerTitleStripImplIcs/<init> )
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PagerTitleStripImplIcs;
+  (sput-object v0 android/support/v4/view/PagerTitleStrip.IMPL [object android/support/v4/view/PagerTitleStrip$PagerTitleStripImpl])
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PagerTitleStripImpl;
+  (label l22c4c)
+  (line 101)
+  (return-void )
+  (label l22c4e)
+  (line 99)
+  (new-instance v0 android/support/v4/view/PagerTitleStrip$PagerTitleStripImplBase)
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PagerTitleStripImplBase;
+  (invoke-direct {v0} android/support/v4/view/PagerTitleStrip$PagerTitleStripImplBase/<init> )
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PagerTitleStripImplBase;
+  (sput-object v0 android/support/v4/view/PagerTitleStrip.IMPL [object android/support/v4/view/PagerTitleStrip$PagerTitleStripImpl])
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PagerTitleStripImpl;
+  (goto l22c4c)
+  (line 61)
+  (label l22c5e)
+  (data-array
+    0x00 0x00
+  )
+  (label l22c60)
+  (data-array
+    (0x34 0x00 0x01 0x01) ; #0
+    (0x95 0x00 0x01 0x01) ; #1
+    (0x98 0x00 0x01 0x01) ; #2
+    (0xAF 0x00 0x01 0x01) ; #3
+  )
+ )
+
+(method (attrs public ) <init>([object android/content/Context] )void
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v2 ([object android/content/Context])
+  (line 108)
+  (const/4 v0 0)
+; v0 : single-length
+  (invoke-direct {v1 v2 v0} android/support/v4/view/PagerTitleStrip/<init> [object android/content/Context] [object android/util/AttributeSet] )
+; v1 : Landroid/support/v4/view/PagerTitleStrip; , v2 : Landroid/content/Context; , v0 : single-length
+  (line 109)
+  (return-void )
+ )
+
+(method (attrs public ) <init>([object android/content/Context] [object android/util/AttributeSet] )void
+  (limit registers 14)
+  ; this: v11 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v12 ([object android/content/Context])
+  ; parameter[1] : v13 ([object android/util/AttributeSet])
+.var 5 is textColor int from l22d68 to l22d86
+.var 3 is ta [object android/content/res/TypedArray] from l22dfe to l22e0c
+.var 2 is density float from l22e42 to l22e50
+  (const/4 v10 2)
+; v10 : single-length
+  (const/4 v9 0)
+; v9 : single-length
+  (line 112)
+  (invoke-direct {v11 v12 v13} android/view/ViewGroup/<init> [object android/content/Context] [object android/util/AttributeSet] )
+; v11 : Landroid/support/v4/view/PagerTitleStrip; , v12 : Landroid/content/Context; , v13 : Landroid/util/AttributeSet;
+  (line 51)
+  (const/4 v7 15)
+; v7 : single-length
+  (iput v7 v11 android/support/v4/view/PagerTitleStrip.mLastKnownCurrentPage int)
+; v7 : single-length , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 52)
+  (const/high16 v7 49024)
+; v7 : single-length
+  (iput v7 v11 android/support/v4/view/PagerTitleStrip.mLastKnownPositionOffset float)
+; v7 : single-length , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 59)
+  (new-instance v7 android/support/v4/view/PagerTitleStrip$PageListener)
+; v7 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (const/4 v8 0)
+; v8 : single-length
+  (invoke-direct {v7 v11 v8} android/support/v4/view/PagerTitleStrip$PageListener/<init> [object android/support/v4/view/PagerTitleStrip] [object android/support/v4/view/PagerTitleStrip$1] )
+; v7 : Landroid/support/v4/view/PagerTitleStrip$PageListener; , v11 : Landroid/support/v4/view/PagerTitleStrip; , v8 : single-length
+  (iput-object v7 v11 android/support/v4/view/PagerTitleStrip.mPageListener [object android/support/v4/view/PagerTitleStrip$PageListener])
+; v7 : Landroid/support/v4/view/PagerTitleStrip$PageListener; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 114)
+  (new-instance v7 android/widget/TextView)
+; v7 : Landroid/widget/TextView;
+  (invoke-direct {v7 v12} android/widget/TextView/<init> [object android/content/Context] )
+; v7 : Landroid/widget/TextView; , v12 : Landroid/content/Context;
+  (iput-object v7 v11 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v11 v7} android/support/v4/view/PagerTitleStrip/addView [object android/view/View] )
+; v11 : Landroid/support/v4/view/PagerTitleStrip; , v7 : Landroid/widget/TextView;
+  (line 115)
+  (new-instance v7 android/widget/TextView)
+; v7 : Landroid/widget/TextView;
+  (invoke-direct {v7 v12} android/widget/TextView/<init> [object android/content/Context] )
+; v7 : Landroid/widget/TextView; , v12 : Landroid/content/Context;
+  (iput-object v7 v11 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v11 v7} android/support/v4/view/PagerTitleStrip/addView [object android/view/View] )
+; v11 : Landroid/support/v4/view/PagerTitleStrip; , v7 : Landroid/widget/TextView;
+  (line 116)
+  (new-instance v7 android/widget/TextView)
+; v7 : Landroid/widget/TextView;
+  (invoke-direct {v7 v12} android/widget/TextView/<init> [object android/content/Context] )
+; v7 : Landroid/widget/TextView; , v12 : Landroid/content/Context;
+  (iput-object v7 v11 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v11 v7} android/support/v4/view/PagerTitleStrip/addView [object android/view/View] )
+; v11 : Landroid/support/v4/view/PagerTitleStrip; , v7 : Landroid/widget/TextView;
+  (line 118)
+  (sget-object v7 android/support/v4/view/PagerTitleStrip.ATTRS [array int])
+; v7 : [I
+  (invoke-virtual {v12 v13 v7} android/content/Context/obtainStyledAttributes [object android/util/AttributeSet] [array int] )
+; v12 : Landroid/content/Context; , v13 : Landroid/util/AttributeSet; , v7 : [I
+  (move-result-object v0)
+; v0 : Landroid/content/res/TypedArray;
+  (line 119)
+  (invoke-virtual {v0 v9 v9} android/content/res/TypedArray/getResourceId int int )
+; v0 : Landroid/content/res/TypedArray; , v9 : single-length , v9 : single-length
+  (move-result v4)
+; v4 : single-length
+  (line 120)
+  (if-eqz v4 l22d3e)
+; v4 : single-length
+  (line 121)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v12 v4} android/widget/TextView/setTextAppearance [object android/content/Context] int )
+; v7 : Landroid/widget/TextView; , v12 : Landroid/content/Context; , v4 : single-length
+  (line 122)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v12 v4} android/widget/TextView/setTextAppearance [object android/content/Context] int )
+; v7 : Landroid/widget/TextView; , v12 : Landroid/content/Context; , v4 : single-length
+  (line 123)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v12 v4} android/widget/TextView/setTextAppearance [object android/content/Context] int )
+; v7 : Landroid/widget/TextView; , v12 : Landroid/content/Context; , v4 : single-length
+  (label l22d3e)
+  (line 125)
+  (const/4 v7 1)
+; v7 : single-length
+  (invoke-virtual {v0 v7 v9} android/content/res/TypedArray/getDimensionPixelSize int int )
+; v0 : Landroid/content/res/TypedArray; , v7 : single-length , v9 : single-length
+  (move-result v6)
+; v6 : single-length
+  (line 126)
+  (if-eqz v6 l22d54)
+; v6 : single-length
+  (line 127)
+  (int-to-float v7 v6)
+; v7 : single-length , v6 : single-length
+  (invoke-virtual {v11 v9 v7} android/support/v4/view/PagerTitleStrip/setTextSize int float )
+; v11 : Landroid/support/v4/view/PagerTitleStrip; , v9 : single-length , v7 : single-length
+  (label l22d54)
+  (line 129)
+  (invoke-virtual {v0 v10} android/content/res/TypedArray/hasValue int )
+; v0 : Landroid/content/res/TypedArray; , v10 : single-length
+  (move-result v7)
+; v7 : single-length
+  (if-eqz v7 l22d86)
+; v7 : single-length
+  (line 130)
+  (invoke-virtual {v0 v10 v9} android/content/res/TypedArray/getColor int int )
+; v0 : Landroid/content/res/TypedArray; , v10 : single-length , v9 : single-length
+  (move-result v5)
+; v5 : single-length
+  (label l22d68)
+  (line 131)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v5} android/widget/TextView/setTextColor int )
+; v7 : Landroid/widget/TextView; , v5 : single-length
+  (line 132)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v5} android/widget/TextView/setTextColor int )
+; v7 : Landroid/widget/TextView; , v5 : single-length
+  (line 133)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v5} android/widget/TextView/setTextColor int )
+; v7 : Landroid/widget/TextView; , v5 : single-length
+  (label l22d86)
+  (line 135)
+  (const/4 v7 3)
+; v7 : single-length
+  (const/16 v8 80)
+; v8 : single-length
+  (invoke-virtual {v0 v7 v8} android/content/res/TypedArray/getInteger int int )
+; v0 : Landroid/content/res/TypedArray; , v7 : single-length , v8 : single-length
+  (move-result v7)
+; v7 : single-length
+  (iput v7 v11 android/support/v4/view/PagerTitleStrip.mGravity int)
+; v7 : single-length , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 136)
+  (invoke-virtual {v0} android/content/res/TypedArray/recycle )
+; v0 : Landroid/content/res/TypedArray;
+  (line 138)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7} android/widget/TextView/getTextColors )
+; v7 : Landroid/widget/TextView;
+  (move-result-object v7)
+; v7 : Landroid/content/res/ColorStateList;
+  (invoke-virtual {v7} android/content/res/ColorStateList/getDefaultColor )
+; v7 : Landroid/content/res/ColorStateList;
+  (move-result v7)
+; v7 : single-length
+  (iput v7 v11 android/support/v4/view/PagerTitleStrip.mTextColor int)
+; v7 : single-length , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 139)
+  (const v7 1058642330) ; 0x3f19999a)
+; v7 : single-length
+  (invoke-virtual {v11 v7} android/support/v4/view/PagerTitleStrip/setNonPrimaryAlpha float )
+; v11 : Landroid/support/v4/view/PagerTitleStrip; , v7 : single-length
+  (line 141)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (sget-object v8 android/text/TextUtils$TruncateAt.END [object android/text/TextUtils$TruncateAt])
+; v8 : Landroid/text/TextUtils$TruncateAt;
+  (invoke-virtual {v7 v8} android/widget/TextView/setEllipsize [object android/text/TextUtils$TruncateAt] )
+; v7 : Landroid/widget/TextView; , v8 : Landroid/text/TextUtils$TruncateAt;
+  (line 142)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (sget-object v8 android/text/TextUtils$TruncateAt.END [object android/text/TextUtils$TruncateAt])
+; v8 : Landroid/text/TextUtils$TruncateAt;
+  (invoke-virtual {v7 v8} android/widget/TextView/setEllipsize [object android/text/TextUtils$TruncateAt] )
+; v7 : Landroid/widget/TextView; , v8 : Landroid/text/TextUtils$TruncateAt;
+  (line 143)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (sget-object v8 android/text/TextUtils$TruncateAt.END [object android/text/TextUtils$TruncateAt])
+; v8 : Landroid/text/TextUtils$TruncateAt;
+  (invoke-virtual {v7 v8} android/widget/TextView/setEllipsize [object android/text/TextUtils$TruncateAt] )
+; v7 : Landroid/widget/TextView; , v8 : Landroid/text/TextUtils$TruncateAt;
+  (line 145)
+  (const/4 v1 0)
+; v1 : single-length
+  (line 146)
+  (if-eqz v4 l22e0c)
+; v4 : single-length
+  (line 147)
+  (sget-object v7 android/support/v4/view/PagerTitleStrip.TEXT_ATTRS [array int])
+; v7 : [I
+  (invoke-virtual {v12 v4 v7} android/content/Context/obtainStyledAttributes int [array int] )
+; v12 : Landroid/content/Context; , v4 : single-length , v7 : [I
+  (move-result-object v3)
+; v3 : Landroid/content/res/TypedArray;
+  (label l22dfe)
+  (line 148)
+  (invoke-virtual {v3 v9 v9} android/content/res/TypedArray/getBoolean int boolean )
+; v3 : Landroid/content/res/TypedArray; , v9 : single-length , v9 : single-length
+  (move-result v1)
+; v1 : single-length
+  (line 149)
+  (invoke-virtual {v3} android/content/res/TypedArray/recycle )
+; v3 : Landroid/content/res/TypedArray;
+  (label l22e0c)
+  (line 152)
+  (if-eqz v1 l22e50)
+; v1 : single-length
+  (line 153)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-static {v7} android/support/v4/view/PagerTitleStrip/setSingleLineAllCaps [object android/widget/TextView] )
+; v7 : Landroid/widget/TextView;
+  (line 154)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-static {v7} android/support/v4/view/PagerTitleStrip/setSingleLineAllCaps [object android/widget/TextView] )
+; v7 : Landroid/widget/TextView;
+  (line 155)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-static {v7} android/support/v4/view/PagerTitleStrip/setSingleLineAllCaps [object android/widget/TextView] )
+; v7 : Landroid/widget/TextView;
+  (label l22e2e)
+  (line 162)
+  (invoke-virtual {v12} android/content/Context/getResources )
+; v12 : Landroid/content/Context;
+  (move-result-object v7)
+; v7 : Landroid/content/res/Resources;
+  (invoke-virtual {v7} android/content/res/Resources/getDisplayMetrics )
+; v7 : Landroid/content/res/Resources;
+  (move-result-object v7)
+; v7 : Landroid/util/DisplayMetrics;
+  (iget v2 v7 android/util/DisplayMetrics.density float)
+; v2 : single-length , v7 : Landroid/util/DisplayMetrics;
+  (label l22e42)
+  (line 163)
+  (const/high16 v7 16768)
+; v7 : single-length
+  (mul-float/2addr v7 v2)
+; v7 : single-length , v2 : single-length
+  (float-to-int v7 v7)
+; v7 : single-length , v7 : single-length
+  (iput v7 v11 android/support/v4/view/PagerTitleStrip.mScaledTextSpacing int)
+; v7 : single-length , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 164)
+  (return-void )
+  (label l22e50)
+  (line 157)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7} android/widget/TextView/setSingleLine )
+; v7 : Landroid/widget/TextView;
+  (line 158)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7} android/widget/TextView/setSingleLine )
+; v7 : Landroid/widget/TextView;
+  (line 159)
+  (iget-object v7 v11 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v11 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7} android/widget/TextView/setSingleLine )
+; v7 : Landroid/widget/TextView;
+  (goto l22e2e)
+ )
+
+(method (attrs private static ) setSingleLineAllCaps([object android/widget/TextView] )void
+  (limit registers 2)
+  ; parameter[0] : v1 ([object android/widget/TextView])
+  (line 104)
+  (sget-object v0 android/support/v4/view/PagerTitleStrip.IMPL [object android/support/v4/view/PagerTitleStrip$PagerTitleStripImpl])
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PagerTitleStripImpl;
+  (invoke-interface {v0 v1} android/support/v4/view/PagerTitleStrip$PagerTitleStripImpl/setSingleLineAllCaps [object android/widget/TextView] )
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PagerTitleStripImpl; , v1 : Landroid/widget/TextView;
+  (line 105)
+  (return-void )
+ )
+
+(method (attrs ) getMinHeight()int
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/view/PagerTitleStrip])
+  (line 456)
+  (const/4 v1 0)
+; v1 : single-length
+  (line 457)
+  (invoke-virtual {v2} android/support/v4/view/PagerTitleStrip/getBackground )
+; v2 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result-object v0)
+; v0 : Landroid/graphics/drawable/Drawable;
+  (line 458)
+  (if-eqz v0 l22eb2)
+; v0 : Landroid/graphics/drawable/Drawable;
+  (line 459)
+  (invoke-virtual {v0} android/graphics/drawable/Drawable/getIntrinsicHeight )
+; v0 : Landroid/graphics/drawable/Drawable;
+  (move-result v1)
+; v1 : single-length
+  (label l22eb2)
+  (line 461)
+  (return v1)
+; v1 : single-length
+)
+
+(method (attrs public ) getTextSpacing()int
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/view/PagerTitleStrip])
+  (line 180)
+  (iget v0 v1 android/support/v4/view/PagerTitleStrip.mScaledTextSpacing int)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs protected ) onAttachedToWindow()void
+  (limit registers 6)
+  ; this: v5 ([object android/support/v4/view/PagerTitleStrip])
+  (line 238)
+  (invoke-super {v5} android/view/ViewGroup/onAttachedToWindow )
+; v5 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 240)
+  (invoke-virtual {v5} android/support/v4/view/PagerTitleStrip/getParent )
+; v5 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result-object v2)
+; v2 : Landroid/view/ViewParent;
+  (line 241)
+  (instance-of v3 v2 android/support/v4/view/ViewPager)
+; v3 : single-length , v2 : Landroid/view/ViewParent;
+  (if-nez v3 l22f02)
+; v3 : single-length
+  (line 242)
+  (new-instance v3 java/lang/IllegalStateException)
+; v3 : Ljava/lang/IllegalStateException;
+  (const-string v4 "PagerTitleStrip must be a direct child of a ViewPager.")
+; v4 : Ljava/lang/String;
+  (invoke-direct {v3 v4} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v3 : Ljava/lang/IllegalStateException; , v4 : Ljava/lang/String;
+  (throw v3)
+; v3 : Ljava/lang/IllegalStateException;
+  (label l22f02)
+  (move-object v1 v2)
+; v1 : Landroid/view/ViewParent; , v2 : Landroid/view/ViewParent;
+  (line 246)
+  (check-cast v1 [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager;
+  (line 247)
+  (invoke-virtual {v1} android/support/v4/view/ViewPager/getAdapter )
+; v1 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v0)
+; v0 : Landroid/support/v4/view/PagerAdapter;
+  (line 249)
+  (iget-object v3 v5 android/support/v4/view/PagerTitleStrip.mPageListener [object android/support/v4/view/PagerTitleStrip$PageListener])
+; v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener; , v5 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v1 v3} android/support/v4/view/ViewPager/setInternalPageChangeListener [object android/support/v4/view/ViewPager$OnPageChangeListener] )
+; v1 : Landroid/support/v4/view/ViewPager; , v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (line 250)
+  (iget-object v3 v5 android/support/v4/view/PagerTitleStrip.mPageListener [object android/support/v4/view/PagerTitleStrip$PageListener])
+; v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener; , v5 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v1 v3} android/support/v4/view/ViewPager/setOnAdapterChangeListener [object android/support/v4/view/ViewPager$OnAdapterChangeListener] )
+; v1 : Landroid/support/v4/view/ViewPager; , v3 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (line 251)
+  (iput-object v1 v5 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v5 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 252)
+  (const/4 v3 0)
+; v3 : single-length
+  (invoke-virtual {v5 v3 v0} android/support/v4/view/PagerTitleStrip/updateAdapter [object android/support/v4/view/PagerAdapter] [object android/support/v4/view/PagerAdapter] )
+; v5 : Landroid/support/v4/view/PagerTitleStrip; , v3 : single-length , v0 : Landroid/support/v4/view/PagerAdapter;
+  (line 253)
+  (return-void )
+)
+
+(method (attrs protected ) onDetachedFromWindow()void
+  (limit registers 3)
+  ; this: v2 ([object android/support/v4/view/PagerTitleStrip])
+  (const/4 v1 0)
+; v1 : single-length
+  (line 257)
+  (invoke-super {v2} android/view/ViewGroup/onDetachedFromWindow )
+; v2 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 258)
+  (iget-object v0 v2 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/PagerTitleStrip;
+  (if-eqz v0 l22f7e)
+; v0 : Landroid/support/v4/view/ViewPager;
+  (line 259)
+  (iget-object v0 v2 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v0} android/support/v4/view/ViewPager/getAdapter )
+; v0 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v0)
+; v0 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v2 v0 v1} android/support/v4/view/PagerTitleStrip/updateAdapter [object android/support/v4/view/PagerAdapter] [object android/support/v4/view/PagerAdapter] )
+; v2 : Landroid/support/v4/view/PagerTitleStrip; , v0 : Landroid/support/v4/view/PagerAdapter; , v1 : single-length
+  (line 260)
+  (iget-object v0 v2 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v0 v1} android/support/v4/view/ViewPager/setInternalPageChangeListener [object android/support/v4/view/ViewPager$OnPageChangeListener] )
+; v0 : Landroid/support/v4/view/ViewPager; , v1 : single-length
+  (line 261)
+  (iget-object v0 v2 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v0 v1} android/support/v4/view/ViewPager/setOnAdapterChangeListener [object android/support/v4/view/ViewPager$OnAdapterChangeListener] )
+; v0 : Landroid/support/v4/view/ViewPager; , v1 : single-length
+  (line 262)
+  (iput-object v1 v2 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v1 : single-length , v2 : Landroid/support/v4/view/PagerTitleStrip;
+  (label l22f7e)
+  (line 264)
+  (return-void )
+)
+
+(method (attrs protected ) onLayout(boolean int int int int )void
+  (limit registers 9)
+  ; this: v3 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v4 (boolean)
+  ; parameter[1] : v5 (int)
+  ; parameter[2] : v6 (int)
+  ; parameter[3] : v7 (int)
+  ; parameter[4] : v8 (int)
+.var 0 is offset float from l22faa to l22fbe
+  (const/4 v0 0)
+; v0 : single-length
+  (line 449)
+  (iget-object v1 v3 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v3 : Landroid/support/v4/view/PagerTitleStrip;
+  (if-eqz v1 l22fbe)
+; v1 : Landroid/support/v4/view/ViewPager;
+  (line 450)
+  (iget v1 v3 android/support/v4/view/PagerTitleStrip.mLastKnownPositionOffset float)
+; v1 : single-length , v3 : Landroid/support/v4/view/PagerTitleStrip;
+  (cmpl-float v1 v1 v0)
+; v1 : single-length , v1 : single-length , v0 : single-length
+  (if-ltz v1 l22faa)
+; v1 : single-length
+  (iget v0 v3 android/support/v4/view/PagerTitleStrip.mLastKnownPositionOffset float)
+; v0 : single-length , v3 : Landroid/support/v4/view/PagerTitleStrip;
+  (label l22faa)
+  (line 451)
+  (iget-object v1 v3 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v1 : Landroid/support/v4/view/ViewPager; , v3 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v1} android/support/v4/view/ViewPager/getCurrentItem )
+; v1 : Landroid/support/v4/view/ViewPager;
+  (move-result v1)
+; v1 : single-length
+  (const/4 v2 1)
+; v2 : single-length
+  (invoke-virtual {v3 v1 v0 v2} android/support/v4/view/PagerTitleStrip/updateTextPositions int float boolean )
+; v3 : Landroid/support/v4/view/PagerTitleStrip; , v1 : single-length , v0 : single-length , v2 : single-length
+  (label l22fbe)
+  (line 453)
+  (return-void )
+)
+
+(method (attrs protected ) onMeasure(int int )void
+  (limit registers 15)
+  ; this: v12 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v13 (int)
+  ; parameter[1] : v14 (int)
+  (line 416)
+  (invoke-static {v13} android/view/View$MeasureSpec/getMode int )
+; v13 : single-length
+  (move-result v8)
+; v8 : single-length
+  (line 417)
+  (invoke-static {v14} android/view/View$MeasureSpec/getMode int )
+; v14 : single-length
+  (move-result v3)
+; v3 : single-length
+  (line 418)
+  (invoke-static {v13} android/view/View$MeasureSpec/getSize int )
+; v13 : single-length
+  (move-result v9)
+; v9 : single-length
+  (line 419)
+  (invoke-static {v14} android/view/View$MeasureSpec/getSize int )
+; v14 : single-length
+  (move-result v4)
+; v4 : single-length
+  (line 421)
+  (const/high16 v10 16384)
+; v10 : single-length
+  (if-eq v8 v10 l23008)
+; v8 : single-length , v10 : single-length
+  (line 422)
+  (new-instance v10 java/lang/IllegalStateException)
+; v10 : Ljava/lang/IllegalStateException;
+  (const-string v11 "Must measure with an exact width")
+; v11 : Ljava/lang/String;
+  (invoke-direct {v10 v11} java/lang/IllegalStateException/<init> [object java/lang/String] )
+; v10 : Ljava/lang/IllegalStateException; , v11 : Ljava/lang/String;
+  (throw v10)
+; v10 : Ljava/lang/IllegalStateException;
+  (label l23008)
+  (line 425)
+  (move v0 v4)
+; v0 : single-length , v4 : single-length
+  (line 426)
+  (invoke-virtual {v12} android/support/v4/view/PagerTitleStrip/getMinHeight )
+; v12 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v5)
+; v5 : single-length
+  (line 427)
+  (const/4 v6 0)
+; v6 : single-length
+  (line 428)
+  (invoke-virtual {v12} android/support/v4/view/PagerTitleStrip/getPaddingTop )
+; v12 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v10)
+; v10 : single-length
+  (invoke-virtual {v12} android/support/v4/view/PagerTitleStrip/getPaddingBottom )
+; v12 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v11)
+; v11 : single-length
+  (add-int v6 v10 v11)
+; v6 : single-length , v10 : single-length , v11 : single-length
+  (line 429)
+  (sub-int/2addr v0 v6)
+; v0 : single-length , v6 : single-length
+  (line 431)
+  (int-to-float v10 v9)
+; v10 : single-length , v9 : single-length
+  (const v11 1061997773) ; 0x3f4ccccd)
+; v11 : single-length
+  (mul-float/2addr v10 v11)
+; v10 : single-length , v11 : single-length
+  (float-to-int v10 v10)
+; v10 : single-length , v10 : single-length
+  (const/high16 v11 32768)
+; v11 : single-length
+  (invoke-static {v10 v11} android/view/View$MeasureSpec/makeMeasureSpec int int )
+; v10 : single-length , v11 : single-length
+  (move-result v2)
+; v2 : single-length
+  (line 433)
+  (const/high16 v10 32768)
+; v10 : single-length
+  (invoke-static {v0 v10} android/view/View$MeasureSpec/makeMeasureSpec int int )
+; v0 : single-length , v10 : single-length
+  (move-result v1)
+; v1 : single-length
+  (line 435)
+  (iget-object v10 v12 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v10 : Landroid/widget/TextView; , v12 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v10 v2 v1} android/widget/TextView/measure int int )
+; v10 : Landroid/widget/TextView; , v2 : single-length , v1 : single-length
+  (line 436)
+  (iget-object v10 v12 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v10 : Landroid/widget/TextView; , v12 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v10 v2 v1} android/widget/TextView/measure int int )
+; v10 : Landroid/widget/TextView; , v2 : single-length , v1 : single-length
+  (line 437)
+  (iget-object v10 v12 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v10 : Landroid/widget/TextView; , v12 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v10 v2 v1} android/widget/TextView/measure int int )
+; v10 : Landroid/widget/TextView; , v2 : single-length , v1 : single-length
+  (line 439)
+  (const/high16 v10 16384)
+; v10 : single-length
+  (if-ne v3 v10 l2307c)
+; v3 : single-length , v10 : single-length
+  (line 440)
+  (invoke-virtual {v12 v9 v4} android/support/v4/view/PagerTitleStrip/setMeasuredDimension int int )
+; v12 : Landroid/support/v4/view/PagerTitleStrip; , v9 : single-length , v4 : single-length
+  (label l2307a)
+  (line 445)
+  (return-void )
+  (label l2307c)
+  (line 442)
+  (iget-object v10 v12 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v10 : Landroid/widget/TextView; , v12 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v10} android/widget/TextView/getMeasuredHeight )
+; v10 : Landroid/widget/TextView;
+  (move-result v7)
+; v7 : single-length
+  (line 443)
+  (add-int v10 v7 v6)
+; v10 : single-length , v7 : single-length , v6 : single-length
+  (invoke-static {v5 v10} java/lang/Math/max int int )
+; v5 : single-length , v10 : single-length
+  (move-result v10)
+; v10 : single-length
+  (invoke-virtual {v12 v9 v10} android/support/v4/view/PagerTitleStrip/setMeasuredDimension int int )
+; v12 : Landroid/support/v4/view/PagerTitleStrip; , v9 : single-length , v10 : single-length
+  (goto l2307a)
+)
+
+(method (attrs public ) requestLayout()void
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/view/PagerTitleStrip])
+  (line 306)
+  (iget-boolean v0 v1 android/support/v4/view/PagerTitleStrip.mUpdatingText boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (if-nez v0 l230ba)
+; v0 : single-length
+  (line 307)
+  (invoke-super {v1} android/view/ViewGroup/requestLayout )
+; v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (label l230ba)
+  (line 309)
+  (return-void )
+)
+
+(method (attrs public ) setGravity(int )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v1 (int)
+  (line 232)
+  (iput v1 v0 android/support/v4/view/PagerTitleStrip.mGravity int)
+; v1 : single-length , v0 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 233)
+  (invoke-virtual {v0} android/support/v4/view/PagerTitleStrip/requestLayout )
+; v0 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 234)
+  (return-void )
+)
+
+(method (attrs public ) setNonPrimaryAlpha(float )void
+  (limit registers 6)
+  ; this: v4 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v5 (float)
+  (line 189)
+  (const/high16 v1 17279)
+; v1 : single-length
+  (mul-float/2addr v1 v5)
+; v1 : single-length , v5 : single-length
+  (float-to-int v1 v1)
+; v1 : single-length , v1 : single-length
+  (and-int/lit16 v1 v1 255)
+; v1 : single-length , v1 : single-length
+  (iput v1 v4 android/support/v4/view/PagerTitleStrip.mNonPrimaryAlpha int)
+; v1 : single-length , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 190)
+  (iget v1 v4 android/support/v4/view/PagerTitleStrip.mNonPrimaryAlpha int)
+; v1 : single-length , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (shl-int/lit8 v1 v1 24)
+; v1 : single-length , v1 : single-length
+  (iget v2 v4 android/support/v4/view/PagerTitleStrip.mTextColor int)
+; v2 : single-length , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (const v3 16777215) ; 0xffffff)
+; v3 : single-length
+  (and-int/2addr v2 v3)
+; v2 : single-length , v3 : single-length
+  (or-int v0 v1 v2)
+; v0 : single-length , v1 : single-length , v2 : single-length
+  (line 191)
+  (iget-object v1 v4 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v1 v0} android/widget/TextView/setTextColor int )
+; v1 : Landroid/widget/TextView; , v0 : single-length
+  (line 192)
+  (iget-object v1 v4 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v1 v0} android/widget/TextView/setTextColor int )
+; v1 : Landroid/widget/TextView; , v0 : single-length
+  (line 193)
+  (return-void )
+)
+
+(method (attrs public ) setTextColor(int )void
+  (limit registers 6)
+  ; this: v4 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v5 (int)
+  (line 202)
+  (iput v5 v4 android/support/v4/view/PagerTitleStrip.mTextColor int)
+; v5 : single-length , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 203)
+  (iget-object v1 v4 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v1 v5} android/widget/TextView/setTextColor int )
+; v1 : Landroid/widget/TextView; , v5 : single-length
+  (line 204)
+  (iget v1 v4 android/support/v4/view/PagerTitleStrip.mNonPrimaryAlpha int)
+; v1 : single-length , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (shl-int/lit8 v1 v1 24)
+; v1 : single-length , v1 : single-length
+  (iget v2 v4 android/support/v4/view/PagerTitleStrip.mTextColor int)
+; v2 : single-length , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (const v3 16777215) ; 0xffffff)
+; v3 : single-length
+  (and-int/2addr v2 v3)
+; v2 : single-length , v3 : single-length
+  (or-int v0 v1 v2)
+; v0 : single-length , v1 : single-length , v2 : single-length
+  (line 205)
+  (iget-object v1 v4 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v1 v0} android/widget/TextView/setTextColor int )
+; v1 : Landroid/widget/TextView; , v0 : single-length
+  (line 206)
+  (iget-object v1 v4 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v1 : Landroid/widget/TextView; , v4 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v1 v0} android/widget/TextView/setTextColor int )
+; v1 : Landroid/widget/TextView; , v0 : single-length
+  (line 207)
+  (return-void )
+)
+
+(method (attrs public ) setTextSize(int float )void
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 (float)
+  (line 220)
+  (iget-object v0 v1 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v0 v2 v3} android/widget/TextView/setTextSize int float )
+; v0 : Landroid/widget/TextView; , v2 : single-length , v3 : single-length
+  (line 221)
+  (iget-object v0 v1 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v0 v2 v3} android/widget/TextView/setTextSize int float )
+; v0 : Landroid/widget/TextView; , v2 : single-length , v3 : single-length
+  (line 222)
+  (iget-object v0 v1 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v0 v2 v3} android/widget/TextView/setTextSize int float )
+; v0 : Landroid/widget/TextView; , v2 : single-length , v3 : single-length
+  (line 223)
+  (return-void )
+)
+
+(method (attrs public ) setTextSpacing(int )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v1 (int)
+  (line 172)
+  (iput v1 v0 android/support/v4/view/PagerTitleStrip.mScaledTextSpacing int)
+; v1 : single-length , v0 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 173)
+  (invoke-virtual {v0} android/support/v4/view/PagerTitleStrip/requestLayout )
+; v0 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 174)
+  (return-void )
+)
+
+(method (attrs ) updateAdapter([object android/support/v4/view/PagerAdapter] [object android/support/v4/view/PagerAdapter] )void
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v2 ([object android/support/v4/view/PagerAdapter])
+  ; parameter[1] : v3 ([object android/support/v4/view/PagerAdapter])
+  (line 312)
+  (if-eqz v2 l231de)
+; v2 : Landroid/support/v4/view/PagerAdapter;
+  (line 313)
+  (iget-object v0 v1 android/support/v4/view/PagerTitleStrip.mPageListener [object android/support/v4/view/PagerTitleStrip$PageListener])
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PageListener; , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v2 v0} android/support/v4/view/PagerAdapter/unregisterDataSetObserver [object android/database/DataSetObserver] )
+; v2 : Landroid/support/v4/view/PagerAdapter; , v0 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (label l231de)
+  (line 315)
+  (if-eqz v3 l231ec)
+; v3 : Landroid/support/v4/view/PagerAdapter;
+  (line 316)
+  (iget-object v0 v1 android/support/v4/view/PagerTitleStrip.mPageListener [object android/support/v4/view/PagerTitleStrip$PageListener])
+; v0 : Landroid/support/v4/view/PagerTitleStrip$PageListener; , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v3 v0} android/support/v4/view/PagerAdapter/registerDataSetObserver [object android/database/DataSetObserver] )
+; v3 : Landroid/support/v4/view/PagerAdapter; , v0 : Landroid/support/v4/view/PagerTitleStrip$PageListener;
+  (label l231ec)
+  (line 318)
+  (iget-object v0 v1 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (if-eqz v0 l2321a)
+; v0 : Landroid/support/v4/view/ViewPager;
+  (line 319)
+  (const/4 v0 15)
+; v0 : single-length
+  (iput v0 v1 android/support/v4/view/PagerTitleStrip.mLastKnownCurrentPage int)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 320)
+  (const/high16 v0 49024)
+; v0 : single-length
+  (iput v0 v1 android/support/v4/view/PagerTitleStrip.mLastKnownPositionOffset float)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 321)
+  (iget-object v0 v1 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v0} android/support/v4/view/ViewPager/getCurrentItem )
+; v0 : Landroid/support/v4/view/ViewPager;
+  (move-result v0)
+; v0 : single-length
+  (invoke-virtual {v1 v0 v3} android/support/v4/view/PagerTitleStrip/updateText int [object android/support/v4/view/PagerAdapter] )
+; v1 : Landroid/support/v4/view/PagerTitleStrip; , v0 : single-length , v3 : Landroid/support/v4/view/PagerAdapter;
+  (line 322)
+  (invoke-virtual {v1} android/support/v4/view/PagerTitleStrip/requestLayout )
+; v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (label l2321a)
+  (line 324)
+  (return-void )
+)
+
+(method (attrs ) updateText(int [object android/support/v4/view/PagerAdapter] )void
+  (limit registers 13)
+  ; this: v10 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v11 (int)
+  ; parameter[1] : v12 ([object android/support/v4/view/PagerAdapter])
+.var 0 is childHeight int from l232de to l23334
+.var 1 is childHeightSpec int from l232fa to l23334
+.var 2 is childWidthSpec int from l232f2 to l23334
+.var 3 is itemCount int from l23240 to l23334
+.var 4 is text [object java/lang/CharSequence] from l23246 to l23334
+.var 5 is width int from l232c0 to l23334
+  (const/4 v7 1)
+; v7 : single-length
+  (const/high16 v9 32768)
+; v9 : single-length
+  (const/4 v6 0)
+; v6 : single-length
+  (line 267)
+  (if-eqz v12 l23334)
+; v12 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v12} android/support/v4/view/PagerAdapter/getCount )
+; v12 : Landroid/support/v4/view/PagerAdapter;
+  (move-result v3)
+; v3 : single-length
+  (label l23240)
+  (line 268)
+  (iput-boolean v7 v10 android/support/v4/view/PagerTitleStrip.mUpdatingText boolean)
+; v7 : single-length , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 270)
+  (const/4 v4 0)
+; v4 : single-length
+  (label l23246)
+  (line 271)
+  (if-lt v11 v7 l2325a)
+; v11 : single-length , v7 : single-length
+  (if-eqz v12 l2325a)
+; v12 : Landroid/support/v4/view/PagerAdapter;
+  (line 272)
+  (add-int/lit8 v7 v11 255)
+; v7 : single-length , v11 : single-length
+  (invoke-virtual {v12 v7} android/support/v4/view/PagerAdapter/getPageTitle int )
+; v12 : Landroid/support/v4/view/PagerAdapter; , v7 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/CharSequence;
+  (label l2325a)
+  (line 274)
+  (iget-object v7 v10 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v4} android/widget/TextView/setText [object java/lang/CharSequence] )
+; v7 : Landroid/widget/TextView; , v4 : Ljava/lang/CharSequence;
+  (line 276)
+  (iget-object v8 v10 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v8 : Landroid/widget/TextView; , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (if-eqz v12 l23338)
+; v12 : Landroid/support/v4/view/PagerAdapter;
+  (if-ge v11 v3 l23338)
+; v11 : single-length , v3 : single-length
+  (invoke-virtual {v12 v11} android/support/v4/view/PagerAdapter/getPageTitle int )
+; v12 : Landroid/support/v4/view/PagerAdapter; , v11 : single-length
+  (move-result-object v7)
+; v7 : Ljava/lang/CharSequence;
+  (label l23278)
+  (invoke-virtual {v8 v7} android/widget/TextView/setText [object java/lang/CharSequence] )
+; v8 : Landroid/widget/TextView; , v7 : Ljava/lang/CharSequence;
+  (line 279)
+  (const/4 v4 0)
+; v4 : single-length
+  (line 280)
+  (add-int/lit8 v7 v11 1)
+; v7 : single-length , v11 : single-length
+  (if-ge v7 v3 l23298)
+; v7 : single-length , v3 : single-length
+  (if-eqz v12 l23298)
+; v12 : Landroid/support/v4/view/PagerAdapter;
+  (line 281)
+  (add-int/lit8 v7 v11 1)
+; v7 : single-length , v11 : single-length
+  (invoke-virtual {v12 v7} android/support/v4/view/PagerAdapter/getPageTitle int )
+; v12 : Landroid/support/v4/view/PagerAdapter; , v7 : single-length
+  (move-result-object v4)
+; v4 : Ljava/lang/CharSequence;
+  (label l23298)
+  (line 283)
+  (iget-object v7 v10 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v4} android/widget/TextView/setText [object java/lang/CharSequence] )
+; v7 : Landroid/widget/TextView; , v4 : Ljava/lang/CharSequence;
+  (line 286)
+  (invoke-virtual {v10} android/support/v4/view/PagerTitleStrip/getWidth )
+; v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v7)
+; v7 : single-length
+  (invoke-virtual {v10} android/support/v4/view/PagerTitleStrip/getPaddingLeft )
+; v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v8)
+; v8 : single-length
+  (sub-int/2addr v7 v8)
+; v7 : single-length , v8 : single-length
+  (invoke-virtual {v10} android/support/v4/view/PagerTitleStrip/getPaddingRight )
+; v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v8)
+; v8 : single-length
+  (sub-int v5 v7 v8)
+; v5 : single-length , v7 : single-length , v8 : single-length
+  (label l232c0)
+  (line 287)
+  (invoke-virtual {v10} android/support/v4/view/PagerTitleStrip/getHeight )
+; v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v7)
+; v7 : single-length
+  (invoke-virtual {v10} android/support/v4/view/PagerTitleStrip/getPaddingTop )
+; v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v8)
+; v8 : single-length
+  (sub-int/2addr v7 v8)
+; v7 : single-length , v8 : single-length
+  (invoke-virtual {v10} android/support/v4/view/PagerTitleStrip/getPaddingBottom )
+; v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v8)
+; v8 : single-length
+  (sub-int v0 v7 v8)
+; v0 : single-length , v7 : single-length , v8 : single-length
+  (label l232de)
+  (line 288)
+  (int-to-float v7 v5)
+; v7 : single-length , v5 : single-length
+  (const v8 1061997773) ; 0x3f4ccccd)
+; v8 : single-length
+  (mul-float/2addr v7 v8)
+; v7 : single-length , v8 : single-length
+  (float-to-int v7 v7)
+; v7 : single-length , v7 : single-length
+  (invoke-static {v7 v9} android/view/View$MeasureSpec/makeMeasureSpec int int )
+; v7 : single-length , v9 : single-length
+  (move-result v2)
+; v2 : single-length
+  (label l232f2)
+  (line 290)
+  (invoke-static {v0 v9} android/view/View$MeasureSpec/makeMeasureSpec int int )
+; v0 : single-length , v9 : single-length
+  (move-result v1)
+; v1 : single-length
+  (label l232fa)
+  (line 291)
+  (iget-object v7 v10 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v2 v1} android/widget/TextView/measure int int )
+; v7 : Landroid/widget/TextView; , v2 : single-length , v1 : single-length
+  (line 292)
+  (iget-object v7 v10 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v2 v1} android/widget/TextView/measure int int )
+; v7 : Landroid/widget/TextView; , v2 : single-length , v1 : single-length
+  (line 293)
+  (iget-object v7 v10 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v7 : Landroid/widget/TextView; , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v7 v2 v1} android/widget/TextView/measure int int )
+; v7 : Landroid/widget/TextView; , v2 : single-length , v1 : single-length
+  (line 295)
+  (iput v11 v10 android/support/v4/view/PagerTitleStrip.mLastKnownCurrentPage int)
+; v11 : single-length , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 297)
+  (iget-boolean v7 v10 android/support/v4/view/PagerTitleStrip.mUpdatingPositions boolean)
+; v7 : single-length , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (if-nez v7 l2332e)
+; v7 : single-length
+  (line 298)
+  (iget v7 v10 android/support/v4/view/PagerTitleStrip.mLastKnownPositionOffset float)
+; v7 : single-length , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (invoke-virtual {v10 v11 v7 v6} android/support/v4/view/PagerTitleStrip/updateTextPositions int float boolean )
+; v10 : Landroid/support/v4/view/PagerTitleStrip; , v11 : single-length , v7 : single-length , v6 : single-length
+  (label l2332e)
+  (line 301)
+  (iput-boolean v6 v10 android/support/v4/view/PagerTitleStrip.mUpdatingText boolean)
+; v6 : single-length , v10 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 302)
+  (return-void )
+  (label l23334)
+  (move v3 v6)
+; v3 : single-length , v6 : single-length
+  (line 267)
+  (goto l23240)
+  (label l23338)
+  (line 276)
+  (const/4 v7 0)
+; v7 : single-length
+  (goto l23278)
+)
+
+(method (attrs ) updateTextPositions(int float boolean )void
+  (limit registers 49)
+  ; this: v45 ([object android/support/v4/view/PagerTitleStrip])
+  ; parameter[0] : v46 (int)
+  ; parameter[1] : v47 (float)
+  ; parameter[2] : v48 (boolean)
+.var 5 is alignedCurrHeight int from l234f2 to l2365a
+.var 6 is alignedNextHeight int from l2350a to l2365a
+.var 7 is alignedPrevHeight int from l234da to l2365a
+.var 10 is contentWidth int from l2341a to l2365a
+.var 11 is currBaseline int from l23486 to l2365a
+.var 12 is currCenter int from l23452 to l2365a
+.var 13 is currLeft int from l2345a to l2365a
+.var 14 is currOffset float from l23422 to l2365a
+.var 15 is currRight int from l2345e to l2365a
+.var 16 is currTop int from l2353c to l2365a
+.var 17 is currTopOffset int from l234be to l2365a
+.var 18 is currWidth int from l233c2 to l2365a
+.var 19 is halfCurrWidth int from l233da to l2365a
+.var 20 is maxBaseline int from l234b6 to l2365a
+.var 21 is maxTextHeight int from l2351e to l2365a
+.var 22 is nextBaseline int from l2349a to l2365a
+.var 23 is nextLeft int from l235fc to l2365a
+.var 24 is nextTop int from l23540 to l2365a
+.var 25 is nextTopOffset int from l234c2 to l2365a
+.var 26 is nextWidth int from l233d6 to l2365a
+.var 28 is paddingBottom int from l2340a to l2365a
+.var 29 is paddingLeft int from l233f2 to l2365a
+.var 30 is paddingRight int from l233fa to l2365a
+.var 31 is paddingTop int from l23402 to l2365a
+.var 32 is prevBaseline int from l23472 to l2365a
+.var 33 is prevLeft int from l2359a to l2365a
+.var 34 is prevTop int from l23538 to l2365a
+.var 35 is prevTopOffset int from l234ba to l2365a
+.var 36 is prevWidth int from l233ae to l2365a
+.var 37 is stripHeight int from l233ea to l2365a
+.var 38 is stripWidth int from l233e2 to l2365a
+.var 39 is textPaddedLeft int from l2340e to l2365a
+.var 40 is textPaddedRight int from l23412 to l2365a
+.var 41 is vgrav int from l2352e to l2365a
+.var 9 is centeredTop int from l23686 to l23696
+.var 16 is currTop int from l2368e to l23696
+.var 24 is nextTop int from l23692 to l23696
+.var 27 is paddedHeight int from l2367e to l23696
+.var 34 is prevTop int from l2368a to l23696
+  (line 327)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget v0 v0 android/support/v4/view/PagerTitleStrip.mLastKnownCurrentPage int)
+; v0 : single-length , v0 : single-length
+  (move/from16 v42 v0)
+; v42 : single-length , v0 : single-length
+  (move/from16 v0 v46)
+; v0 : single-length , v46 : single-length
+  (move/from16 v1 v42)
+; v1 : single-length , v42 : single-length
+  (if-eq v0 v1 l2365c)
+; v0 : single-length , v1 : single-length
+  (line 328)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mPager [object android/support/v4/view/ViewPager])
+; v0 : Landroid/support/v4/view/ViewPager; , v0 : Landroid/support/v4/view/ViewPager;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/support/v4/view/ViewPager; , v0 : Landroid/support/v4/view/ViewPager;
+  (invoke-virtual/range {v42} android/support/v4/view/ViewPager/getAdapter )
+; v42 : Landroid/support/v4/view/ViewPager;
+  (move-result-object v42)
+; v42 : Landroid/support/v4/view/PagerAdapter;
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (move/from16 v1 v46)
+; v1 : single-length , v46 : single-length
+  (move-object/from16 v2 v42)
+; v2 : Landroid/support/v4/view/PagerAdapter; , v42 : Landroid/support/v4/view/PagerAdapter;
+  (invoke-virtual {v0 v1 v2} android/support/v4/view/PagerTitleStrip/updateText int [object android/support/v4/view/PagerAdapter] )
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v1 : single-length , v2 : Landroid/support/v4/view/PagerAdapter;
+  (label l2338a)
+  (line 333)
+  (const/16 v42 1)
+; v42 : single-length
+  (move/from16 v0 v42)
+; v0 : single-length , v42 : single-length
+  (move-object/from16 v1 v45)
+; v1 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iput-boolean v0 v1 android/support/v4/view/PagerTitleStrip.mUpdatingPositions boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 335)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v42} android/widget/TextView/getMeasuredWidth )
+; v42 : Landroid/widget/TextView;
+  (move-result v36)
+; v36 : single-length
+  (label l233ae)
+  (line 336)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v42} android/widget/TextView/getMeasuredWidth )
+; v42 : Landroid/widget/TextView;
+  (move-result v18)
+; v18 : single-length
+  (label l233c2)
+  (line 337)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v42} android/widget/TextView/getMeasuredWidth )
+; v42 : Landroid/widget/TextView;
+  (move-result v26)
+; v26 : single-length
+  (label l233d6)
+  (line 338)
+  (div-int/lit8 v19 v18 2)
+; v19 : single-length , v18 : single-length
+  (label l233da)
+  (line 340)
+  (invoke-virtual/range {v45} android/support/v4/view/PagerTitleStrip/getWidth )
+; v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v38)
+; v38 : single-length
+  (label l233e2)
+  (line 341)
+  (invoke-virtual/range {v45} android/support/v4/view/PagerTitleStrip/getHeight )
+; v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v37)
+; v37 : single-length
+  (label l233ea)
+  (line 342)
+  (invoke-virtual/range {v45} android/support/v4/view/PagerTitleStrip/getPaddingLeft )
+; v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v29)
+; v29 : single-length
+  (label l233f2)
+  (line 343)
+  (invoke-virtual/range {v45} android/support/v4/view/PagerTitleStrip/getPaddingRight )
+; v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v30)
+; v30 : single-length
+  (label l233fa)
+  (line 344)
+  (invoke-virtual/range {v45} android/support/v4/view/PagerTitleStrip/getPaddingTop )
+; v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v31)
+; v31 : single-length
+  (label l23402)
+  (line 345)
+  (invoke-virtual/range {v45} android/support/v4/view/PagerTitleStrip/getPaddingBottom )
+; v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (move-result v28)
+; v28 : single-length
+  (label l2340a)
+  (line 346)
+  (add-int v39 v29 v19)
+; v39 : single-length , v29 : single-length , v19 : single-length
+  (label l2340e)
+  (line 347)
+  (add-int v40 v30 v19)
+; v40 : single-length , v30 : single-length , v19 : single-length
+  (label l23412)
+  (line 348)
+  (sub-int v42 v38 v39)
+; v42 : single-length , v38 : single-length , v39 : single-length
+  (sub-int v10 v42 v40)
+; v10 : single-length , v42 : single-length , v40 : single-length
+  (label l2341a)
+  (line 350)
+  (const/high16 v42 16128)
+; v42 : single-length
+  (add-float v14 v47 v42)
+; v14 : single-length , v47 : single-length , v42 : single-length
+  (label l23422)
+  (line 351)
+  (const/high16 v42 16256)
+; v42 : single-length
+  (cmpl-float v42 v14 v42)
+; v42 : single-length , v14 : single-length , v42 : single-length
+  (if-lez v42 l23436)
+; v42 : single-length
+  (line 352)
+  (const/high16 v42 16256)
+; v42 : single-length
+  (sub-float v14 v14 v42)
+; v14 : single-length , v14 : single-length , v42 : single-length
+  (label l23436)
+  (line 354)
+  (sub-int v42 v38 v40)
+; v42 : single-length , v38 : single-length , v40 : single-length
+  (int-to-float v0 v10)
+; v0 : single-length , v10 : single-length
+  (move/from16 v43 v0)
+; v43 : single-length , v0 : single-length
+  (mul-float v43 v43 v14)
+; v43 : single-length , v43 : single-length , v14 : single-length
+  (move/from16 v0 v43)
+; v0 : single-length , v43 : single-length
+  (float-to-int v0 v0)
+; v0 : single-length , v0 : single-length
+  (move/from16 v43 v0)
+; v43 : single-length , v0 : single-length
+  (sub-int v12 v42 v43)
+; v12 : single-length , v42 : single-length , v43 : single-length
+  (label l23452)
+  (line 355)
+  (div-int/lit8 v42 v18 2)
+; v42 : single-length , v18 : single-length
+  (sub-int v13 v12 v42)
+; v13 : single-length , v12 : single-length , v42 : single-length
+  (label l2345a)
+  (line 356)
+  (add-int v15 v13 v18)
+; v15 : single-length , v13 : single-length , v18 : single-length
+  (label l2345e)
+  (line 358)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v42} android/widget/TextView/getBaseline )
+; v42 : Landroid/widget/TextView;
+  (move-result v32)
+; v32 : single-length
+  (label l23472)
+  (line 359)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v42} android/widget/TextView/getBaseline )
+; v42 : Landroid/widget/TextView;
+  (move-result v11)
+; v11 : single-length
+  (label l23486)
+  (line 360)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v42} android/widget/TextView/getBaseline )
+; v42 : Landroid/widget/TextView;
+  (move-result v22)
+; v22 : single-length
+  (label l2349a)
+  (line 361)
+  (move/from16 v0 v32)
+; v0 : single-length , v32 : single-length
+  (invoke-static {v0 v11} java/lang/Math/max int int )
+; v0 : single-length , v11 : single-length
+  (move-result v42)
+; v42 : single-length
+  (move/from16 v0 v42)
+; v0 : single-length , v42 : single-length
+  (move/from16 v1 v22)
+; v1 : single-length , v22 : single-length
+  (invoke-static {v0 v1} java/lang/Math/max int int )
+; v0 : single-length , v1 : single-length
+  (move-result v20)
+; v20 : single-length
+  (label l234b6)
+  (line 362)
+  (sub-int v35 v20 v32)
+; v35 : single-length , v20 : single-length , v32 : single-length
+  (label l234ba)
+  (line 363)
+  (sub-int v17 v20 v11)
+; v17 : single-length , v20 : single-length , v11 : single-length
+  (label l234be)
+  (line 364)
+  (sub-int v25 v20 v22)
+; v25 : single-length , v20 : single-length , v22 : single-length
+  (label l234c2)
+  (line 365)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v42} android/widget/TextView/getMeasuredHeight )
+; v42 : Landroid/widget/TextView;
+  (move-result v42)
+; v42 : single-length
+  (add-int v7 v35 v42)
+; v7 : single-length , v35 : single-length , v42 : single-length
+  (label l234da)
+  (line 366)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v42} android/widget/TextView/getMeasuredHeight )
+; v42 : Landroid/widget/TextView;
+  (move-result v42)
+; v42 : single-length
+  (add-int v5 v17 v42)
+; v5 : single-length , v17 : single-length , v42 : single-length
+  (label l234f2)
+  (line 367)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v42} android/widget/TextView/getMeasuredHeight )
+; v42 : Landroid/widget/TextView;
+  (move-result v42)
+; v42 : single-length
+  (add-int v6 v25 v42)
+; v6 : single-length , v25 : single-length , v42 : single-length
+  (label l2350a)
+  (line 368)
+  (invoke-static {v7 v5} java/lang/Math/max int int )
+; v7 : single-length , v5 : single-length
+  (move-result v42)
+; v42 : single-length
+  (move/from16 v0 v42)
+; v0 : single-length , v42 : single-length
+  (invoke-static {v0 v6} java/lang/Math/max int int )
+; v0 : single-length , v6 : single-length
+  (move-result v21)
+; v21 : single-length
+  (label l2351e)
+  (line 371)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget v0 v0 android/support/v4/view/PagerTitleStrip.mGravity int)
+; v0 : single-length , v0 : single-length
+  (move/from16 v42 v0)
+; v42 : single-length , v0 : single-length
+  (and-int/lit8 v41 v42 112)
+; v41 : single-length , v42 : single-length
+  (label l2352e)
+  (line 376)
+  (sparse-switch v41
+    (16 sp2352e_23676)
+    (80 sp2352e_23696)
+    (default sp2352e_default)
+  )
+; v41 : single-length
+  (label sp2352e_default)
+  (line 379)
+  (add-int v34 v31 v35)
+; v34 : single-length , v31 : single-length , v35 : single-length
+  (label l23538)
+  (line 380)
+  (add-int v16 v31 v17)
+; v16 : single-length , v31 : single-length , v17 : single-length
+  (label l2353c)
+  (line 381)
+  (add-int v24 v31 v25)
+; v24 : single-length , v31 : single-length , v25 : single-length
+  (label l23540)
+  (line 398)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mCurrText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v43 v0)
+; v43 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v43} android/widget/TextView/getMeasuredHeight )
+; v43 : Landroid/widget/TextView;
+  (move-result v43)
+; v43 : single-length
+  (add-int v43 v43 v16)
+; v43 : single-length , v43 : single-length , v16 : single-length
+  (move-object/from16 v0 v42)
+; v0 : Landroid/widget/TextView; , v42 : Landroid/widget/TextView;
+  (move/from16 v1 v16)
+; v1 : single-length , v16 : single-length
+  (move/from16 v2 v43)
+; v2 : single-length , v43 : single-length
+  (invoke-virtual {v0 v13 v1 v15 v2} android/widget/TextView/layout int int int int )
+; v0 : Landroid/widget/TextView; , v13 : single-length , v1 : single-length , v15 : single-length , v2 : single-length
+  (line 401)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget v0 v0 android/support/v4/view/PagerTitleStrip.mScaledTextSpacing int)
+; v0 : single-length , v0 : single-length
+  (move/from16 v42 v0)
+; v42 : single-length , v0 : single-length
+  (sub-int v42 v13 v42)
+; v42 : single-length , v13 : single-length , v42 : single-length
+  (sub-int v42 v42 v36)
+; v42 : single-length , v42 : single-length , v36 : single-length
+  (move/from16 v0 v29)
+; v0 : single-length , v29 : single-length
+  (move/from16 v1 v42)
+; v1 : single-length , v42 : single-length
+  (invoke-static {v0 v1} java/lang/Math/min int int )
+; v0 : single-length , v1 : single-length
+  (move-result v33)
+; v33 : single-length
+  (label l2359a)
+  (line 402)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (add-int v43 v33 v36)
+; v43 : single-length , v33 : single-length , v36 : single-length
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mPrevText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v44 v0)
+; v44 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v44} android/widget/TextView/getMeasuredHeight )
+; v44 : Landroid/widget/TextView;
+  (move-result v44)
+; v44 : single-length
+  (add-int v44 v44 v34)
+; v44 : single-length , v44 : single-length , v34 : single-length
+  (move-object/from16 v0 v42)
+; v0 : Landroid/widget/TextView; , v42 : Landroid/widget/TextView;
+  (move/from16 v1 v33)
+; v1 : single-length , v33 : single-length
+  (move/from16 v2 v34)
+; v2 : single-length , v34 : single-length
+  (move/from16 v3 v43)
+; v3 : single-length , v43 : single-length
+  (move/from16 v4 v44)
+; v4 : single-length , v44 : single-length
+  (invoke-virtual {v0 v1 v2 v3 v4} android/widget/TextView/layout int int int int )
+; v0 : Landroid/widget/TextView; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length
+  (line 405)
+  (sub-int v42 v38 v30)
+; v42 : single-length , v38 : single-length , v30 : single-length
+  (sub-int v42 v42 v26)
+; v42 : single-length , v42 : single-length , v26 : single-length
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget v0 v0 android/support/v4/view/PagerTitleStrip.mScaledTextSpacing int)
+; v0 : single-length , v0 : single-length
+  (move/from16 v43 v0)
+; v43 : single-length , v0 : single-length
+  (add-int v43 v43 v15)
+; v43 : single-length , v43 : single-length , v15 : single-length
+  (invoke-static/range {v42..v43} java/lang/Math/max int int )
+; v42 : single-length , v43 : single-length
+  (move-result v23)
+; v23 : single-length
+  (label l235fc)
+  (line 407)
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v42 v0)
+; v42 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (add-int v43 v23 v26)
+; v43 : single-length , v23 : single-length , v26 : single-length
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget-object v0 v0 android/support/v4/view/PagerTitleStrip.mNextText [object android/widget/TextView])
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (move-object/from16 v44 v0)
+; v44 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+  (invoke-virtual/range {v44} android/widget/TextView/getMeasuredHeight )
+; v44 : Landroid/widget/TextView;
+  (move-result v44)
+; v44 : single-length
+  (add-int v44 v44 v24)
+; v44 : single-length , v44 : single-length , v24 : single-length
+  (move-object/from16 v0 v42)
+; v0 : Landroid/widget/TextView; , v42 : Landroid/widget/TextView;
+  (move/from16 v1 v23)
+; v1 : single-length , v23 : single-length
+  (move/from16 v2 v24)
+; v2 : single-length , v24 : single-length
+  (move/from16 v3 v43)
+; v3 : single-length , v43 : single-length
+  (move/from16 v4 v44)
+; v4 : single-length , v44 : single-length
+  (invoke-virtual {v0 v1 v2 v3 v4} android/widget/TextView/layout int int int int )
+; v0 : Landroid/widget/TextView; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length
+  (line 410)
+  (move/from16 v0 v47)
+; v0 : single-length , v47 : single-length
+  (move-object/from16 v1 v45)
+; v1 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iput v0 v1 android/support/v4/view/PagerTitleStrip.mLastKnownPositionOffset float)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (line 411)
+  (const/16 v42 0)
+; v42 : single-length
+  (move/from16 v0 v42)
+; v0 : single-length , v42 : single-length
+  (move-object/from16 v1 v45)
+; v1 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iput-boolean v0 v1 android/support/v4/view/PagerTitleStrip.mUpdatingPositions boolean)
+; v0 : single-length , v1 : Landroid/support/v4/view/PagerTitleStrip;
+  (label l2365a)
+  (line 412)
+  (return-void )
+  (label l2365c)
+  (line 329)
+  (if-nez v48 l2338a)
+; v48 : single-length
+  (move-object/from16 v0 v45)
+; v0 : Landroid/support/v4/view/PagerTitleStrip; , v45 : Landroid/support/v4/view/PagerTitleStrip;
+  (iget v0 v0 android/support/v4/view/PagerTitleStrip.mLastKnownPositionOffset float)
+; v0 : single-length , v0 : single-length
+  (move/from16 v42 v0)
+; v42 : single-length , v0 : single-length
+  (cmpl-float v42 v47 v42)
+; v42 : single-length , v47 : single-length , v42 : single-length
+  (if-nez v42 l2338a)
+; v42 : single-length
+  (goto l2365a)
+  (label sp2352e_23676)
+  (line 384)
+  (sub-int v42 v37 v31)
+; v42 : single-length , v37 : single-length , v31 : single-length
+  (sub-int v27 v42 v28)
+; v27 : single-length , v42 : single-length , v28 : single-length
+  (label l2367e)
+  (line 385)
+  (sub-int v42 v27 v21)
+; v42 : single-length , v27 : single-length , v21 : single-length
+  (div-int/lit8 v9 v42 2)
+; v9 : single-length , v42 : single-length
+  (label l23686)
+  (line 386)
+  (add-int v34 v9 v35)
+; v34 : single-length , v9 : single-length , v35 : single-length
+  (label l2368a)
+  (line 387)
+  (add-int v16 v9 v17)
+; v16 : single-length , v9 : single-length , v17 : single-length
+  (label l2368e)
+  (line 388)
+  (add-int v24 v9 v25)
+; v24 : single-length , v9 : single-length , v25 : single-length
+  (label l23692)
+  (line 389)
+  (goto/16 l23540)
+  (label sp2352e_23696)
+  (label l23696)
+  (line 391)
+  (sub-int v42 v37 v28)
+; v42 : single-length , v37 : single-length , v28 : single-length
+  (sub-int v8 v42 v21)
+; v8 : single-length , v42 : single-length , v21 : single-length
+  (line 392)
+  (add-int v34 v8 v35)
+; v34 : single-length , v8 : single-length , v35 : single-length
+  (line 393)
+  (add-int v16 v8 v17)
+; v16 : single-length , v8 : single-length , v17 : single-length
+  (line 394)
+  (add-int v24 v8 v25)
+; v24 : single-length , v8 : single-length , v25 : single-length
+  (goto/16 l23540)
+  (line 376)
+  (label l236ae)
+  (data-array
+    0x00 0x00
+  )
+)
+
+)

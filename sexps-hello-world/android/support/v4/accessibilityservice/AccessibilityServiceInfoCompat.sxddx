@@ -1,0 +1,254 @@
+(class (attrs public ) android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat
+ (super java/lang/Object)
+ (source "AccessibilityServiceInfoCompat.java")
+
+ (field (attrs public static final ) FEEDBACK_ALL_MASK int -1); 0xffffffff )
+ (field (attrs private static final ) IMPL [object android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl] )
+
+(method (attrs static ) <clinit>()void
+  (limit registers 2)
+  (line 90)
+  (sget v0 android/os/Build$VERSION.SDK_INT int)
+; v0 : single-length
+  (const/16 v1 14)
+; v1 : single-length
+  (if-lt v0 v1 l110e4)
+; v0 : single-length , v1 : single-length
+  (line 91)
+  (new-instance v0 android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl)
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl;
+  (invoke-direct {v0} android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl/<init> )
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl;
+  (sput-object v0 android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat.IMPL [object android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl])
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl;
+  (label l110e2)
+  (line 95)
+  (return-void )
+  (label l110e4)
+  (line 93)
+  (new-instance v0 android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl)
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl;
+  (invoke-direct {v0} android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl/<init> )
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl;
+  (sput-object v0 android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat.IMPL [object android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl])
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl;
+  (goto l110e2)
+ )
+
+(method (attrs private ) <init>()void
+  (limit registers 1)
+  ; this: v0 ([object android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat])
+  (line 113)
+  (invoke-direct {v0} java/lang/Object/<init> )
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat;
+  (line 115)
+  (return-void )
+ )
+
+(method (attrs public static ) feedbackTypeToString(int )[object java/lang/String]
+  (limit registers 5)
+  ; parameter[0] : v4 (int)
+.var 1 is feedbackTypeFlag int from l11142 to l111a2
+  (const/4 v3 1)
+; v3 : single-length
+  (line 189)
+  (new-instance v0 java/lang/StringBuilder)
+; v0 : Ljava/lang/StringBuilder;
+  (invoke-direct {v0} java/lang/StringBuilder/<init> )
+; v0 : Ljava/lang/StringBuilder;
+  (line 190)
+  (const-string v2 "[")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v0 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (label l11132)
+  (line 191)
+  (if-lez v4 l111a2)
+; v4 : single-length
+  (line 192)
+  (invoke-static {v4} java/lang/Integer/numberOfTrailingZeros int )
+; v4 : single-length
+  (move-result v2)
+; v2 : single-length
+  (shl-int v1 v3 v2)
+; v1 : single-length , v3 : single-length , v2 : single-length
+  (label l11142)
+  (line 193)
+  (xor-int/lit8 v2 v1 255)
+; v2 : single-length , v1 : single-length
+  (and-int/2addr v4 v2)
+; v4 : single-length , v2 : single-length
+  (line 194)
+  (invoke-virtual {v0} java/lang/StringBuilder/length )
+; v0 : Ljava/lang/StringBuilder;
+  (move-result v2)
+; v2 : single-length
+  (if-le v2 v3 l1115e)
+; v2 : single-length , v3 : single-length
+  (line 195)
+  (const-string v2 ", ")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v0 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (label l1115e)
+  (line 197)
+  (sparse-switch v1
+    (1 sp1115e_11166)
+    (2 sp1115e_1117e)
+    (4 sp1115e_11172)
+    (8 sp1115e_11196)
+    (16 sp1115e_1118a)
+    (default sp1115e_default)
+  )
+; v1 : single-length
+  (label sp1115e_default)
+  (goto l11132)
+  (label sp1115e_11166)
+  (line 208)
+  (const-string v2 "FEEDBACK_SPOKEN")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v0 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (goto l11132)
+  (label sp1115e_11172)
+  (line 199)
+  (const-string v2 "FEEDBACK_AUDIBLE")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v0 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (goto l11132)
+  (label sp1115e_1117e)
+  (line 202)
+  (const-string v2 "FEEDBACK_HAPTIC")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v0 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (goto l11132)
+  (label sp1115e_1118a)
+  (line 205)
+  (const-string v2 "FEEDBACK_GENERIC")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v0 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (goto l11132)
+  (label sp1115e_11196)
+  (line 211)
+  (const-string v2 "FEEDBACK_VISUAL")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v0 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (goto l11132)
+  (label l111a2)
+  (line 215)
+  (const-string v2 "]")
+; v2 : Ljava/lang/String;
+  (invoke-virtual {v0 v2} java/lang/StringBuilder/append [object java/lang/String] )
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+  (line 216)
+  (invoke-virtual {v0} java/lang/StringBuilder/toString )
+; v0 : Ljava/lang/StringBuilder;
+  (move-result-object v2)
+; v2 : Ljava/lang/String;
+  (return-object v2)
+; v2 : Ljava/lang/String;
+  (line 197)
+  (label l111b6)
+  (data-array
+    0x00 0x00
+  )
+ )
+
+(method (attrs public static ) flagToString(int )[object java/lang/String]
+  (limit registers 2)
+  ; parameter[0] : v1 (int)
+  (line 228)
+  (packed-switch v1 1
+    ps111f4_111fe ; case 1
+    ps111f4_default) ; default
+; v1 : single-length
+  (label ps111f4_default)
+  (line 232)
+  (const/4 v0 0)
+; v0 : single-length
+  (label l111fc)
+  (return-object v0)
+; v0 : Ljava/lang/String;
+  (label ps111f4_111fe)
+  (line 230)
+  (const-string v0 "DEFAULT")
+; v0 : Ljava/lang/String;
+  (goto l111fc)
+  (line 228)
+ )
+
+(method (attrs public static ) getCanRetrieveWindowContent([object android/accessibilityservice/AccessibilityServiceInfo] )boolean
+  (limit registers 2)
+  ; parameter[0] : v1 ([object android/accessibilityservice/AccessibilityServiceInfo])
+  (line 164)
+  (sget-object v0 android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat.IMPL [object android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl])
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl;
+  (invoke-interface {v0 v1} android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl/getCanRetrieveWindowContent [object android/accessibilityservice/AccessibilityServiceInfo] )
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl; , v1 : Landroid/accessibilityservice/AccessibilityServiceInfo;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+ )
+
+(method (attrs public static ) getDescription([object android/accessibilityservice/AccessibilityServiceInfo] )[object java/lang/String]
+  (limit registers 2)
+  ; parameter[0] : v1 ([object android/accessibilityservice/AccessibilityServiceInfo])
+  (line 177)
+  (sget-object v0 android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat.IMPL [object android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl])
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl;
+  (invoke-interface {v0 v1} android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl/getDescription [object android/accessibilityservice/AccessibilityServiceInfo] )
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl; , v1 : Landroid/accessibilityservice/AccessibilityServiceInfo;
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (return-object v0)
+; v0 : Ljava/lang/String;
+ )
+
+(method (attrs public static ) getId([object android/accessibilityservice/AccessibilityServiceInfo] )[object java/lang/String]
+  (limit registers 2)
+  ; parameter[0] : v1 ([object android/accessibilityservice/AccessibilityServiceInfo])
+  (line 126)
+  (sget-object v0 android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat.IMPL [object android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl])
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl;
+  (invoke-interface {v0 v1} android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl/getId [object android/accessibilityservice/AccessibilityServiceInfo] )
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl; , v1 : Landroid/accessibilityservice/AccessibilityServiceInfo;
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (return-object v0)
+; v0 : Ljava/lang/String;
+ )
+
+(method (attrs public static ) getResolveInfo([object android/accessibilityservice/AccessibilityServiceInfo] )[object android/content/pm/ResolveInfo]
+  (limit registers 2)
+  ; parameter[0] : v1 ([object android/accessibilityservice/AccessibilityServiceInfo])
+  (line 138)
+  (sget-object v0 android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat.IMPL [object android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl])
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl;
+  (invoke-interface {v0 v1} android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl/getResolveInfo [object android/accessibilityservice/AccessibilityServiceInfo] )
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl; , v1 : Landroid/accessibilityservice/AccessibilityServiceInfo;
+  (move-result-object v0)
+; v0 : Landroid/content/pm/ResolveInfo;
+  (return-object v0)
+; v0 : Landroid/content/pm/ResolveInfo;
+ )
+
+(method (attrs public static ) getSettingsActivityName([object android/accessibilityservice/AccessibilityServiceInfo] )[object java/lang/String]
+  (limit registers 2)
+  ; parameter[0] : v1 ([object android/accessibilityservice/AccessibilityServiceInfo])
+  (line 151)
+  (sget-object v0 android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat.IMPL [object android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl])
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl;
+  (invoke-interface {v0 v1} android/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl/getSettingsActivityName [object android/accessibilityservice/AccessibilityServiceInfo] )
+; v0 : Landroid/support/v4/accessibilityservice/AccessibilityServiceInfoCompat$AccessibilityServiceInfoVersionImpl; , v1 : Landroid/accessibilityservice/AccessibilityServiceInfo;
+  (move-result-object v0)
+; v0 : Ljava/lang/String;
+  (return-object v0)
+; v0 : Ljava/lang/String;
+ )
+
+)

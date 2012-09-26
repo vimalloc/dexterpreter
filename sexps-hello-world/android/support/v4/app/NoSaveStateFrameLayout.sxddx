@@ -1,0 +1,81 @@
+(class (attrs ) android/support/v4/app/NoSaveStateFrameLayout
+ (super android/widget/FrameLayout)
+ (source "NoSaveStateFrameLayout.java")
+
+
+(method (attrs public ) <init>([object android/content/Context] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NoSaveStateFrameLayout])
+  ; parameter[0] : v1 ([object android/content/Context])
+  (line 45)
+  (invoke-direct {v0 v1} android/widget/FrameLayout/<init> [object android/content/Context] )
+; v0 : Landroid/support/v4/app/NoSaveStateFrameLayout; , v1 : Landroid/content/Context;
+  (line 46)
+  (return-void )
+ )
+
+(method (attrs static ) wrap([object android/view/View] )[object android/view/ViewGroup]
+  (limit registers 6)
+  ; parameter[0] : v5 ([object android/view/View])
+  (const/4 v4 15)
+; v4 : single-length
+  (line 32)
+  (new-instance v2 android/support/v4/app/NoSaveStateFrameLayout)
+; v2 : Landroid/support/v4/app/NoSaveStateFrameLayout;
+  (invoke-virtual {v5} android/view/View/getContext )
+; v5 : Landroid/view/View;
+  (move-result-object v3)
+; v3 : Landroid/content/Context;
+  (invoke-direct {v2 v3} android/support/v4/app/NoSaveStateFrameLayout/<init> [object android/content/Context] )
+; v2 : Landroid/support/v4/app/NoSaveStateFrameLayout; , v3 : Landroid/content/Context;
+  (line 33)
+  (invoke-virtual {v5} android/view/View/getLayoutParams )
+; v5 : Landroid/view/View;
+  (move-result-object v0)
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+  (line 34)
+  (if-eqz v0 l1b6f6)
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+  (line 35)
+  (invoke-virtual {v2 v0} android/support/v4/app/NoSaveStateFrameLayout/setLayoutParams [object android/view/ViewGroup$LayoutParams] )
+; v2 : Landroid/support/v4/app/NoSaveStateFrameLayout; , v0 : Landroid/view/ViewGroup$LayoutParams;
+  (label l1b6f6)
+  (line 37)
+  (new-instance v1 android/widget/FrameLayout$LayoutParams)
+; v1 : Landroid/widget/FrameLayout$LayoutParams;
+  (invoke-direct {v1 v4 v4} android/widget/FrameLayout$LayoutParams/<init> int int )
+; v1 : Landroid/widget/FrameLayout$LayoutParams; , v4 : single-length , v4 : single-length
+  (line 39)
+  (invoke-virtual {v5 v1} android/view/View/setLayoutParams [object android/view/ViewGroup$LayoutParams] )
+; v5 : Landroid/view/View; , v1 : Landroid/widget/FrameLayout$LayoutParams;
+  (line 40)
+  (invoke-virtual {v2 v5} android/support/v4/app/NoSaveStateFrameLayout/addView [object android/view/View] )
+; v2 : Landroid/support/v4/app/NoSaveStateFrameLayout; , v5 : Landroid/view/View;
+  (line 41)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/NoSaveStateFrameLayout;
+ )
+
+(method (attrs protected ) dispatchRestoreInstanceState([object android/util/SparseArray] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NoSaveStateFrameLayout])
+  ; parameter[0] : v1 ([object android/util/SparseArray])
+  (line 61)
+  (invoke-virtual {v0 v1} android/support/v4/app/NoSaveStateFrameLayout/dispatchThawSelfOnly [object android/util/SparseArray] )
+; v0 : Landroid/support/v4/app/NoSaveStateFrameLayout; , v1 : Landroid/util/SparseArray;
+  (line 62)
+  (return-void )
+)
+
+(method (attrs protected ) dispatchSaveInstanceState([object android/util/SparseArray] )void
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NoSaveStateFrameLayout])
+  ; parameter[0] : v1 ([object android/util/SparseArray])
+  (line 53)
+  (invoke-virtual {v0 v1} android/support/v4/app/NoSaveStateFrameLayout/dispatchFreezeSelfOnly [object android/util/SparseArray] )
+; v0 : Landroid/support/v4/app/NoSaveStateFrameLayout; , v1 : Landroid/util/SparseArray;
+  (line 54)
+  (return-void )
+)
+
+)

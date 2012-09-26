@@ -1,0 +1,40 @@
+(class (attrs ) android/support/v4/view/ViewCompat$GBViewCompatImpl
+ (super android/support/v4/view/ViewCompat$BaseViewCompatImpl)
+ (source "ViewCompat.java")
+
+
+(method (attrs ) <init>()void
+  (limit registers 1)
+  ; this: v0 ([object android/support/v4/view/ViewCompat$GBViewCompatImpl])
+  (line 142)
+  (invoke-direct {v0} android/support/v4/view/ViewCompat$BaseViewCompatImpl/<init> )
+; v0 : Landroid/support/v4/view/ViewCompat$GBViewCompatImpl;
+  (return-void )
+ )
+
+(method (attrs public ) getOverScrollMode([object android/view/View] )int
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/view/ViewCompat$GBViewCompatImpl])
+  ; parameter[0] : v2 ([object android/view/View])
+  (line 145)
+  (invoke-static {v2} android/support/v4/view/ViewCompatGingerbread/getOverScrollMode [object android/view/View] )
+; v2 : Landroid/view/View;
+  (move-result v0)
+; v0 : single-length
+  (return v0)
+; v0 : single-length
+)
+
+(method (attrs public ) setOverScrollMode([object android/view/View] int )void
+  (limit registers 3)
+  ; this: v0 ([object android/support/v4/view/ViewCompat$GBViewCompatImpl])
+  ; parameter[0] : v1 ([object android/view/View])
+  ; parameter[1] : v2 (int)
+  (line 149)
+  (invoke-static {v1 v2} android/support/v4/view/ViewCompatGingerbread/setOverScrollMode [object android/view/View] int )
+; v1 : Landroid/view/View; , v2 : single-length
+  (line 150)
+  (return-void )
+)
+
+)

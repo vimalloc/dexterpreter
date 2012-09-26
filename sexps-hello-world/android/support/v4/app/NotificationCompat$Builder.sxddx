@@ -1,0 +1,644 @@
+(class (attrs public ) android/support/v4/app/NotificationCompat$Builder
+ (super java/lang/Object)
+ (source "NotificationCompat.java")
+
+ (field (attrs ) mActions [object java/util/ArrayList] )
+ (field (attrs ) mContentInfo [object java/lang/CharSequence] )
+ (field (attrs ) mContentIntent [object android/app/PendingIntent] )
+ (field (attrs ) mContentText [object java/lang/CharSequence] )
+ (field (attrs ) mContentTitle [object java/lang/CharSequence] )
+ (field (attrs ) mContext [object android/content/Context] )
+ (field (attrs ) mFullScreenIntent [object android/app/PendingIntent] )
+ (field (attrs ) mLargeIcon [object android/graphics/Bitmap] )
+ (field (attrs ) mNotification [object android/app/Notification] )
+ (field (attrs ) mNumber int )
+ (field (attrs ) mPriority int )
+ (field (attrs ) mProgress int )
+ (field (attrs ) mProgressIndeterminate boolean )
+ (field (attrs ) mProgressMax int )
+ (field (attrs ) mStyle [object android/support/v4/app/NotificationCompat$Style] )
+ (field (attrs ) mSubText [object java/lang/CharSequence] )
+ (field (attrs ) mTickerView [object android/widget/RemoteViews] )
+ (field (attrs ) mUseChronometer boolean )
+
+(method (attrs public ) <init>([object android/content/Context] )void
+  (limit registers 5)
+  ; this: v3 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v4 ([object android/content/Context])
+  (line 195)
+  (invoke-direct {v3} java/lang/Object/<init> )
+; v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 180)
+  (new-instance v0 java/util/ArrayList)
+; v0 : Ljava/util/ArrayList;
+  (invoke-direct {v0} java/util/ArrayList/<init> )
+; v0 : Ljava/util/ArrayList;
+  (iput-object v0 v3 android/support/v4/app/NotificationCompat$Builder.mActions [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 182)
+  (new-instance v0 android/app/Notification)
+; v0 : Landroid/app/Notification;
+  (invoke-direct {v0} android/app/Notification/<init> )
+; v0 : Landroid/app/Notification;
+  (iput-object v0 v3 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 196)
+  (iput-object v4 v3 android/support/v4/app/NotificationCompat$Builder.mContext [object android/content/Context])
+; v4 : Landroid/content/Context; , v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 199)
+  (iget-object v0 v3 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (invoke-static {} java/lang/System/currentTimeMillis )
+; 
+  (nop )
+  (move-result-wide v1)
+; v1 : double-length
+  (iput-wide v1 v0 android/app/Notification.when long)
+; v1 : double-length , v0 : Landroid/app/Notification;
+  (line 200)
+  (iget-object v0 v3 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (const/4 v1 15)
+; v1 : single-length
+  (iput v1 v0 android/app/Notification.audioStreamType int)
+; v1 : single-length , v0 : Landroid/app/Notification;
+  (line 201)
+  (const/4 v0 0)
+; v0 : single-length
+  (iput v0 v3 android/support/v4/app/NotificationCompat$Builder.mPriority int)
+; v0 : single-length , v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 202)
+  (return-void )
+ )
+
+(method (attrs private ) setFlag(int boolean )void
+  (limit registers 6)
+  ; this: v3 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v4 (int)
+  ; parameter[1] : v5 (boolean)
+  (line 494)
+  (if-eqz v5 l1b960)
+; v5 : single-length
+  (line 495)
+  (iget-object v0 v3 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iget v1 v0 android/app/Notification.flags int)
+; v1 : single-length , v0 : Landroid/app/Notification;
+  (or-int/2addr v1 v4)
+; v1 : single-length , v4 : single-length
+  (iput v1 v0 android/app/Notification.flags int)
+; v1 : single-length , v0 : Landroid/app/Notification;
+  (label l1b95e)
+  (line 499)
+  (return-void )
+  (label l1b960)
+  (line 497)
+  (iget-object v0 v3 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iget v1 v0 android/app/Notification.flags int)
+; v1 : single-length , v0 : Landroid/app/Notification;
+  (xor-int/lit8 v2 v4 255)
+; v2 : single-length , v4 : single-length
+  (and-int/2addr v1 v2)
+; v1 : single-length , v2 : single-length
+  (iput v1 v0 android/app/Notification.flags int)
+; v1 : single-length , v0 : Landroid/app/Notification;
+  (goto l1b95e)
+ )
+
+(method (attrs public ) addAction(int [object java/lang/CharSequence] [object android/app/PendingIntent] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 6)
+  ; this: v2 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v3 (int)
+  ; parameter[1] : v4 ([object java/lang/CharSequence])
+  ; parameter[2] : v5 ([object android/app/PendingIntent])
+  (line 526)
+  (iget-object v0 v2 android/support/v4/app/NotificationCompat$Builder.mActions [object java/util/ArrayList])
+; v0 : Ljava/util/ArrayList; , v2 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (new-instance v1 android/support/v4/app/NotificationCompat$Action)
+; v1 : Landroid/support/v4/app/NotificationCompat$Action;
+  (invoke-direct {v1 v3 v4 v5} android/support/v4/app/NotificationCompat$Action/<init> int [object java/lang/CharSequence] [object android/app/PendingIntent] )
+; v1 : Landroid/support/v4/app/NotificationCompat$Action; , v3 : single-length , v4 : Ljava/lang/CharSequence; , v5 : Landroid/app/PendingIntent;
+  (invoke-virtual {v0 v1} java/util/ArrayList/add [object java/lang/Object] )
+; v0 : Ljava/util/ArrayList; , v1 : Landroid/support/v4/app/NotificationCompat$Action;
+  (line 527)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) build()[object android/app/Notification]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  (line 558)
+  (invoke-static {} android/support/v4/app/NotificationCompat/access$000 )
+; 
+  (nop )
+  (move-result-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$NotificationCompatImpl;
+  (invoke-interface {v0 v1} android/support/v4/app/NotificationCompat$NotificationCompatImpl/build [object android/support/v4/app/NotificationCompat$Builder] )
+; v0 : Landroid/support/v4/app/NotificationCompat$NotificationCompatImpl; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (move-result-object v0)
+; v0 : Landroid/app/Notification;
+  (return-object v0)
+; v0 : Landroid/app/Notification;
+)
+
+(method (attrs public ) getNotification()[object android/app/Notification]
+  (limit registers 2)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  (line 550)
+  (invoke-static {} android/support/v4/app/NotificationCompat/access$000 )
+; 
+  (nop )
+  (move-result-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$NotificationCompatImpl;
+  (invoke-interface {v0 v1} android/support/v4/app/NotificationCompat$NotificationCompatImpl/build [object android/support/v4/app/NotificationCompat$Builder] )
+; v0 : Landroid/support/v4/app/NotificationCompat$NotificationCompatImpl; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (move-result-object v0)
+; v0 : Landroid/app/Notification;
+  (return-object v0)
+; v0 : Landroid/app/Notification;
+)
+
+(method (attrs public ) setAutoCancel(boolean )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 (boolean)
+  (line 471)
+  (const/16 v0 16)
+; v0 : single-length
+  (invoke-direct {v1 v0 v2} android/support/v4/app/NotificationCompat$Builder/setFlag int boolean )
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v0 : single-length , v2 : single-length
+  (line 472)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setContent([object android/widget/RemoteViews] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 ([object android/widget/RemoteViews])
+  (line 316)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput-object v2 v0 android/app/Notification.contentView [object android/widget/RemoteViews])
+; v2 : Landroid/widget/RemoteViews; , v0 : Landroid/app/Notification;
+  (line 317)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setContentInfo([object java/lang/CharSequence] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 ([object java/lang/CharSequence])
+  (line 297)
+  (iput-object v1 v0 android/support/v4/app/NotificationCompat$Builder.mContentInfo [object java/lang/CharSequence])
+; v1 : Ljava/lang/CharSequence; , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 298)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setContentIntent([object android/app/PendingIntent] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 ([object android/app/PendingIntent])
+  (line 329)
+  (iput-object v1 v0 android/support/v4/app/NotificationCompat$Builder.mContentIntent [object android/app/PendingIntent])
+; v1 : Landroid/app/PendingIntent; , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 330)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setContentText([object java/lang/CharSequence] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 ([object java/lang/CharSequence])
+  (line 269)
+  (iput-object v1 v0 android/support/v4/app/NotificationCompat$Builder.mContentText [object java/lang/CharSequence])
+; v1 : Ljava/lang/CharSequence; , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 270)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setContentTitle([object java/lang/CharSequence] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 ([object java/lang/CharSequence])
+  (line 261)
+  (iput-object v1 v0 android/support/v4/app/NotificationCompat$Builder.mContentTitle [object java/lang/CharSequence])
+; v1 : Ljava/lang/CharSequence; , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 262)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setDefaults(int )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v3 (int)
+  (line 486)
+  (iget-object v0 v2 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v2 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput v3 v0 android/app/Notification.defaults int)
+; v3 : single-length , v0 : Landroid/app/Notification;
+  (line 487)
+  (and-int/lit8 v0 v3 4)
+; v0 : single-length , v3 : single-length
+  (if-eqz v0 l1baac)
+; v0 : single-length
+  (line 488)
+  (iget-object v0 v2 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v2 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iget v1 v0 android/app/Notification.flags int)
+; v1 : single-length , v0 : Landroid/app/Notification;
+  (or-int/lit8 v1 v1 1)
+; v1 : single-length , v1 : single-length
+  (iput v1 v0 android/app/Notification.flags int)
+; v1 : single-length , v0 : Landroid/app/Notification;
+  (label l1baac)
+  (line 490)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setDeleteIntent([object android/app/PendingIntent] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 ([object android/app/PendingIntent])
+  (line 341)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput-object v2 v0 android/app/Notification.deleteIntent [object android/app/PendingIntent])
+; v2 : Landroid/app/PendingIntent; , v0 : Landroid/app/Notification;
+  (line 342)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setFullScreenIntent([object android/app/PendingIntent] boolean )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 ([object android/app/PendingIntent])
+  ; parameter[1] : v3 (boolean)
+  (line 359)
+  (iput-object v2 v1 android/support/v4/app/NotificationCompat$Builder.mFullScreenIntent [object android/app/PendingIntent])
+; v2 : Landroid/app/PendingIntent; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 360)
+  (const/16 v0 128)
+; v0 : single-length
+  (invoke-direct {v1 v0 v3} android/support/v4/app/NotificationCompat$Builder/setFlag int boolean )
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v0 : single-length , v3 : single-length
+  (line 361)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setLargeIcon([object android/graphics/Bitmap] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 ([object android/graphics/Bitmap])
+  (line 388)
+  (iput-object v1 v0 android/support/v4/app/NotificationCompat$Builder.mLargeIcon [object android/graphics/Bitmap])
+; v1 : Landroid/graphics/Bitmap; , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 389)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setLights(int int int )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 9)
+  ; this: v5 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v6 (int)
+  ; parameter[1] : v7 (int)
+  ; parameter[2] : v8 (int)
+.var 0 is showLights boolean from l1bb4a to l1bb66
+  (const/4 v1 1)
+; v1 : single-length
+  (const/4 v2 0)
+; v2 : single-length
+  (line 430)
+  (iget-object v3 v5 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v3 : Landroid/app/Notification; , v5 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput v6 v3 android/app/Notification.ledARGB int)
+; v6 : single-length , v3 : Landroid/app/Notification;
+  (line 431)
+  (iget-object v3 v5 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v3 : Landroid/app/Notification; , v5 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput v7 v3 android/app/Notification.ledOnMS int)
+; v7 : single-length , v3 : Landroid/app/Notification;
+  (line 432)
+  (iget-object v3 v5 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v3 : Landroid/app/Notification; , v5 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput v8 v3 android/app/Notification.ledOffMS int)
+; v8 : single-length , v3 : Landroid/app/Notification;
+  (line 433)
+  (iget-object v3 v5 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v3 : Landroid/app/Notification; , v5 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iget v3 v3 android/app/Notification.ledOnMS int)
+; v3 : single-length , v3 : single-length
+  (if-eqz v3 l1bb66)
+; v3 : single-length
+  (iget-object v3 v5 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v3 : Landroid/app/Notification; , v5 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iget v3 v3 android/app/Notification.ledOffMS int)
+; v3 : single-length , v3 : single-length
+  (if-eqz v3 l1bb66)
+; v3 : single-length
+  (move v0 v1)
+; v0 : single-length , v1 : single-length
+  (label l1bb4a)
+  (line 434)
+  (iget-object v3 v5 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v3 : Landroid/app/Notification; , v5 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iget-object v4 v5 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v4 : Landroid/app/Notification; , v5 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iget v4 v4 android/app/Notification.flags int)
+; v4 : single-length , v4 : single-length
+  (and-int/lit8 v4 v4 254)
+; v4 : single-length , v4 : single-length
+  (if-eqz v0 l1bb6a)
+; v0 : single-length
+  (label l1bb5e)
+  (or-int/2addr v1 v4)
+; v1 : single-length , v4 : single-length
+  (iput v1 v3 android/app/Notification.flags int)
+; v1 : single-length , v3 : Landroid/app/Notification;
+  (line 436)
+  (return-object v5)
+; v5 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (label l1bb66)
+  (move v0 v2)
+; v0 : single-length , v2 : single-length
+  (line 433)
+  (goto l1bb4a)
+  (label l1bb6a)
+  (move v1 v2)
+; v1 : single-length , v2 : single-length
+  (line 434)
+  (goto l1bb5e)
+)
+
+(method (attrs public ) setNumber(int )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 (int)
+  (line 289)
+  (iput v1 v0 android/support/v4/app/NotificationCompat$Builder.mNumber int)
+; v1 : single-length , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 290)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setOngoing(boolean )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 (boolean)
+  (line 451)
+  (const/4 v0 2)
+; v0 : single-length
+  (invoke-direct {v1 v0 v2} android/support/v4/app/NotificationCompat$Builder/setFlag int boolean )
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v0 : single-length , v2 : single-length
+  (line 452)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setOnlyAlertOnce(boolean )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 (boolean)
+  (line 460)
+  (const/16 v0 8)
+; v0 : single-length
+  (invoke-direct {v1 v0 v2} android/support/v4/app/NotificationCompat$Builder/setFlag int boolean )
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v0 : single-length , v2 : single-length
+  (line 461)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setPriority(int )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 (int)
+  (line 513)
+  (iput v1 v0 android/support/v4/app/NotificationCompat$Builder.mPriority int)
+; v1 : single-length , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 514)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setProgress(int int boolean )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 4)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 (int)
+  ; parameter[1] : v2 (int)
+  ; parameter[2] : v3 (boolean)
+  (line 306)
+  (iput v1 v0 android/support/v4/app/NotificationCompat$Builder.mProgressMax int)
+; v1 : single-length , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 307)
+  (iput v2 v0 android/support/v4/app/NotificationCompat$Builder.mProgress int)
+; v2 : single-length , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 308)
+  (iput-boolean v3 v0 android/support/v4/app/NotificationCompat$Builder.mProgressIndeterminate boolean)
+; v3 : single-length , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 309)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setSmallIcon(int )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 (int)
+  (line 237)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput v2 v0 android/app/Notification.icon int)
+; v2 : single-length , v0 : Landroid/app/Notification;
+  (line 238)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setSmallIcon(int int )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 (int)
+  ; parameter[1] : v3 (int)
+  (line 252)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput v2 v0 android/app/Notification.icon int)
+; v2 : single-length , v0 : Landroid/app/Notification;
+  (line 253)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput v3 v0 android/app/Notification.iconLevel int)
+; v3 : single-length , v0 : Landroid/app/Notification;
+  (line 254)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setSound([object android/net/Uri] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 4)
+  ; this: v2 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v3 ([object android/net/Uri])
+  (line 396)
+  (iget-object v0 v2 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v2 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput-object v3 v0 android/app/Notification.sound [object android/net/Uri])
+; v3 : Landroid/net/Uri; , v0 : Landroid/app/Notification;
+  (line 397)
+  (iget-object v0 v2 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v2 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (const/4 v1 15)
+; v1 : single-length
+  (iput v1 v0 android/app/Notification.audioStreamType int)
+; v1 : single-length , v0 : Landroid/app/Notification;
+  (line 398)
+  (return-object v2)
+; v2 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setSound([object android/net/Uri] int )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 ([object android/net/Uri])
+  ; parameter[1] : v3 (int)
+  (line 408)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput-object v2 v0 android/app/Notification.sound [object android/net/Uri])
+; v2 : Landroid/net/Uri; , v0 : Landroid/app/Notification;
+  (line 409)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput v3 v0 android/app/Notification.audioStreamType int)
+; v3 : single-length , v0 : Landroid/app/Notification;
+  (line 410)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setStyle([object android/support/v4/app/NotificationCompat$Style] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 ([object android/support/v4/app/NotificationCompat$Style])
+  (line 536)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mStyle [object android/support/v4/app/NotificationCompat$Style])
+; v0 : Landroid/support/v4/app/NotificationCompat$Style; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (if-eq v0 v2 l1bcae)
+; v0 : Landroid/support/v4/app/NotificationCompat$Style; , v2 : Landroid/support/v4/app/NotificationCompat$Style;
+  (line 537)
+  (iput-object v2 v1 android/support/v4/app/NotificationCompat$Builder.mStyle [object android/support/v4/app/NotificationCompat$Style])
+; v2 : Landroid/support/v4/app/NotificationCompat$Style; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 538)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mStyle [object android/support/v4/app/NotificationCompat$Style])
+; v0 : Landroid/support/v4/app/NotificationCompat$Style; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (if-eqz v0 l1bcae)
+; v0 : Landroid/support/v4/app/NotificationCompat$Style;
+  (line 539)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mStyle [object android/support/v4/app/NotificationCompat$Style])
+; v0 : Landroid/support/v4/app/NotificationCompat$Style; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (invoke-virtual {v0 v1} android/support/v4/app/NotificationCompat$Style/setBuilder [object android/support/v4/app/NotificationCompat$Builder] )
+; v0 : Landroid/support/v4/app/NotificationCompat$Style; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (label l1bcae)
+  (line 542)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setSubText([object java/lang/CharSequence] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 ([object java/lang/CharSequence])
+  (line 279)
+  (iput-object v1 v0 android/support/v4/app/NotificationCompat$Builder.mSubText [object java/lang/CharSequence])
+; v1 : Ljava/lang/CharSequence; , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 280)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setTicker([object java/lang/CharSequence] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 ([object java/lang/CharSequence])
+  (line 369)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput-object v2 v0 android/app/Notification.tickerText [object java/lang/CharSequence])
+; v2 : Ljava/lang/CharSequence; , v0 : Landroid/app/Notification;
+  (line 370)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setTicker([object java/lang/CharSequence] [object android/widget/RemoteViews] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 ([object java/lang/CharSequence])
+  ; parameter[1] : v3 ([object android/widget/RemoteViews])
+  (line 379)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput-object v2 v0 android/app/Notification.tickerText [object java/lang/CharSequence])
+; v2 : Ljava/lang/CharSequence; , v0 : Landroid/app/Notification;
+  (line 380)
+  (iput-object v3 v1 android/support/v4/app/NotificationCompat$Builder.mTickerView [object android/widget/RemoteViews])
+; v3 : Landroid/widget/RemoteViews; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 381)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setUsesChronometer(boolean )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 2)
+  ; this: v0 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v1 (boolean)
+  (line 225)
+  (iput-boolean v1 v0 android/support/v4/app/NotificationCompat$Builder.mUseChronometer boolean)
+; v1 : single-length , v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (line 226)
+  (return-object v0)
+; v0 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setVibrate([array long] )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 3)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 ([array long])
+  (line 420)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput-object v2 v0 android/app/Notification.vibrate [array long])
+; v2 : [J , v0 : Landroid/app/Notification;
+  (line 421)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+(method (attrs public ) setWhen(long )[object android/support/v4/app/NotificationCompat$Builder]
+  (limit registers 4)
+  ; this: v1 ([object android/support/v4/app/NotificationCompat$Builder])
+  ; parameter[0] : v2 (long)
+  (line 209)
+  (iget-object v0 v1 android/support/v4/app/NotificationCompat$Builder.mNotification [object android/app/Notification])
+; v0 : Landroid/app/Notification; , v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+  (iput-wide v2 v0 android/app/Notification.when long)
+; v2 : double-length , v0 : Landroid/app/Notification;
+  (line 210)
+  (return-object v1)
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+)
+
+)
