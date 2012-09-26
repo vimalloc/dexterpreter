@@ -1,3 +1,5 @@
+#lang racket
+
 ; CESK state machine
 ;   control: a sequence of statements (stmts)
 ;   environment: frame pointer to this state machine (fp)
