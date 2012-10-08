@@ -28,6 +28,20 @@
       ; => Return with vx object reference value
       [`(return-object ,vx)   stx])))
 
+; ρ : env = symbol -> addr
+; σ : store = addr -> value
+; value = integer + boolean + clo + cont
+; clo ::= (clo <lam> <env>)
+; κ : kont ::= (letk <var> <exp> <env> <kont>)
+;           |  halt
+; cont ::= (cont <kont>)
+; addr = a set of unique addresses;
+;        for this machine, symbols work;
+;        gensym can create fresh addresses
+
+; lookup the value of the framepointer
+(define (lookup σ fp val)
+  (hash-ref σ fp))
 
 ; Opcodes we care about (in order):
 ; http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html
