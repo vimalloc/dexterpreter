@@ -52,6 +52,16 @@
      (extend* (hash-set ρ addr $addr) addrs vals)]
     [else ρ]))
 
+; Apply continuation
+(define (apply-kont κ value σ)
+  (match κ
+    ; if this is the end, not sure what to return
+    ['(halt) '()]
+    ; otherwise, we need to get our new state
+    [`(,f ,stmts ,fp ,kaddr)
+      (let ([σ* (extend* σ ρ fp (lookup σ fp value))])
+          (state stmts σ* fp kaddr))]
+))
 ; Opcodes we care about (in order):
 ; http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html
 
