@@ -62,6 +62,19 @@
       (let ([σ* (extend* σ ρ fp (lookup σ fp value))])
           (state stmts σ* fp kaddr))]
 ))
+
+; Transition Function
+(define (step expr ρ σ κ)
+    ; return-{wide,object,}
+    ; step(aexp,ρ,σ,κ)=applykont(κ,A(aexp,ρ,σ),σ))
+    ; return only returns a value in a register vx, which is atomic
+    [`(return ,vx) (apply-kont κ vx σ)]
+    [`(return-wide ,vx) (apply-kont κ vx σ)]
+    ; return a reference to an object, might need to look this up
+    [`(return-object ,vx) (apply-kont κ vx σ)]
+)
+
+
 ; Opcodes we care about (in order):
 ; http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html
 
