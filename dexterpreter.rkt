@@ -43,6 +43,15 @@
 (define (lookup σ fp val)
   (hash-ref σ fp))
 
+; extend environment and store with one or more values
+(define (extend* σ ρ addrs vals)
+  (match `(,addrs ,vals)
+    [`((,addr . ,addrs) (,val . ,vals))
+     (define $addr (gensym '$addr))
+     (hash-set! σ $addr val)
+     (extend* (hash-set ρ addr $addr) addrs vals)]
+    [else ρ]))
+
 ; Opcodes we care about (in order):
 ; http://pallergabor.uw.hu/androidblog/dalvik_opcodes.html
 
