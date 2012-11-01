@@ -9,24 +9,11 @@
 (struct state {stmts fp store kont})
 
 (define-match-expander return
-  (lambda stx
-    (syntax-case stx ()
-      ; return-void
-      ; (return-void )
-      ; => Return without a return value
-      [`(return-void )        stx]
-      ; return
-      ; (return vx)
-      ; => Return with vx return value
-      [`(return ,vx)          stx]
-      ; return-wide
-      ; (return-wide vx)
-      ; => Return with double/long result in vx,vx+1.
-      [`(return-wide ,vx)     stx]
-      ; return-object
-      ; (return-object vx)
-      ; => Return with vx object reference value
-      [`(return-object ,vx)   stx])))
+  (syntax-rule ()
+    [(_ v)
+     (or `(return ,v)
+         `(return-wide ,v)
+         `(return-object ,v))]))
 
 ; ρ : env = symbol -> addr
 ; σ : store = addr -> value
@@ -60,8 +47,7 @@
     ; otherwise, we need to get our new state
     [`(,f ,stmts ,fp ,kaddr)
       (let ([σ* (extend* σ ρ fp (lookup σ fp value))])
-          (state stmts σ* fp kaddr))]
-))
+          (state stmts σ* fp kaddr))]))
 
 ; Transition Function
 (define (step expr ρ σ κ)
