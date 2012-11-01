@@ -26,9 +26,9 @@
 ;        for this machine, symbols work;
 ;        gensym can create fresh addresses
 
-; lookup the value of the framepointer
-(define (lookup σ fp val)
-  (hash-ref σ fp))
+; lookup the value of the framepointer, variable
+(define (lookup σ fp var)
+  (hash-ref σ (fp, var)))
 
 ; extend environment and store with one or more values
 (define (extend* σ ρ addrs vals)
